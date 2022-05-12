@@ -44,7 +44,7 @@ const useStyles = makeStyles({
 const Dashboard = (props) => {
     const [open, setOpen] = React.useState(false);
     const [openRight, setOpenRight] = React.useState(false);
-    const [activePage, setactivePage] = useState('');
+    const [activePage, setactivePage] = useState('Home');
     const [selectedBuilding, setSelectedBuilding] = useState({})
     const [selectedFloor, setSelectedFloor] = useState({})
     const classes = useStyles();
