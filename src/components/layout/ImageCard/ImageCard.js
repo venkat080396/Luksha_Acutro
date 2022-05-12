@@ -17,6 +17,7 @@ const ImageCard = ({ data }) => {
                 border: "1px solid white",
                 background: "rgba(255,255,255,0.14)",
                 zIndex: 4,
+                marginBottom: "10px"
             }}
         >
             <CardBody
@@ -34,10 +35,10 @@ const ImageCard = ({ data }) => {
                         alignItems: "center"
                     }}
                 >
-                    <Colum img={Locate} des={data?.siteName}></Colum>
-                    <Colum img={Building} des={data?.buildingName}></Colum>
-                    <Colum img={Building_Location} des={data?.buildingLocation}></Colum>
-                    <Colum img={Arrow} des={`${data?.area} sp ft`}></Colum>
+                    <Colum img={Locate} des={data?.SiteName}></Colum>
+                    <Colum img={Building} des={data?.Name}></Colum>
+                    <Colum img={Building_Location} des=""></Colum>
+                    <Colum img={Arrow} des={`${data?.SquareMeters} sp ft`}></Colum>
                 </Row>
             </CardBody>
             <CardImg

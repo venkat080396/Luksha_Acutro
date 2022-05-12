@@ -1,0 +1,10 @@
+.select:before {
+    border-color: 'white';
+    width: 40px
+}
+
+.select {
+    border-color: 'black';
+    color: "black";
+    background-color: "red";
+}

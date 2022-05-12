@@ -1,29 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Grid, Box } from '@mui/material'
 import ImageCard from "../../components/layout/ImageCard/ImageCard"
-import { useSelector, useDispatch } from "react-redux";
-import { fetchAsyncBuildings, getAllBuildings } from '../../features/Home/homeSlice';
+import { useSelector } from "react-redux";
+import { getSelectedBuilding } from '../../features/Home/homeSlice';
 
 const Home = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(fetchAsyncBuildings());
-    }, [dispatch]);
-
-    const buildings = useSelector(getAllBuildings);
+    const building = useSelector(getSelectedBuilding);
     return (
         <>
-            {buildings && buildings.map((building) => (
-                <ImageCard
-                    data={building}
-                // data={
-                //     props.dashbordDate.data.length === 0
-                //         ? {}
-                //         : props.dashbordDate.data[props.dashbordDate.selectedBuilding]
-                // }
-                />
-            ))}
+            <ImageCard data={building} />
             <Box mt={4}></Box>
             <Grid container spacing={2}>
                 <Grid item md={7} lg={7} xl={7}>

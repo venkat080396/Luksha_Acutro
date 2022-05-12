@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
-import loginReducer from './Login/loginSlice';
+import loginSlice from './Login/loginSlice';
+import homeSlice from './Home/homeSlice';
+import dashboardSlice from './Dashboard/dashboardSlice';
 
 export const store = configureStore({
     reducer: {
-        login: loginReducer
+        login: loginSlice,
+        home: homeSlice,
+        dashboard: dashboardSlice
     }
 });

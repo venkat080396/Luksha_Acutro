@@ -1,43 +1,78 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import homeApi from "../../common/apis/homeApi";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { baseURL, homeApi } from "../../common/apis/homeApi";
 
 export const fetchAsyncBuildings = createAsyncThunk(
-    "home/fetchAsyncBuildings",
+    'home/fetchAsyncBuildings',
     async () => {
-        const siteDetails = JSON.stringify({
-            "operation": "GetBuildingsForSiteId",
-            "payload": {
+        const siteDetails = {
+            operation: "GetBuildingsForSiteId",
+            payload: {
                 "SiteRecId": "1"
             }
-        })
+        }
 
-        const response = await homeApi.post(siteDetails);
+        const response = await homeApi.post(baseURL, siteDetails);
+        return response.data;
+    }
+);
+
+export const fetchAsyncFloors = createAsyncThunk(
+    'home/fetchAsyncFloors',
+    async (buildingRecId) => {
+        const siteDetails = {
+            operation: "GetFloorsForBuildingId",
+            payload: {
+                "SiteRecId": "1",
+                "BuildingRecId": buildingRecId
+            }
+        }
+
+        const response = await homeApi.post(baseURL, siteDetails);
         return response.data;
     }
 );
 
 const initialState = {
-    buildings: {}
+    buildings: [{}],
+    floors: [{}],
+    selectedBuilding: {},
+    selectedFloor: {}
 };
 
 const homeSlice = createSlice({
-    name: "home",
+    name: 'home',
     initialState,
-    reducers: {},
+    reducers: {
+        setSelectedBuilding(state, action) {
+            state.selectedBuilding = action.payload
+        },
+        setSelectedFloor(state, action) {
+            state.selectedFloor = action.payload
+        }
+    },
     extraReducers: {
         [fetchAsyncBuildings.pending]: () => {
-            console.log("Pending");
         },
         [fetchAsyncBuildings.fulfilled]: (state, { payload }) => {
-            console.log("Fetched Successfully!");
             return { ...state, buildings: payload };
         },
         [fetchAsyncBuildings.rejected]: () => {
-            console.log("Rejected!");
         },
+        [fetchAsyncFloors.pending]: () => {
+        },
+        [fetchAsyncFloors.fulfilled]: (state, { payload }) => {
+            return { ...state, floors: payload };
+        },
+        [fetchAsyncFloors.rejected]: () => {
+        }
     }
 })
 
 export const getAllBuildings = (state) => state.home?.buildings;
+export const getAllFloors = (state) => state.home?.floors;
+export const getSelectedBuilding = (state) => state.home?.selectedBuilding;
+export const getSelectedFloor = (state) => state.home?.selectedFloor;
+
+export const { setSelectedBuilding, setSelectedFloor } = homeSlice.actions
 
 export default homeSlice.reducer

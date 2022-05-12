@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import CssBaseline from "@mui/material/CssBaseline";
 import { makeStyles } from "@mui/styles";
-
+import { useDispatch } from "react-redux";
 import AppBar from "../../components/layout/navigation/Appbar/Appbar";
-import DrawerLeftComponent from "../../components/layout/DrawerLeft/DrawerLeft";
-import DrawerRightComponent from "../../components/layout/DrawerRight/DrawerRight";
+import DrawerLeftComponent from "./DrawerLeft/DrawerLeft";
+import DrawerRightComponent from "./DrawerRight/DrawerRight";
+//import DrawerRightComponent from "../../components/layout/DrawerRight/DrawerRight"
 import Home from "../Home/Home";
 import Alerts from "../Alerts/Alerts";
 import BuildingData from "../BuildingData/BuildingData";
+import Utilities from "../Reports/Utilities/Utilities";
+import HVACEfficiency from "../Reports/HVACEfficiency/HVACEfficiency";
+import Comfort from "../Reports/Comfort/Comfort";
+import Exports from "../Reports/Exports/Exports";
+import { fetchAsyncLeftDrawerItems } from "../../features/Dashboard/dashboardSlice";
+import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
+//import { DashboardContext } from "../../contexts/dashboard/context";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -30,23 +37,52 @@ const useStyles = makeStyles({
         color: "white",
         display: "flex",
         height: "100vh",
-        overflow: "scroll",
+        overflow: "scroll"
     },
 });
 
-export default function Dashboard(props) {
+const Dashboard = (props) => {
     const [open, setOpen] = React.useState(false);
     const [openRight, setOpenRight] = React.useState(false);
     const [activePage, setactivePage] = useState('');
+    const [selectedBuilding, setSelectedBuilding] = useState({})
+    const [selectedFloor, setSelectedFloor] = useState({})
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const updateActivePage = (activePage) => {
         setactivePage(activePage)
     }
 
+    useEffect(() => {
+        dispatch(fetchAsyncLeftDrawerItems());
+        dispatch(fetchAsyncBuildings());
+    });
+
+    const populateActivePage = () => {
+
+        switch (activePage) {
+            case "Home":
+                return <Home />
+            case "Alerts":
+                return <Alerts />
+            case "Building Data":
+                return <BuildingData />
+            case "Utilities/Consumption":
+                return <Utilities />
+            case "HVAC Efficiency":
+                return <HVACEfficiency />
+            case "Comfort":
+                return <Comfort />
+            case "Exports":
+                return <Exports />
+            default:
+                return <></>
+        }
+    }
+
     return (
         <Box className={classes.root}>
-            <CssBaseline />
             <AppBar
                 open={open}
                 openRight={openRight}
@@ -59,26 +95,21 @@ export default function Dashboard(props) {
                 leftOpen={() => setOpen(true)}
                 updateActivePage={updateActivePage}
             />
-            <Box omponent="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
-                {activePage && activePage === "Home" &&
-                    <Home />
-                }
-                {activePage && activePage === "Alerts" &&
-                    <Alerts />
-                }
-                {activePage && activePage === "Building Data" &&
-                    <BuildingData />
-                }
+                {activePage && populateActivePage()}
             </Box>
             <DrawerRightComponent
                 openRight={openRight}
-                // building={props.dashbordDate.data}
-                select={props.selectBuilding}
-                selectFloor={props.selectFloor}
+                building={selectedBuilding?.RecId}
+                floor={selectedFloor?.RecId}
+                handleBuildingChange={(value) => setSelectedBuilding(value)}
+                handleFloorChange={(value) => setSelectedFloor(value)}
                 closeDrawer={() => setOpenRight(false)}
                 openDrawer={() => setOpenRight(true)}
             />
         </Box>
     );
 }
+
+export default Dashboard

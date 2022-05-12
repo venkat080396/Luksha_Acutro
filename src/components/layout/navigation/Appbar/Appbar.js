@@ -12,8 +12,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-
-const drawerWidth = 240;
+import { useSelector } from "react-redux";
+import { getSelectedBuilding, getSelectedFloor } from '../../../../features/Home/homeSlice';
+const drawerWidth = 300;
 
 const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "open",
@@ -37,7 +38,7 @@ const AppBar = styled(MuiAppBar, {
 const useStyles = makeStyles({
     root: {
         background: "linear-gradient(135deg, #344D5E, #1F1A3B)",
-        zIndex: 10,
+        zIndex: 10
     },
 });
 
@@ -50,6 +51,9 @@ export default function AppBarComponent({
     buildingName,
 }) {
     const classes = useStyles();
+    const selectedBuilding = useSelector(getSelectedBuilding);
+    const selectedFloor = useSelector(getSelectedFloor);
+
     return (
         <AppBar
             position="fixed"
@@ -78,9 +82,9 @@ export default function AppBarComponent({
                         <Typography variant="h6" fontWeight={"700"} display={"inline"}>
                             Your Dashboard &nbsp;
                         </Typography>
-                        {buildingName ? `/ ${buildingName} /` : ""}
-                        {floorName ? `/ ${floorName} /` : ""}
-                        {buildingName && floorName ? "19/07/21 - 21/07/21" : ""}
+                        {selectedBuilding && selectedBuilding.Name ? `/ ${selectedBuilding.Name} ` : ""}
+                        {selectedFloor && selectedFloor.Name ? `/ ${selectedFloor.Name} /` : ""}
+                        {selectedBuilding && selectedBuilding.Name && selectedFloor && selectedFloor.Name ? "19/07/21 - 21/07/21" : ""}
                     </Typography>
                     <Box flex={1}></Box>
                     {!openRight && (

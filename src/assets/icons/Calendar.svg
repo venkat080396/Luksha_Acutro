@@ -1,0 +1,48 @@
+<svg width="100%" height="100%" viewBox="0 0 301 300" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2089,0)">
+        <g id="Calendar" transform="matrix(1,0,0,1,1768.13,0.305827)">
+            <rect x="320.961" y="-0.306" width="299.953" height="299.953" style="fill:none;"/>
+            <g transform="matrix(1.08155,0,0,1.08155,-1948.24,-14.4583)">
+                <path d="M2286.41,77.494L2280.64,77.494L2280.64,85.259C2280.64,89.406 2277.27,92.772 2273.13,92.772C2273.13,92.772 2263.16,92.772 2263.16,92.772C2259.01,92.772 2255.65,89.406 2255.65,85.259L2255.65,77.494L2249.87,77.494L2249.87,85.259C2249.87,89.406 2246.5,92.772 2242.36,92.772C2242.36,92.772 2232.39,92.772 2232.39,92.772C2228.24,92.772 2224.88,89.406 2224.88,85.259L2224.88,77.494L2219.1,77.494L2219.1,85.259C2219.1,89.406 2215.74,92.772 2211.59,92.772C2211.59,92.772 2201.62,92.772 2201.62,92.772C2197.47,92.772 2194.11,89.406 2194.11,85.259L2194.11,77.494L2188.33,77.494L2188.33,85.259C2188.33,89.406 2184.97,92.772 2180.82,92.772C2180.82,92.772 2170.85,92.772 2170.85,92.772C2166.71,92.772 2163.34,89.406 2163.34,85.259L2163.34,77.504C2153.61,77.828 2145.8,85.832 2145.8,95.645L2145.8,224.81C2145.8,234.827 2153.94,242.96 2163.95,242.96L2310.48,242.96C2320.49,242.96 2328.63,234.827 2328.63,224.81L2328.63,95.645C2328.63,85.939 2320.99,78.002 2311.41,77.518L2311.41,85.259C2311.41,89.406 2308.04,92.772 2303.89,92.772C2303.89,92.772 2293.93,92.772 2293.93,92.772C2289.78,92.772 2286.41,89.406 2286.41,85.259L2286.41,77.494Z" style="fill:none;stroke:white;stroke-width:7.4px;"/>
+            </g>
+            <g transform="matrix(1.08155,0,0,1.08155,-37.6662,-14.1275)">
+                <g transform="matrix(0.913964,0,0,0.913964,-1576.43,3.38407)">
+                    <rect x="2169.56" y="67.706" width="6.257" height="19.217" style="fill:none;stroke:white;stroke-width:5.06px;"/>
+                </g>
+                <g transform="matrix(0.913964,0,0,0.913964,-1514.9,3.38407)">
+                    <rect x="2169.56" y="67.706" width="6.257" height="19.217" style="fill:none;stroke:white;stroke-width:5.06px;"/>
+                </g>
+                <g transform="matrix(0.913964,0,0,0.913964,-1545.66,3.38407)">
+                    <rect x="2169.56" y="67.706" width="6.257" height="19.217" style="fill:none;stroke:white;stroke-width:5.06px;"/>
+                </g>
+                <g transform="matrix(0.913964,0,0,0.913964,-1484.13,3.38407)">
+                    <rect x="2169.56" y="67.706" width="6.257" height="19.217" style="fill:none;stroke:white;stroke-width:5.06px;"/>
+                </g>
+                <g transform="matrix(0.913964,0,0,0.913964,-1453.36,3.38407)">
+                    <rect x="2169.56" y="67.706" width="6.257" height="19.217" style="fill:none;stroke:white;stroke-width:5.06px;"/>
+                </g>
+            </g>
+            <g transform="matrix(0.294646,0,0,0.294646,-247.181,117.152)">
+                <rect x="2159.66" y="104.412" width="156.535" height="125.177" style="fill:none;stroke:white;stroke-width:16.97px;"/>
+            </g>
+            <g transform="matrix(0.294646,0,0,0.294646,-247.181,165.358)">
+                <rect x="2159.66" y="104.412" width="156.535" height="125.177" style="fill:none;stroke:white;stroke-width:16.97px;"/>
+            </g>
+            <g transform="matrix(0.294646,0,0,0.294646,-188.702,69.3416)">
+                <rect x="2159.66" y="104.412" width="156.535" height="125.177" style="fill:none;stroke:white;stroke-width:16.97px;"/>
+            </g>
+            <g transform="matrix(0.294646,0,0,0.294646,-188.702,117.152)">
+                <rect x="2159.66" y="104.412" width="156.535" height="125.177" style="fill:none;stroke:white;stroke-width:16.97px;"/>
+            </g>
+            <g transform="matrix(0.294646,0,0,0.294646,-188.702,165.358)">
+                <rect x="2159.66" y="104.412" width="156.535" height="125.177" style="fill:none;stroke:white;stroke-width:16.97px;"/>
+            </g>
+            <g transform="matrix(0.294646,0,0,0.294646,-130.222,69.3416)">
+                <rect x="2159.66" y="104.412" width="156.535" height="125.177" style="fill:none;stroke:white;stroke-width:16.97px;"/>
+            </g>
+            <g transform="matrix(0.294646,0,0,0.294646,-130.222,117.152)">
+                <rect x="2159.66" y="104.412" width="156.535" height="125.177" style="fill:none;stroke:white;stroke-width:16.97px;"/>
+            </g>
+        </g>
+    </g>
+</svg>
