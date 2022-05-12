@@ -1,8 +1,4 @@
-.grid {
-    align-items: center;
-    justify-content: center;
-}
-
 body {
     background-image: url("../../assets/images/Background.png");
+    padding-top: 15%
 }

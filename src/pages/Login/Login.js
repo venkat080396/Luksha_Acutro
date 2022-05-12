@@ -37,19 +37,17 @@ const Login = () => {
     })
 
     return (
-        <form>
-            <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
-                <Grid item>
-                    <Textfield name="EMAIL" value={userName} iconStart={<PersonOutlineSharpIcon />} onChange={(event) => setUserName(event.target.value)} />
-                </Grid>
-                <Grid item>
-                    <Textfield name="PASSWORD" type="password" value={password} iconStart={<LockOutlinedIcon />} onChange={(event) => setPassword(event.target.value)} />
-                </Grid>
-                <Grid item>
-                    <Button value="LOGIN" onClick={() => handleLogin()} />
-                </Grid>
+        <Grid container direction="column" justifyContent="center" alignItems="center" spacing={2}>
+            <Grid item>
+                <Textfield name="EMAIL" value={userName} iconStart={<PersonOutlineSharpIcon />} onChange={(event) => setUserName(event.target.value)} />
             </Grid>
-        </form>
+            <Grid item>
+                <Textfield name="PASSWORD" type="password" value={password} iconStart={<LockOutlinedIcon />} onChange={(event) => setPassword(event.target.value)} />
+            </Grid>
+            <Grid item>
+                <Button value="LOGIN" onClick={() => handleLogin()} />
+            </Grid>
+        </Grid>
     )
 };
 
