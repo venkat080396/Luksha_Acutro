@@ -1,4 +1,13 @@
-<svg width="63" height="73" viewBox="0 0 63 73" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M31.7732 12.0881C31.7732 12.0881 23.5004 32.4552 19.6161 42.2852C16.2081 50.9084 22.2621 60.7771 31.7535 60.7771C41.2429 60.7771 46.3538 49.5236 43.7826 42.2852C40.4948 33.0301 31.7732 12.0881 31.7732 12.0881Z" stroke="#F4F4F4" stroke-miterlimit="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M30.8701 28.1504C34.6503 40.7108 24.4838 39.2182 22.48 48.6968C21.485 53.4052 27.0676 57.8746 31.8267 57.8746C36.0888 57.8746 40.9559 54.2357 40.9559 49.2956C40.9559 43.3839 37.2006 35.5044 30.8701 28.1504Z" stroke="#F4F4F4" stroke-width="0.6" stroke-miterlimit="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="100%" height="100%" viewBox="0 0 301 301" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-1740,-1099)">
+        <g id="Gas" transform="matrix(1,0,0,1,1419.32,1100.19)">
+            <rect x="320.961" y="-0.306" width="299.953" height="299.953" style="fill:none;"/>
+            <g transform="matrix(0.94063,0,0,0.94063,-976.389,-1039.03)">
+                <path d="M1540.33,1156.34C1540.33,1156.34 1498.31,1245.62 1478.58,1288.71C1461.27,1326.51 1492.02,1369.77 1540.23,1369.77C1588.43,1369.77 1614.39,1320.44 1601.33,1288.71C1584.63,1248.14 1540.33,1156.34 1540.33,1156.34Z" style="fill:none;stroke:white;stroke-width:8.5px;"/>
+            </g>
+            <g transform="matrix(0.593518,0,0,0.593518,-441.852,-561.279)">
+                <path d="M1533.29,1139.24C1563.72,1226.5 1481.88,1216.13 1465.75,1281.98C1457.74,1314.69 1502.68,1345.74 1540.99,1345.74C1575.3,1345.74 1614.48,1320.46 1614.48,1286.14C1614.48,1245.07 1584.25,1190.33 1533.29,1139.24Z" style="fill:none;stroke:white;stroke-width:8.42px;"/>
+            </g>
+        </g>
+    </g>
 </svg>

@@ -1,0 +1,25 @@
+<svg width="100%" height="100%" viewBox="0 0 301 301" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-2096,-1099)">
+        <g id="Temperature" transform="matrix(1,0,0,1,1775.73,1100.19)">
+            <rect x="320.961" y="-0.306" width="299.953" height="299.953" style="fill:none;"/>
+            <g transform="matrix(1,0,0,1,-1772.7,-1100.19)">
+                <path d="M2212.74,1265.15C2217.17,1261.6 2219.75,1256.22 2219.75,1250.53C2219.77,1227.28 2219.77,1171.16 2219.77,1171.16C2219.77,1157.98 2230.46,1147.28 2243.64,1147.28C2256.82,1147.28 2267.51,1157.98 2267.51,1171.16L2267.51,1250.53C2267.51,1256.22 2270.1,1261.61 2274.54,1265.16C2285.83,1274.22 2293.07,1288.13 2293.07,1303.72C2293.07,1331 2270.92,1353.14 2243.64,1353.14C2216.36,1353.14 2194.21,1331 2194.21,1303.72C2194.21,1288.13 2201.45,1274.22 2212.74,1265.15Z" style="fill:none;stroke:green;stroke-width:8px;"/>
+            </g>
+            <g transform="matrix(1,0,0,1,-1780.91,-1097.74)">
+                <path d="M2252.05,1332.87C2235.12,1332.87 2221.37,1319.12 2221.37,1302.18C2221.37,1291.38 2226.97,1281.87 2235.42,1276.41" style="fill:none;stroke:green;stroke-width:5px;"/>
+            </g>
+            <g transform="matrix(0.72093,0,0,0.72093,-1134.61,-772.746)">
+                <path d="M2226.95,1173.34L2259.8,1173.34" style="fill:none;stroke:green;stroke-width:6.94px;"/>
+            </g>
+            <g transform="matrix(0.72093,0,0,0.72093,-1134.61,-692.53)">
+                <path d="M2226.95,1173.34L2259.8,1173.34" style="fill:none;stroke:green;stroke-width:6.94px;"/>
+            </g>
+            <g transform="matrix(0.72093,0,0,0.72093,-1134.61,-719.268)">
+                <path d="M2226.95,1173.34L2259.8,1173.34" style="fill:none;stroke:green;stroke-width:6.94px;"/>
+            </g>
+            <g transform="matrix(0.72093,0,0,0.72093,-1134.61,-746.007)">
+                <path d="M2226.95,1173.34L2259.8,1173.34" style="fill:none;stroke:green;stroke-width:6.94px;"/>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { baseURL, homeApi } from "../../common/apis/homeApi";
+import { baseURL, api } from "../../common/apis/api";
 
 export const fetchAsyncBuildings = createAsyncThunk(
     'home/fetchAsyncBuildings',
@@ -11,7 +11,7 @@ export const fetchAsyncBuildings = createAsyncThunk(
             }
         }
 
-        const response = await homeApi.post(baseURL, siteDetails);
+        const response = await api.post(baseURL, siteDetails);
         return response.data;
     }
 );
@@ -27,7 +27,7 @@ export const fetchAsyncFloors = createAsyncThunk(
             }
         }
 
-        const response = await homeApi.post(baseURL, siteDetails);
+        const response = await api.post(baseURL, siteDetails);
         return response.data;
     }
 );

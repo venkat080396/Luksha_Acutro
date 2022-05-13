@@ -60,7 +60,7 @@ const Dashboard = (props) => {
     });
 
     const populateActivePage = () => {
-
+        console.log(activePage)
         switch (activePage) {
             case "Home":
                 return <Home />

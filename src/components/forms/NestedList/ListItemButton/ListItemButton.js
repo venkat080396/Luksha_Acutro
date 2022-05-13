@@ -35,8 +35,11 @@ const ListItemButtonComponent = (props) => {
     const { open, text, updateActivePage, listItemOpen, SetListItemOpen } = props;
 
     const handleClick = (e) => {
+        console.log("itemopen", listItemOpen)
         updateActivePage(text);
-        SetListItemOpen({ [text]: !listItemOpen[text] });
+        if (listItemOpen) {
+            SetListItemOpen({ [text]: !listItemOpen[text] });
+        }
     }
 
     return (
