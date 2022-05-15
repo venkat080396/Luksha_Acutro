@@ -1,20 +1,37 @@
 import React from 'react'
 import Card from '../../../../components/layout/Card/Card'
-import { Grid } from '@mui/material';
+import { Grid, styled } from '@mui/material';
 import Device from './Device/Device'
 import { useSelector } from "react-redux";
 import { getAllDevices } from '../../../../features/Utilities/utilitiesSlice'
 
+const StyledGrid = styled("Grid")({
+    overflowY: 'auto',
+    overflowX: "hidden",
+    width: '83vw',
+    float: 'left',
+    height: '45vh',
+    position: 'relative'
+});
+
 const ActiveDevices = () => {
     const devices = useSelector(getAllDevices);
+
     return (
-        <Grid container spacing={2}>
-            {devices && devices.count !== 0 && devices.map((device) => (
-                <Grid item>
-                    <Card key={device} sx={{ width: "1225px", height: "50px", marginLeft: 5 }} content={<Device device={device} />} />
-                </Grid>
-            ))}
-        </Grid>
+        <>
+            {devices && devices.length !== 0 && (
+                <StyledGrid container
+                    direction="column"
+                    justifyContent="center"
+                    alignItems="center">
+                    {devices.map((device) => (
+                        <Grid item sx={{ marginBottom: 2 }}>
+                            <Card key={device} sx={{ marginLeft: 5 }} content={<Device device={device} />} />
+                        </Grid>
+                    ))}
+                </StyledGrid>
+            )}
+        </>
     )
 }
 

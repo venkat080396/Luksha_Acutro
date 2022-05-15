@@ -35,7 +35,6 @@ const DrawerRight = (props) => {
     const selectedFloor = useSelector(getSelectedFloor);
 
     const onBuildingChange = (building) => {
-        console.log("B", building)
         dispatch(setSelectedBuilding(building))
         dispatch(setSelectedFloor(""))
         if (building) {

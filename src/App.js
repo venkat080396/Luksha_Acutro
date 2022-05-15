@@ -9,23 +9,27 @@ import Utilities from './pages/Reports/Utilities/Utilities'
 import HVACEfficiency from './pages/Reports/HVACEfficiency/HVACEfficiency'
 import Comfort from './pages/Reports/Comfort/Comfort'
 import Exports from './pages/Reports/Exports/Exports'
+import { CssBaseline } from '@mui/material';
 
 //const LoginContainer = React.lazy(() => import("./pages/Login/Container"));
 //const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 
 function App() {
   return (
-    <Routes>
-      <Route index path="/" element={<Login />} />
-      <Route path="login" element={<Login />} />
-      <Route path="dashboard" element={<Dashboard />} />
-      <Route path="alerts" element={<Alerts />} />
-      <Route path="buildingData" element={<BuildingData />} />
-      <Route path="utilities" element={<Utilities />} />
-      <Route path="HVACEfficiency" element={<HVACEfficiency />} />
-      <Route path="comfort" element={<Comfort />} />
-      <Route path="exports" element={<Exports />} />
-    </Routes>
+    <>
+      <CssBaseline />
+      <Routes>
+        <Route index path="/" element={<Login />} />
+        <Route path="login" element={<Login />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="alerts" element={<Alerts />} />
+        <Route path="buildingData" element={<BuildingData />} />
+        <Route path="utilities" element={<Utilities />} />
+        <Route path="HVACEfficiency" element={<HVACEfficiency />} />
+        <Route path="comfort" element={<Comfort />} />
+        <Route path="exports" element={<Exports />} />
+      </Routes>
+    </>
   );
 }
 

@@ -14,23 +14,22 @@ const Utilities = () => {
     const selectedFloor = useSelector(getSelectedFloor);
 
     useEffect(() => {
-        console.log(selectedFloor)
-        if (selectedBuilding && selectedFloor) {
-            console.log("Building", selectedBuilding.RecId)
-            console.log("Floor", selectedFloor.RecId)
+        if (selectedBuilding?.RecId && selectedFloor?.RecId) {
             dispatch(fetchAsyncDevices([selectedBuilding.RecId, selectedFloor.RecId]));
         }
     });
 
     return (
-        <Grid direction="column" container justifyContent="center" alignItems="center" spacing={3}>
-            <Grid item>
-                <Card headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Energy Reports" />} sx={{ width: "1300px", height: "500px" }} content={<EnergyReports />} />
+        <>
+            <Grid direction="column" container justifyContent="center" alignItems="center" spacing={3}>
+                <Grid item>
+                    <Card headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Energy Reports" />} sx={{ width: "1300px", height: "500px" }} content={<EnergyReports />} />
+                </Grid>
+                <Grid item>
+                    <Card headerContent={<Label sx={{ marginLeft: 4, marginTop: 3 }} label="Active Devices" />} sx={{ width: "1300px", height: "400px" }} content={<ActiveDevices />} />
+                </Grid>
             </Grid>
-            <Grid item>
-                <Card headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Active Devices" />} sx={{ width: "1300px", height: "400px" }} content={<ActiveDevices />} />
-            </Grid>
-        </Grid>
+        </>
     )
 }
 

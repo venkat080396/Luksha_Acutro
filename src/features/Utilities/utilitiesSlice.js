@@ -12,14 +12,13 @@ export const fetchAsyncDevices = createAsyncThunk(
                 "FloorRecId": floorRecId
             }
         }
-        console.log(buildingRecId)
         const response = await api.post(baseURL, floorDetails);
         return response.data;
     }
 );
 
 const initialState = {
-    devices: [{}]
+    devices: []
 };
 
 const utilitiesSlice = createSlice({

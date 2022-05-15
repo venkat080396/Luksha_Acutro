@@ -33,11 +33,12 @@ const useStyles = makeStyles({
         backgroundRepeat: "no-repeat",
         objectFit: "fill",
         width: "100vw",
+        marginBottom: "3%",
         // background: "linear-gradient(135deg, #1F1A3B, #344D5E)",
         color: "white",
         display: "flex",
         height: "100vh",
-        overflow: "scroll"
+        overflowX: "hidden"
     },
 });
 
@@ -60,7 +61,7 @@ const Dashboard = (props) => {
     });
 
     const populateActivePage = () => {
-        console.log(activePage)
+
         switch (activePage) {
             case "Home":
                 return <Home />
