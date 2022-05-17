@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import MuiSelect from '@mui/material/Select';
 import { Typography, Box } from "@mui/material";
-import { makeStyles } from '@mui/styles';
 import "./Select.css"
 
 const Select = (props) => {
-    const { items, onSelectChange } = props
+    const { value, items, onSelectChange } = props
 
     const handleChange = event => {
         const selectedItem = items?.find(item => item.RecId === event.target.value)
@@ -15,6 +14,7 @@ const Select = (props) => {
 
     return (
         <MuiSelect
+            value={value}
             components={Box}
             displayEmpty
             sx={{

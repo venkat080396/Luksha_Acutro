@@ -3,7 +3,7 @@ import Drawer from "@mui/material/Drawer";
 import SelectBox from "../../../components/forms/SelectBox/SelectBox"
 import {
     getAllBuildings, getAllFloors, fetchAsyncFloors, setSelectedBuilding, setSelectedFloor
-    , getSelectedBuilding, getSelectedFloor
+    , getSelectedBuilding, getSelectedFloor, setFromDate, setToDate, getFromDate, getToDate
 } from '../../../features/Home/homeSlice';
 import { useSelector, useDispatch } from "react-redux";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -33,6 +33,8 @@ const DrawerRight = (props) => {
     const floors = useSelector(getAllFloors);
     const selectedBuilding = useSelector(getSelectedBuilding);
     const selectedFloor = useSelector(getSelectedFloor);
+    const fromDate = useSelector(getFromDate);
+    const toDate = useSelector(getToDate);
 
     const onBuildingChange = (building) => {
         dispatch(setSelectedBuilding(building))
@@ -42,13 +44,22 @@ const DrawerRight = (props) => {
         }
     }
 
+    const onDateChange = (value, label) => {
+        if (label === "From") {
+            dispatch(setFromDate(value))
+        }
+        else {
+            dispatch(setToDate(value))
+        }
+    }
+
     const onFloorChange = (value) => {
         dispatch(setSelectedFloor(value))
     }
 
     return (
 
-        < ThemeProvider theme={theme} >
+        <ThemeProvider theme={theme}>
             <Drawer
                 PaperProps={{
                     sx: {
@@ -64,10 +75,10 @@ const DrawerRight = (props) => {
                 <IconLabel sx={{ marginLeft: 3 }} icon={<FilterIcon height="2.5em" width="2.5em" />} label="FILTER" />
                 <SelectBox value={selectedBuilding?.RecId} onSelectChange={onBuildingChange} label="Building" icon={<BuildingsIcon height="2.5em" width="2.5em" />} items={buildings} />
                 <SelectBox value={selectedFloor?.RecId} onSelectChange={onFloorChange} label="Floor" icon={<FloorIcon height="2.5em" width="2.5em" />} items={floors} />
-                <DateBox />
+                <DateBox value={{ "fromDate": fromDate, "toDate": toDate }} onDateChange={(value, label) => onDateChange(value, label)} />
                 <IconLabel sx={{ marginLeft: 3, marginTop: 4 }} icon={<SettingsIcon height="2.5em" width="2.5em" />} label="Dashboard Settings" />
             </Drawer>
-        </ThemeProvider >
+        </ThemeProvider>
     )
 }
 

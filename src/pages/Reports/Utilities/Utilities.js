@@ -5,7 +5,7 @@ import EnergyReports from './Energy Reports/EnergyReports'
 import ActiveDevices from './Active Devices/ActiveDevices'
 import Card from '../../../components/layout/Card/Card'
 import Label from "../../../components/forms/Label/Label"
-import { fetchAsyncDevices } from '../../../features/Utilities/utilitiesSlice'
+import { fetchAsyncDevices, fetchAsyncEnergyConsumptionSummary } from '../../../features/Utilities/utilitiesSlice'
 import { getSelectedBuilding, getSelectedFloor } from '../../../features/Home/homeSlice'
 
 const Utilities = () => {
@@ -16,6 +16,7 @@ const Utilities = () => {
     useEffect(() => {
         if (selectedBuilding?.RecId && selectedFloor?.RecId) {
             dispatch(fetchAsyncDevices([selectedBuilding.RecId, selectedFloor.RecId]));
+            dispatch(fetchAsyncEnergyConsumptionSummary(["2022-04-20", "2022-05-29", 1, selectedBuilding.RecId, selectedFloor.RecId]));
         }
     });
 

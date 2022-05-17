@@ -2,9 +2,9 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const StackedAreaChart = (props) => {
-    const { data, xAxisKey, areaKey1, areaKey2 } = props
+    const { data, xAxisKey, areaKey1, areaKey2, aspect } = props
     return (
-        <ResponsiveContainer width="99%" aspect={1.5}>
+        <ResponsiveContainer aspect={aspect}>
             <LineChart
                 data={data}
                 width={500}

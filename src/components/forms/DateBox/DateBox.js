@@ -6,6 +6,12 @@ import IconLabel from "../IconLabel/IconLabel"
 
 const DateBox = (props) => {
 
+    const { value, onDateChange } = props
+
+    const handleChange = (value, label) => {
+        onDateChange(value, label)
+    }
+
     return (
         <Grid container
             direction="row"
@@ -18,10 +24,10 @@ const DateBox = (props) => {
                 <IconLabel sx={{ marginLeft: 7, width: 250 }} icon={<DateIcon height="2.5em" width="2.5em" />} label="Dates" />
             </Grid>
             <Grid item>
-                <Date label="From" />
+                <Date value={value.fromDate} onDateChange={(val) => handleChange(val, "From")} label="From" />
             </Grid>
             <Grid item>
-                <Date label="To" />
+                <Date value={value.toDate} onDateChange={(val) => handleChange(val, "To")} label="To" />
             </Grid>
         </Grid>
     )

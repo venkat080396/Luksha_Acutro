@@ -36,7 +36,9 @@ const initialState = {
     buildings: [{}],
     floors: [{}],
     selectedBuilding: {},
-    selectedFloor: {}
+    selectedFloor: {},
+    fromDate: null,
+    toDate: null
 };
 
 const homeSlice = createSlice({
@@ -48,7 +50,13 @@ const homeSlice = createSlice({
         },
         setSelectedFloor(state, action) {
             state.selectedFloor = action.payload
-        }
+        },
+        setFromDate(state, action) {
+            state.fromDate = action.payload
+        },
+        setToDate(state, action) {
+            state.toDate = action.payload
+        },
     },
     extraReducers: {
         [fetchAsyncBuildings.pending]: () => {
@@ -72,7 +80,9 @@ export const getAllBuildings = (state) => state.home?.buildings;
 export const getAllFloors = (state) => state.home?.floors;
 export const getSelectedBuilding = (state) => state.home?.selectedBuilding;
 export const getSelectedFloor = (state) => state.home?.selectedFloor;
+export const getFromDate = (state) => state.home?.fromDate;
+export const getToDate = (state) => state.home?.toDate;
 
-export const { setSelectedBuilding, setSelectedFloor } = homeSlice.actions
+export const { setSelectedBuilding, setSelectedFloor, setFromDate, setToDate } = homeSlice.actions
 
 export default homeSlice.reducer

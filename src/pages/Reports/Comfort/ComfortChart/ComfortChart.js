@@ -1,4 +1,4 @@
-import React, { Grid } from 'react'
+import React from 'react'
 import StackedAreaChart from '../../../../components/charts/StackedAreaChart/StackedAreaChart';
 
 const data = [
@@ -64,28 +64,21 @@ const data = [
     },
 ];
 
-const HVACChart = () => {
-    return (<>
+const ComfortChart = () => {
+    return (
         <div
             style={{ marginTop: "2em" }}>
             <StackedAreaChart
+                width={900}
+                height={700}
                 xAxisKey="time"
                 yAxisKey="temperature"
                 areaKey1="Heating"
                 areaKey2="Cooling"
-                aspect="1.5"
+                aspect="4.5"
                 data={data} />
         </div>
-        <div style={{
-            marginTop: "1.25em",
-            textAlign: "center",
-            color: '#999999',
-            fontSize: 13
-        }}>
-            <u>See all devices</u>
-        </div>
-    </>
     )
 }
 
-export default HVACChart
+export default ComfortChart
