@@ -7,8 +7,8 @@ const Card = (props) => {
     const { sx, content, headerContent } = props
 
     const StyledCard = styled(MuiCard)({
-        borderRadius: "15px",
-        border: "1px solid white",
+        borderRadius: "1em",
+        border: "0.05em solid rgba(255,255,255,0.3)",
         background: "rgba(255,255,255,0.05)",
         color: "white",
         fontWeight: "bold",

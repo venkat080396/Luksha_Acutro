@@ -1,49 +1,34 @@
-import React from 'react'
-import { withStyles } from "@mui/styles";
-import ListItemButtonMUI from "@mui/material/ListItemButton";
+import React, { useState } from 'react'
+import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "../ListItemIcon/ListItemIcon"
 import ListItemText from "../ListItemText/ListItemText"
 
-const ListItemButton = withStyles({
-    root: {
-        "&$selected": {
-            backgroundColor: "red",
-            color: "white",
-            "& .MuiListItemIcon-root": {
-                color: "white",
-            },
-        },
-        "&$selected:hover": {
-            backgroundColor: "purple",
-            color: "white",
-            "& .MuiListItemIcon-root": {
-                color: "white",
-            },
-        },
-        "&:hover": {
-            backgroundColor: "blue",
-            color: "white",
-            "& .MuiListItemIcon-root": {
-                color: "white",
-            },
-        },
-    },
-    selected: {},
-})(ListItemButtonMUI);
-
 const ListItemButtonComponent = (props) => {
     const { open, text, updateActivePage, listItemOpen, SetListItemOpen } = props;
-
     const handleClick = (e) => {
         updateActivePage(text);
+        //setStyle(styleNode)
         if (listItemOpen) {
             SetListItemOpen({ [text]: !listItemOpen[text] });
         }
     }
 
-    return (
-        <ListItemButton
-            sx={{
+    const styleNode = () => {
+        return (
+            {
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+                mx: 1,
+                backgroundColor: "#4991BC",
+                borderRadius: 2,
+            }
+        )
+    }
+
+    const styleNodeB = () => {
+        return (
+            {
                 minHeight: 48,
                 justifyContent: open ? "initial" : "center",
                 px: 2.5,
@@ -52,7 +37,18 @@ const ListItemButtonComponent = (props) => {
                     backgroundColor: "#4991BC",
                     borderRadius: 2,
                 },
-            }}
+                "&:active": {
+                    backgroundColor: "#4991BC",
+                    borderRadius: 2,
+                }
+            }
+        )
+    }
+    const [style, setStyle] = useState(styleNodeB)
+
+    return (
+        <ListItemButton
+            sx={style}
             onClick={(e) => handleClick(e)} key={text}
         >
             <ListItemIcon {...props} />

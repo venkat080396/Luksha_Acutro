@@ -24,13 +24,13 @@ const ListItemIcon = ({ open, text }) => {
             case "Reports":
                 return <ContrastIcon sx={{ color: "white" }} />
             case "Utilities/Consumption":
-                return <UtilitiesIcon height="40px" width="30px" />
+                return <UtilitiesIcon height="2.5em" width="2em" />
             case "HVAC Efficiency":
-                return <HVACEfficiencyIcon height="40px" width="30px" />
+                return <HVACEfficiencyIcon height="2.5em" width="2em" />
             case "Comfort":
-                return <ComfortIcon height="40px" width="30px" />
+                return <ComfortIcon height="2.5em" width="2em" />
             case "Exports":
-                return <ExportsIcon height="40px" width="30px" />
+                return <ExportsIcon height="2.5em" width="2em" />
             case "Buildings":
                 return <CorporateFareIcon sx={{ color: "white" }} />
             case "Setting":

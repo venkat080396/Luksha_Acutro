@@ -15,7 +15,7 @@ const Device = ({ device }) => {
             <Grid item xs={1}>
                 <Grid container sx={{ color: "green", marginLeft: 8 }}>
                     <Grid item sx={{ marginTop: 1 }}>
-                        <TemperatureIcon height="30px" width="30px" />
+                        <TemperatureIcon height="2em" width="2em" />
                     </Grid>
                     <Grid item sx={{ marginTop: 1.5, marginLeft: -0.5 }}>
                         <div> 21 &deg;C</div>
@@ -23,7 +23,7 @@ const Device = ({ device }) => {
                 </Grid>
             </Grid>
             <Grid item xs={1} sx={{ marginTop: 1, paddingLeft: 7 }}>
-                <SettingsIcon height="30px" width="30px" />
+                <SettingsIcon height="2em" width="2em" />
             </Grid>
         </Grid>
     )

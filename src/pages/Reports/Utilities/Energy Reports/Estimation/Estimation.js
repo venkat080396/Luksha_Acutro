@@ -41,7 +41,7 @@ const Estimation = (props) => {
                     direction="row"
                     alignItems="center"
                     justifyContent="space-evenly"
-                    sx={{ width: "400px" }}>
+                    sx={{ width: "25vw" }}>
                     <Grid item>
                         <Grid container
                             direction="column"

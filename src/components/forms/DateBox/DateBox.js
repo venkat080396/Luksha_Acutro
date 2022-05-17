@@ -15,7 +15,7 @@ const DateBox = (props) => {
             sx={{ marginTop: 2, width: 250 }}
         >
             <Grid item>
-                <IconLabel sx={{ marginLeft: 7, width: 250 }} icon={<DateIcon height="40px" width="40px" />} label="Dates" />
+                <IconLabel sx={{ marginLeft: 7, width: 250 }} icon={<DateIcon height="2.5em" width="2.5em" />} label="Dates" />
             </Grid>
             <Grid item>
                 <Date label="From" />

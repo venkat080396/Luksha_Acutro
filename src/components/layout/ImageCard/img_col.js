@@ -4,8 +4,8 @@ const Colum = (props) => {
     return (
         <Col
             style={{
-                borderRadius: "15px",
-                margin: "6px",
+                borderRadius: "1em",
+                margin: "0.4em",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
@@ -18,7 +18,7 @@ const Colum = (props) => {
                     flex: 1,
                     display: 'flex',
                     flexDirection: 'column-reverse',
-                    marginBottom: '10px'
+                    marginBottom: '0.6em'
                 }}
             >
                 <img
@@ -34,7 +34,7 @@ const Colum = (props) => {
                     wordWrap: "break-word",
                     textAlign: "center",
                     color: "white",
-                    margin: "4px",
+                    margin: "0.25em",
                     flex: 1,
                 }}
             >

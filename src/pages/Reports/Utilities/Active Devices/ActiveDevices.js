@@ -8,7 +8,7 @@ import { getAllDevices } from '../../../../features/Utilities/utilitiesSlice'
 const StyledGrid = styled("Grid")({
     overflowY: 'auto',
     overflowX: "hidden",
-    width: '83vw',
+    width: '88vw',
     float: 'left',
     height: '45vh',
     position: 'relative'

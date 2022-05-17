@@ -10,26 +10,26 @@ const ImageCard = ({ data }) => {
     return (
         <Card
             style={{
-                borderRadius: "15px",
+                borderRadius: "1em",
                 display: "flex",
                 flexDirection: "row",
                 justifyContent: "space-between",
-                border: "1px solid white",
+                border: "0.06em solid white",
                 background: "rgba(255,255,255,0.14)",
                 zIndex: 4,
-                marginBottom: "10px"
+                marginBottom: "0.8em"
             }}
         >
             <CardBody
                 style={{
-                    borderRadius: "15px",
+                    borderRadius: "1em",
                     display: "flex",
                     justifyContent: "space-between",
                 }}
             >
                 <Row
                     style={{
-                        borderRadius: "15px",
+                        borderRadius: "1em",
                         display: "flex",
                         justifyContent: "space-between",
                         alignItems: "center"
@@ -44,7 +44,7 @@ const ImageCard = ({ data }) => {
             <CardImg
                 src={BackImage}
                 alt="..."
-                style={{ borderRadius: "15px", width: '48%' }}
+                style={{ borderRadius: "1em", width: '48%' }}
             ></CardImg>
         </Card>
     );

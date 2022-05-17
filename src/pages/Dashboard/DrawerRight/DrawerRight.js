@@ -61,11 +61,11 @@ const DrawerRight = (props) => {
                 onClose={closeDrawer}
                 open={openRight}
             >
-                <IconLabel sx={{ marginLeft: 3 }} icon={<FilterIcon height="40px" width="40px" />} label="FILTER" />
-                <SelectBox value={selectedBuilding?.RecId} onSelectChange={onBuildingChange} label="Building" icon={<BuildingsIcon height="40px" width="40px" />} items={buildings} />
-                <SelectBox value={selectedFloor?.RecId} onSelectChange={onFloorChange} label="Floor" icon={<FloorIcon height="40px" width="40px" />} items={floors} />
+                <IconLabel sx={{ marginLeft: 3 }} icon={<FilterIcon height="2.5em" width="2.5em" />} label="FILTER" />
+                <SelectBox value={selectedBuilding?.RecId} onSelectChange={onBuildingChange} label="Building" icon={<BuildingsIcon height="2.5em" width="2.5em" />} items={buildings} />
+                <SelectBox value={selectedFloor?.RecId} onSelectChange={onFloorChange} label="Floor" icon={<FloorIcon height="2.5em" width="2.5em" />} items={floors} />
                 <DateBox />
-                <IconLabel sx={{ marginLeft: 3, marginTop: 4 }} icon={<SettingsIcon height="40px" width="40px" />} label="Dashboard Settings" />
+                <IconLabel sx={{ marginLeft: 3, marginTop: 4 }} icon={<SettingsIcon height="2.5em" width="2.5em" />} label="Dashboard Settings" />
             </Drawer>
         </ThemeProvider >
     )
