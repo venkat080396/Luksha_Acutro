@@ -18,7 +18,7 @@ const Select = (props) => {
                     value={value}
                     components={Box}
                     displayEmpty
-                    sx={sx}
+                    sx={{ ...sx, backgroundColor: "rgba(255,255,255,0.3)" }}
                     onChange={handleChange}
                     className="select"
                 >

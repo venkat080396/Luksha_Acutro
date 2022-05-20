@@ -10,7 +10,7 @@ const Date = (props) => {
 
     return (
         <TextField
-            label={<Typography color={"white"}>{Label}</Typography>}
+            label={<Typography sx={{ color: "white" }}>{Label}</Typography>}
             size="small"
             fullWidth
             type={"date"}
@@ -18,8 +18,8 @@ const Date = (props) => {
                 outlineColor: "white",
                 borderColor: "white",
                 color: "white",
+                backgroundColor: "rgba(255,255,255,0.3)"
             }}
-            color="primary"
             value={value}
             onChange={handleChange}
         />
