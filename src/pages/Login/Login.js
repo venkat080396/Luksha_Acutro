@@ -36,7 +36,6 @@ const Login = () => {
         if (isAuthenticated) {
             navigate("/dashboard");
         }
-        navigate("/dashboard");
     })
 
     return (

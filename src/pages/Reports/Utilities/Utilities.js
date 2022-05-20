@@ -6,19 +6,24 @@ import ActiveDevices from './Active Devices/ActiveDevices'
 import Card from '../../../components/layout/Card/Card'
 import Label from "../../../components/forms/Label/Label"
 import { fetchAsyncDevices, fetchAsyncEnergyConsumptionSummary } from '../../../features/Utilities/utilitiesSlice'
-import { getSelectedBuilding, getSelectedFloor } from '../../../features/Home/homeSlice'
+import { getSelectedBuilding, getSelectedFloor, getFromDate, getToDate } from '../../../features/Home/homeSlice'
 
 const Utilities = () => {
     const dispatch = useDispatch();
     const selectedBuilding = useSelector(getSelectedBuilding);
     const selectedFloor = useSelector(getSelectedFloor);
+    const fromDate = useSelector(getFromDate);
+    const toDate = useSelector(getToDate);
 
     useEffect(() => {
         if (selectedBuilding?.RecId && selectedFloor?.RecId) {
             dispatch(fetchAsyncDevices([selectedBuilding.RecId, selectedFloor.RecId]));
-            dispatch(fetchAsyncEnergyConsumptionSummary(["2022-04-20", "2022-05-29", 1, selectedBuilding.RecId, selectedFloor.RecId]));
         }
     });
+
+    useEffect(() => {
+        dispatch(fetchAsyncEnergyConsumptionSummary([fromDate, toDate, 1, selectedBuilding.RecId, selectedFloor.RecId]));
+    }, [dispatch, fromDate, toDate, selectedBuilding, selectedFloor])
 
     return (
         <>

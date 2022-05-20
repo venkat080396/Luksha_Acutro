@@ -21,7 +21,11 @@ const SelectBox = (props) => {
                 <IconLabel sx={{ marginLeft: 7, width: 250 }} icon={icon} label={label} />
             </Grid>
             <Grid item>
-                <Select value={value} onSelectChange={(val) => handleChange(val)} items={items} />
+                <Select sx={{
+                    width: 170,
+                    height: 30,
+                    color: "black"
+                }} value={value} onSelectChange={(val) => handleChange(val)} items={items} />
             </Grid>
         </Grid>
     )

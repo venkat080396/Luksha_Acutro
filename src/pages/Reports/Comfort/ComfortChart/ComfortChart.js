@@ -1,5 +1,9 @@
 import React from 'react'
+import { Grid } from '@mui/material'
 import StackedAreaChart from '../../../../components/charts/StackedAreaChart/StackedAreaChart';
+import { ReactComponent as TooColdIcon } from "../../../../assets/icons/Too Cold.svg"
+import { ReactComponent as TooHotIcon } from "../../../../assets/icons/Too Hot.svg"
+import Select from "../../../../components/forms/Select/Select"
 
 const data = [
     {
@@ -64,8 +68,57 @@ const data = [
     },
 ];
 
+const items = [...Array(50).keys()].map(i => ({ RecId: i + 1, Name: i + 1 }))
+
 const ComfortChart = () => {
-    return (
+    return (<>
+        <Grid container
+            direction="row"
+            justifyContent="flex-end"
+            alignItems="center">
+            <Grid item>
+                <Grid container alignItems="center" spacing={3}>
+                    <Grid item>
+                        <Grid container alignItems="center">
+                            <Grid item>
+                                <TooHotIcon height="2.5em" width="2.5em" />
+                            </Grid>
+                            <Grid item>
+                                Too Hot
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        <Select sx={{
+                            width: 50,
+                            height: 20,
+                            color: "black"
+                        }} items={items} />
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid item>
+                <Grid container alignItems="center" spacing={3}>
+                    <Grid item>
+                        <Grid container alignItems="center">
+                            <Grid item>
+                                <TooColdIcon height="2.5em" width="2.5em" />
+                            </Grid>
+                            <Grid item>
+                                Too Cold
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        <Select sx={{
+                            width: 50,
+                            height: 20,
+                            color: "white"
+                        }} items={items} />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
         <div
             style={{ marginTop: "2em" }}>
             <StackedAreaChart
@@ -78,6 +131,7 @@ const ComfortChart = () => {
                 aspect="4.5"
                 data={data} />
         </div>
+    </>
     )
 }
 
