@@ -3,13 +3,12 @@ import { Grid } from '@mui/material'
 import { useSelector, useDispatch } from "react-redux";
 import Date from "../../../../components/forms/Date/Date"
 import Button from "../../../../components/forms/Button/Button"
-import { exportData, getCSVFileURL } from "../../../../features/Exports/exportsSlice"
+import { exportData } from "../../../../features/Exports/exportsSlice"
 import { getSelectedBuilding, getSelectedFloor } from '../../../../features/Home/homeSlice'
 
 
 const MajorPlantSummary = () => {
     const dispatch = useDispatch();
-    const csvFileURL = useSelector(getCSVFileURL);
     const [fromDate, setFromDate] = useState(null)
     const [toDate, setToDate] = useState(null)
     const selectedBuilding = useSelector(getSelectedBuilding);
@@ -17,7 +16,6 @@ const MajorPlantSummary = () => {
 
     const onGenerate = () => {
         dispatch(exportData([fromDate, toDate, 1, selectedBuilding.RecId, selectedFloor.RecId]))
-        window.open(csvFileURL, "self")
     }
 
     return (

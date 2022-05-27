@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid } from '@mui/material'
 import StackedAreaChart from '../../../../components/charts/StackedAreaChart/StackedAreaChart';
 import { ReactComponent as TooColdIcon } from "../../../../assets/icons/Too Cold.svg"
@@ -71,6 +71,9 @@ const data = [
 const items = [...Array(50).keys()].map(i => ({ RecId: i + 1, Name: i + 1 }))
 
 const ComfortChart = () => {
+    const [tooHot, setTooHot] = useState({})
+    const [tooCold, setTooCold] = useState({})
+
     return (<>
         <Grid container
             direction="row"
@@ -93,7 +96,7 @@ const ComfortChart = () => {
                             width: 50,
                             height: 20,
                             color: "black"
-                        }} items={items} />
+                        }} items={items} onSelectChange={value => setTooHot(value)} />
                     </Grid>
                 </Grid>
             </Grid>
@@ -114,7 +117,7 @@ const ComfortChart = () => {
                             width: 50,
                             height: 20,
                             color: "white"
-                        }} items={items} />
+                        }} items={items} onSelectChange={value => setTooCold(value)} />
                     </Grid>
                 </Grid>
             </Grid>

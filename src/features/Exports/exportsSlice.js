@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { baseURL, api } from "../../common/apis/api";
+import { downloadDataFromURL } from '../../common/Utils'
 
 export const exportData = createAsyncThunk(
     'exports/exportData',
@@ -30,13 +31,11 @@ const exportsSlice = createSlice({
         [exportData.pending]: () => {
         },
         [exportData.fulfilled]: (state, { payload }) => {
-            return { ...state, csvFileURL: payload?.CSVFileURL };
+            downloadDataFromURL(payload?.CSVFileURL)
         },
         [exportData.rejected]: () => {
         }
     }
 })
-
-export const getCSVFileURL = (state) => state.exports?.csvFileURL;
 
 export default exportsSlice.reducer

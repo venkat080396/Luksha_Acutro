@@ -11,7 +11,7 @@ const Card = (props) => {
         border: "0.05em solid rgba(255,255,255,0.3)",
         background: "rgba(255,255,255,0.05)",
         color: "white",
-        fontWeight: "bold",
+        fontWeight: "bold"
     });
 
     return (

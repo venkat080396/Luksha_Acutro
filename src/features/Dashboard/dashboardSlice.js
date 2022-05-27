@@ -13,7 +13,17 @@ const getLeftDrawerItems = () => {
             },
             {
                 id: 3,
-                name: "Building Data"
+                name: "Building Data",
+                items: [
+                    {
+                        id: 11,
+                        name: "Floor View"
+                    },
+                    {
+                        id: 12,
+                        name: "List View"
+                    }
+                ]
             },
             {
                 id: 4,

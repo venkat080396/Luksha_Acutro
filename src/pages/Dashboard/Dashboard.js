@@ -6,17 +6,16 @@ import { useDispatch } from "react-redux";
 import AppBar from "../../components/layout/navigation/Appbar/Appbar";
 import DrawerLeftComponent from "./DrawerLeft/DrawerLeft";
 import DrawerRightComponent from "./DrawerRight/DrawerRight";
-//import DrawerRightComponent from "../../components/layout/DrawerRight/DrawerRight"
 import Home from "../Home/Home";
 import Alerts from "../Alerts/Alerts";
-import BuildingData from "../BuildingData/BuildingData";
 import Utilities from "../Reports/Utilities/Utilities";
 import HVACEfficiency from "../Reports/HVACEfficiency/HVACEfficiency";
 import Comfort from "../Reports/Comfort/Comfort";
 import Exports from "../Reports/Exports/Exports";
 import { fetchAsyncLeftDrawerItems } from "../../features/Dashboard/dashboardSlice";
 import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
-//import { DashboardContext } from "../../contexts/dashboard/context";
+import FloorView from "../BuildingData/FloorView/Container"
+import ListView from "../BuildingData/ListView/ListView";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -67,8 +66,10 @@ const Dashboard = (props) => {
                 return <Home />
             case "Alerts":
                 return <Alerts />
-            case "Building Data":
-                return <BuildingData />
+            case "Floor View":
+                return <FloorView />
+            case "List View":
+                return <ListView />
             case "Utilities/Consumption":
                 return <Utilities />
             case "HVAC Efficiency":
