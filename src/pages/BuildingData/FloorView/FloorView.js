@@ -1,102 +1,70 @@
 import React from "react";
 import { Grid } from '@mui/material'
 import _ from "lodash";
+import { connect } from 'react-redux'
 import LightbulbImage from "../../../assets/icons/Lightbulb.png"
-import { ReactComponent as LightbulbIcon } from "../../../assets/icons/Lightbulb.svg"
-
-const deviceWidth = 40;
+import Devices from "./Device/Devices";
+import Dialog from "../../../components/dialog/Dialog";
+import CreateDevice from "./Device/CreateDevice";
+import { getSelectedFloor, getSelectedBuilding } from '../../../features/Home/homeSlice';
+import { fetchAsyncDevicesWithStatus, getAllDevicesWithStatus, saveAsyncDevice, getAllDevicesToBeSaved, updateDeviceToBeSaved } from "../../../features/BuildingData/buildingDataSlice";
+import { DEVICE } from '../../../common/Constants';
+import { getPosition, mergeArray } from "../../../common/Utils";
+import Device from "./Device/Device";
+import Save from "../../../components/forms/Button/Save/Save";
 
 class FloorView extends React.Component {
+
     constructor(props) {
         super(props);
-        this.addDevice = this.addDevice.bind(this);
-        this.getDevices = this.getDevices.bind(this);
-        this.handleDragStart = this.handleDragStart.bind(this);
-        this.handleDrag = this.handleDrag.bind(this);
-        this.handleDragEnd = this.handleDragEnd.bind(this);
+        this.onFloorPlanClick = this.onFloorPlanClick.bind(this);
+        this.onDialogClose = this.onDialogClose.bind(this);
+        this.getAllDevices = this.getAllDevices.bind(this);
+        this.saveDevices = this.saveDevices.bind(this);
+        this.onDeviceClick = this.onDeviceClick.bind(this);
         this.devices = [];
+        this.state = { openDialog: false, floorX: 0, floorY: 0, selectedDevice: null };
     }
 
-    getDevices() {
-        const devices = this.devices.map(device => {
-            return (
-                <img
-                    data-id={device.id}
-                    key={device.id}
-                    onDragStart={this.handleDragStart}
-                    onDrag={this.handleDrag}
-                    onDragEnd={this.handleDragEnd}
-                    width={deviceWidth}
-                    style={{
-                        position: "absolute",
-                        left: `${device.x}%`,
-                        top: `${device.y}%`
-                    }}
-                    src={LightbulbImage}
-                    alt="Device"
-                />
-            );
-        });
-        return devices;
-    }
-
-    getPosition(container, clientX, clientY) {
-        const { top, left, width, height } = container.getBoundingClientRect();
-        const x = (clientX - left - this.offsetX) * 100 / width;
-        const y = (clientY - top - this.offsetY) * 100 / height;
-        return { x, y };
-    }
-
-    addDevice(event) {
-        this.offsetX = this.offsetY = deviceWidth / 2;
-        const { x, y } = this.getPosition(this.container, 200, 200);
-        this.devices.push({ x: x, y: y, id: this.devices.length + 1 });
-        this.forceUpdate();
-    }
-
-    handleDragStart(event) {
-        const { clientX, clientY, target } = event;
-        const { top, left } = target.getBoundingClientRect();
-        this.offsetX = clientX - left;
-        this.offsetY = clientY - top;
-        target.style.opacity = "0";
-        this.fooDevice.style.display = "block";
-    }
-
-    handleDrag(event) {
+    onFloorPlanClick(event) {
         const { clientX, clientY } = event;
-        if (clientX <= 0 || clientY <= 0) return;
-
-        this.fooDevice.style.transform = `translateX(${clientX -
-            this.offsetX}px) translateY(${clientY - this.offsetY}px)`;
-        this.clientX = clientX;
-        this.clientY = clientY;
+        this.offsetX = this.offsetY = DEVICE.WIDTH / 2;
+        const { x, y } = getPosition(
+            this.container,
+            clientX,
+            clientY,
+            this.offsetX,
+            this.offsetY
+        );
+        this.setState({ openDialog: true, floorX: x, floorY: y, selectedDevice: null });
     }
 
-    handleDragEnd(event) {
-        const { x, y } = this.getPosition(
-            this.container,
-            this.clientX,
-            this.clientY
-        );
-        const deviceId = event.target.dataset.id;
-        event.target.style.opacity = "1";
+    onDeviceClick = device => {
+        this.setState({ openDialog: true, floorX: device.floorX, floorY: device.floorY, selectedDevice: device });
+    }
 
-        // ToDo - if device is outside the box, remove it.
-        const index = this.devices.findIndex(device => device.id == deviceId);
-        if (index < 0) return;
-        this.devices[index].x = x;
-        this.devices[index].y = y;
-        this.forceUpdate();
-        this.fooDevice.style.transform = "translateX(-9000px)";
-        this.fooDevice.style.display = "none";
+    onDialogClose() {
+        this.setState({ openDialog: false });
+    }
+
+    componentDidMount() {
+        this.getAllDevices();
+    }
+
+    getAllDevices() {
+        this.props.getDevices([1, this.props.selectedFloor.RecId, this.props.selectedBuilding.RecId]);
+    }
+
+    async saveDevices() {
+        await this.props.devicesToBeSaved.length !== 0 && this.props.devicesToBeSaved.map((device) => {
+            this.props.saveDevice(device)
+        })
+        updateDeviceToBeSaved([]);
     }
 
     render() {
-
         return [
-
-            <Grid container spacing={3}>
+            <Grid container direction="row">
                 <Grid item>
                     <div
                         ref={ref => (this.container = ref)}
@@ -104,7 +72,7 @@ class FloorView extends React.Component {
                             display: "inline-block",
                             position: "relative",
                             overflow: "hidden",
-                            width: "75vw",
+                            width: "70vw",
                             height: "70vh",
                             marginLeft: "3em",
                             marginTop: "3em"
@@ -115,14 +83,15 @@ class FloorView extends React.Component {
                             src={this.props.floor?.SVGProperties}
                             alt="Floor plan"
                             style={{
-                                width: "75vw",
+                                width: "70vw",
                                 height: "70vh"
                             }}
+                            onClick={this.onFloorPlanClick}
                         />
 
                         <img
                             ref={ref => (this.fooDevice = ref)}
-                            width={deviceWidth}
+                            width={DEVICE.WIDTH}
                             style={{
                                 position: "fixed",
                                 top: "0px",
@@ -134,27 +103,55 @@ class FloorView extends React.Component {
                             src={LightbulbImage}
                             alt="Device"
                         />
-                        {this.getDevices()}
+                        {
+                            this.props.alldevices.map(device => (
+                                <Device
+                                    device={device}
+                                    dummyDeviceRef={this.fooDevice}
+                                    containerRef={this.container}
+                                    devices={this.props.alldevices}
+                                    onDrag={this.getAllDevices}
+                                    onClick={(device) => this.onDeviceClick(device)}
+                                />
+                            ))
+                        }
+                        <Save onSave={this.saveDevices} top="12.5" left="11" />
                     </div>
                 </Grid>
                 <Grid item>
-                    <Grid container
-                        onClick={this.addDevice}
-                        direction="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        sx={{ marginTop: "5em" }}>
-                        <Grid item>
-                            <LightbulbIcon height="2.5em" width="2.5em" sx={{ paddingTop: "1em" }} />
-                        </Grid>
-                        <Grid item>
-                            Light Fixture
-                        </Grid>
-                    </Grid>
+                    {/* <Devices /> */}
+                    <Dialog
+                        open={this.state.openDialog}
+                        title={this.state.selectedDevice ? "Update Device" : "Create Device"}
+                        content={<CreateDevice
+                            device={this.state.selectedDevice}
+                            handleClose={this.onDialogClose}
+                            handleCreate={this.getAllDevices}
+                            x={this.state.floorX}
+                            y={this.state.floorY} />}
+                    />
                 </Grid>
             </Grid>
         ];
     }
 }
 
-export default FloorView;
+const mapStateToProps = state => {
+    return {
+        devices: getAllDevicesWithStatus(state),
+        selectedBuilding: getSelectedBuilding(state),
+        selectedFloor: getSelectedFloor(state),
+        devicesToBeSaved: getAllDevicesToBeSaved(state),
+        alldevices: mergeArray(state.buildingData?.devices, state.buildingData?.devicesToBeSaved)
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getDevices: ([siteId, selectedBuildingRecId, selectedFloorRecId]) => dispatch(fetchAsyncDevicesWithStatus([siteId, selectedBuildingRecId, selectedFloorRecId])),
+        saveDevice: (device) => dispatch(saveAsyncDevice(device)),
+        updateDeviceToBeSaved: (device) => dispatch(updateDeviceToBeSaved(device))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FloorView);

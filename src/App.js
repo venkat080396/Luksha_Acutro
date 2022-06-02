@@ -10,13 +10,18 @@ import HVACEfficiency from './pages/Reports/HVACEfficiency/HVACEfficiency'
 import Comfort from './pages/Reports/Comfort/Comfort'
 import Exports from './pages/Reports/Exports/Exports'
 import { CssBaseline } from '@mui/material';
+import { SnackbarProvider } from 'notistack';
 
 //const LoginContainer = React.lazy(() => import("./pages/Login/Container"));
 //const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 
 function App() {
   return (
-    <>
+    <SnackbarProvider anchorOrigin={{
+      vertical: 'top',
+      horizontal: 'center',
+    }}
+      preventDuplicate="true">
       <CssBaseline />
       <Routes>
         <Route index path="/" element={<Login />} />
@@ -29,7 +34,7 @@ function App() {
         <Route path="comfort" element={<Comfort />} />
         <Route path="exports" element={<Exports />} />
       </Routes>
-    </>
+    </SnackbarProvider>
   );
 }
 
