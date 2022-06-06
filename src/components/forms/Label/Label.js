@@ -7,7 +7,8 @@ const Label = (props) => {
         <InputLabel
             sx={{
                 color: "white",
-                marginTop: 1
+                marginTop: 1,
+                ...props.sx
             }}
             style={{
                 color: "white"

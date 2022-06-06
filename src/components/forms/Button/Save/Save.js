@@ -14,7 +14,7 @@ const Save = (props) => {
 
     return (
         <Fab size="small"
-            sx={{ position: "fixed", top: `${top}em`, left: `${left}em` }}
+            sx={{ position: "absolute", top: `${top}em`, left: `${left}em` }}
             aria-label="save" onClick={handleSave}>
             <SaveIcon />
         </Fab>

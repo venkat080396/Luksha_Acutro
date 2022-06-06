@@ -3,13 +3,14 @@ import { baseURL, api } from "../../common/apis/api";
 
 export const fetchAsyncDevicesWithStatus = createAsyncThunk(
     'buildingData/fetchAsyncDevicesWithStatus',
-    async ([siteRecId, buildingRecId, floorRecId]) => {
+    async (requestDetails) => {
         const inputDetails = {
             operation: "GetAllDevicesWithStatus",
             payload: {
-                "SiteRecId": siteRecId,
-                "BuildingRecId": buildingRecId,
-                "FloorRecId": floorRecId
+                "SiteRecId": requestDetails.siteRecId,
+                "BuildingRecId": requestDetails.buildingRecId,
+                "FloorRecId": requestDetails.floorRecId,
+                "DeviceTypeRecId": requestDetails.deviceTypeRecId,
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -76,7 +77,7 @@ const buildingDataSlice = createSlice({
         [fetchAsyncAllDeviceTypes.pending]: () => {
         },
         [fetchAsyncAllDeviceTypes.fulfilled]: (state, { payload }) => {
-            return { ...state, allDeviceTypes: payload };
+            return { ...state, allDeviceTypes: payload.length !== 0 ? payload : state.allDeviceTypes };
         },
         [fetchAsyncAllDeviceTypes.rejected]: () => {
         },

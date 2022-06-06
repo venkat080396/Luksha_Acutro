@@ -16,7 +16,8 @@ const Devices = () => {
     const devicesGroupedByDeviceType = _.groupBy(devices, 'DeviceType');
 
     useEffect(() => {
-        dispatch(fetchAsyncDevicesWithStatus([1, selectedBuilding.RecId, selectedFloor.RecId]))
+        const requestDetails = { siteRecId: 1, buildingRecId: selectedBuilding?.RecId, floorRecId: selectedFloor?.RecId, deviceTypeRecId: null }
+        dispatch(fetchAsyncDevicesWithStatus(requestDetails))
     }, [dispatch, selectedBuilding.RecId, selectedFloor.RecId])
 
     const onDeviceChange = () => {

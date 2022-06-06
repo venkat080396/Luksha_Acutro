@@ -3,7 +3,6 @@ import { Grid } from '@mui/material'
 import _ from "lodash";
 import { connect } from 'react-redux'
 import LightbulbImage from "../../../assets/icons/Lightbulb.png"
-import Devices from "./Device/Devices";
 import Dialog from "../../../components/dialog/Dialog";
 import CreateDevice from "./Device/CreateDevice";
 import { getSelectedFloor, getSelectedBuilding } from '../../../features/Home/homeSlice';
@@ -52,7 +51,8 @@ class FloorView extends React.Component {
     }
 
     getAllDevices() {
-        this.props.getDevices([1, this.props.selectedFloor.RecId, this.props.selectedBuilding.RecId]);
+        const requestDetails = { siteRecId: 1, buildingRecId: this.props.selectedBuilding.RecId, floorRecId: this.props.selectedFloor.RecId, deviceTypeRecId: null }
+        this.props.getDevices(requestDetails);
     }
 
     async saveDevices() {
@@ -91,11 +91,12 @@ class FloorView extends React.Component {
 
                         <img
                             ref={ref => (this.fooDevice = ref)}
-                            width={DEVICE.WIDTH}
                             style={{
                                 position: "fixed",
                                 top: "0px",
                                 left: "0px",
+                                height: "1.5em",
+                                width: "1.5em",
                                 willChange: "transform",
                                 transform: "translateX(-9000px)",
                                 display: "none"
@@ -115,7 +116,7 @@ class FloorView extends React.Component {
                                 />
                             ))
                         }
-                        <Save onSave={this.saveDevices} top="12.5" left="11" />
+                        <Save onSave={this.saveDevices} top="0.5" left="0.5" />
                     </div>
                 </Grid>
                 <Grid item>
@@ -148,7 +149,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        getDevices: ([siteId, selectedBuildingRecId, selectedFloorRecId]) => dispatch(fetchAsyncDevicesWithStatus([siteId, selectedBuildingRecId, selectedFloorRecId])),
+        getDevices: (requestDetails) => dispatch(fetchAsyncDevicesWithStatus(requestDetails)),
         saveDevice: (device) => dispatch(saveAsyncDevice(device)),
         updateDeviceToBeSaved: (device) => dispatch(updateDeviceToBeSaved(device))
     }

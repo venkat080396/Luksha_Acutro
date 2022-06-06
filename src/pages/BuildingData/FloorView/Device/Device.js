@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { getImageURL, getPosition } from "../../../../common/Utils";
-import { DEVICE } from '../../../../common/Constants';
 import LightbulbImage from "../../../../assets/icons/Lightbulb.png"
 import { useDispatch, useSelector } from "react-redux";
 import { mergeArray } from "../../../../common/Utils";
@@ -67,9 +66,10 @@ const Device = (props) => {
                 onDragStart={handleDragStart}
                 onDrag={handleDrag}
                 onDragEnd={handleDragEnd}
-                width={DEVICE.WIDTH}
                 style={{
                     position: "absolute",
+                    height: "1.5em",
+                    width: "1.5em",
                     left: `${device.FloorX}%`,
                     top: `${device.FloorY}%`
                 }}
