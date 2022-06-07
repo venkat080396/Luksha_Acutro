@@ -55,7 +55,8 @@ export const saveAsyncDevice = createAsyncThunk(
 const initialState = {
     devices: [],
     allDeviceTypes: null,
-    devicesToBeSaved: []
+    devicesToBeSaved: [],
+    selectedBuildingOnMap: null
 };
 
 const buildingDataSlice = createSlice({
@@ -64,6 +65,9 @@ const buildingDataSlice = createSlice({
     reducers: {
         updateDeviceToBeSaved(state, action) {
             state.devicesToBeSaved = action.payload;
+        },
+        setSelectedBuildingOnMap(state, action) {
+            state.selectedBuildingOnMap = action.payload
         }
     },
     extraReducers: {
@@ -93,7 +97,8 @@ const buildingDataSlice = createSlice({
 export const getAllDevicesWithStatus = (state) => state.buildingData?.devices;
 export const getAllDeviceTypes = (state) => state.buildingData?.allDeviceTypes;
 export const getAllDevicesToBeSaved = (state) => state.buildingData?.devicesToBeSaved;
+export const getSelectedBuildingOnMap = (state) => state.buildingData?.selectedBuildingOnMap
 
-export const { updateDeviceToBeSaved } = buildingDataSlice.actions
+export const { updateDeviceToBeSaved, setSelectedBuildingOnMap } = buildingDataSlice.actions
 
 export default buildingDataSlice.reducer

@@ -7,26 +7,12 @@ const ListItemButtonComponent = (props) => {
     const { open, text, updateActivePage, listItemOpen, SetListItemOpen } = props;
     const handleClick = (e) => {
         updateActivePage(text);
-        //setStyle(styleNode)
         if (listItemOpen) {
             SetListItemOpen({ [text]: !listItemOpen[text] });
         }
     }
 
     const styleNode = () => {
-        return (
-            {
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 2.5,
-                mx: 1,
-                backgroundColor: "#4991BC",
-                borderRadius: 2,
-            }
-        )
-    }
-
-    const styleNodeB = () => {
         return (
             {
                 minHeight: 48,
@@ -44,7 +30,7 @@ const ListItemButtonComponent = (props) => {
             }
         )
     }
-    const [style, setStyle] = useState(styleNodeB)
+    const [style, setStyle] = useState(styleNode)
 
     return (
         <ListItemButton
