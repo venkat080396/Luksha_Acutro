@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Drawer from "@mui/material/Drawer";
 import SelectBox from "../../../components/forms/SelectBox/SelectBox"
 import {
@@ -13,6 +13,8 @@ import { ReactComponent as FilterIcon } from "../../../assets/icons/Filter.svg"
 import { ReactComponent as SettingsIcon } from "../../../assets/icons/Settings.svg"
 import DateBox from '../../../components/forms/DateBox/DateBox';
 import IconLabel from "../../../components/forms/IconLabel/IconLabel"
+import Dialog from "../../../components/dialog/Dialog";
+import Settings from '../Settings/Settings';
 
 const theme = createTheme({
     palette: {
@@ -28,6 +30,7 @@ const theme = createTheme({
 
 const DrawerRight = (props) => {
     const { closeDrawer, openRight } = props
+    const [openSettings, setOpenSettings] = useState(false)
     const dispatch = useDispatch();
     const buildings = useSelector(getAllBuildings);
     const floors = useSelector(getAllFloors);
@@ -57,6 +60,10 @@ const DrawerRight = (props) => {
         dispatch(setSelectedFloor(value))
     }
 
+    const HandleSettingsClick = () => {
+        setOpenSettings(true)
+    }
+
     return (
 
         <ThemeProvider theme={theme}>
@@ -76,7 +83,18 @@ const DrawerRight = (props) => {
                 <SelectBox value={selectedBuilding?.RecId} onSelectChange={onBuildingChange} label="Building" icon={<BuildingsIcon height="2.5em" width="2.5em" />} items={buildings} />
                 <SelectBox value={selectedFloor?.RecId} onSelectChange={onFloorChange} label="Floor" icon={<FloorIcon height="2.5em" width="2.5em" />} items={floors} />
                 <DateBox value={{ "fromDate": fromDate, "toDate": toDate }} onDateChange={(value, label) => onDateChange(value, label)} />
-                <IconLabel sx={{ marginLeft: 3, marginTop: 4 }} icon={<SettingsIcon height="2.5em" width="2.5em" />} label="Dashboard Settings" />
+                <IconLabel sx={{ marginLeft: 3, marginTop: 4, cursor: "pointer" }} icon={<SettingsIcon height="2.5em" width="2.5em" />} label="Dashboard Settings" onClick={HandleSettingsClick} />
+                <Dialog
+                    open={openSettings}
+                    title={"Dashboard Settings"}
+                    content={<Settings
+                    //device={this.state.selectedDevice}
+                    //handleClose={this.onDialogClose}
+                    //handleCreate={this.getAllDevices}
+                    //x={this.state.floorX}
+                    //y={this.state.floorY} 
+                    />}
+                />
             </Drawer>
         </ThemeProvider>
     )

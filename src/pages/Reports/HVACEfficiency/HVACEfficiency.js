@@ -10,10 +10,16 @@ const HVACEfficiency = () => {
     return (
         <Grid direction="column" container justifyContent="center" alignItems="center" spacing={3}>
             <Grid item>
-                <Card headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="HVAC Device List" />} sx={{ width: "90vw", height: "70vh" }} content={<HVACDeviceList />} />
+                <Card
+                    headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="HVAC Device List" />}
+                    sx={{ width: "90vw", height: "70vh" }}
+                    content={<HVACDeviceList chartSx={{ width: "27vw", height: "55vh" }} />} />
             </Grid>
             <Grid item>
-                <Card headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Devices working against each other  (by sector)" />} sx={{ width: "90vw", height: "50vh" }} content={<DevicesSummary />} />
+                <Card
+                    headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Devices working against each other  (by sector)" />}
+                    sx={{ width: "90vw", height: "50vh" }}
+                    content={<DevicesSummary />} />
             </Grid>
         </Grid>
     )

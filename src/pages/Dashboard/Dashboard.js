@@ -14,8 +14,7 @@ import Comfort from "../Reports/Comfort/Comfort";
 import Exports from "../Reports/Exports/Exports";
 import { fetchAsyncLeftDrawerItems } from "../../features/Dashboard/dashboardSlice";
 import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
-import FloorView from "../BuildingData/FloorView/Container"
-import ListView from "../BuildingData/ListView/ListView";
+import FloorView from "../BuildingData/FloorView/Container";
 import BuildingData from "../BuildingData/BuildingData";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -69,8 +68,6 @@ const Dashboard = (props) => {
                 return <Alerts />
             case "Floor View":
                 return <FloorView />
-            case "List View":
-                return <ListView />
             case "Utilities/Consumption":
                 return <Utilities />
             case "HVAC Efficiency":

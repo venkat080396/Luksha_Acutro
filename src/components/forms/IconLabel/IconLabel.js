@@ -3,10 +3,10 @@ import Label from "../Label/Label"
 import { Grid } from "@mui/material";
 
 const IconLabel = (props) => {
-    const { sx, icon, label } = props
+    const { sx, icon, label, onClick } = props
 
     return (
-        <Grid container justifyContent="flex-start" sx={sx} spacing={1}>
+        <Grid container justifyContent="flex-start" sx={sx} spacing={1} onClick={onClick}>
             {icon && (
                 <Grid item>
                     {icon}

@@ -4,7 +4,7 @@ import Estimation from './Estimation'
 import { convertToFloat } from "../../../../../common/Utils"
 
 const Container = (props) => {
-    const { type, data } = props
+    const { type, data, sx } = props
     const weekdaysData = data?.filter(data => data.WeekDayOrEnd === "WeekDay")
     const weekendData = data?.filter(data => data.WeekDayOrEnd === "WeekEnd")
 
@@ -18,7 +18,7 @@ const Container = (props) => {
             direction="column"
             justifyContent="center"
             alignItems="center"
-            sx={{ marginTop: 3 }}
+            sx={sx}
             spacing={3}>
             <Grid item>
                 <Estimation

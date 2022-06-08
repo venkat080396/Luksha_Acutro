@@ -70,10 +70,10 @@ const data = [
 
 const items = [...Array(50).keys()].map(i => ({ RecId: i + 1, Name: i + 1 }))
 
-const ComfortChart = () => {
+const ComfortChart = (props) => {
     const [tooHot, setTooHot] = useState({})
     const [tooCold, setTooCold] = useState({})
-
+    const { width, height, aspetRatio } = props
     return (<>
         <Grid container
             direction="row"
@@ -84,7 +84,7 @@ const ComfortChart = () => {
                     <Grid item>
                         <Grid container alignItems="center">
                             <Grid item>
-                                <TooHotIcon height="2.5em" width="2.5em" />
+                                <TooHotIcon height="1.5em" width="1.5em" />
                             </Grid>
                             <Grid item>
                                 Too Hot
@@ -105,7 +105,7 @@ const ComfortChart = () => {
                     <Grid item>
                         <Grid container alignItems="center">
                             <Grid item>
-                                <TooColdIcon height="2.5em" width="2.5em" />
+                                <TooColdIcon height="1.5em" width="1.5em" />
                             </Grid>
                             <Grid item>
                                 Too Cold
@@ -125,13 +125,13 @@ const ComfortChart = () => {
         <div
             style={{ marginTop: "2em" }}>
             <StackedAreaChart
-                width={900}
-                height={700}
+                width={width}
+                height={height}
                 xAxisKey="time"
                 yAxisKey="temperature"
                 areaKey1="Heating"
                 areaKey2="Cooling"
-                aspect="4.5"
+                aspect={aspetRatio}
                 data={data} />
         </div>
     </>

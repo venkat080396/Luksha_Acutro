@@ -9,7 +9,8 @@ import { ReactComponent as WaterIcon } from "../../../../assets/icons/Water.svg"
 import { ReactComponent as GasIcon } from "../../../../assets/icons/Gas.svg"
 import { getEnergyConsumptionSummary } from '../../../../features/Utilities/utilitiesSlice'
 
-const EnergyReports = () => {
+const EnergyReports = (props) => {
+    const { sx, estimationSx } = props;
     const electricityIconLabel = <IconLabel icon={<ElectricityIcon height="2.5em" width="2.5em" />} label="Electricity" />
     const waterIconLabel = <IconLabel icon={<WaterIcon height="2.5em" width="2.5em" />} label="Water" />
     const gasIconLabel = <IconLabel icon={<GasIcon height="2.5em" width="2.5em" />} label="Gas" />
@@ -22,13 +23,25 @@ const EnergyReports = () => {
     return (
         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={4}>
             <Grid item>
-                <Card headerContent={electricityIconLabel} sx={{ width: "27vw", height: "55vh" }} content={<EstimationContainer type="Electricity" data={electricityData} />} />
+                <Card
+                    headerContent={electricityIconLabel}
+                    sx={sx}
+                    content={<EstimationContainer sx={estimationSx} type="Electricity"
+                        data={electricityData} />} />
             </Grid>
             <Grid item>
-                <Card headerContent={waterIconLabel} sx={{ width: "27vw", height: "55vh" }} content={<EstimationContainer type="Water" />} data={waterData} />
+                <Card
+                    headerContent={waterIconLabel}
+                    sx={sx}
+                    content={<EstimationContainer sx={estimationSx} type="Water" />}
+                    data={waterData} />
             </Grid>
             <Grid item>
-                <Card headerContent={gasIconLabel} sx={{ width: "27vw", height: "55vh" }} content={<EstimationContainer type="Gas" />} data={gasData} />
+                <Card
+                    headerContent={gasIconLabel}
+                    sx={sx}
+                    content={<EstimationContainer sx={estimationSx} type="Gas" />}
+                    data={gasData} />
             </Grid>
         </Grid>
     )

@@ -77,7 +77,7 @@ const HVACChart = () => {
                 data={data} />
         </div>
         <div style={{
-            marginTop: "1.25em",
+            marginTop: "1em",
             textAlign: "center",
             color: '#999999',
             fontSize: 13

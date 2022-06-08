@@ -29,10 +29,18 @@ const Utilities = () => {
         <>
             <Grid direction="column" container justifyContent="center" alignItems="center" spacing={3}>
                 <Grid item>
-                    <Card headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Energy Reports" />} sx={{ width: "90vw", height: "70vh" }} content={<EnergyReports />} />
+                    <Card
+                        headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }}
+                            label="Energy Reports" />}
+                        sx={{ width: "90vw", height: "70vh" }}
+                        content={<EnergyReports sx={{ width: "27vw", height: "55vh" }} estimationSx={{ marginTop: 3 }} />} />
                 </Grid>
                 <Grid item>
-                    <Card headerContent={<Label sx={{ marginLeft: 4, marginTop: 3 }} label="Active Devices" />} sx={{ width: "90vw", height: "50vh" }} content={<ActiveDevices />} />
+                    <Card
+                        headerContent={<Label sx={{ marginLeft: 4, marginTop: 3 }}
+                            label="Active Devices" />}
+                        sx={{ width: "90vw", height: "50vh" }}
+                        content={<ActiveDevices />} />
                 </Grid>
             </Grid>
         </>

@@ -28,7 +28,7 @@ const BuildingData = () => {
             <Grid item>
                 <Card
                     headerContent={<Header handleClick={onClick} />}
-                    sx={{ width: "90vw", height: "80vh", marginTop: "-1.5em" }}
+                    sx={{ width: "90vw", height: "85vh", marginTop: "-1.5em" }}
                     content={getContent()} />
             </Grid>
         </Grid>

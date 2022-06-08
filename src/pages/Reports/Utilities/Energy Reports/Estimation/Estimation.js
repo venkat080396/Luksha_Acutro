@@ -53,7 +53,7 @@ const Estimation = (props) => {
                                 <Grid container
                                     direction="row"
                                     alignItems="flex-start">
-                                    <Grid item>{title && title === "Estimated Cost" && (<CurrencyPoundIcon />)}</Grid>
+                                    <Grid item>{title && title === "Estimated Cost" && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
                                     <Grid item>{weekdaysContent}</Grid>
                                 </Grid>
                             </RedGridItemContent>
@@ -75,7 +75,7 @@ const Estimation = (props) => {
                                 <Grid container
                                     direction="row"
                                     alignItems="flex-start">
-                                    <Grid item>{title && title === "Estimated Cost" && (<CurrencyPoundIcon />)}</Grid>
+                                    <Grid item>{title && title === "Estimated Cost" && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
                                     <Grid item>{weekendContent}</Grid>
                                 </Grid>
                             </GreenGridItemContent>
