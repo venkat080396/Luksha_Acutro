@@ -61,7 +61,8 @@ const getLeftDrawerItems = () => {
 }
 
 const initialState = {
-    leftDrawerItems: null
+    leftDrawerItems: null,
+    dashboardSettings: []
 };
 
 export const fetchAsyncLeftDrawerItems = createAsyncThunk(
@@ -72,9 +73,32 @@ export const fetchAsyncLeftDrawerItems = createAsyncThunk(
     }
 );
 
+export const saveAsyncDashboardSettings = createAsyncThunk(
+    'dashboard/saveAsyncDashboardSettings',
+    async (userRecId, settings) => {
+        const inputDetails = {
+            operation: "SaveDashboardSettings",
+            payload: {
+                "userRecId": userRecId,
+                "settings": settings,
+            }
+        }
+        return settings;
+        //const response = await api.post(baseURL, inputDetails);
+        //return response.data;
+    }
+);
+
+
+
 const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState,
+    reducers: {
+        setDashboardSettings(state, action) {
+            state.dashboardSettings = action.payload
+        }
+    },
     extraReducers: {
         [fetchAsyncLeftDrawerItems.pending]: () => {
         },
@@ -82,10 +106,19 @@ const dashboardSlice = createSlice({
             return { ...state, leftDrawerItems: payload };
         },
         [fetchAsyncLeftDrawerItems.rejected]: () => {
+        },
+        [saveAsyncDashboardSettings.pending]: () => {
+        },
+        [saveAsyncDashboardSettings.fulfilled]: (state, { payload }) => {
+        },
+        [saveAsyncDashboardSettings.rejected]: () => {
         }
     }
 })
 
 export const getAllLeftDrawerItems = (state) => state.dashboard?.leftDrawerItems;
+export const getDashboardSettings = (state) => state.dashboard?.dashboardSettings;
+
+export const { setDashboardSettings } = dashboardSlice.actions
 
 export default dashboardSlice.reducer

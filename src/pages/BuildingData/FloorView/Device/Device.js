@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { mergeArray } from "../../../../common/Utils";
 import Tooltip from '../../../../components/tooltip/Tooltip';
 import TooltipContent from './TooltipContent/TooltipContent';
-
 import { updateDeviceToBeSaved, getAllDevicesToBeSaved } from "../../../../features/BuildingData/buildingDataSlice";
 
 const Device = (props) => {
     const { device, dummyDeviceRef, containerRef, devices, onDrag, onClick } = props;
+    const [open, setOpen] = useState(false);
     const dispatch = useDispatch();
     const devicesToBeSaved = useSelector(getAllDevicesToBeSaved);
     const [offsetX, setOffsetX] = useState(0);
@@ -55,11 +55,19 @@ const Device = (props) => {
         dispatch(updateDeviceToBeSaved(mergeArray(devicesToBeSaved, [device])))
         dummyDeviceRef.style.transform = "translateX(-9000px)";
         dummyDeviceRef.style.display = "none";
-        onDrag()
+        //onDrag()
     }
 
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
     return (
-        <Tooltip title={<TooltipContent recId={device.RecId} name={device.Name} />}>
+        <Tooltip key={device.RecId} open={open} onClose={handleClose} onOpen={handleOpen} title={<TooltipContent recId={device.RecId} name={device.Name} />}>
             <img
                 data-id={device.RecId}
                 key={device.RecId}
@@ -74,6 +82,10 @@ const Device = (props) => {
                     top: `${device.FloorY}%`
                 }}
                 src={((typeof device.StyleIcon != "undefined") ? getImageURL(device.StyleIcon) : LightbulbImage)}
+                onError={({ currentTarget }) => {
+                    currentTarget.onerror = null;
+                    currentTarget.src = LightbulbImage;
+                }}
                 alt="Device"
                 onClick={() => onClick(device)}
             />

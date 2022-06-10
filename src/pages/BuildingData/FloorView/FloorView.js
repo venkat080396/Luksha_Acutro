@@ -3,6 +3,7 @@ import { Grid } from '@mui/material'
 import _ from "lodash";
 import { connect } from 'react-redux'
 import LightbulbImage from "../../../assets/icons/Lightbulb.png"
+import FloorImage from "../../../assets/icons/Floor.png"
 import Dialog from "../../../components/dialog/Dialog";
 import CreateDevice from "./Device/CreateDevice";
 import { getSelectedFloor, getSelectedBuilding } from '../../../features/Home/homeSlice';
@@ -22,7 +23,7 @@ class FloorView extends React.Component {
         this.saveDevices = this.saveDevices.bind(this);
         this.onDeviceClick = this.onDeviceClick.bind(this);
         this.devices = [];
-        this.state = { openDialog: false, floorX: 0, floorY: 0, selectedDevice: null };
+        this.state = { openDialog: false, FloorX: 0, FloorY: 0, selectedDevice: null };
     }
 
     onFloorPlanClick(event) {
@@ -35,11 +36,11 @@ class FloorView extends React.Component {
             this.offsetX,
             this.offsetY
         );
-        this.setState({ openDialog: true, floorX: x, floorY: y, selectedDevice: null });
+        this.setState({ openDialog: true, FloorX: x, FloorY: y, selectedDevice: null });
     }
 
     onDeviceClick = device => {
-        this.setState({ openDialog: true, floorX: device.floorX, floorY: device.floorY, selectedDevice: device });
+        this.setState({ openDialog: true, FloorX: device.FloorX, FloorY: device.FloorY, selectedDevice: device });
     }
 
     onDialogClose() {
@@ -80,11 +81,15 @@ class FloorView extends React.Component {
                     >
                         <img
                             ref={ref => (this.img = ref)}
-                            src={this.props.floor?.SVGProperties}
+                            src={this.props.floor?.SVGProperties || FloorImage}
                             alt="Floor plan"
                             style={{
                                 width: "70vw",
                                 height: "70vh"
+                            }}
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = FloorImage;
                             }}
                             onClick={this.onFloorPlanClick}
                         />
@@ -102,6 +107,10 @@ class FloorView extends React.Component {
                                 display: "none"
                             }}
                             src={LightbulbImage}
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = LightbulbImage;
+                            }}
                             alt="Device"
                         />
                         {
@@ -111,7 +120,7 @@ class FloorView extends React.Component {
                                     dummyDeviceRef={this.fooDevice}
                                     containerRef={this.container}
                                     devices={this.props.alldevices}
-                                    onDrag={this.getAllDevices}
+                                    //onDrag={this.getAllDevices}
                                     onClick={(device) => this.onDeviceClick(device)}
                                 />
                             ))
@@ -128,8 +137,8 @@ class FloorView extends React.Component {
                             device={this.state.selectedDevice}
                             handleClose={this.onDialogClose}
                             handleCreate={this.getAllDevices}
-                            x={this.state.floorX}
-                            y={this.state.floorY} />}
+                            x={this.state.FloorX}
+                            y={this.state.FloorY} />}
                     />
                 </Grid>
             </Grid>

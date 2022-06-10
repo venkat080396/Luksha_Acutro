@@ -64,6 +64,10 @@ const DrawerRight = (props) => {
         setOpenSettings(true)
     }
 
+    const handleSettingsSubmit = () => {
+        setOpenSettings(false)
+    }
+
     return (
 
         <ThemeProvider theme={theme}>
@@ -88,11 +92,8 @@ const DrawerRight = (props) => {
                     open={openSettings}
                     title={"Dashboard Settings"}
                     content={<Settings
-                    //device={this.state.selectedDevice}
-                    //handleClose={this.onDialogClose}
-                    //handleCreate={this.getAllDevices}
-                    //x={this.state.floorX}
-                    //y={this.state.floorY} 
+                        handleClose={() => setOpenSettings(false)}
+                        handleSubmit={handleSettingsSubmit}
                     />}
                 />
             </Drawer>

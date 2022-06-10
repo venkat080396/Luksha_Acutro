@@ -6,7 +6,12 @@ const IconLabel = (props) => {
     const { sx, icon, label, onClick } = props
 
     return (
-        <Grid container justifyContent="flex-start" sx={sx} spacing={1} onClick={onClick}>
+        <Grid container
+            justifyContent="flex-start"
+            alignItems="center"
+            sx={sx}
+            spacing={1}
+            onClick={onClick}>
             {icon && (
                 <Grid item>
                     {icon}

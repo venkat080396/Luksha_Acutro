@@ -10,17 +10,42 @@ import { fetchAsyncAllDeviceTypes, fetchAsyncDevicesWithStatus } from "../../../
 
 const ListView = () => {
     const dispatch = useDispatch();
-    const [assetListLabel, setAssetListLabel] = useState("Asset List")
-    const [deviceListLabel, setDeviceListLabel] = useState("Device List")
+    const [assetListLabel, setAssetListLabel] = useState(null)
+    const [deviceListLabel, setDeviceListLabel] = useState(null)
     const selectedFloor = useSelector(getSelectedFloor);
     const selectedBuilding = useSelector(getSelectedBuilding);
 
     const onDeviceTypeClick = (deviceType) => {
-        setAssetListLabel(`Asset List \\ ${deviceType.Name}`)
-        setDeviceListLabel(`Device List \\ ${deviceType.Name}`)
-        dispatch(fetchAsyncAllDeviceTypes(deviceType.RecId))
-        const requestDetails = { siteRecId: 1, buildingRecId: selectedBuilding?.RecId, floorRecId: selectedFloor?.RecId, deviceTypeRecId: deviceType.RecId }
+        setAssetListLabel(deviceType ? ` / ${deviceType.Name}` : null)
+        setDeviceListLabel(deviceType ? ` / ${deviceType.Name}` : null)
+        dispatch(fetchAsyncAllDeviceTypes(deviceType ? deviceType.RecId : null))
+        const requestDetails = { siteRecId: 1, buildingRecId: selectedBuilding?.RecId, floorRecId: selectedFloor?.RecId, deviceTypeRecId: deviceType ? deviceType.RecId : null }
         dispatch(fetchAsyncDevicesWithStatus(requestDetails))
+    }
+
+    const GetHeader = (props) => {
+        const { label } = props
+        return (
+            <Grid container
+                direction="column"
+                sx={{ marginLeft: "1.5em", marginTop: "0.5em" }}>
+                <Grid item>
+                    <Grid container
+                        alignItems="center" spacing={1}>
+                        <Grid item sx={{ fontSize: 18 }}>
+                            {label}
+                        </Grid>
+                        <Grid item sx={{ fontSize: 12 }}>
+                            {label === "Asset List" ? assetListLabel : deviceListLabel}
+                        </Grid>
+                    </Grid>
+                </Grid>
+                {label === "Asset List" && (
+                    <Grid item sx={{ textDecoration: "underline", fontSize: 9, color: "gray", cursor: "pointer" }} onClick={() => onDeviceTypeClick(null)}>
+                        {"< Back to Main List"}
+                    </Grid>)
+                }
+            </Grid>)
     }
 
     return (
@@ -30,13 +55,13 @@ const ListView = () => {
             sx={{ marginTop: "2em" }}>
             <Grid item>
                 <Card
-                    headerContent={<Label label={assetListLabel} sx={{ marginLeft: "1.5em", marginTop: "0.5em" }} />}
+                    headerContent={<GetHeader label="Asset List" />}
                     sx={{ width: "17vw", height: "76vh", marginTop: "-2em" }}
                     content={<AssetList handleClick={onDeviceTypeClick} />} />
             </Grid>
             <Grid item>
                 <Card
-                    headerContent={<Label label={deviceListLabel} sx={{ marginLeft: "1.5em", marginTop: "0.5em" }} />}
+                    headerContent={<GetHeader label="Device List" />}
                     sx={{ width: "65vw", height: "76vh", marginTop: "-2em" }}
                     content={<DeviceList />} />
             </Grid>

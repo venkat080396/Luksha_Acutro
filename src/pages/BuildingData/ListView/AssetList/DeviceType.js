@@ -22,6 +22,10 @@ const DeviceType = (props) => {
                         width: "3em",
                         marginTop: "1em"
                     }}
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = LightbulbImage;
+                    }}
                 />
             </Grid>
             <Grid item>

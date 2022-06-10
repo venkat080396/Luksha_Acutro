@@ -33,8 +33,6 @@ const CreateDevice = (props) => {
     }
 
     const StyledGrid = styled(Grid)({
-        borderRadius: "1em",
-        fontWeight: "bold",
         width: "30vw",
         height: "20vh"
     });
@@ -44,7 +42,7 @@ const CreateDevice = (props) => {
             justifyContent="center"
             alignItems="center"
             container>
-            <Grid item xs={4} sx={{ color: "black" }}>
+            <Grid item xs={4}>
                 Device Types
             </Grid>
             <Grid item xs={8}>
@@ -54,19 +52,22 @@ const CreateDevice = (props) => {
                     color: "black"
                 }} value={selectedDeviceTypeId} onSelectChange={(value) => setSelectedDeviceTypeId(value.RecId)} items={deviceTypes} />
             </Grid>
-            <Grid item xs={4} sx={{ color: "black" }}>
+            <Grid item xs={4}>
                 Device Name
             </Grid>
             <Grid item xs={8}>
                 <TextField autoFocus value={deviceName} onChange={(event) => setDeviceName(event.target.value)} name="Device Name" sx={{ width: "15em", color: "black", backgroundColor: "white" }} size="small" />
             </Grid>
-            <Grid item xs={12}>
-                <Grid container justifyContent="center" spacing={3}>
+            <Grid item xs={11}>
+                <Grid container
+                    justifyContent="center"
+                    spacing={3}
+                    sx={{ marginLeft: "0.1em" }}>
                     <Grid item>
-                        <Button onClick={onCreateOrUpdate}>{device ? "Update" : "Create"}</Button>
+                        <Button variant="contained" color="info" onClick={onCreateOrUpdate}>{device ? "Update" : "Create"}</Button>
                     </Grid>
                     <Grid item>
-                        <Button onClick={handleClose}>Cancel</Button>
+                        <Button variant="contained" color="error" onClick={handleClose}>Cancel</Button>
                     </Grid>
                 </Grid>
             </Grid>

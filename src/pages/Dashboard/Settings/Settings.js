@@ -1,16 +1,30 @@
 import React from 'react'
-import { Grid } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import Card from '../../../components/layout/Card/Card'
-import Label from "../../../components/forms/Label/Label"
+import SettingsList from './SettingsList/SettingsList';
 
-const Settings = () => {
+const Settings = (props) => {
+    const { handleClose, handleSubmit } = props;
+
     return (
-        <Grid container>
+        <Grid container
+            direction="column"
+            alignItems="center">
             <Grid item>
                 <Card
-                    headerContent={<Label sx={{ margin: 2, width: "13em", height: "5em", border: "1px solid red" }} label="Choose which tiles you see on your dashboard." />}
-                    sx={{ width: "16vw", height: "60vh" }}
-                    content="" />
+                    content={<SettingsList />} />
+            </Grid>
+            <Grid item>
+                <Grid container
+                    spacing={2}
+                    sx={{ marginTop: "0.5em" }}>
+                    <Grid item>
+                        <Button variant="contained" color="error" onClick={handleClose}>Cancel</Button>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" color="info" onClick={handleSubmit}>Submit</Button>
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
     )
