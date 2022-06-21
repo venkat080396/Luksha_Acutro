@@ -3,11 +3,11 @@ import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
 import { useDispatch } from "react-redux";
-import AppBar from "../../components/layout/navigation/Appbar/Appbar";
+import Appbar from "./Appbar/Appbar";
 import DrawerLeftComponent from "./DrawerLeft/DrawerLeft";
 import DrawerRightComponent from "./DrawerRight/DrawerRight";
 import Home from "../Home/Home";
-import Alerts from "../Alerts/Alerts";
+import Alerts from "../Alerts/Container";
 import Utilities from "../Reports/Utilities/Utilities";
 import HVACEfficiency from "../Reports/HVACEfficiency/HVACEfficiency";
 import Comfort from "../Reports/Comfort/Comfort";
@@ -85,7 +85,7 @@ const Dashboard = (props) => {
 
     return (
         <Box className={classes.root}>
-            <AppBar
+            <Appbar
                 open={open}
                 openRight={openRight}
                 leftOpen={() => setOpen(true)}

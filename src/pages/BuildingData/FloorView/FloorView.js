@@ -132,6 +132,7 @@ class FloorView extends React.Component {
                     {/* <Devices /> */}
                     <Dialog
                         open={this.state.openDialog}
+                        handleClose={this.onDialogClose}
                         title={this.state.selectedDevice ? "Update Device" : "Create Device"}
                         content={<CreateDevice
                             device={this.state.selectedDevice}

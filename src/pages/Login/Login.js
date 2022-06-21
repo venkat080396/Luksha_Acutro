@@ -8,23 +8,22 @@ import "./Login.Styles.css";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { getIsAuthenticated, authenticate, loginRequest, loginSuccess, loginFailure } from "../../features/Login/loginSlice"
+import { isAuthenticated, authenticate, loginRequest, loginSuccess, loginFailure } from "../../features/Login/loginSlice"
 import logo from "../../assets/icons/Logo.png"
 import Label from "../../components/forms/Label/Label"
 
 const Login = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const [authenticated, setAuthenticated] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const isAuthenticated = useSelector(getIsAuthenticated);
 
     const handleLogin = () => {
         dispatch(loginRequest);
         authenticate(userName, password)
             .then(response => {
-                const isAuthenticated = response ? true : false;
-                dispatch(loginSuccess(isAuthenticated));
+                setAuthenticated(isAuthenticated());
             })
             .catch(error => {
                 const errorMsg = error.message
@@ -33,10 +32,11 @@ const Login = () => {
     }
 
     useEffect(() => {
-        if (isAuthenticated) {
+        setAuthenticated(isAuthenticated())
+        if (authenticated) {
             navigate("/dashboard");
         }
-    })
+    }, [authenticated])
 
     return (
         <Grid container className="grid" direction="column" justifyContent="center" alignItems="center" spacing={2}>

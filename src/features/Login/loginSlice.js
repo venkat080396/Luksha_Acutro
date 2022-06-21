@@ -1,31 +1,31 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
 import Pool from "../../UserPool";
-
-export const getSession = async () => {
-    return await new Promise((resolve, reject) => {
-        const user = Pool.getCurrentUser();
-        if (user) {
-            user.getSession((err, session) => {
-                if (err) {
-                    reject();
-                }
-                else {
-                    resolve(session);
-                }
-            });
-        }
-        else {
-            reject();
-        }
-    });
-};
+// export const getSession = async () => {
+//     return await new Promise((resolve, reject) => {
+//         const user = Pool.getCurrentUser();
+//         if (user) {
+//             user.getSession((err, session) => {
+//                 if (err) {
+//                     reject();
+//                 }
+//                 else {
+//                     resolve(session);
+//                 }
+//             });
+//         }
+//         else {
+//             reject();
+//         }
+//     });
+// };
 
 export const authenticate = async (Username, Password) => {
     return await new Promise((resolve, reject) => {
         const user = new CognitoUser({ Username, Pool });
         const authDetails = new AuthenticationDetails({ Username, Password });
 
+        //console.log(user.getUserAttributes());
         user.authenticateUser(authDetails, {
             onSuccess: (data) => {
                 resolve(data);
@@ -40,6 +40,13 @@ export const authenticate = async (Username, Password) => {
     })
 }
 
+export const setUserAttributes = createAsyncThunk(
+    'login/setUserAttributes',
+    async (attributes) => {
+        return Promise.resolve(attributes)
+    }
+);
+
 export const logout = () => {
     const user = Pool.getCurrentUser();
     if (user) {
@@ -47,23 +54,40 @@ export const logout = () => {
     }
 }
 
+export const isAuthenticated = () => {
+    const user = Pool.getCurrentUser();
+    if (user) {
+        return true;
+    }
+    return false;
+}
+
 const initialState = {
-    isAuthenticated: false,
     currentUser: {},
     loading: false,
-    errorMessage: ""
+    errorMessage: "",
+    userAttributes: null
 };
 
 const loginSlice = createSlice({
     name: "login",
     initialState,
+    extraReducers: {
+        [setUserAttributes.pending]: () => {
+        },
+        [setUserAttributes.fulfilled]: (state, { payload }) => {
+            console.log(payload)
+            return { ...state, userAttributes: payload };
+        },
+        [setUserAttributes.rejected]: () => {
+        },
+    },
     reducers: {
         loginRequest: (state) => {
             state.loading = true;
         },
         loginSuccess: (state, action) => {
             state.loading = false;
-            state.isAuthenticated = action.payload;
         },
         loginFailure: (state, action) => {
             state.loading = false;
@@ -73,6 +97,7 @@ const loginSlice = createSlice({
 });
 
 export const { loginRequest, loginSuccess, loginFailure } = loginSlice.actions;
-export const getIsAuthenticated = (state) => state.login.isAuthenticated;
+
+export const getUserAttributes = (state) => state.login.userAttributes;
 
 export default loginSlice.reducer;

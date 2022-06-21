@@ -1,10 +1,11 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/system';
+import TooltipIcon from '../../tooltipIcon/TooltipIcon';
 
 const Card = (props) => {
-    const { sx, content, headerContent } = props
+    const { sx, content, headerContent, informationContnet } = props
 
     const StyledCard = styled(MuiCard)({
         borderRadius: "1em",
@@ -23,7 +24,19 @@ const Card = (props) => {
             spacing={3}
         >
             <Grid item>
-                {headerContent}
+                <Grid container
+                    direction="row"
+                    justifyContent="space-between"
+                    alignItems="center">
+                    <Grid item>
+                        {headerContent}
+                    </Grid>
+                    {informationContnet && (
+                        <Grid item sx={{ paddingRight: "2%", paddingTop: "2%" }}>
+                            <TooltipIcon content={informationContnet} />
+                        </Grid>
+                    )}
+                </Grid>
             </Grid>
             <Grid item>
                 {content}

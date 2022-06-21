@@ -2,7 +2,7 @@ import './App.css';
 import * as React from "react";
 import { Routes, Route } from "react-router-dom";
 import Login from './pages/Login/Login';
-import Alerts from './pages/Alerts/Alerts';
+import Alerts from './pages/Alerts/Container';
 import BuildingData from './pages/BuildingData/BuildingData';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Utilities from './pages/Reports/Utilities/Utilities'
@@ -11,7 +11,7 @@ import Comfort from './pages/Reports/Comfort/Comfort'
 import Exports from './pages/Reports/Exports/Exports'
 import { CssBaseline } from '@mui/material';
 import { SnackbarProvider } from 'notistack';
-
+import SessionTimeout from './common/SessionTimeout';
 //const LoginContainer = React.lazy(() => import("./pages/Login/Container"));
 //const Dashboard = React.lazy(() => import("./pages/Dashboard/Dashboard"));
 
@@ -34,6 +34,7 @@ function App() {
         <Route path="comfort" element={<Comfort />} />
         <Route path="exports" element={<Exports />} />
       </Routes>
+      <SessionTimeout sessionTimeoutDuration={process.env.REACT_APP_SESSION_TIMEOUT} />
     </SnackbarProvider>
   );
 }

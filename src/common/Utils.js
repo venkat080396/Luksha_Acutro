@@ -35,3 +35,19 @@ export const mergeArray = (firstArray, secondArray) => {
 
     return [...farray, ...secondArray];
 }
+
+export const getColorBasedOnStatus = (status) => {
+    switch (status) {
+        case "Non-Resolved":
+            return "orange";
+        case "Open":
+            return "red";
+        case "Resolved":
+            return "green";
+        case "Escalate":
+            return "gray";
+        default:
+            return "gray";
+
+    }
+}

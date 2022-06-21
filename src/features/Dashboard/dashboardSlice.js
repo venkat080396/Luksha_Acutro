@@ -62,7 +62,7 @@ const getLeftDrawerItems = () => {
 
 const initialState = {
     leftDrawerItems: null,
-    dashboardSettings: []
+    dashboardSettings: [{ id: 1, name: "Energy Reports" }, { id: 2, name: "Comfort" }, { id: 3, name: "HVAC Efficiency" }]
 };
 
 export const fetchAsyncLeftDrawerItems = createAsyncThunk(

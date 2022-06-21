@@ -90,6 +90,7 @@ const DrawerRight = (props) => {
                 <IconLabel sx={{ marginLeft: 3, marginTop: 4, cursor: "pointer" }} icon={<SettingsIcon height="2.5em" width="2.5em" />} label="Dashboard Settings" onClick={HandleSettingsClick} />
                 <Dialog
                     open={openSettings}
+                    handleClose={() => setOpenSettings(false)}
                     title={"Dashboard Settings"}
                     content={<Settings
                         handleClose={() => setOpenSettings(false)}

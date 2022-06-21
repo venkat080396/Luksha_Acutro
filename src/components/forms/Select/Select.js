@@ -4,7 +4,7 @@ import { Typography, Box, FormControl, MenuItem } from "@mui/material";
 import "./Select.css"
 
 const Select = (props) => {
-    const { value, sx, items, onSelectChange } = props
+    const { defaultValue, value, sx, items, onSelectChange } = props
 
     const handleChange = event => {
         const selectedItem = items?.find(item => item.RecId === event.target.value)
@@ -15,6 +15,7 @@ const Select = (props) => {
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
                 <MuiSelect
+                    defaultValue={defaultValue}
                     value={value}
                     components={Box}
                     displayEmpty
@@ -27,7 +28,7 @@ const Select = (props) => {
                     ) : (
                         items.map((item, index) => (
                             <MenuItem key={item.RecId} value={item.RecId}>
-                                <Typography color="black">
+                                <Typography sx={{ color: "black" }}>
                                     {item?.Name}
                                 </Typography>
                             </MenuItem>

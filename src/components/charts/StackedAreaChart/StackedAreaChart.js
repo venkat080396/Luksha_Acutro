@@ -19,8 +19,8 @@ const StackedAreaChart = (props) => {
                 <YAxis stroke="rgba(255,255,255,0.3)" />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey={areaKey1} stroke="#FF0000" strokeDasharray="5 5" />
-                <Line type="monotone" dataKey={areaKey2} stroke="#4e91fd" strokeDasharray="3 4 5 2" />
+                <Line type="monotone" dataKey={areaKey1} stroke="#FF0000" />
+                <Line type="monotone" dataKey={areaKey2} stroke="#4e91fd" />
             </LineChart>
         </ResponsiveContainer>
     )
