@@ -10,7 +10,8 @@ const Label = (props) => {
                 ...props.sx
             }}
             style={{
-                color: "white"
+                color: "white",
+                ...props.style
             }}
             {...props}
         >
