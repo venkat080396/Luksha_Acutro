@@ -4,11 +4,10 @@ import Textfield from "../../components/forms/TextField/TextField";
 import Button from "../../components/forms/Button/Button";
 import PersonOutlineSharpIcon from '@mui/icons-material/PersonOutlineSharp';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import "./Login.Styles.css";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { isAuthenticated, authenticate, loginRequest, loginSuccess, loginFailure } from "../../features/Login/loginSlice"
+//import { useDispatch } from "react-redux";
+import { isAuthenticated, authenticate } from "../../features/Login/loginSlice"
 import logo from "../../assets/icons/Logo.png"
 import Label from "../../components/forms/Label/Label"
 
@@ -17,29 +16,32 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [authenticated, setAuthenticated] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
+    //const dispatch = useDispatch();
 
     const handleLogin = () => {
-        dispatch(loginRequest);
         authenticate(userName, password)
             .then(response => {
                 setAuthenticated(isAuthenticated());
             })
             .catch(error => {
-                const errorMsg = error.message
-                dispatch(loginFailure(errorMsg));
+                //const errorMsg = error.message
+                //dispatch(loginFailure(errorMsg));
             })
     }
 
     useEffect(() => {
-        setAuthenticated(isAuthenticated())
         if (authenticated) {
             navigate("/dashboard");
         }
-    }, [authenticated])
+    })
 
     return (
-        <Grid container className="grid" direction="column" justifyContent="center" alignItems="center" spacing={2}>
+        <Grid container
+            direction="column"
+            justifyContent="center"
+            alignItems="center"
+            spacing={2}
+            sx={{ height: "100vh", width: "100vw", padding: 0, margin: 0 }}>
             <Grid item>
                 <Grid container justifyContent="center" alignItems="center" spacing={1}>
                     <Grid item>

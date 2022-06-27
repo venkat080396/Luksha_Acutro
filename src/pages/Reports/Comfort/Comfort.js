@@ -5,6 +5,7 @@ import Label from "../../../components/forms/Label/Label"
 import { DevicesSummary } from '../Common/DeviceSummary/DevicesSummary'
 import ComfortLevels from './ComfortLevels/ComfortLevels'
 import Header from './ComfortLevels/Header'
+import { COMFORT } from '../constants.js'
 
 const Comfort = () => {
 
@@ -17,13 +18,13 @@ const Comfort = () => {
                 spacing={3}>
                 <Grid item>
                     <Card
-                        headerContent={<Header />}
+                        headerContent={<Header spacing={120} />}
                         sx={{ width: "90vw", height: "100vh" }}
                         content={<ComfortLevels chartSx={{ width: "85vw", height: "55vh" }} sliderSx={{ width: "85vw", height: "20vh" }} chartWidth={900} chartHeight={700} isSliderVisible={true} aspetRatio="4.5" />} />
                 </Grid>
                 <Grid item>
                     <Card
-                        headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Devices working against each other (by sector)" />}
+                        headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label={COMFORT.DEVICE_SUMMARY.HEADER} />}
                         sx={{ width: "90vw", height: "50vh" }}
                         content={<DevicesSummary />} />
                 </Grid>

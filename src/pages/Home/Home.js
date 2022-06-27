@@ -35,7 +35,7 @@ const Home = () => {
                     )}
                     {dashboardSettings && dashboardSettings.some(settings => settings.name === "Comfort") && (
                         <Grid item>
-                            <Card headerContent={<Header />}
+                            <Card headerContent={<Header spacing={10} />}
                                 sx={{ width: "35vw", height: "50vh" }}
                                 content={<ComfortLevels chartSx={{ width: "30vw", height: "40vh" }} sliderSx={{ width: "30vw", height: "10vh" }} chartWidth={550} chartHeight={500} isSliderVisible={false} aspetRatio="2.1" />} />
                         </Grid>

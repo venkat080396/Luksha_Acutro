@@ -9,7 +9,8 @@ const getLeftDrawerItems = () => {
             },
             {
                 id: 2,
-                name: "Alerts"
+                name: "Alerts",
+                items: [{ id: 13, name: "Distribution List" }]
             },
             {
                 id: 3,

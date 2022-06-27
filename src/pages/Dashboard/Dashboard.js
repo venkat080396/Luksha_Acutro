@@ -16,6 +16,7 @@ import { fetchAsyncLeftDrawerItems } from "../../features/Dashboard/dashboardSli
 import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
 import FloorView from "../BuildingData/FloorView/Container";
 import BuildingData from "../BuildingData/BuildingData";
+import DistributionList from "../Alerts/Distribution List/DistributionList";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -78,6 +79,8 @@ const Dashboard = (props) => {
                 return <Exports />
             case "Building Data":
                 return <BuildingData />
+            case "Distribution List":
+                return <DistributionList />
             default:
                 return <></>
         }
