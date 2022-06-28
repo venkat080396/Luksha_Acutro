@@ -9,13 +9,13 @@ const HVACDeviceList = (props) => {
     return (
         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={4}>
             <Grid item>
-                <Card headerContent={<Label sx={{ textAlign: "center", marginTop: 2, fontWeight: "bold" }} label="Under-achieving Devices" />} sx={chartSx} content={<HVACChart />} />
+                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Under-achieving Devices" />} sx={chartSx} content={<HVACChart />} />
             </Grid>
             <Grid item>
-                <Card headerContent={<Label sx={{ textAlign: "center", marginTop: 2, fontWeight: "bold" }} label="Over Working Devices" />} sx={chartSx} content={<HVACChart />} />
+                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Over Working Devices" />} sx={chartSx} content={<HVACChart />} />
             </Grid>
             <Grid item>
-                <Card headerContent={<Label sx={{ textAlign: "center", marginTop: 2, fontWeight: "bold" }} label="Under Working Devices" />} sx={chartSx} content={<HVACChart />} />
+                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Under Working Devices" />} sx={chartSx} content={<HVACChart />} />
             </Grid>
         </Grid>
     )

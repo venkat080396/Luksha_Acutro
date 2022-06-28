@@ -66,8 +66,7 @@ const data = [
 
 const HVACChart = () => {
     return (<>
-        <div
-            style={{ marginTop: "2em" }}>
+        <div>
             <StackedAreaChart
                 xAxisKey="time"
                 yAxisKey="temperature"

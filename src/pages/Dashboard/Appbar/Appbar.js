@@ -6,7 +6,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { Grid, Badge } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
@@ -40,13 +39,6 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
-const useStyles = makeStyles({
-    root: {
-        background: "linear-gradient(135deg, #344D5E, #1F1A3B)",
-        zIndex: 10
-    },
-});
-
 export default function AppBarComponent({
     open,
     openRight,
@@ -55,7 +47,6 @@ export default function AppBarComponent({
     floorName,
     buildingName,
 }) {
-    const classes = useStyles();
     const dispatch = useDispatch();
     const [openUserCard, setOpenUserCard] = useState(false);
     const selectedBuilding = useSelector(getSelectedBuilding);
@@ -83,11 +74,8 @@ export default function AppBarComponent({
             open={open}
             component={Box}
             elevation={0}
-            sx={{
-                zIndex: 10,
-            }}
         >
-            <Box className={classes.root}>
+            <Box>
                 <Toolbar>
                     <IconButton
                         color="inherit"
@@ -96,12 +84,12 @@ export default function AppBarComponent({
                         edge="start"
                         sx={{
                             marginRight: 5,
-                            ...(open && { display: "none" }),
+                            ...(open && { display: "none" })
                         }}
                     >
                         <MenuIcon sx={{ color: "white" }} />
                     </IconButton>
-                    <Typography variant="body1" noWrap component="div">
+                    <Typography variant="body1" noWrap component="div" sx={{ width: "150em" }}>
                         <Typography variant="h6" fontWeight={"700"} display={"inline"}>
                             Your Dashboard &nbsp;
                         </Typography>
@@ -109,7 +97,6 @@ export default function AppBarComponent({
                         {selectedFloor && selectedFloor.Name ? `/ ${selectedFloor.Name} /` : ""}
                         {selectedBuilding && selectedBuilding.Name && selectedFloor && selectedFloor.Name ? "19/07/21 - 21/07/21" : ""}
                     </Typography>
-                    <Box flex={1}></Box>
                     {!openRight && (
                         <Grid container
                             justifyContent="flex-end"
