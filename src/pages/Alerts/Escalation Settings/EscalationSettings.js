@@ -1,9 +1,13 @@
 import React from "react";
 import { Grid, Box } from "@mui/material";
 
+import { useSelector, useDispatch } from "react-redux";
+
 import Label from "../../../components/forms/Label/Label";
 import Select from "../../../components/forms/Select/Select";
 import Button from "../../../components/forms/Button/Button";
+
+import { fetchAsyncSites, fetchAsyncBuildings, fetchAsyncFloors, getAllSites, getAllBuildings, getAllFloors, getSelectedBuilding, getSelectedSites, getSelectedFloor, setSelectedSite, setSelectedBuilding } from "../../../features/Alerts/AlertsSlice";
 
 // const users = [
 //     { RecId: 1, username: "Adeala", role: "Sys Admin" },
@@ -14,6 +18,8 @@ import Button from "../../../components/forms/Button/Button";
 // ];
 
 const EscalationSettings = () => {
+    const dispatch = useDispatch();
+
     const [device, setDevice] = React.useState("");
     const [Site, setSite] = React.useState("");
     const [Building, setBuilding] = React.useState("");
@@ -22,8 +28,19 @@ const EscalationSettings = () => {
     const [LevelSecound, setLevelSecound] = React.useState("");
     const [LevelThird, setLevelThird] = React.useState("");
 
+    const buildings = useSelector(getAllBuildings);
+    const floors = useSelector(getAllFloors);
+    const site = useSelector(getAllSites);
+    const selectedBuilding = useSelector(getSelectedBuilding);
+    const selectedFloor = useSelector(getSelectedFloor);
+    const selectedSite = useSelector(getSelectedSites);
+
+    console.log(site)
+    console.log(buildings)
+    console.log(floors)
+
     React.useEffect(() => {
-        //fetch initial value
+        dispatch(fetchAsyncSites());
     }, [])
 
     const hendleSelectDevice = (item) => {
@@ -32,12 +49,26 @@ const EscalationSettings = () => {
     }
 
     const hendleChangeValue = (item, setFunction) => setFunction(item.RecId);
+    const hendleChangeSite = (item) => {
+        setSite(item)
+        dispatch(setSelectedSite(item))
+        dispatch(fetchAsyncBuildings(`${item.RecId}`))
+    }
+    const hendleChangeBuilding = (item) => {
+        setBuilding(item)
+        dispatch(setSelectedBuilding(item))
+        dispatch(fetchAsyncFloors(item))
+    }
+    const hendleChangeFloor = (item) => {
+        setFloor(item)
+        dispatch(setFloor(item))
+    }
 
     const handleSave = () => {
     }
 
     return (
-        <Box padding={4} sx={{ paddingLeft: "4rem", paddingRight: "4rem" }}>
+        <Box padding={4} >
             <Grid container spacing={4} alignItems='flex-start'>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Grid container alignItems="center" spacing={2}>
@@ -47,14 +78,9 @@ const EscalationSettings = () => {
                         <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Devices"
-                                value={Site}
-                                defaultValue={""}
-                                onSelectChange={(item) => hendleChangeValue(item, setSite)}
+                                onSelectChange={(item) => hendleChangeSite(item)}
                                 props={{ size: "small", placeholder: "Select Devices" }}
-                                items={[
-                                    { RecId: 1, Name: "All Site" },
-                                    { RecId: 2, Name: "Site 1" },
-                                ]}
+                                items={site}
                                 fullWidth={true}
                             />
                         </Grid>
@@ -64,14 +90,9 @@ const EscalationSettings = () => {
                         <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Building"
-                                value={Building}
-                                defaultValue={""}
-                                onSelectChange={(item) => hendleChangeValue(item, setBuilding)}
+                                onSelectChange={(item) => hendleChangeBuilding(item)}
                                 props={{ size: "small", placeholder: "Select Building" }}
-                                items={[
-                                    { RecId: 1, Name: "All Building" },
-                                    { RecId: 2, Name: "Building 1" },
-                                ]}
+                                items={buildings}
                                 fullWidth={true}
                             />
                         </Grid>
@@ -81,14 +102,9 @@ const EscalationSettings = () => {
                         <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Floor"
-                                value={Floor}
-                                defaultValue={""}
                                 onSelectChange={(item) => hendleChangeValue(item, setFloor)}
                                 props={{ size: "small", placeholder: "Select Floor" }}
-                                items={[
-                                    { RecId: 1, Name: "All Site" },
-                                    { RecId: 2, Name: "Floor 1" },
-                                ]}
+                                items={floors}
                                 fullWidth={true}
                             />
                         </Grid>
@@ -100,7 +116,7 @@ const EscalationSettings = () => {
                                 placeholder="Select Devices"
                                 value={device}
                                 defaultValue={""}
-                                onSelectChange={hendleSelectDevice}
+                                onSelectChange={(item) => hendleChangeFloor(item)}
                                 props={{ size: "small", placeholder: "Select Devices" }}
                                 items={[
                                     { RecId: 1, Name: "Device1" },

@@ -39,10 +39,13 @@ const DistributionListContent = () => {
     // };
 
     const handleSave = () => {
-        const email = emailUser.join(',');
-        const call = callUser.join(',');
+        const email = emailUser;
+        const call = callUser;
         dispatch(saveDistribution({ email, call, name }))
-        handleReset()
+        setName("");
+        setEmailUser("");
+        setCallUser("");
+        setTextUser("");
         enqueueSnackbar("Data is Save Successfully", { variant: 'success' })
     }
 

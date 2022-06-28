@@ -14,7 +14,6 @@ const Header = () => {
     return (
         <Grid container
             alignItems="center"
-            spacing={4}
             sx={{ marginLeft: 4 }}>
             <Grid item xs={3}>
                 <Label label="Alert Escalation Settings" />
