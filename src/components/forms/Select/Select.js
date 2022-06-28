@@ -15,6 +15,8 @@ const Select = (props) => {
         <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
                 <MuiSelect
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
                     defaultValue={defaultValue}
                     value={value}
                     components={Box}
@@ -22,6 +24,7 @@ const Select = (props) => {
                     sx={{ ...sx, backgroundColor: "rgba(255,255,255,0.3)" }}
                     onChange={handleChange}
                     className="select"
+                    {...props.props}
                 >
                     {items && (items?.length === 0 ? (
                         <></>
