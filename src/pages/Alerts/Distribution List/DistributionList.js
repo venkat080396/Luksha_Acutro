@@ -16,7 +16,7 @@ import { grey } from '@mui/material/colors';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import CallIcon from '@mui/icons-material/Call';
 
-import { saveDistribution } from '../../../features/Alarts/AlartsSlice';
+import { saveDistribution } from '../../../features/Alerts/AlertsSlice';
 
 
 const DistributionListContent = () => {

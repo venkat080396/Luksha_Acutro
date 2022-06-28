@@ -33,7 +33,7 @@ import { baseURL, api } from "../../common/apis/api";
 // );
 
 export const saveDistribution = createAsyncThunk(
-    'Alarts/saveDistribution',
+    'Alerts/saveDistribution',
     async ({ email = null, call = null, name }) => {
         const inputDetails = {
             "operation": "SaveAlertSubscriptionForGroup",
@@ -49,7 +49,7 @@ export const saveDistribution = createAsyncThunk(
 );
 
 export const fetchAsyncDistributionList = createAsyncThunk(
-    'Alarts/fetchAsyncDistributionList',
+    'Alerts/fetchAsyncDistributionList',
     async (name) => {
         const inputDetails = {
             "operation": "GetAlertSubscriptionForGroup",
@@ -66,8 +66,8 @@ const initialState = {
     distributionList: []
 };
 
-const AlartsSlice = createSlice({
-    name: 'Alarts',
+const AlertsSlice = createSlice({
+    name: 'Alerts',
     initialState,
     reducers: {
         updateDeviceToBeSaved(state, action) {
@@ -96,6 +96,6 @@ const AlartsSlice = createSlice({
 
 export const getDistributionList = (state) => state.distributionList;
 
-export const { updateDeviceToBeSaved, setSelectedBuildingOnMap } = AlartsSlice.actions
+export const { updateDeviceToBeSaved, setSelectedBuildingOnMap } = AlertsSlice.actions
 
-export default AlartsSlice.reducer
+export default AlertsSlice.reducer
