@@ -26,6 +26,7 @@ export default function MultipleSelectBox(props) {
                 <Select
                     multiple
                     className="multipleselect"
+                    sx={{borderRadius:2}}
                     displayEmpty
                     value={props.currentValue}
                     onChange={props.handleChange}

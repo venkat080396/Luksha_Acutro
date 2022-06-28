@@ -2,6 +2,7 @@ import { Grid, Box } from "@mui/material";
 import React from "react";
 
 import { useDispatch } from "react-redux";
+import { useSnackbar } from 'notistack';
 
 import Label from "../../../components/forms/Label/Label";
 import Card from "../../../components/layout/Card/Card";
@@ -14,12 +15,13 @@ import { grey } from '@mui/material/colors';
 
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import CallIcon from '@mui/icons-material/Call';
-// import TextsmsIcon from '@mui/icons-material/Textsms';
 
 import { saveDistribution } from '../../../features/Alarts/AlartsSlice';
 
+
 const DistributionListContent = () => {
     const dispatch = useDispatch();
+    const { enqueueSnackbar } = useSnackbar();
 
     const [name, setName] = React.useState("");
     const [emailUser, setEmailUser] = React.useState([]);
@@ -39,6 +41,10 @@ const DistributionListContent = () => {
         const email = emailUser.join(',');
         const call = callUser.join(',');
         dispatch(saveDistribution({ email, call, name }))
+        setName("");
+        setEmailUser([]);
+        setCallUser([]);
+        enqueueSnackbar("Data is Save Successfully", { variant: 'success' })
     }
 
     const UserData = {
@@ -126,7 +132,7 @@ const DistributionListContent = () => {
                                 </Grid> */}
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                     <Box paddingY={4}>
-                        <Grid container alignItems="center" flexDirection='row-reverse' spacing={1}>
+                        <Grid container alignItems="center" flexDirection='row-reverse' spacing={4}>
                             <Grid item xs={0} sm={0} md={4} lg={4} xl={4} />
                             <Grid item>
                                 <Button onClick={handleSave} value="Save" />
@@ -139,7 +145,7 @@ const DistributionListContent = () => {
                                         setCallUser([]);
                                     }}
                                     color="error"
-                                    value="Rset"
+                                    value="Reset"
                                 />
                             </Grid>
                         </Grid>
@@ -157,7 +163,7 @@ export default function DistributionList() {
         <Grid container direction="column">
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Card
-                    headerContent={<Label sx={{ marginBottom: 2 }} style={{ fontWeight: 'bold', fontSize: 32, color: "white" }} label="Distribution List" />}
+                    headerContent={<Label sx={{ marginBottom: 6 }} style={{ fontWeight: 'bold', fontSize: 32, color: "white" }} label="Distribution List" />}
                     sx={{ paddingX: 4, paddingY: 4 }}
                     content={
                         <DistributionListContent />

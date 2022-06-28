@@ -34,13 +34,27 @@ import { baseURL, api } from "../../common/apis/api";
 
 export const saveDistribution = createAsyncThunk(
     'Alarts/saveDistribution',
-    async ({ email, call, name }) => {
+    async ({ email = null, call = null, name }) => {
         const inputDetails = {
             "operation": "SaveAlertSubscriptionForGroup",
             "payload": {
                 "sGroupName": name,
-                "sEmailIDs": email,   // Comma separated Email Ids.  sMobileNumbers should be null
+                "sEmailIDs": email,
                 "sMobileNumbers": call
+            }
+        }
+        const response = await api.post(baseURL, inputDetails);
+        return response.data;
+    }
+);
+
+export const fetchAsyncDistributionList = createAsyncThunk(
+    'Alarts/fetchAsyncDistributionList',
+    async (name) => {
+        const inputDetails = {
+            "operation": "GetAlertSubscriptionForGroup",
+            "payload": {
+                "AlertGroup": name
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -69,6 +83,13 @@ const AlartsSlice = createSlice({
         [saveDistribution.fulfilled]: (state, { payload }) => {
         },
         [saveDistribution.rejected]: () => {
+        },
+        [fetchAsyncDistributionList.pending]: () => {
+        },
+        [fetchAsyncDistributionList.fulfilled]: (state, { payload }) => {
+            return [...state, payload];
+        },
+        [fetchAsyncDistributionList.rejected]: () => {
         }
     }
 })
