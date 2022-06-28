@@ -38,13 +38,13 @@ const EscalationSettings = () => {
 
     return (
         <Box padding={4} sx={{ paddingLeft: "4rem", paddingRight: "4rem" }}>
-            <Grid container spacing={4}>
-                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <Grid container alignItems="center" spacing={4}>
-                        <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
+            <Grid container spacing={4} alignItems='flex-start'>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <Grid container alignItems="center" spacing={2}>
+                        <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Label label="Site" />
                         </Grid>
-                        <Grid item xs={6} sm={9} md={2} lg={2} xl={2}>
+                        <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Devices"
                                 value={Site}
@@ -58,10 +58,10 @@ const EscalationSettings = () => {
                                 fullWidth={true}
                             />
                         </Grid>
-                        <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
+                        <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Label label="Building" />
                         </Grid>
-                        <Grid item xs={6} sm={9} md={2} lg={2} xl={2}>
+                        <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Building"
                                 value={Building}
@@ -75,10 +75,10 @@ const EscalationSettings = () => {
                                 fullWidth={true}
                             />
                         </Grid>
-                        <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
+                        <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Label label="Floor" />
                         </Grid>
-                        <Grid item xs={6} sm={9} md={2} lg={2} xl={2}>
+                        <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Floor"
                                 value={Floor}
@@ -92,10 +92,10 @@ const EscalationSettings = () => {
                                 fullWidth={true}
                             />
                         </Grid>
-                        <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
+                        <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Label label="Devices" />
                         </Grid>
-                        <Grid item xs={6} sm={9} md={2} lg={2} xl={2}>
+                        <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Devices"
                                 value={device}
@@ -111,12 +111,12 @@ const EscalationSettings = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <Grid container alignItems="center" spacing={4}>
-                        <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+                    <Grid container alignItems="center" spacing={2}>
+                        <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Label label="Level 1" />
                         </Grid>
-                        <Grid item xs={6} sm={9} md={3} lg={3} xl={3}>
+                        <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select List"
                                 value={LevelFirst}
@@ -130,10 +130,10 @@ const EscalationSettings = () => {
                                 fullWidth={true}
                             />
                         </Grid>
-                        <Grid item xs={6} sm={6} md={1} lg={1} xl={1}>
+                        <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Label label="Level 2" />
                         </Grid>
-                        <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
+                        <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select List"
                                 value={LevelSecound}
@@ -147,10 +147,10 @@ const EscalationSettings = () => {
                                 fullWidth={true}
                             />
                         </Grid>
-                        <Grid item xs={6} sm={6} md={1} lg={1} xl={1}>
+                        <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Label label="Level 3" />
                         </Grid>
-                        <Grid item xs={6} sm={6} md={3} lg={3} xl={3}>
+                        <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select List"
                                 value={LevelThird}
@@ -164,12 +164,12 @@ const EscalationSettings = () => {
                                 fullWidth={true}
                             />
                         </Grid>
-                    </Grid>
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                    <Grid container alignItems="center" flexDirection="row-reverse">
-                        <Grid item>
-                            <Button onClick={handleSave} value="Save" />
+                        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                            <Grid container alignItems="center" flexDirection="row-reverse">
+                                <Grid item>
+                                    <Button onClick={handleSave} value="Save" />
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
