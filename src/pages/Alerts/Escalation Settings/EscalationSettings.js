@@ -42,23 +42,6 @@ const EscalationSettings = () => {
                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                     <Grid container alignItems="center" spacing={4}>
                         <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
-                            <Label label="Devices" />
-                        </Grid>
-                        <Grid item xs={6} sm={9} md={2} lg={2} xl={2}>
-                            <Select
-                                placeholder="Select Devices"
-                                value={device}
-                                defaultValue={""}
-                                onSelectChange={hendleSelectDevice}
-                                props={{ size: "small", placeholder: "Select Devices" }}
-                                items={[
-                                    { RecId: 1, Name: "Device1" },
-                                    { RecId: 2, Name: "Device2" },
-                                ]}
-                                fullWidth={true}
-                            />
-                        </Grid>
-                        <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
                             <Label label="Site" />
                         </Grid>
                         <Grid item xs={6} sm={9} md={2} lg={2} xl={2}>
@@ -105,6 +88,23 @@ const EscalationSettings = () => {
                                 items={[
                                     { RecId: 1, Name: "All Site" },
                                     { RecId: 2, Name: "Floor 1" },
+                                ]}
+                                fullWidth={true}
+                            />
+                        </Grid>
+                        <Grid item xs={6} sm={3} md={1} lg={1} xl={1}>
+                            <Label label="Devices" />
+                        </Grid>
+                        <Grid item xs={6} sm={9} md={2} lg={2} xl={2}>
+                            <Select
+                                placeholder="Select Devices"
+                                value={device}
+                                defaultValue={""}
+                                onSelectChange={hendleSelectDevice}
+                                props={{ size: "small", placeholder: "Select Devices" }}
+                                items={[
+                                    { RecId: 1, Name: "Device1" },
+                                    { RecId: 2, Name: "Device2" },
                                 ]}
                                 fullWidth={true}
                             />
