@@ -41,10 +41,10 @@ export default function MultipleSelectBox(props) {
                     {...props}
                     size='small'
                 >
-                    {props.MenuItem.map((name) => (
+                    {props.MenuItem.map((name,index) => (
                         <MenuItem key={name} value={name}>
                             <Checkbox checked={props.currentValue.indexOf(name) > -1} />
-                            <ListItemText primary={name} />
+                            <ListItemText primary={`User ${index}`} />
                         </MenuItem>
                     ))}
                 </Select>

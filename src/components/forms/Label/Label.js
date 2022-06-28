@@ -6,7 +6,7 @@ const Label = (props) => {
     return (
         <InputLabel
             sx={{
-                marginTop: 1,
+                marginTop: 0,
                 ...props.sx
             }}
             style={{
