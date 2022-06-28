@@ -1,11 +1,11 @@
 import React from 'react'
 import MuiListItemIcon from "@mui/material/ListItemIcon";
-import HomeIcon from "@mui/icons-material/Home";
-import MicNoneIcon from "@mui/icons-material/MicNone";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CorporateFareIcon from "@mui/icons-material/CorporateFare";
 import SettingsIcon from "@mui/icons-material/Settings";
-import ContrastIcon from "@mui/icons-material/Contrast";
+import { ReactComponent as HomeIcon } from "../../../../assets/icons/Home.svg"
+import { ReactComponent as ReportsIcon } from "../../../../assets/icons/Reports.svg"
+import { ReactComponent as BuildingDataIcon } from "../../../../assets/icons/Building Data.svg"
+import { ReactComponent as AlertsIcon } from "../../../../assets/icons/Alerts.svg"
 import { ReactComponent as UtilitiesIcon } from "../../../../assets/icons/Utilities Consumption.svg"
 import { ReactComponent as ComfortIcon } from "../../../../assets/icons/Comfort.svg"
 import { ReactComponent as ExportsIcon } from "../../../../assets/icons/Exports.svg"
@@ -16,13 +16,13 @@ const ListItemIcon = ({ open, text }) => {
     const getIcon = () => {
         switch (text) {
             case "Home":
-                return <HomeIcon sx={{ color: "white" }} />
+                return <HomeIcon height="2.5em" width="2em" />
             case "Alerts":
-                return <MicNoneIcon sx={{ color: "white" }} />
+                return <AlertsIcon height="2.5em" width="2em" />
             case "Building Data":
-                return <AccountBalanceIcon sx={{ color: "white" }} />
+                return <BuildingDataIcon height="2.5em" width="2em" />
             case "Reports":
-                return <ContrastIcon sx={{ color: "white" }} />
+                return <ReportsIcon height="2.5em" width="2em" />
             case "Utilities/Consumption":
                 return <UtilitiesIcon height="2.5em" width="2em" />
             case "HVAC Efficiency":

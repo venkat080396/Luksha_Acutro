@@ -17,6 +17,7 @@ import Pool from "../../../UserPool"
 import UserCard from "./UserCard/UserCard";
 import UserCardDialog from "./UserCardDialog/UserCardDialog";
 import Dialog from "../../../components/dialog/Dialog";
+import bgImage from "../../../assets/images/Background.png";
 
 const drawerWidth = 300;
 
@@ -24,7 +25,8 @@ const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: "transparent",
+    backgroundImage: `url(${bgImage})`,
+    backgroundRepeat: "no-repeat",
     transition: theme.transitions.create(["width", "margin"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -34,7 +36,7 @@ const AppBar = styled(MuiAppBar, {
         width: `calc(100% - ${drawerWidth}px)`,
         transition: theme.transitions.create(["width", "margin"], {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
+            duration: theme.transitions.duration.enteringScreen
         }),
     }),
 }));
@@ -74,6 +76,9 @@ export default function AppBarComponent({
             open={open}
             component={Box}
             elevation={0}
+            sx={{
+
+            }}
         >
             <Box>
                 <Toolbar>
