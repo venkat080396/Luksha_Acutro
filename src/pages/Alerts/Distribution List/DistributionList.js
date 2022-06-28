@@ -1,10 +1,18 @@
 import { Grid, Box } from "@mui/material";
 import React from "react";
+
 import Label from "../../../components/forms/Label/Label";
 import Card from "../../../components/layout/Card/Card";
 import TextField from "../../../components/forms/TextField/TextField";
 import MultipleSelectBox from "../../../components/forms/MultipleSelectBox/MultipleSelectBox";
 import Button from "../../../components/forms/Button/Button";
+import IconLabel from "../../../components/forms/IconLabel/IconLabel";
+
+import { grey } from '@mui/material/colors';
+
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import CallIcon from '@mui/icons-material/Call';
+import TextsmsIcon from '@mui/icons-material/Textsms';
 
 const DistributionList = () => {
     const [emailUser, setEmailUser] = React.useState([]);
@@ -30,6 +38,7 @@ const DistributionList = () => {
         <Grid container direction="column">
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Card
+                    headerContent={<Label label="Distribution List" />}
                     sx={{ paddingX: 4, paddingY: 4 }}
                     content={
                         <>
@@ -48,7 +57,7 @@ const DistributionList = () => {
                                     <Box paddingY={2} paddingTop={6}>
                                         <Grid container alignItems="center">
                                             <Grid item xs={2} sm={2} md={2} lg={2} xl={2}>
-                                                <Label label="Email" />
+                                                <IconLabel label='Email' icon={<MailOutlineIcon color={grey[50]} fontSize="large" />} />
                                             </Grid>
                                             <Grid item xs={10} sm={10} md={6} lg={6} xl={6}>
                                                 <MultipleSelectBox
@@ -71,7 +80,7 @@ const DistributionList = () => {
                                     <Box paddingY={2}>
                                         <Grid container alignItems="center">
                                             <Grid item xs={2} sm={2} md={2} lg={2} xl={2}>
-                                                <Label label="Call" />
+                                                <IconLabel label='Call' icon={<CallIcon color={grey[50]} fontSize="large" />} />
                                             </Grid>
                                             <Grid item xs={10} sm={10} md={6} lg={6} xl={6}>
                                                 <MultipleSelectBox
@@ -94,7 +103,7 @@ const DistributionList = () => {
                                     <Box paddingY={2}>
                                         <Grid container alignItems="center">
                                             <Grid item xs={2} sm={2} md={2} lg={2} xl={2}>
-                                                <Label label="Text" />
+                                                <IconLabel label='Text' icon={<TextsmsIcon color={grey[50]} fontSize="large" />} />
                                             </Grid>
                                             <Grid item xs={10} sm={10} md={6} lg={6} xl={6}>
                                                 <MultipleSelectBox
@@ -115,7 +124,8 @@ const DistributionList = () => {
                                 </Grid>
                                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <Box paddingY={4}>
-                                        <Grid container alignItems="center" spacing={4}>
+                                        <Grid container alignItems="center" flexDirection='row-reverse' spacing={1}>
+                                            <Grid item xs={0} sm={0} md={4} lg={4} xl={4} />
                                             <Grid item>
                                                 <Button onClick={() => { }} value="Save" />
                                             </Grid>

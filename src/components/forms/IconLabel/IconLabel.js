@@ -18,7 +18,7 @@ const IconLabel = (props) => {
                 </Grid>
             )}
             <Grid item>
-                <Label label={label} />
+                <Label sx={{ marginTop: 0 }} label={label} />
             </Grid>
         </Grid>
     )

@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
 import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
 import './MultipleSelectBoxStyle.css';
 
 const ITEM_HEIGHT = 48;
@@ -16,17 +17,8 @@ const MenuProps = {
     },
 };
 
-function getStyles(name, personName, theme) {
-    return {
-        fontWeight:
-            personName.indexOf(name) === -1
-                ? theme.typography.fontWeightRegular
-                : theme.typography.fontWeightMedium,
-    };
-}
 
 export default function MultipleSelectBox(props) {
-    const theme = useTheme();
 
     return (
         <div>
@@ -50,12 +42,9 @@ export default function MultipleSelectBox(props) {
                     size='small'
                 >
                     {props.MenuItem.map((name) => (
-                        <MenuItem
-                            key={name}
-                            value={name}
-                            style={getStyles(name, props.currentValue, theme)}
-                        >
-                            {name}
+                        <MenuItem key={name} value={name}>
+                            <Checkbox checked={props.currentValue.indexOf(name) > -1} />
+                            <ListItemText primary={name} />
                         </MenuItem>
                     ))}
                 </Select>

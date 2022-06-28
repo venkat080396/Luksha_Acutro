@@ -3,6 +3,12 @@
     width: 25em;
     border-radius: 1em;
     border-color: white;
+    outline: none !important;
+}
+
+input{
+    outline: none;
+    border: none;
 }
 
 ::placeholder {
