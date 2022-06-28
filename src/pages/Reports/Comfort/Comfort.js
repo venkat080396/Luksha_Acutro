@@ -18,7 +18,7 @@ const Comfort = () => {
                 spacing={3}>
                 <Grid item>
                     <Card
-                        headerContent={<Header spacing={116} />}
+                        headerContent={<Header spacing={126} />}
                         sx={{ width: "90vw", height: "100vh" }}
                         content={<ComfortLevels chartSx={{ width: "85vw", height: "55vh" }} sliderSx={{ width: "85vw", height: "20vh" }} chartWidth={900} chartHeight={700} isSliderVisible={true} aspetRatio="4.5" />} />
                 </Grid>

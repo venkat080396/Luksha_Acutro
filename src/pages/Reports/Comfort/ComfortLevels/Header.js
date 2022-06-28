@@ -10,17 +10,29 @@ const Header = (props) => {
         <Grid container
             direction="row"
             alignItems="center"
-            spacing={spacing}>
-            <Grid item>
-                <Label sx={{ marginLeft: 4 }} label={COMFORT.COMFORT_LEVELS.HEADER} />
-            </Grid>
-            <Grid item>
-                <Grid container alignItems="center" spacing={1}>
+            spacing={spacing}
+            sx={{ paddingTop: "-1em" }}>
+            <Grid item sx={{ marginTop: "-1em" }}>
+                <Grid container
+                    sx={{ marginLeft: 1 }}
+                    alignItems="center"
+                    justifyContent="center"
+                    spacing={1.5}>
                     <Grid item>
-                        {COMFORT.COMFORT_LEVELS.SUB}
+                        <Label sx={{ fontWeight: "bold" }} label={COMFORT.COMFORT_LEVELS.HEADER} />
                     </Grid>
                     <Grid item>
-                        <EyeOpenIcon height="2.5em" width="2.5em" />
+                        <Label sx={{ fontSize: 10 }} label={COMFORT.COMFORT_LEVELS.SUB_HEADER} />
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid item sx={{ marginTop: "-1em", fontWeight: "normal", fontSize: 14 }}>
+                <Grid container alignItems="center" spacing={1}>
+                    <Grid item>
+                        <Label sx={{ fontSize: 12 }} label={COMFORT.COMFORT_LEVELS.SUB} />
+                    </Grid>
+                    <Grid item sx={{ marginTop: "0.6em" }}>
+                        <EyeOpenIcon height="2em" width="2em" />
                     </Grid>
                 </Grid>
             </Grid>
