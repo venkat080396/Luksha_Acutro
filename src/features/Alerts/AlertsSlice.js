@@ -1,36 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { baseURL, api } from "../../common/apis/api";
 
-// export const fetchAsyncDevicesWithStatus = createAsyncThunk(
-//     'buildingData/fetchAsyncDevicesWithStatus',
-//     async (requestDetails) => {
-//         const inputDetails = {
-//             operation: "GetAllDevicesWithStatus",
-//             payload: {
-//                 "SiteRecId": requestDetails.siteRecId,
-//                 "BuildingRecId": requestDetails.buildingRecId,
-//                 "FloorRecId": requestDetails.floorRecId,
-//                 "DeviceTypeRecId": requestDetails.deviceTypeRecId,
-//             }
-//         }
-//         const response = await api.post(baseURL, inputDetails);
-//         return response.data;
-//     }
-// );
-
-// export const fetchAsyncAllDeviceTypes = createAsyncThunk(
-//     'buildingData/fetchAsyncAllDeviceTypes',
-//     async (deviceTypeRecId) => {
-//         const inputDetails = {
-//             operation: "GetAllDeviceTypes",
-//             payload: {
-//                 "ParentDeviceTypeRecId": deviceTypeRecId
-//             }
-//         }
-//         const response = await api.post(baseURL, inputDetails);
-//         return response.data;
-//     }
-// );
 
 export const saveDistribution = createAsyncThunk(
     'Alerts/saveDistribution',
