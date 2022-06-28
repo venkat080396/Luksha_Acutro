@@ -112,12 +112,12 @@ export default function AppBarComponent({
                                 />
                             </Grid>
                             <Grid item>
-                                <IconButton>
+                                <IconButton edge="start">
                                     <PersonIcon sx={{ color: "white" }} />
                                 </IconButton>
                             </Grid>
                             <Grid item>
-                                <IconButton>
+                                <IconButton edge="start">
                                     <Badge badgeContent={4} color="primary">
                                         <NotificationsNoneIcon sx={{ color: "white" }} />
                                     </Badge>

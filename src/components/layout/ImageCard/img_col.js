@@ -21,13 +21,18 @@ const Colum = (props) => {
                     marginBottom: '0.6em'
                 }}
             >
-                <img
-                    style={{
-                        alignSelf: "flex-end",
-                    }}
-                    src={props.img}
-                    alt=".."
-                ></img>
+                {!props.icon && (
+                    <img
+                        style={{
+                            alignSelf: "flex-end",
+                        }}
+                        src={props.img}
+                        alt=".."
+                    ></img>
+                )}
+                {props.icon && (
+                    props.icon
+                )}
             </div>
             <div
                 style={{

@@ -43,15 +43,15 @@ const getLeftDrawerItems = () => {
                         name: "Exports"
                     }
                 ]
-            },
-            {
-                id: 5,
-                name: "Buildings"
-            },
-            {
-                id: 6,
-                name: "Setting"
-            },
+            }
+            // {
+            //     id: 5,
+            //     name: "Buildings"
+            // },
+            // {
+            //     id: 6,
+            //     name: "Setting"
+            // },
         ]
     };
     return json;

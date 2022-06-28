@@ -11,8 +11,7 @@ const Card = (props) => {
         borderRadius: "10px",
         border: "0.05em solid rgba(255,255,255,0.3)",
         background: "rgba(255,255,255,0.05)",
-        color: "white",
-        fontWeight: "bold"
+        color: "white"
     });
 
     return (
@@ -27,9 +26,11 @@ const Card = (props) => {
                 <Grid container
                     direction="row"
                     alignItems="center">
-                    <Grid item xs sx={{ marginTop: 2, marginBottom: 2, fontWeight: "bold" }}>
-                        {headerContent}
-                    </Grid>
+                    {headerContent && (
+                        <Grid item xs sx={{ marginTop: 2, marginBottom: 2, fontWeight: "bold" }}>
+                            {headerContent}
+                        </Grid>
+                    )}
                     {informationContnet && (
                         <Grid item xs={0.3}>
                             <TooltipIcon content={informationContnet} />

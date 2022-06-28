@@ -78,12 +78,15 @@ const ComfortChart = (props) => {
         <Grid container
             direction="row"
             justifyContent="flex-end"
-            alignItems="center">
+            alignItems="center"
+            sx={{ paddingRight: "1.3em" }}>
             <Grid item>
-                <Grid container alignItems="center" justifyContent="center" spacing={3}>
+                <Grid container
+                    alignItems="center"
+                    spacing={3}>
                     <Grid item>
-                        <Grid container alignItems="center">
-                            <Grid item>
+                        <Grid container alignItems="center" justifyContent="center">
+                            <Grid item sx={{ paddingTop: "0.5em" }}>
                                 <TooHotIcon height="1.5em" width="1.5em" />
                             </Grid>
                             <Grid item>
@@ -91,20 +94,24 @@ const ComfortChart = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item>
+                    <Grid item sx={{ width: "5em" }}>
                         <Select sx={{
                             width: 50,
-                            height: 20,
-                            color: "black"
+                            height: 17,
+                            marginTop: "0.2em",
+                            paddingRight: "0.5em"
                         }} items={items} onSelectChange={value => setTooHot(value)} />
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item>
-                <Grid container alignItems="center" justifyContent="center" spacing={3}>
+                <Grid container
+                    alignItems="center"
+                    spacing={3}
+                    sx={{ paddingLeft: "5em" }}>
                     <Grid item>
                         <Grid container alignItems="center" justifyContent="center">
-                            <Grid item>
+                            <Grid item sx={{ paddingTop: "0.5em" }}>
                                 <TooColdIcon height="1.5em" width="1.5em" />
                             </Grid>
                             <Grid item>
@@ -112,18 +119,19 @@ const ComfortChart = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item>
+                    <Grid item sx={{ width: "5em" }}>
                         <Select sx={{
                             width: 50,
-                            height: 20,
-                            color: "white"
+                            height: 17,
+                            marginTop: "0.2em",
+                            paddingRight: "0.5em"
                         }} items={items} onSelectChange={value => setTooCold(value)} />
                     </Grid>
                 </Grid>
             </Grid>
         </Grid>
         <div
-            style={{ marginTop: "2em" }}>
+            style={{ marginTop: "1em" }}>
             <StackedAreaChart
                 width={width}
                 height={height}

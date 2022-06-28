@@ -3,10 +3,13 @@ import { Card, CardImg, CardBody, Row } from "reactstrap";
 import BackImage from "../../../assets/icons/back_Image.png";
 import Locate from "../../../assets/icons/Sites.svg";
 import Arrow from "../../../assets/icons/Size.svg";
-import Building from "../../../assets/icons/Buildings.svg";
+import { ReactComponent as BuildingsIcon } from "../../../assets/icons/Buildings.svg"
 import Building_Location from "../../../assets/icons/MapView.svg";
 import Colum from "./img_col";
+import _ from "lodash";
+
 const ImageCard = ({ data }) => {
+    console.log(data)
     return (
         <Card
             style={{
@@ -27,19 +30,21 @@ const ImageCard = ({ data }) => {
                     justifyContent: "space-between",
                 }}
             >
-                <Row
-                    style={{
-                        borderRadius: "1em",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center"
-                    }}
-                >
-                    <Colum img={Locate} des={data?.SiteName}></Colum>
-                    <Colum img={Building} des={data?.Name}></Colum>
-                    <Colum img={Building_Location} des=""></Colum>
-                    <Colum img={Arrow} des={`${data?.SquareMeters} sp ft`}></Colum>
-                </Row>
+                {!_.isEmpty(data) && (
+                    <Row
+                        style={{
+                            borderRadius: "1em",
+                            display: "flex",
+                            justifyContent: "space-between",
+                            alignItems: "center"
+                        }}
+                    >
+                        <Colum img={Locate} des={data?.SiteName}></Colum>
+                        <Colum icon={<BuildingsIcon height="2.5em" width="2.5em" />} des={data?.Name}></Colum>
+                        {/* <Colum img={Building_Location} des=""></Colum> */}
+                        <Colum img={Arrow} des={`${data?.SquareMeters} sp ft`}></Colum>
+                    </Row>
+                )}
             </CardBody>
             <CardImg
                 src={BackImage}
