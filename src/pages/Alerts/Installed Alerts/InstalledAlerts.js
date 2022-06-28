@@ -54,7 +54,7 @@ const rows = [
 const InstalledAlerts = () => {
     return (
         <Box
-            sx={{ width: "89vw", height: "40vh", paddingLeft: "2rem", paddingRight: "2rem", paddingBottom: "2rem" }}>
+            sx={{ width: "90vw", height: "40vh", paddingLeft: "2rem", paddingRight: "2rem", paddingBottom: "2rem" }}>
             <Datagrid
                 rows={rows}
                 columns={columns}

@@ -14,12 +14,11 @@ const Header = () => {
     return (
         <Grid container
             alignItems="center"
-            spacing={4}
             sx={{ marginLeft: 4 }}>
             <Grid item xs={3}>
                 <Label label="Alert Escalation Settings" />
             </Grid>
-            <Grid item xs={3}>
+            {/* <Grid item xs={3}>
                 <Stack
                     direction="row"
                     alignItems="center"
@@ -69,7 +68,7 @@ const Header = () => {
                             defaultValue={0} />
                     </div>
                 </Stack>
-            </Grid>
+            </Grid> */}
         </Grid>
     )
 }
@@ -87,7 +86,7 @@ const Container = () => {
                 <Card
                     informationContnet="Escalation hierarchy for the entire user base across this site"
                     headerContent={<Header />}
-                    sx={{ width: "90vw", height: "50vh" }}
+                    sx={{ width: "90vw" }}
                     content={<EscalationSettings />} />
             </Grid>
             <Grid item>
