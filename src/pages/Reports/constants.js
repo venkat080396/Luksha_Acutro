@@ -1,6 +1,6 @@
 export const COMFORT = {
     DEVICE_SUMMARY: { HEADER: "Devices working against each other (by sector)" },
-    COMFORT_LEVELS: { HEADER: "Comfort Levels", SUB: "(by device)" }
+    COMFORT_LEVELS: { HEADER: "Comfort Levels (by device)", SUB: "Comfortable Levels" }
 }
 
 export const HVACEFFICIENCY = {

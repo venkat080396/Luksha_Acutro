@@ -28,7 +28,7 @@ const Home = () => {
                     {dashboardSettings && dashboardSettings.some(settings => settings.name === "Energy Reports") && (
                         <Grid item>
                             <Card
-                                headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Energy Reports" />}
+                                headerContent={<Label sx={{ marginLeft: 4 }} label="Energy Reports" />}
                                 sx={{ width: "55vw", height: "50vh" }}
                                 content={<EnergyReports sx={{ width: "15vw", height: "40vh" }} estimationSx={{ marginLeft: "-6.5em" }} />} />
                         </Grid>
@@ -45,7 +45,7 @@ const Home = () => {
             {dashboardSettings && dashboardSettings.some(settings => settings.name === "HVAC Efficiency") && (
                 <Grid item xs={12}>
                     <Card
-                        headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="HVAC Device List" />}
+                        headerContent={<Label sx={{ marginLeft: 4 }} label="HVAC Device List" />}
                         sx={{ width: "55vw", height: "50vh" }}
                         content={<HVACDeviceList chartSx={{ width: "15vw", height: "37vh" }} />} />
                 </Grid>

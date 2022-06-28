@@ -10,7 +10,7 @@ const getLeftDrawerItems = () => {
             {
                 id: 2,
                 name: "Alerts",
-                items: [{ id: 13, name: "Distribution List" }]
+                items: [{ id: 12, name: "Distribution List" }]
             },
             {
                 id: 3,
@@ -19,10 +19,6 @@ const getLeftDrawerItems = () => {
                     {
                         id: 11,
                         name: "Floor View"
-                    },
-                    {
-                        id: 12,
-                        name: "List View"
                     }
                 ]
             },

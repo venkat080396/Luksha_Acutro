@@ -80,7 +80,7 @@ const ComfortChart = (props) => {
             justifyContent="flex-end"
             alignItems="center">
             <Grid item>
-                <Grid container alignItems="center" spacing={3}>
+                <Grid container alignItems="center" justifyContent="center" spacing={3}>
                     <Grid item>
                         <Grid container alignItems="center">
                             <Grid item>
@@ -101,9 +101,9 @@ const ComfortChart = (props) => {
                 </Grid>
             </Grid>
             <Grid item>
-                <Grid container alignItems="center" spacing={3}>
+                <Grid container alignItems="center" justifyContent="center" spacing={3}>
                     <Grid item>
-                        <Grid container alignItems="center">
+                        <Grid container alignItems="center" justifyContent="center">
                             <Grid item>
                                 <TooColdIcon height="1.5em" width="1.5em" />
                             </Grid>
