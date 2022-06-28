@@ -41,7 +41,7 @@ const ListView = () => {
                     </Grid>
                 </Grid>
                 {label === "Asset List" && (
-                    <Grid item sx={{ textDecoration: "underline", fontSize: 9, color: "gray", cursor: "pointer" }} onClick={() => onDeviceTypeClick(null)}>
+                    <Grid item sx={{ textDecoration: "underline", fontSize: 9, cursor: "pointer" }} onClick={() => onDeviceTypeClick(null)}>
                         {"< Back to Main List"}
                     </Grid>)
                 }

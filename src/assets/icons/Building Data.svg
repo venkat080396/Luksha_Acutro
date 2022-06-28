@@ -1,0 +1,25 @@
+<svg width="100%" height="100%" viewBox="0 0 300 301" version="1.1" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5;">
+    <g transform="matrix(1,0,0,1,-3,-1099)">
+        <g id="Building-Data" transform="matrix(1,0,0,1,-317.93,1100.19)">
+            <rect x="320.961" y="-0.306" width="299.953" height="299.953" style="fill:none;"/>
+            <g transform="matrix(0.871405,0,0,0.871405,340.143,-932.981)">
+                <path d="M28.066,1247.42C28.066,1247.42 117.625,1157.86 142.496,1132.99C144.177,1131.31 146.457,1130.36 148.834,1130.36C151.212,1130.36 153.492,1131.31 155.173,1132.99C180.131,1157.94 270.263,1248.08 270.263,1248.08" style="fill:none;stroke:white;stroke-width:9.18px;"/>
+            </g>
+            <g transform="matrix(-0.707107,-0.707107,0.707107,-0.707107,-307.547,1153.67)">
+                <path d="M28.066,1247.42C28.066,1247.42 115.171,1160.31 141.43,1134.05C143.394,1132.09 146.057,1130.99 148.834,1130.99C151.611,1130.99 154.275,1132.09 156.239,1134.05C174.78,1152.59 221.732,1199.55 221.732,1199.55" style="fill:none;stroke:white;stroke-width:8px;"/>
+            </g>
+            <g transform="matrix(0.863607,0,0,0.674904,344.75,-680.921)">
+                <rect x="78.221" y="1236.86" width="28.377" height="101.631" style="fill:none;stroke:white;stroke-width:10.32px;"/>
+            </g>
+            <g transform="matrix(0.863607,0,0,1.02935,382.935,-1155.34)">
+                <rect x="78.221" y="1236.86" width="28.377" height="101.631" style="fill:none;stroke:white;stroke-width:8.42px;"/>
+            </g>
+            <g transform="matrix(0.863607,0,0,0.825423,421.12,-882.388)">
+                <rect x="78.221" y="1236.86" width="28.377" height="101.631" style="fill:none;stroke:white;stroke-width:9.47px;"/>
+            </g>
+            <g transform="matrix(0.863607,0,0,0.446699,459.305,-375.472)">
+                <rect x="78.221" y="1236.86" width="28.377" height="101.631" style="fill:none;stroke:white;stroke-width:11.64px;"/>
+            </g>
+        </g>
+    </g>
+</svg>

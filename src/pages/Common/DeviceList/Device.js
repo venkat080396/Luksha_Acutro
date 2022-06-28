@@ -18,7 +18,7 @@ const Device = ({ device }) => {
                     alignItems="center"
                     spacing={2}>
                     <Grid item>
-                        <Grid container sx={{ color: "green" }}>
+                        <Grid container sx={{ color: "#4ae54a" }}>
                             <Grid item sx={{ marginTop: 1 }}>
                                 <TemperatureIcon height="2em" width="2em" />
                             </Grid>
