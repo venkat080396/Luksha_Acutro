@@ -14,7 +14,7 @@ import { grey } from '@mui/material/colors';
 
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import CallIcon from '@mui/icons-material/Call';
-import TextsmsIcon from '@mui/icons-material/Textsms';
+// import TextsmsIcon from '@mui/icons-material/Textsms';
 
 import { saveDistribution } from '../../../features/Alarts/AlartsSlice';
 
@@ -24,11 +24,11 @@ const DistributionList = () => {
     const [name, setName] = React.useState("");
     const [emailUser, setEmailUser] = React.useState([]);
     const [callUser, setCallUser] = React.useState([]);
-    const [textUser, setTextUser] = React.useState([]);
+    // const [textUser, setTextUser] = React.useState([]);
 
     const [emailUserOpen, setEmailUserOpen] = React.useState(false);
     const [callUserOpen, setCallUserOpen] = React.useState(false);
-    const [textUserOpen, setTextUserOpen] = React.useState(false);
+    // const [textUserOpen, setTextUserOpen] = React.useState(false);
 
 
     const setData = (event, setFunction, setOpen) => {
@@ -100,7 +100,7 @@ const DistributionList = () => {
                                     <Box paddingY={2}>
                                         <Grid container alignItems="center">
                                             <Grid item xs={2} sm={2} md={2} lg={2} xl={2}>
-                                                <IconLabel label='Call' icon={<CallIcon color={grey[50]} fontSize="large" />} />
+                                                <IconLabel label='Call & Text' icon={<CallIcon color={grey[50]} fontSize="large" />} />
                                             </Grid>
                                             <Grid item xs={10} sm={10} md={6} lg={6} xl={6}>
                                                 <MultipleSelectBox
@@ -119,7 +119,7 @@ const DistributionList = () => {
                                         </Grid>
                                     </Box>
                                 </Grid>
-                                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                                {/* <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <Box paddingY={2}>
                                         <Grid container alignItems="center">
                                             <Grid item xs={2} sm={2} md={2} lg={2} xl={2}>
@@ -141,7 +141,7 @@ const DistributionList = () => {
                                             </Grid>
                                         </Grid>
                                     </Box>
-                                </Grid>
+                                </Grid> */}
                                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                     <Box paddingY={4}>
                                         <Grid container alignItems="center" flexDirection='row-reverse' spacing={1}>
