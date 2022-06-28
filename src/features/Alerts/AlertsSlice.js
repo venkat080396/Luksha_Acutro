@@ -40,6 +40,22 @@ export const fetchAsyncFloors = createAsyncThunk(
     }
 );
 
+export const fetchAsyncDevices = createAsyncThunk(
+    'Alerts/fetchAsyncDevices',
+    async (floor) => {
+        const input = {
+            operation: "GetDevicesForFloorId",
+            payload: {
+                "SiteRecId": `${floor.SiteRecId}`,
+                "BuildingRecId": `${floor.BuildingRecId}`,
+                "FloorRecId": `${floor.RecId}`
+            }
+        }
+        const response = await api.post(baseURL, input);
+        return response.data;
+    }
+);
+
 export const saveDistribution = createAsyncThunk(
     'Alerts/saveDistribution',
     async ({ email = null, call = null, name }) => {
@@ -75,9 +91,11 @@ const initialState = {
     buildings: [{}],
     floors: [{}],
     Site: [{}],
+    devices: [{}],
     selectedBuilding: {},
     selectedFloor: {},
     selectSite: {},
+    selectDevice: {}
 };
 
 const AlertsSlice = createSlice({
@@ -92,6 +110,9 @@ const AlertsSlice = createSlice({
         },
         setSelectedSite(state, action) {
             state.selectSite = action.payload
+        },
+        setSelectedDevice(state, action) {
+            state.selectDevice = action.payload
         },
     },
     extraReducers: {
@@ -128,6 +149,13 @@ const AlertsSlice = createSlice({
             return { ...state, Site: payload };
         },
         [fetchAsyncSites.rejected]: () => {
+        },
+        [fetchAsyncDevices.pending]: () => {
+        },
+        [fetchAsyncDevices.fulfilled]: (state, { payload }) => {
+            return { ...state, devices: payload };
+        },
+        [fetchAsyncDevices.rejected]: () => {
         }
     }
 })
@@ -136,10 +164,12 @@ export const getDistributionList = (state) => state.Alerts.distributionList;
 export const getAllBuildings = (state) => state.Alerts?.buildings;
 export const getAllFloors = (state) => state.Alerts?.floors;
 export const getAllSites = (state) => state.Alerts?.Site;
+export const getAllDevices = (state) => state.Alerts?.devices;
 export const getSelectedBuilding = (state) => state.Alerts?.selectedBuilding;
 export const getSelectedFloor = (state) => state.Alerts?.selectedFloor;
 export const getSelectedSites = (state) => state.Alerts?.selectSite;
+export const getSelectedDevice = (state) => state.Alerts?.selectDevice;
 
-export const { setSelectedBuilding, setSelectedFloor, setSelectedSite } = AlertsSlice.actions
+export const { setSelectedBuilding, setSelectedFloor, setSelectedSite, setSelectedDevice } = AlertsSlice.actions
 
 export default AlertsSlice.reducer
