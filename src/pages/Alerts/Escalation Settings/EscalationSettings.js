@@ -22,6 +22,10 @@ const EscalationSettings = () => {
     const [LevelSecound, setLevelSecound] = React.useState("");
     const [LevelThird, setLevelThird] = React.useState("");
 
+    React.useEffect(() => {
+        //fetch initial value
+    }, [])
+
     const hendleSelectDevice = (item) => {
         setDevice(item.RecId);
         //code to fetch by default value
