@@ -1,8 +1,14 @@
 .textfield {
     background-color: #5c5c70;
     width: 25em;
-    border-radius: 1em;
+    border-radius: 8px;
     border-color: white;
+    outline: none !important;
+}
+
+input{
+    outline: none;
+    border: none;
 }
 
 ::placeholder {

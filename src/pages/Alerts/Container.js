@@ -6,6 +6,7 @@ import InstalledAlerts from "./Installed Alerts/InstalledAlerts"
 import EscalationSettings from './Escalation Settings/EscalationSettings'
 import Select from '../../components/forms/Select/Select'
 import LevelInformation from './LevelInformation/LevelInformation'
+import DistributionList from './Distribution List/DistributionList'
 import TooltipIcon from '../../components/tooltipIcon/TooltipIcon'
 
 const items = [{ RecId: 0, Name: "All Sites" }, { RecId: 1, Name: "Site 1" }]
@@ -13,16 +14,51 @@ const Header = () => {
     return (
         <Grid container
             alignItems="center"
-            sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }}>
-            <Grid item xs={4}>
+            spacing={4}
+            sx={{ marginLeft: 4 }}>
+            <Grid item xs={3}>
                 <Label label="Alert Escalation Settings" />
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
                 <Stack
                     direction="row"
                     alignItems="center"
                     spacing={2}>
                     <div>Site:</div>
+                    <div>
+                        <Select
+                            sx={{
+                                width: 100,
+                                height: 20
+                            }}
+                            items={items}
+                            defaultValue={0} />
+                    </div>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}>
+                    <div>Building:</div>
+                    <div>
+                        <Select
+                            sx={{
+                                width: 100,
+                                height: 20
+                            }}
+                            items={items}
+                            defaultValue={0} />
+                    </div>
+                </Stack>
+            </Grid>
+            <Grid item xs={3}>
+                <Stack
+                    direction="row"
+                    alignItems="center"
+                    spacing={2}>
+                    <div>Floor:</div>
                     <div>
                         <Select
                             sx={{

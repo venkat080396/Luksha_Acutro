@@ -1,0 +1,10 @@
+.multipleselect {
+    background-color: #5c5c70;
+    border-radius: 1em;
+    border-color: white;
+}
+
+::placeholder {
+    color: white !important;
+    font-weight: bold;
+}

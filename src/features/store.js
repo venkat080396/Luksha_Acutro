@@ -5,6 +5,7 @@ import dashboardSlice from './Dashboard/dashboardSlice';
 import utilitiesSlice from './Utilities/utilitiesSlice';
 import exportsSlice from './Exports/exportsSlice';
 import buildingDataSlice from './BuildingData/buildingDataSlice';
+import AlertsSlice from './Alerts/AlertsSlice';
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
         dashboard: dashboardSlice,
         utilities: utilitiesSlice,
         exports: exportsSlice,
-        buildingData: buildingDataSlice
+        buildingData: buildingDataSlice,
+        Alerts: AlertsSlice
     }
 });
