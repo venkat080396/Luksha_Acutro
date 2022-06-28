@@ -44,7 +44,7 @@ const Container = () => {
             <Grid item>
                 <Card
                     informationContnet="List of all alerts installed across this site"
-                    headerContent={<Label sx={{ marginLeft: 4, marginBottom: 2, marginTop: 2 }} label="Installed Alerts" />}
+                    headerContent={<Label sx={{ marginLeft: 4 }} label="Installed Alerts" />}
                     content={<InstalledAlerts />} />
             </Grid>
             <Grid item>
