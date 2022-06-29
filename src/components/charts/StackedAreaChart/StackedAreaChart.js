@@ -3,7 +3,6 @@ import { XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart, Area, CartesianG
 
 const StackedAreaChart = (props) => {
     const { data, xAxisKey, areaKey1, areaKey2, aspect } = props
-    console.log(data)
     return (
         <ResponsiveContainer aspect={aspect}>
             {/* <LineChart
