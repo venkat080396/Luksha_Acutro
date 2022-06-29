@@ -41,7 +41,7 @@ const StackedAreaChart = (props) => {
                 </defs>
                 <XAxis dataKey={xAxisKey} />
                 <YAxis />
-                <CartesianGrid strokeDasharray="3 3" />
+                {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <Tooltip />
                 <Area type="monotone" dataKey={areaKey1} stroke="#A71D31" fillOpacity={1} fill="url(#colorUv)" />
                 <Area type="monotone" dataKey={areaKey2} stroke="#32de84" fillOpacity={1} fill="url(#colorPv)" />
