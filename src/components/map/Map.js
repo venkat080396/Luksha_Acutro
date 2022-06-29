@@ -1,9 +1,6 @@
 import React, { useState, useMemo } from "react";
-import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
-import MapboxWorker from 'mapbox-gl/dist/mapbox-gl-csp-worker';
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "!react-map-gl"; // eslint-disable-line
 import { MAPBOX_TOKEN } from "../../common/Constants";
-mapboxgl.workerClass = MapboxWorker;
 
 const Map = (props) => {
     const { selectedBuildingOnMap, buildingLocations, onClick } = props
