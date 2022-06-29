@@ -42,7 +42,7 @@ const useStyles = makeStyles({
         scrollBehavior: "smooth",
         '&::-webkit-scrollbar': {
             width: '0.05em',
-            backgroundColor: 'rgba(0,0,0,.1)',
+            backgroundColor: 'rgba(0,0,0,.5)',
         },
         '&::-webkit-scrollbar-track': {
             boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',

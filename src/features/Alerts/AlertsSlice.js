@@ -66,11 +66,11 @@ export const fetchAsyncDistributionList = createAsyncThunk(
         }
         const response = await api.post(baseURL, inputDetails);
         const mapArray = [];
-        response.data.map((item)=>{
-            mapArray.push({RecId:item.UserCount,Name:item.AlertGroup})
+        response.data.map((item) => {
+            mapArray.push({ RecId: item.UserCount, Name: item.AlertGroup })
             return item;
         })
-        console.log(response.data)
+
         return mapArray;
     }
 );

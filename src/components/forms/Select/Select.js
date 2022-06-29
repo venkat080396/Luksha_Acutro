@@ -6,8 +6,6 @@ import "./Select.css"
 const Select = (props) => {
     const { defaultValue, value, sx, items, onSelectChange } = props
 
-    console.log(value +">>>>>>>>>>>>>>")
-
     const handleChange = event => {
         const selectedItem = items?.find(item => item.RecId === event.target.value)
         onSelectChange(selectedItem)
@@ -22,9 +20,9 @@ const Select = (props) => {
                     defaultValue={defaultValue}
                     value={value}
                     components={Box}
-                    renderValue={(_)=><Typography color='#fff'>{value?.Name}</Typography>}
+                    renderValue={(_) => <Typography color='#fff'>{value?.Name}</Typography>}
                     displayEmpty
-                    sx={{ ...sx, backgroundColor: "rgba(255,255,255,0.3)",color:'white' }}
+                    sx={{ ...sx, backgroundColor: "rgba(255,255,255,0.3)", color: 'white' }}
                     onChange={handleChange}
                     className="select"
                     {...props.props}
