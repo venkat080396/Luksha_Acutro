@@ -1,7 +1,8 @@
 import React from 'react'
 import Card from '../../../components/layout/Card/Card'
-import { Grid, styled } from '@mui/material';
+import { Grid, styled, Box } from '@mui/material';
 import Device from '../DeviceList/Device'
+import HVACChart from '../../Reports/HVACEfficiency/HVACChart/HVACChart';
 
 const StyledGrid = styled("Grid")({
     overflowY: 'auto',
@@ -40,6 +41,9 @@ const DeviceList = (props) => {
                             <Card key={device} sx={{ marginLeft: 5, borderRadius: "0.5em", ...deviceSx }} content={<Device device={device} />} />
                         </Grid>
                     ))}
+                    <Box mt={4}>
+                        <HVACChart />
+                    </Box>
                 </StyledGrid>
             )}
         </>

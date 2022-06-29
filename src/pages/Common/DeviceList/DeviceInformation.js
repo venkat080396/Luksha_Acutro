@@ -1,6 +1,7 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import Table from "../../../components/table/Table"
+import HVACChart from '../../Reports/HVACEfficiency/HVACChart/HVACChart'
 
 const columns = [
     { field: 'manufacturer', headerName: 'Manufacturer', width: 350 },
