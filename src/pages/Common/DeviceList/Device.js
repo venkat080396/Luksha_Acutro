@@ -5,8 +5,20 @@ import { ReactComponent as TemperatureIcon } from "../../../assets/icons/Tempera
 import Dialog from '../../../components/dialog/Dialog'
 import DeviceInformation from "./DeviceInformation"
 
-const Device = ({ device }) => {
+const Device = (props) => {
+    const { device, isActiveDevice, onDeviceClick } = props;
     const [openDialog, setOpenDialog] = useState(false);
+
+    const handleClick = () => {
+        console.log(isActiveDevice)
+        if (isActiveDevice) {
+            setOpenDialog(true);
+        }
+        else {
+            console.log("hello");
+            onDeviceClick();
+        }
+    }
 
     return (
         <>
@@ -14,7 +26,7 @@ const Device = ({ device }) => {
                 direction="row"
                 justifyContent="center"
                 alignItems="center">
-                <Grid item xs={10} sx={{ paddingLeft: 3 }} onClick={() => setOpenDialog(true)}>
+                <Grid item xs={10} sx={{ paddingLeft: 3 }} onClick={handleClick}>
                     {device.Name}
                 </Grid>
                 <Grid item xs={2}>
