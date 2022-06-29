@@ -58,15 +58,20 @@ export const fetchAsyncDevices = createAsyncThunk(
 
 export const fetchAsyncDistributionList = createAsyncThunk(
     'Alerts/fetchAsyncDistributionList',
-    async (name) => {
+    async () => {
         const inputDetails = {
-            "operation": "GetAlertSubscriptionForGroup",
+            "operation": "GetAlertSubscriptionGroups",
             "payload": {
-                "AlertGroup": name
             }
         }
         const response = await api.post(baseURL, inputDetails);
-        return response.data;
+        const mapArray = [];
+        response.data.map((item)=>{
+            mapArray.push({RecId:item.UserCount,Name:item.AlertGroup})
+            return item;
+        })
+        console.log(response.data)
+        return mapArray;
     }
 );
 

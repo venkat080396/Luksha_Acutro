@@ -32,9 +32,9 @@ import {
 const EscalationSettings = () => {
     const dispatch = useDispatch();
 
-    const [LevelFirst, setLevelFirst] = React.useState("");
-    const [LevelSecound, setLevelSecound] = React.useState("");
-    const [LevelThird, setLevelThird] = React.useState("");
+    const [LevelFirst, setLevelFirst] = React.useState({});
+    const [LevelSecound, setLevelSecound] = React.useState({});
+    const [LevelThird, setLevelThird] = React.useState({});
 
     const buildings = useSelector(getAllBuildings);
     const floors = useSelector(getAllFloors);
@@ -46,16 +46,15 @@ const EscalationSettings = () => {
     const selectedDevice = useSelector(getSelectedDevice);
     const distributionList = useSelector(getDistributionList);
 
-    console.log(distributionList);
-    console.log(selectedSite);
-
     React.useEffect(() => {
         dispatch(fetchAsyncSites());
-        dispatch(fetchAsyncDistributionList("BL"));
+        dispatch(fetchAsyncDistributionList());
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const hendleChangeValue = (item, setFunction) => setFunction(item.RecId);
+    const hendleChangeValue = (item, setFunction) => {
+        setFunction(item);
+    }
 
     const hendleChangeSite = (item) => {
         dispatch(setSelectedSite(item));
@@ -82,7 +81,23 @@ const EscalationSettings = () => {
         dispatch(setSelectedDevice(item));
     };
 
-    const handleSave = () => { };
+    const handleSave = () => {
+        const sumbitObject={}
+        sumbitObject.site=selectedSite;
+        sumbitObject.building=selectedBuilding;
+        sumbitObject.floor=selectedFloor;
+        sumbitObject.device=selectedDevice;
+        sumbitObject.level1=LevelFirst;
+        sumbitObject.level2=LevelSecound;
+        sumbitObject.level3=LevelThird;
+        dispatch(setSelectedSite({}));
+        dispatch(setSelectedBuilding({}));
+        dispatch(setSelectedFloor({}));
+        dispatch(setSelectedDevice({}));
+        setLevelFirst({})
+        setLevelSecound({})
+        setLevelThird({})
+     };
 
     return (
         <Box padding={4}>
@@ -152,7 +167,6 @@ const EscalationSettings = () => {
                             <Select
                                 placeholder="Select List"
                                 value={LevelFirst}
-                                defaultValue={""}
                                 onSelectChange={(item) =>
                                     hendleChangeValue(item, setLevelFirst)
                                 }
@@ -168,7 +182,6 @@ const EscalationSettings = () => {
                             <Select
                                 placeholder="Select List"
                                 value={LevelSecound}
-                                defaultValue={""}
                                 onSelectChange={(item) =>
                                     hendleChangeValue(item, setLevelSecound)
                                 }
@@ -184,7 +197,6 @@ const EscalationSettings = () => {
                             <Select
                                 placeholder="Select List"
                                 value={LevelThird}
-                                defaultValue={""}
                                 onSelectChange={(item) =>
                                     hendleChangeValue(item, setLevelThird)
                                 }

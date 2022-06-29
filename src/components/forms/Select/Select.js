@@ -6,6 +6,8 @@ import "./Select.css"
 const Select = (props) => {
     const { defaultValue, value, sx, items, onSelectChange } = props
 
+    console.log(value +">>>>>>>>>>>>>>")
+
     const handleChange = event => {
         const selectedItem = items?.find(item => item.RecId === event.target.value)
         onSelectChange(selectedItem)

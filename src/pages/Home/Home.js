@@ -11,6 +11,7 @@ import ComfortLevels from '../Reports/Comfort/ComfortLevels/ComfortLevels'
 import Header from '../Reports/Comfort/ComfortLevels/Header'
 import { getDashboardSettings } from "../../features/Dashboard/dashboardSlice";
 
+import ActiveAlerts from '../Reports/Utilities/Active Alerts/ActiveAlerts';
 
 const Home = () => {
     const building = useSelector(getSelectedBuilding);
@@ -50,6 +51,21 @@ const Home = () => {
                         content={<HVACDeviceList chartSx={{ width: "15vw", height: "37vh" }} />} />
                 </Grid>
             )}
+            <Grid item xs={12} sm={6} md={5} lg={5}>
+                <Card
+                    headerContent={
+                        <Grid container>
+                            <Grid xs={12} sm={12} md={12} lg={12}>
+                                <Label style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }} sx={{ marginLeft: 4 }} label="Active Alerts" />
+                            </Grid>
+                            <Grid xs={12} sm={12} md={12} lg={12}>
+                                <Label style={{ fontSize: 12, fontWeight: '400', color: 'rgba(255, 255, 255, 0.74)' }} sx={{ marginLeft: 4 }} label="An Overview of the alerts currently active" />
+                            </Grid>
+                        </Grid>
+                    }
+                    sx={{ height: "50vh" }}
+                    content={<ActiveAlerts />} />
+            </Grid>
         </Grid>
     )
 }
