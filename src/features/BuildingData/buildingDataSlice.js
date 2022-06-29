@@ -18,6 +18,20 @@ export const fetchAsyncDevicesWithStatus = createAsyncThunk(
     }
 );
 
+export const fetchAsyncDeviceSensorsForDeviceId = createAsyncThunk(
+    'buildingData/fetchAsyncDeviceSensorsForDeviceId',
+    async (deviceRecId) => {
+        const inputDetails = {
+            operation: "GetDeviceSensorsForDeviceId",
+            payload: {
+                "DeviceRecId": deviceRecId,
+            }
+        }
+        const response = await api.post(baseURL, inputDetails);
+        return response.data;
+    }
+);
+
 export const fetchAsyncAllDeviceTypes = createAsyncThunk(
     'buildingData/fetchAsyncAllDeviceTypes',
     async (deviceTypeRecId) => {
@@ -55,6 +69,7 @@ export const saveAsyncDevice = createAsyncThunk(
 const initialState = {
     devices: [],
     allDeviceTypes: null,
+    deviceSensors: null,
     devicesToBeSaved: [],
     selectedBuildingOnMap: null
 };
@@ -78,6 +93,13 @@ const buildingDataSlice = createSlice({
         },
         [fetchAsyncDevicesWithStatus.rejected]: () => {
         },
+        [fetchAsyncDeviceSensorsForDeviceId.pending]: () => {
+        },
+        [fetchAsyncDeviceSensorsForDeviceId.fulfilled]: (state, { payload }) => {
+            return { ...state, deviceSensors: payload };
+        },
+        [fetchAsyncDeviceSensorsForDeviceId.rejected]: () => {
+        },
         [fetchAsyncAllDeviceTypes.pending]: () => {
         },
         [fetchAsyncAllDeviceTypes.fulfilled]: (state, { payload }) => {
@@ -98,6 +120,7 @@ export const getAllDevicesWithStatus = (state) => state.buildingData?.devices;
 export const getAllDeviceTypes = (state) => state.buildingData?.allDeviceTypes;
 export const getAllDevicesToBeSaved = (state) => state.buildingData?.devicesToBeSaved;
 export const getSelectedBuildingOnMap = (state) => state.buildingData?.selectedBuildingOnMap
+export const getDeviceSensors = (state) => state.buildingData?.deviceSensors
 
 export const { updateDeviceToBeSaved, setSelectedBuildingOnMap } = buildingDataSlice.actions
 
