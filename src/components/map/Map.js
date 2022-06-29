@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
-import ReactMapGL, { Marker, Popup } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "!react-map-gl"; // eslint-disable-line
+import { MAPBOX_TOKEN } from "../../common/Constants";
 
 const Map = (props) => {
     const { selectedBuildingOnMap, buildingLocations, onClick } = props
@@ -44,7 +45,7 @@ const Map = (props) => {
             reuseMaps
             style={{ width: 1300, height: 450, borderRadius: "1em" }}
             mapStyle="mapbox://styles/mapbox/streets-v9"
-            mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+            mapboxAccessToken={MAPBOX_TOKEN}
         >
             {markers}
             {getPopup()}
