@@ -12,11 +12,16 @@ import {
     fetchAsyncSites,
     fetchAsyncBuildings,
     fetchAsyncFloors,
+    fetchAsyncDistributionList,
+    getDistributionList,
     getAllDevices,
     getAllSites,
     getAllBuildings,
     getAllFloors,
     getSelectedSites,
+    getSelectedBuilding,
+    getSelectedFloor,
+    getSelectedDevice,
     setSelectedSite,
     setSelectedBuilding,
     setSelectedFloor,
@@ -36,9 +41,17 @@ const EscalationSettings = () => {
     const site = useSelector(getAllSites);
     const device = useSelector(getAllDevices);
     const selectedSite = useSelector(getSelectedSites);
+    const selectedBuilding = useSelector(getSelectedBuilding);
+    const selectedFloor = useSelector(getSelectedFloor);
+    const selectedDevice = useSelector(getSelectedDevice);
+    const distributionList = useSelector(getDistributionList);
+
+    console.log(distributionList);
+    console.log(selectedSite);
 
     React.useEffect(() => {
         dispatch(fetchAsyncSites());
+        dispatch(fetchAsyncDistributionList("BL"));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -82,6 +95,7 @@ const EscalationSettings = () => {
                         <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Devices"
+                                value={selectedSite}
                                 onSelectChange={(item) => hendleChangeSite(item)}
                                 props={{ size: "small", placeholder: "Select Devices" }}
                                 items={site}
@@ -94,6 +108,7 @@ const EscalationSettings = () => {
                         <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Building"
+                                value={selectedBuilding}
                                 onSelectChange={(item) => hendleChangeBuilding(item)}
                                 props={{ size: "small", placeholder: "Select Building" }}
                                 items={buildings}
@@ -106,6 +121,7 @@ const EscalationSettings = () => {
                         <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Floor"
+                                value={selectedFloor}
                                 onSelectChange={(item) => hendleChangeFloor(item)}
                                 props={{ size: "small", placeholder: "Select Floor" }}
                                 items={floors}
@@ -118,6 +134,7 @@ const EscalationSettings = () => {
                         <Grid item xs={6} sm={6} md={10} lg={10} xl={10}>
                             <Select
                                 placeholder="Select Devices"
+                                value={selectedDevice}
                                 onSelectChange={(item) => hendleChangeDevice(item)}
                                 props={{ size: "small", placeholder: "Select Devices" }}
                                 items={device}
@@ -140,10 +157,7 @@ const EscalationSettings = () => {
                                     hendleChangeValue(item, setLevelFirst)
                                 }
                                 props={{ size: "small", placeholder: "Select List" }}
-                                items={[
-                                    { RecId: 1, Name: "List 1" },
-                                    { RecId: 2, Name: "List 2" },
-                                ]}
+                                items={distributionList}
                                 fullWidth={true}
                             />
                         </Grid>
@@ -159,10 +173,7 @@ const EscalationSettings = () => {
                                     hendleChangeValue(item, setLevelSecound)
                                 }
                                 props={{ size: "small", placeholder: "Select List" }}
-                                items={[
-                                    { RecId: 1, Name: "List 1" },
-                                    { RecId: 2, Name: "List 2" },
-                                ]}
+                                items={distributionList}
                                 fullWidth={true}
                             />
                         </Grid>
@@ -178,10 +189,7 @@ const EscalationSettings = () => {
                                     hendleChangeValue(item, setLevelThird)
                                 }
                                 props={{ size: "small", placeholder: "Select List" }}
-                                items={[
-                                    { RecId: 1, Name: "List 1" },
-                                    { RecId: 2, Name: "List 2" },
-                                ]}
+                                items={distributionList}
                                 fullWidth={true}
                             />
                         </Grid>

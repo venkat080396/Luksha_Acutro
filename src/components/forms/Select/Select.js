@@ -20,8 +20,9 @@ const Select = (props) => {
                     defaultValue={defaultValue}
                     value={value}
                     components={Box}
+                    renderValue={(_)=><Typography color='#fff'>{value?.Name}</Typography>}
                     displayEmpty
-                    sx={{ ...sx, backgroundColor: "rgba(255,255,255,0.3)" }}
+                    sx={{ ...sx, backgroundColor: "rgba(255,255,255,0.3)",color:'white' }}
                     onChange={handleChange}
                     className="select"
                     {...props.props}
