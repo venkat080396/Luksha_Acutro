@@ -15,6 +15,7 @@ import DateBox from '../../../components/forms/DateBox/DateBox';
 import IconLabel from "../../../components/forms/IconLabel/IconLabel"
 import Dialog from "../../../components/dialog/Dialog";
 import Settings from '../Settings/Settings';
+import { Box } from '@mui/material';
 
 const theme = createTheme({
     palette: {
@@ -83,9 +84,10 @@ const DrawerRight = (props) => {
                 onClose={closeDrawer}
                 open={openRight}
             >
+                <Box marginTop={10}></Box>
                 <IconLabel sx={{ marginLeft: 3 }} icon={<FilterIcon height="2.5em" width="2.5em" />} label="FILTER" />
-                <SelectBox value={selectedBuilding?.RecId} onSelectChange={onBuildingChange} label="Building" icon={<BuildingsIcon height="2.5em" width="2.5em" />} items={buildings} />
-                <SelectBox value={selectedFloor?.RecId} onSelectChange={onFloorChange} label="Floor" icon={<FloorIcon height="2.5em" width="2.5em" />} items={floors} />
+                <SelectBox value={selectedBuilding} onSelectChange={onBuildingChange} label="Building" icon={<BuildingsIcon height="2.5em" width="2.5em" />} items={buildings} />
+                <SelectBox value={selectedFloor} onSelectChange={onFloorChange} label="Floor" icon={<FloorIcon height="2.5em" width="2.5em" />} items={floors} />
                 <DateBox value={{ "fromDate": fromDate, "toDate": toDate }} onDateChange={(value, label) => onDateChange(value, label)} />
                 <IconLabel sx={{ marginLeft: 3, marginTop: 4, cursor: "pointer" }} icon={<SettingsIcon height="2.5em" width="2.5em" />} label="Dashboard Settings" onClick={HandleSettingsClick} />
                 <Dialog

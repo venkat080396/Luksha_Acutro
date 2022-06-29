@@ -63,7 +63,6 @@ const Home = () => {
                             </Grid>
                         </Grid>
                     }
-                    sx={{ height: "50vh" }}
                     content={<ActiveAlerts />} />
             </Grid>
         </Grid>
