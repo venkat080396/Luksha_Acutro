@@ -9,7 +9,7 @@ import Colum from "./img_col";
 import _ from "lodash";
 
 const ImageCard = ({ data }) => {
-
+    console.log(data)
     return (
         <Card
             style={{
@@ -27,7 +27,8 @@ const ImageCard = ({ data }) => {
                 style={{
                     borderRadius: "1em",
                     display: "flex",
-                    justifyContent: "space-between",
+                    justifyContent: "space-around",
+                    flex:1
                 }}
             >
                 {!_.isEmpty(data) && (
@@ -35,13 +36,14 @@ const ImageCard = ({ data }) => {
                         style={{
                             borderRadius: "1em",
                             display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center"
+                            justifyContent: "space-around",
+                            alignItems: "center",
+                            flex: 1
                         }}
                     >
                         <Colum img={Locate} des={data?.SiteName}></Colum>
                         <Colum icon={<BuildingsIcon height="2.5em" width="2.5em" />} des={data?.Name}></Colum>
-                        {/* <Colum img={Building_Location} des=""></Colum> */}
+                        <Colum img={Building_Location} des={data?.Name}></Colum>
                         <Colum img={Arrow} des={`${data?.SquareMeters} sp ft`}></Colum>
                     </Row>
                 )}
@@ -49,7 +51,7 @@ const ImageCard = ({ data }) => {
             <CardImg
                 src={BackImage}
                 alt="..."
-                style={{ borderRadius: "1em", width: '48%' }}
+                style={{ borderRadius: "1em", width: '44%' }}
             ></CardImg>
         </Card>
     );
