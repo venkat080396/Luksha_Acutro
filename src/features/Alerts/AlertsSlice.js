@@ -56,6 +56,20 @@ export const fetchAsyncDevices = createAsyncThunk(
     }
 );
 
+export const fetchAsyncDistributionList = createAsyncThunk(
+    'Alerts/fetchAsyncDistributionList',
+    async (name) => {
+        const inputDetails = {
+            "operation": "GetAlertSubscriptionForGroup",
+            "payload": {
+                "AlertGroup": name
+            }
+        }
+        const response = await api.post(baseURL, inputDetails);
+        return response.data;
+    }
+);
+
 export const saveDistribution = createAsyncThunk(
     'Alerts/saveDistribution',
     async ({ email = null, call = null, name }) => {
@@ -65,20 +79,6 @@ export const saveDistribution = createAsyncThunk(
                 "sGroupName": name,
                 "sEmailIDs": email,
                 "sMobileNumbers": call
-            }
-        }
-        const response = await api.post(baseURL, inputDetails);
-        return response.data;
-    }
-);
-
-export const fetchAsyncDistributionList = createAsyncThunk(
-    'Alerts/fetchAsyncDistributionList',
-    async (name) => {
-        const inputDetails = {
-            "operation": "GetAlertSubscriptionForGroup",
-            "payload": {
-                "AlertGroup": name
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -125,7 +125,7 @@ const AlertsSlice = createSlice({
         [fetchAsyncDistributionList.pending]: () => {
         },
         [fetchAsyncDistributionList.fulfilled]: (state, { payload }) => {
-            return [...state, payload];
+            return { ...state, distributionList: payload };
         },
         [fetchAsyncDistributionList.rejected]: () => {
         },
