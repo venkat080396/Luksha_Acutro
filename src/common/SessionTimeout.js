@@ -86,7 +86,7 @@ const SessionTimeout = (props) => {
     // };
 
     useEffect(() => {
-        console.log(isAuthenticated())
+
         if (isLoggedOut || (!isAuthenticated()))
             return;
 
@@ -100,8 +100,6 @@ const SessionTimeout = (props) => {
             clearTimeout(startTimerInterval.current);
         };
     }, [resetTimer, events, timeChecker, isLoggedOut]);
-
-    console.log(second);
 
     // if (!isOpen) {
     //     return null;

@@ -76,7 +76,6 @@ const loginSlice = createSlice({
         [setUserAttributes.pending]: () => {
         },
         [setUserAttributes.fulfilled]: (state, { payload }) => {
-            console.log(payload)
             return { ...state, userAttributes: payload };
         },
         [setUserAttributes.rejected]: () => {

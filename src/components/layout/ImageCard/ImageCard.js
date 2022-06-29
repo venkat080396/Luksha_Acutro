@@ -9,7 +9,7 @@ import Colum from "./img_col";
 import _ from "lodash";
 
 const ImageCard = ({ data }) => {
-    console.log(data)
+
     return (
         <Card
             style={{
