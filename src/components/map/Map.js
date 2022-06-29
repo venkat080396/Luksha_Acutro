@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import ReactMapGL, { Marker, Popup } from "react-map-gl";
-import { MAPBOX_TOKEN } from "../../common/Constants"
+import { MAPBOX_TOKEN } from "../../common/Constants";
 
 const Map = (props) => {
     const { selectedBuildingOnMap, buildingLocations, onClick } = props
