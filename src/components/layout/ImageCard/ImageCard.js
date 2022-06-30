@@ -18,7 +18,7 @@ const ImageCard = ({ data }) => {
                 flexDirection: "row",
                 justifyContent: "space-between",
                 border: "0.06em solid white",
-                background: "rgba(255,255,255,0.14)",
+                background: "#5e6b87",
                 zIndex: 4,
                 marginBottom: "0.8em"
             }}
