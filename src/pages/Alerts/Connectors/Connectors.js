@@ -192,7 +192,7 @@ export default function Connectors() {
                                                     { title: 'Email List', subtitle: '  Use this Connect to send messages' },
                                                     { title: 'Microsoft Team', subtitle: '  Use this Connect to send messages' },
                                                     { title: 'SMS List', subtitle: '  Use this Connect to send messages' },
-                                                    { title: 'Webhook', subtitle: '  Use this Connect to send messages' },
+                                                    { title: 'Webhook', subtitle: '  Use this Connect to send messages' }
                                                 ].map((item) => (
                                                     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                                         <CardHeader
