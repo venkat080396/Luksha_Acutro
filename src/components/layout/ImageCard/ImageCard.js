@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Card, CardImg, CardBody, Row } from "reactstrap";
-import BackImage from "../../../assets/icons/back_Image.png";
+import BackImage from "../../../assets/icons/back_Image.jpg";
 import Locate from "../../../assets/icons/Sites.svg";
 import Arrow from "../../../assets/icons/Size.svg";
 import { ReactComponent as BuildingsIcon } from "../../../assets/icons/Buildings.svg"
@@ -28,7 +28,7 @@ const ImageCard = ({ data }) => {
                     borderRadius: "1em",
                     display: "flex",
                     justifyContent: "space-around",
-                    flex:1
+                    flex: 1
                 }}
             >
                 {!_.isEmpty(data) && (

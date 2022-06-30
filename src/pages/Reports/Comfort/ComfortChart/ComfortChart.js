@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
-import { Grid } from '@mui/material'
+import React, { useState, useEffect } from 'react'
+//import { Grid } from '@mui/material'
+import { useDispatch, useSelector } from "react-redux";
 import StackedAreaChart from '../../../../components/charts/StackedAreaChart/StackedAreaChart';
-import { ReactComponent as TooColdIcon } from "../../../../assets/icons/Too Cold.svg"
-import { ReactComponent as TooHotIcon } from "../../../../assets/icons/Too Hot.svg"
-import Select from "../../../../components/forms/Select/Select"
+//import { ReactComponent as TooColdIcon } from "../../../../assets/icons/Too Cold.svg"
+//import { ReactComponent as TooHotIcon } from "../../../../assets/icons/Too Hot.svg"
+//import Select from "../../../../components/forms/Select/Select"
+import { fetchAsyncDeviceReadingsForFilter, getDeviceReadings } from "../../../../features/BuildingData/buildingDataSlice"
+import { getFromDate, getToDate } from '../../../../features/Home/homeSlice';
 
 const data = [
     {
@@ -68,14 +71,24 @@ const data = [
     },
 ];
 
-const items = [...Array(50).keys()].map(i => ({ RecId: i + 1, Name: i + 1 }))
+//const items = [...Array(50).keys()].map(i => ({ RecId: i + 1, Name: i + 1 }))
 
 const ComfortChart = (props) => {
-    const [tooHot, setTooHot] = useState({})
-    const [tooCold, setTooCold] = useState({})
-    const { width, height, aspetRatio } = props
+    //const [tooHot, setTooHot] = useState({})
+    //const [tooCold, setTooCold] = useState({})
+    const { deviceRecId, sensorRecId, xAxisValues, width, height, aspetRatio } = props;
+    const dispatch = useDispatch();
+    const readings = useSelector(getDeviceReadings);
+    const fromDate = useSelector(getFromDate);
+    const toDate = useSelector(getToDate);
+    const readingsFilter = { FromDate: fromDate, ToDate: toDate, DeviceRecId: deviceRecId, DeviceSensorRecId: sensorRecId };
+    console.log(readings);
+    useEffect(() => {
+        dispatch(fetchAsyncDeviceReadingsForFilter(readingsFilter));
+    }, []);
+
     return (<>
-        <Grid container
+        {/* <Grid container
             direction="row"
             justifyContent="flex-end"
             alignItems="center"
@@ -129,18 +142,14 @@ const ComfortChart = (props) => {
                     </Grid>
                 </Grid>
             </Grid>
-        </Grid>
+        </Grid> */}
         <div
             style={{ marginTop: "1em" }}>
             <StackedAreaChart
-                width={width}
-                height={height}
-                xAxisKey="time"
-                yAxisKey="temperature"
-                areaKey1="Heating"
-                areaKey2="Cooling"
+                xAxisValues={xAxisValues}
+                areaKey1="Value"
                 aspect={aspetRatio}
-                data={data} />
+                data={readings} />
         </div>
     </>
     )

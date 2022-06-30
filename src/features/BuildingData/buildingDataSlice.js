@@ -32,6 +32,24 @@ export const fetchAsyncDeviceSensorsForDeviceId = createAsyncThunk(
     }
 );
 
+export const fetchAsyncDeviceReadingsForFilter = createAsyncThunk(
+    'buildingData/fetchAsyncDeviceReadingsForFilter',
+    async (filter) => {
+        console.log("filter", filter);
+        const inputDetails = {
+            operation: "GetDeviceReadingsForFilter",
+            payload: {
+                "dtFromDate": filter.FromDate,
+                "dtToDate": filter.ToDate,
+                "DeviceRecId": filter.DeviceRecId,
+                "DeviceSensorRecId": filter.DeviceSensorRecId,
+            }
+        }
+        const response = await api.post(baseURL, inputDetails);
+        return response.data;
+    }
+);
+
 export const fetchAsyncAllDeviceTypes = createAsyncThunk(
     'buildingData/fetchAsyncAllDeviceTypes',
     async (deviceTypeRecId) => {
@@ -70,6 +88,7 @@ const initialState = {
     devices: [],
     allDeviceTypes: null,
     deviceSensors: null,
+    deviceReadings: null,
     devicesToBeSaved: [],
     selectedBuildingOnMap: null
 };
@@ -100,6 +119,13 @@ const buildingDataSlice = createSlice({
         },
         [fetchAsyncDeviceSensorsForDeviceId.rejected]: () => {
         },
+        [fetchAsyncDeviceReadingsForFilter.pending]: () => {
+        },
+        [fetchAsyncDeviceReadingsForFilter.fulfilled]: (state, { payload }) => {
+            return { ...state, deviceReadings: payload };
+        },
+        [fetchAsyncDeviceReadingsForFilter.rejected]: () => {
+        },
         [fetchAsyncAllDeviceTypes.pending]: () => {
         },
         [fetchAsyncAllDeviceTypes.fulfilled]: (state, { payload }) => {
@@ -121,6 +147,7 @@ export const getAllDeviceTypes = (state) => state.buildingData?.allDeviceTypes;
 export const getAllDevicesToBeSaved = (state) => state.buildingData?.devicesToBeSaved;
 export const getSelectedBuildingOnMap = (state) => state.buildingData?.selectedBuildingOnMap
 export const getDeviceSensors = (state) => state.buildingData?.deviceSensors
+export const getDeviceReadings = (state) => state.buildingData?.deviceReadings
 
 export const { updateDeviceToBeSaved, setSelectedBuildingOnMap } = buildingDataSlice.actions
 
