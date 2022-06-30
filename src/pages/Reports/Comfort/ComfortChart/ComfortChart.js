@@ -76,13 +76,13 @@ const data = [
 const ComfortChart = (props) => {
     //const [tooHot, setTooHot] = useState({})
     //const [tooCold, setTooCold] = useState({})
-    const { deviceRecId, sensorRecId, xAxisValues, width, height, aspetRatio } = props;
+    const { deviceRecId, sensorRecId, xAxisValues, aspetRatio } = props;
     const dispatch = useDispatch();
     const readings = useSelector(getDeviceReadings);
     const fromDate = useSelector(getFromDate);
     const toDate = useSelector(getToDate);
     const readingsFilter = { FromDate: fromDate, ToDate: toDate, DeviceRecId: deviceRecId, DeviceSensorRecId: sensorRecId };
-    console.log(readings);
+
     useEffect(() => {
         dispatch(fetchAsyncDeviceReadingsForFilter(readingsFilter));
     }, []);

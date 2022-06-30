@@ -35,7 +35,6 @@ export const fetchAsyncDeviceSensorsForDeviceId = createAsyncThunk(
 export const fetchAsyncDeviceReadingsForFilter = createAsyncThunk(
     'buildingData/fetchAsyncDeviceReadingsForFilter',
     async (filter) => {
-        console.log("filter", filter);
         const inputDetails = {
             operation: "GetDeviceReadingsForFilter",
             payload: {

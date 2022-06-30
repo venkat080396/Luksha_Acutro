@@ -1,8 +1,16 @@
 import React from 'react';
+import moment from 'moment';
 import { XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
+
+const dateFormatter = date => {
+    // return moment(date).unix();
+    return moment(date).format('DD/MM/YY');
+};
+
 const StackedAreaChart = (props) => {
-    const { data, xAxisValues, areaKey1, areaKey2, aspect, width, height } = props
+    const { data, areaKey1, areaKey2, aspect, width, height } = props
+
     return (
         <ResponsiveContainer aspect={aspect}>
             {/* <LineChart
@@ -38,7 +46,7 @@ const StackedAreaChart = (props) => {
                         <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                     </linearGradient>
                 </defs>
-                <XAxis />
+                <XAxis tickFormatter={dateFormatter} dataKey="RecordedOn" />
                 <YAxis />
                 {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <Tooltip />

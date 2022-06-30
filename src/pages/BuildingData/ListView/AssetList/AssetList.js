@@ -11,9 +11,9 @@ const AssetList = (props) => {
     const allDeviceTypes = useSelector(getAllDeviceTypes);
 
     return (
-        <ImageList cols={2} sx={{ marginLeft: "0.7em", height: "70vh", marginTop: "0.2em" }}>
+        <ImageList cols={2} sx={{ height: "70vh", marginTop: "-1em" }}>
             {allDeviceTypes.map((deviceType) => (
-                <ImageListItem key={deviceType.RecId} sx={{ margin: "0.2em" }}>
+                <ImageListItem key={deviceType.RecId} sx={{ alignItems: "center", justifyContent: "center" }}>
                     <Card
                         sx={{
                             width: "5.3em", height: "5.3em", cursor: "pointer", "&:hover": {
