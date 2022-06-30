@@ -279,7 +279,8 @@ export default function Automations() {
                                                                         lg={12}
                                                                         xl={12}
                                                                     >
-                                                                        <TextField name="Name" fullWidth />
+                                                                        <Typography sx={{ marginBottom: 1 }}>Name</Typography>
+                                                                        <TextField name="Enter Name" size="small" fullWidth />
                                                                     </Grid>
                                                                     <Grid
                                                                         item
@@ -289,7 +290,8 @@ export default function Automations() {
                                                                         lg={12}
                                                                         xl={12}
                                                                     >
-                                                                        <TextField name="Description" fullWidth />
+                                                                        <Typography sx={{ marginBottom: 1 }}>Description</Typography>
+                                                                        <TextField name="Enter Description" size="small" fullWidth />
                                                                     </Grid>
                                                                 </Grid>
                                                             </Box>
@@ -361,14 +363,12 @@ export default function Automations() {
                                                         content={
                                                             <Box>
                                                                 <Grid container spacing={2}>
-                                                                    <Grid
-                                                                        item
-                                                                        sx={12}
-                                                                        sm={12}
-                                                                        md={12}
-                                                                        lg={12}
-                                                                        xl={12}
-                                                                    >
+                                                                    <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Assert Type</Typography>
+                                                                        <TextField name="Assert Type *" size="small" fullWidth />
+                                                                    </Grid>
+                                                                    <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Operator</Typography>
                                                                         <Select
                                                                             placeholder="Select Building"
                                                                             props={{
@@ -376,11 +376,20 @@ export default function Automations() {
                                                                                 placeholder: "Select Building",
                                                                             }}
                                                                             items={[
-                                                                                { RecId: 1, Name: "ASE" },
-                                                                                { RecId: 2, Name: "Azur" },
+                                                                                { RecId: 1, Name: "Greter Then" },
+                                                                                { RecId: 2, Name: "Less Then" },
+                                                                                { RecId: 3, Name: "Less or Equale" },
                                                                             ]}
                                                                             fullWidth={true}
                                                                         />
+                                                                    </Grid>
+                                                                    <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Value</Typography>
+                                                                        <TextField name="Value" type="number" size="small" fullWidth />
+                                                                    </Grid>
+                                                                    <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Violations Count</Typography>
+                                                                        <TextField name="Violations Count *" type="number" size="small" fullWidth />
                                                                     </Grid>
                                                                 </Grid>
                                                             </Box>
