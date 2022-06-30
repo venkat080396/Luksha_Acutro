@@ -10,13 +10,13 @@ const HVACDeviceList = (props) => {
     return (
         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={4}>
             <Grid item>
-                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Under-achieving Devices" />} sx={chartSx} content={<ComfortChart deviceRecId={1} sensorRecId={1} aspetRatio="1.4" />} />
+                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Under-achieving Devices" />} sx={chartSx} content={<ComfortChart deviceRecId="1" sensorRecId="1" aspetRatio="1.4" />} />
             </Grid>
             <Grid item>
-                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Over Working Devices" />} sx={chartSx} content={<ComfortChart deviceRecId={1} sensorRecId={2} aspetRatio="1.4" />} />
+                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Over Working Devices" />} sx={chartSx} content={<ComfortChart deviceRecId="1" sensorRecId="2" aspetRatio="1.4" />} />
             </Grid>
             <Grid item>
-                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Under Working Devices" />} sx={chartSx} content={<ComfortChart deviceRecId={1} sensorRecId={5} aspetRatio="1.4" />} />
+                <Card headerContent={<Label sx={{ textAlign: "center", fontWeight: "bold" }} label="Under Working Devices" />} sx={chartSx} content={<ComfortChart deviceRecId="1" sensorRecId="5" aspetRatio="1.4" />} />
             </Grid>
         </Grid>
     )

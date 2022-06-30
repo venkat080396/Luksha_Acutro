@@ -6,8 +6,8 @@ import IconLabel from "../forms/IconLabel/IconLabel";
 
 const DeviceCard = (props) => {
     const bgcolor = props.state === 1 ? "#00ff034f" : "#ff000063";
-    const color = props.state === 1 ? "green" : "red";
-    const levelColor = props.level === 1 ? "green" : props.level === 2 ? "yellow" : "red";
+    const color = props.state === 1 ? "#a3e5c4" : "#ffc7c7";
+    const levelColor = props.level === 1 ? "#a3e5c4" : props.level === 2 ? "#fffec8" : "#ffc7c7";
 
     return (
         <Grid item sm={12} md={12} lg={12} xl={12}>
@@ -30,7 +30,7 @@ const DeviceCard = (props) => {
                             <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                 <Grid container>
                                     <Grid item sm={12} md={12} lg={12} xl={12}>
-                                        <IconLabel label="Site 1" />
+                                        <IconLabel label="Acutro Demo" />
                                     </Grid>
                                     <Grid item sm={12} md={12} lg={12} xl={12}>
                                         <IconLabel label={props.name} />
