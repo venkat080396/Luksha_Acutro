@@ -4,18 +4,17 @@ import { ReactComponent as SettingsIcon } from "../../../assets/icons/Settings.s
 import { ReactComponent as TemperatureIcon } from "../../../assets/icons/Temperature.svg"
 import Dialog from '../../../components/dialog/Dialog'
 import DeviceInformation from "./DeviceInformation"
+import { getRandomValuesWithinRange } from "../../../common/Utils"
 
 const Device = (props) => {
     const { device, isActiveDevice, onDeviceClick } = props;
     const [openDialog, setOpenDialog] = useState(false);
 
     const handleClick = () => {
-        console.log(isActiveDevice)
         if (isActiveDevice) {
             setOpenDialog(true);
         }
         else {
-            console.log("hello");
             onDeviceClick();
         }
     }
@@ -40,7 +39,7 @@ const Device = (props) => {
                                     <TemperatureIcon height="2em" width="2em" />
                                 </Grid>
                                 <Grid item sx={{ marginTop: 1.5, marginLeft: -0.5 }}>
-                                    <div> 21 &deg;C</div>
+                                    <div> {getRandomValuesWithinRange(18, 21)} &deg;C</div>
                                 </Grid>
                             </Grid>
                         </Grid>
