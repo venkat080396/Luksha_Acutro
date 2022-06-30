@@ -120,8 +120,15 @@ const columns = [
     {
         field: "Update",
         headerName: "",
+        renderHeader: (_) => {
+            return <>
+                <Box>
+                    &nbsp;
+                </Box>
+            </>
+        },
         sortable: false,
-        width: 100,
+        width: 116,
         renderCell: (_) => {
             return <MenuComponent />;
         },
@@ -151,7 +158,7 @@ export default function Connectors() {
                     content={
                         <>
                             <Box
-                                sx={{ width: "70vw", height: "44vh", paddingBottom: "1rem" }}
+                                sx={{ width: "68vw", height: "44vh", paddingBottom: "1rem" }}
                             >
                                 <Datagrid
                                     rows={rows}
@@ -160,7 +167,7 @@ export default function Connectors() {
                                     rowsPerPageOptions={[5]}
                                 />
                             </Box>
-                            <Box sx={{ width: "70vw", paddingBottom: "2rem" }}>
+                            <Box sx={{ width: "68vw", paddingBottom: "2rem" }}>
                                 <Grid container flexDirection="row-reverse">
                                     <Grid item>
                                         <Button
@@ -181,14 +188,11 @@ export default function Connectors() {
                                     <>
                                         <Box maxWidth={400}>
                                             <Grid container spacing={2}>
-                                                {[{ title: 'Azur Event Hub', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'Azur Service Bus', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'Email List', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'Microsoft Team', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'Service Now', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'SMS List', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'Text To Speech', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'Webhook', subtitle: '  Use this Connect to send messages' },
+                                                {[
+                                                    { title: 'Email List', subtitle: '  Use this Connect to send messages' },
+                                                    { title: 'Microsoft Team', subtitle: '  Use this Connect to send messages' },
+                                                    { title: 'SMS List', subtitle: '  Use this Connect to send messages' },
+                                                    { title: 'Webhook', subtitle: '  Use this Connect to send messages' },
                                                 ].map((item) => (
                                                     <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                                         <CardHeader
@@ -209,10 +213,17 @@ export default function Connectors() {
                                                                 </Typography>
                                                             }
                                                             action={
-                                                                <Button variant="contained" onClick={() => {
-                                                                    setOpenDialog(false);
-                                                                    setOpenDialogForm(true);
-                                                                }}>Select</Button>
+                                                                <Box pt={2}>
+                                                                    <Button
+                                                                        variant="contained"
+                                                                        onClick={() => {
+                                                                            setOpenDialog(false);
+                                                                            setOpenDialogForm(true);
+                                                                        }}
+                                                                    >
+                                                                        Select
+                                                                    </Button>
+                                                                </Box>
                                                             }
                                                         />
                                                     </Grid>

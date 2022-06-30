@@ -111,6 +111,13 @@ const columns = [
     },
     {
         field: 'Update', headerName: null, sortable: false, width: 100,
+        renderHeader: (_) => {
+            return <>
+                <Box>
+                    &nbsp;
+                </Box>
+            </>
+        },
         renderCell: (_) => {
             return (<MenuComponent />)
         }

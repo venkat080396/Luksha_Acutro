@@ -93,16 +93,26 @@ const columns = [
     {
         field: "lasttrigger",
         headerName: "Last Trigger",
-        width: 300,
+        width: 290,
+        renderCell: (item) => {
+            return <>{item.value}</>;
+        },
     },
     {
-        field: "Update",
-        headerName: "",
-        sortable: false,
+        field: "",
+        headerName: "Last Trigger",
+        renderHeader: (_) => {
+            return <>
+                <Box>
+                    &nbsp;
+                </Box>
+            </>
+        },
         width: 56,
         renderCell: (_) => {
             return <MenuComponent />;
         },
+        sortable: false,
     },
 ];
 
@@ -143,7 +153,7 @@ export default function Automations() {
                     content={
                         <>
                             <Box
-                                sx={{ width: "82vw", height: "44vh", paddingBottom: "1rem" }}
+                                sx={{ width: "78vw", height: "44vh", paddingBottom: "1rem" }}
                             >
                                 <Datagrid
                                     rows={rows}
@@ -152,7 +162,7 @@ export default function Automations() {
                                     rowsPerPageOptions={[5]}
                                 />
                             </Box>
-                            <Box sx={{ width: "82vw", paddingBottom: "2rem" }}>
+                            <Box sx={{ width: "78vw", paddingBottom: "2rem" }}>
                                 <Grid container flexDirection="row-reverse">
                                     <Grid item>
                                         <Button
@@ -196,15 +206,17 @@ export default function Automations() {
                                                             </Typography>
                                                         }
                                                         action={
-                                                            <Button
-                                                                variant="contained"
-                                                                onClick={() => {
-                                                                    setOpenDialog(false);
-                                                                    setOpenDialogForm(true);
-                                                                }}
-                                                            >
-                                                                Select
-                                                            </Button>
+                                                            <Box pt={2}>
+                                                                <Button
+                                                                    variant="contained"
+                                                                    onClick={() => {
+                                                                        setOpenDialog(false);
+                                                                        setOpenDialogForm(true);
+                                                                    }}
+                                                                >
+                                                                    Select
+                                                                </Button>
+                                                            </Box>
                                                         }
                                                     />
                                                     <CardHeader
@@ -229,15 +241,17 @@ export default function Automations() {
                                                             </Typography>
                                                         }
                                                         action={
-                                                            <Button
-                                                                variant="contained"
-                                                                onClick={() => {
-                                                                    setOpenDialog(false);
-                                                                    // setOpenDialogForm(true);
-                                                                }}
-                                                            >
-                                                                Select
-                                                            </Button>
+                                                            < Box pt={2}>
+                                                                <Button
+                                                                    variant="contained"
+                                                                    onClick={() => {
+                                                                        setOpenDialog(false);
+                                                                        setOpenDialogForm(true);
+                                                                    }}
+                                                                >
+                                                                    Select
+                                                                </Button>
+                                                            </Box>
                                                         }
                                                     />
                                                 </Grid>
