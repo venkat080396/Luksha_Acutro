@@ -343,7 +343,7 @@ export default function Automations() {
                                                                             items={[
                                                                                 {
                                                                                     RecId: 1,
-                                                                                    Name: "Metric Thresold",
+                                                                                    Name: "Metric Threshold",
                                                                                     sub: "select the event that you want to trigger this automation",
                                                                                 },
                                                                             ]}
@@ -375,7 +375,7 @@ export default function Automations() {
                                                                 <Grid container spacing={2}>
                                                                     <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Assert Type</Typography>
-                                                                        <TextField name="Assert Type *" size="small" fullWidth />
+                                                                        <TextField name="Asset Type *" size="small" fullWidth />
                                                                     </Grid>
                                                                     <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Operator</Typography>
@@ -386,9 +386,9 @@ export default function Automations() {
                                                                                 placeholder: "Select Building",
                                                                             }}
                                                                             items={[
-                                                                                { RecId: 1, Name: "Greter Then" },
-                                                                                { RecId: 2, Name: "Less Then" },
-                                                                                { RecId: 3, Name: "Less or Equale" },
+                                                                                { RecId: 1, Name: "Greater Than" },
+                                                                                { RecId: 2, Name: "Less Than" },
+                                                                                { RecId: 3, Name: "Less or Equal" },
                                                                             ]}
                                                                             fullWidth={true}
                                                                         />
