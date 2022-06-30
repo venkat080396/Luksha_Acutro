@@ -11,7 +11,8 @@ const StyledDataGrid = styled(DataGrid)({
     },
     '& .MuiDataGrid-columnHeader': {
         border: "0.05em solid rgba(255,255,255,0.5)",
-        background: "rgba(255,255,255,0.1)"
+        background: "rgba(255,255,255,0.1)",
+        flex:1
     },
     '& .MuiDataGrid-cell': {
         border: "0.05em solid rgba(255,255,255,0.5)",

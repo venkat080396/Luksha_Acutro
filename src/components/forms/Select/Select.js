@@ -1,6 +1,6 @@
 import React from 'react';
 import MuiSelect from '@mui/material/Select';
-import { Typography, Box, FormControl, MenuItem } from "@mui/material";
+import { Typography, Box, FormControl, MenuItem, Grid } from "@mui/material";
 import "./Select.css"
 
 const Select = (props) => {
@@ -32,9 +32,18 @@ const Select = (props) => {
                     ) : (
                         items.map((item, index) => (
                             <MenuItem key={item.RecId} value={item.RecId}>
-                                <Typography sx={{ color: "black" }}>
-                                    {item?.Name}
-                                </Typography>
+                                <Grid container>
+                                    <Grid item sm={12} md={12} lg={12} xl={12}>
+                                        <Typography sx={{ color: "black", display: 'block' }}>
+                                            {item?.Name}
+                                        </Typography>
+                                    </Grid>
+                                    <Grid item sm={12} md={12} lg={12} xl={12}>
+                                        <Typography sx={{ color: "black", display: 'block',fontSize:12 }}>
+                                            {item?.sub}
+                                        </Typography>
+                                    </Grid>
+                                </Grid>
                             </MenuItem>
                         ))
                     ))}

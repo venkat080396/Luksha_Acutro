@@ -17,6 +17,7 @@ import {
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Select from "../../../components/forms/Select/Select";
 
 const MenuComponent = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,9 +30,6 @@ const MenuComponent = () => {
         setAnchorEl(null);
     };
     const handleEdit = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleDelete = (event) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -95,16 +93,26 @@ const columns = [
     {
         field: "lasttrigger",
         headerName: "Last Trigger",
-        width: 300,
+        width: 290,
+        renderCell: (item) => {
+            return <>{item.value}</>;
+        },
     },
     {
-        field: "Update",
-        headerName: "",
-        sortable: false,
+        field: "",
+        headerName: "Last Trigger",
+        renderHeader: (_) => {
+            return <>
+                <Box>
+                    &nbsp;
+                </Box>
+            </>
+        },
         width: 56,
         renderCell: (_) => {
             return <MenuComponent />;
         },
+        sortable: false,
     },
 ];
 
@@ -145,7 +153,7 @@ export default function Automations() {
                     content={
                         <>
                             <Box
-                                sx={{ width: "82vw", height: "44vh", paddingBottom: "1rem" }}
+                                sx={{ width: "78vw", height: "44vh", paddingBottom: "1rem" }}
                             >
                                 <Datagrid
                                     rows={rows}
@@ -154,7 +162,7 @@ export default function Automations() {
                                     rowsPerPageOptions={[5]}
                                 />
                             </Box>
-                            <Box sx={{ width: "82vw", paddingBottom: "2rem" }}>
+                            <Box sx={{ width: "78vw", paddingBottom: "2rem" }}>
                                 <Grid container flexDirection="row-reverse">
                                     <Grid item>
                                         <Button
@@ -162,7 +170,7 @@ export default function Automations() {
                                             size="medium"
                                             onClick={() => setOpenDialog(true)}
                                         >
-                                            {"New Connectors"}
+                                            {"New Automation"}
                                         </Button>
                                     </Grid>
                                 </Grid>
@@ -194,10 +202,17 @@ export default function Automations() {
                                                             </Typography>
                                                         }
                                                         action={
-                                                            <Button variant="contained" onClick={() => {
-                                                                setOpenDialog(false);
-                                                                // setOpenDialogForm(true);
-                                                            }}>Select</Button>
+                                                            <Box pt={2}>
+                                                                <Button
+                                                                    variant="contained"
+                                                                    onClick={() => {
+                                                                        setOpenDialog(false);
+                                                                        setOpenDialogForm(true);
+                                                                    }}
+                                                                >
+                                                                    Select
+                                                                </Button>
+                                                            </Box>
                                                         }
                                                     />
                                                     <CardHeader
@@ -213,15 +228,26 @@ export default function Automations() {
                                                             </Typography>
                                                         }
                                                         subheader={
-                                                            <Typography sx={{ color: "white" }} variant="body2">
-                                                                Create recurring automation based on scheduled dates
+                                                            <Typography
+                                                                sx={{ color: "white" }}
+                                                                variant="body2"
+                                                            >
+                                                                Create recurring automation based on scheduled
+                                                                dates
                                                             </Typography>
                                                         }
                                                         action={
-                                                            <Button variant="contained" onClick={() => {
-                                                                setOpenDialog(false);
-                                                                // setOpenDialogForm(true);
-                                                            }}>Select</Button>
+                                                            < Box pt={2}>
+                                                                <Button
+                                                                    variant="contained"
+                                                                    onClick={() => {
+                                                                        setOpenDialog(false);
+                                                                        setOpenDialogForm(true);
+                                                                    }}
+                                                                >
+                                                                    Select
+                                                                </Button>
+                                                            </Box>
                                                         }
                                                     />
                                                 </Grid>
@@ -233,40 +259,160 @@ export default function Automations() {
                             <Dialog
                                 open={openDialogForm}
                                 handleClose={() => setOpenDialogForm(false)}
-                                title={"Create Connector"}
+                                title={"Customise your Automations"}
                                 content={
                                     <>
-                                        <Box width={600}>
-                                            <Grid container spacing={2}>
-                                                <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-                                                    <TextField name="Name" fullWidth />
+                                        <Box width={1200}>
+                                            <Grid container>
+                                                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                                                    <Card
+                                                        headerContent={
+                                                            <Label
+                                                                sx={{ marginBottom: 2 }}
+                                                                style={{
+                                                                    fontWeight: "bold",
+                                                                    fontSize: 16,
+                                                                    color: "white",
+                                                                }}
+                                                                label="Enter a name for your automation"
+                                                            />
+                                                        }
+                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
+                                                        content={
+                                                            <Box>
+                                                                <Grid container spacing={2}>
+                                                                    <Grid
+                                                                        item
+                                                                        sx={12}
+                                                                        sm={12}
+                                                                        md={12}
+                                                                        lg={12}
+                                                                        xl={12}
+                                                                    >
+                                                                        <Typography sx={{ marginBottom: 1 }}>Name</Typography>
+                                                                        <TextField name="Enter Name" size="small" fullWidth />
+                                                                    </Grid>
+                                                                    <Grid
+                                                                        item
+                                                                        sx={12}
+                                                                        sm={12}
+                                                                        md={12}
+                                                                        lg={12}
+                                                                        xl={12}
+                                                                    >
+                                                                        <Typography sx={{ marginBottom: 1 }}>Description</Typography>
+                                                                        <TextField name="Enter Description" size="small" fullWidth />
+                                                                    </Grid>
+                                                                </Grid>
+                                                            </Box>
+                                                        }
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                                                    <Card
+                                                        headerContent={
+                                                            <CardHeader
+                                                                title="Event"
+                                                                subheader={
+                                                                    <Typography sx={{ color: "white" }}>
+                                                                        {
+                                                                            "select the event that you want to trigger this automation"
+                                                                        }
+                                                                    </Typography>
+                                                                }
+                                                            />
+                                                        }
+                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
+                                                        content={
+                                                            <Box>
+                                                                <Grid container spacing={2}>
+                                                                    <Grid
+                                                                        item
+                                                                        sx={12}
+                                                                        sm={12}
+                                                                        md={12}
+                                                                        lg={12}
+                                                                        xl={12}
+                                                                    >
+                                                                        <Select
+                                                                            placeholder="Select Building"
+                                                                            props={{
+                                                                                size: "small",
+                                                                                placeholder: "Select Building",
+                                                                            }}
+                                                                            items={[
+                                                                                {
+                                                                                    RecId: 1,
+                                                                                    Name: "Metric Thresold",
+                                                                                    sub: "select the event that you want to trigger this automation",
+                                                                                },
+                                                                            ]}
+                                                                            fullWidth={true}
+                                                                        />
+                                                                    </Grid>
+                                                                </Grid>
+                                                            </Box>
+                                                        }
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                                                    <Card
+                                                        headerContent={
+                                                            <CardHeader
+                                                                title="Configure conditions"
+                                                                subheader={
+                                                                    <Typography sx={{ color: "white" }}>
+                                                                        {
+                                                                            "select the conditions that the event must meet for the automation to run"
+                                                                        }
+                                                                    </Typography>
+                                                                }
+                                                            />
+                                                        }
+                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
+                                                        content={
+                                                            <Box>
+                                                                <Grid container spacing={2}>
+                                                                    <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Assert Type</Typography>
+                                                                        <TextField name="Assert Type *" size="small" fullWidth />
+                                                                    </Grid>
+                                                                    <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Operator</Typography>
+                                                                        <Select
+                                                                            placeholder="Select Building"
+                                                                            props={{
+                                                                                size: "small",
+                                                                                placeholder: "Select Building",
+                                                                            }}
+                                                                            items={[
+                                                                                { RecId: 1, Name: "Greter Then" },
+                                                                                { RecId: 2, Name: "Less Then" },
+                                                                                { RecId: 3, Name: "Less or Equale" },
+                                                                            ]}
+                                                                            fullWidth={true}
+                                                                        />
+                                                                    </Grid>
+                                                                    <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Value</Typography>
+                                                                        <TextField name="Value" type="number" size="small" fullWidth />
+                                                                    </Grid>
+                                                                    <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Violations Count</Typography>
+                                                                        <TextField name="Violations Count *" type="number" size="small" fullWidth />
+                                                                    </Grid>
+                                                                </Grid>
+                                                            </Box>
+                                                        }
+                                                    />
                                                 </Grid>
                                                 <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-                                                    <TextField name="Web Address" fullWidth />
-                                                </Grid>
-                                                <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-                                                    <Grid
-                                                        container
-                                                        alignItems="center"
-                                                        flexDirection="row-reverse"
-                                                        spacing={2}
-                                                    >
+                                                    <Grid container alignItems='center' flexDirection='row-reverse' spacing={2}>
                                                         <Grid item>
-                                                            <Button
-                                                                variant="contained"
-                                                                onClick={() => setOpenDialogForm(false)}
-                                                            >
-                                                                Save
-                                                            </Button>
+                                                            <Button variant='contained' onClick={() => setOpenDialogForm(false)}>Create Automation</Button>
                                                         </Grid>
                                                         <Grid item>
-                                                            <Button
-                                                                variant="contained"
-                                                                color="error"
-                                                                onClick={() => setOpenDialogForm(false)}
-                                                            >
-                                                                Cancel
-                                                            </Button>
+                                                            <Button variant="contained" color="error" onClick={() => setOpenDialogForm(false)}>Cancel</Button>
                                                         </Grid>
                                                     </Grid>
                                                 </Grid>
