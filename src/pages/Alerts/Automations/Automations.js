@@ -32,9 +32,6 @@ const MenuComponent = () => {
     const handleEdit = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleDelete = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
 
     return (
         <>
