@@ -30,11 +30,10 @@ const StackedAreaChart = (props) => {
                 <Line type="monotone" dataKey={areaKey1} stroke="#FF0000" />
                 <Line type="monotone" dataKey={areaKey2} stroke="#4e91fd" />
             </LineChart> */}
-            <AreaChart width={width} height={height} data={data}
+            <AreaChart width={width} height={900} data={data}
                 margin={{
                     top: 5,
-                    right: 30,
-                    bottom: 5,
+                    right: 40
                 }}>
                 <defs>
                     <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -46,7 +45,7 @@ const StackedAreaChart = (props) => {
                         <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                     </linearGradient>
                 </defs>
-                <XAxis tickFormatter={dateFormatter} dataKey="RecordedOn" />
+                <XAxis tickFormatter={dateFormatter} dataKey="RecordedOn" angle={10} textAnchor="start" />
                 <YAxis />
                 {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <Tooltip />
