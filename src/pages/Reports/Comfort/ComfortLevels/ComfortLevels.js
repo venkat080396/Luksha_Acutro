@@ -13,7 +13,7 @@ const ComfortLevels = (props) => {
             alignItems="center"
             spacing={4}>
             <Grid item>
-                <Card sx={chartSx} content={<ComfortChart deviceRecId={2} sensorRecId={9} width={chartWidth} height={chartHeight} aspetRatio={aspetRatio} />} />
+                <Card sx={chartSx} content={<ComfortChart deviceRecId="2" sensorRecId="9" width={chartWidth} height={chartHeight} aspetRatio={aspetRatio} />} />
             </Grid>
             {isSliderVisible && (
                 <Grid item>

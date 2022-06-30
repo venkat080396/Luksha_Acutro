@@ -45,7 +45,6 @@ export const fetchAsyncDeviceReadingsForFilter = createAsyncThunk(
             }
         }
         const response = await api.post(baseURL, inputDetails);
-        console.log(response)
         return response.data;
     }
 );

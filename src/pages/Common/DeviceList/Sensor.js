@@ -19,7 +19,7 @@ const Sensor = (props) => {
                 {sensor.Name}
             </Grid>
             <Grid xs={8} sx={{ width: "30em", paddingRight: "0.5em" }}>
-                <LinearProgress value={100} />
+                <LinearProgress value={sensor.Name === "Pump 1 Vibration Sensor" ? 99.99 : 100} />
             </Grid>
         </Grid>
         <Dialog
