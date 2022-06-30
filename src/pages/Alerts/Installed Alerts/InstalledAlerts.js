@@ -1,8 +1,70 @@
 import React from 'react'
-import { Grid, Box, Button } from '@mui/material'
+import { Grid, Box, Button, IconButton } from '@mui/material'
 import Datagrid from '../../../components/datagrid/Datagrid';
 import { getColorBasedOnStatus } from '../../../common/Utils';
 import LinearProgress from '../../../components/feedback/progress/linearProgress/LinearProgress';
+import Dialog from '../../../components/dialog/Dialog';
+
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
+
+
+const MenuComponent = () => {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [openDialog, setOpenDialog] = React.useState(false);
+    const open = Boolean(anchorEl);
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setOpenDialog(false)
+        setAnchorEl(null);
+    };
+    const handleEdit = (event) => {
+        setOpenDialog(true);
+        setAnchorEl(event.currentTarget);
+    }
+    const handleDelete = (event) => {
+        setOpenDialog(true);
+        setAnchorEl(event.currentTarget);
+    }
+
+    return (
+        <>
+            <Box>
+                <IconButton onClick={handleClick}>
+                    <MoreVertIcon style={{ color: '#fff' }} />
+                </IconButton>
+            </Box>
+            <Menu
+                id="demo-positioned-menu"
+                aria-labelledby="demo-positioned-button"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+                transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                }}
+            >
+                <MenuItem onClick={handleEdit}>Edit</MenuItem>
+                <MenuItem onClick={handleDelete}>Delete</MenuItem>
+            </Menu>
+            <Dialog
+                open={openDialog}
+                handleClose={() => setOpenDialog(false)}
+                title={"Alerts Installed"}
+                content={<></>}
+            />
+        </>
+    )
+}
 
 const columns = [
     {
@@ -16,13 +78,13 @@ const columns = [
         }
     },
     { field: 'floor', headerName: 'Floor', width: 130 },
-    { field: 'deviceType', headerName: 'Device Type', width: 110 },
-    { field: 'device', headerName: 'Device', width: 120 },
-    { field: 'sensor', headerName: 'Sensor', width: 130 },
-    { field: 'createdDate', headerName: 'Date Created', sortable: false, width: 130 },
-    { field: 'alertDate', headerName: 'Alert last triggered', sortable: false, width: 150 },
+    { field: 'deviceType', headerName: 'Device Type', width: 108 },
+    { field: 'device', headerName: 'Device', width: 108 },
+    { field: 'sensor', headerName: 'Sensor', width: 128 },
+    { field: 'createdDate', headerName: 'Date Created', sortable: false, width: 120 },
+    { field: 'alertDate', headerName: 'Alert last triggered', sortable: false, width: 144 },
     {
-        field: 'currentStatus', headerName: 'Current Status', sortable: false, width: 130,
+        field: 'currentStatus', headerName: 'Current Status', sortable: false, width: 128,
         renderCell: (cellValues) => {
             const value = cellValues.value;
             const bgcolor = getColorBasedOnStatus(value);
@@ -32,12 +94,18 @@ const columns = [
         }
     },
     {
-        field: 'triggersHistory', headerName: 'Triggers history (Last 6 months)', sortable: false, width: 234,
+        field: 'triggersHistory', headerName: 'Triggers history (Last 6 months)', sortable: false, width: 230,
         renderCell: (cellValues) => {
             const value = cellValues.row.currentStatus === "Resolved" ? 100 : 50;
             return (<Box sx={{ width: "15em" }}>
                 <LinearProgress value={value} />
             </Box>)
+        }
+    },
+    {
+        field: 'Update', headerName: '____', sortable: false, width: 10,
+        renderCell: (_) => {
+            return (<MenuComponent />)
         }
     }
 ];
@@ -52,16 +120,32 @@ const rows = [
 ];
 
 const InstalledAlerts = () => {
+    const [openDialog, setOpenDialog] = React.useState(false);
     return (
-        <Box
-            sx={{ width: "90vw", height: "40vh", paddingLeft: "2rem", paddingRight: "2rem", paddingBottom: "2rem" }}>
-            <Datagrid
-                rows={rows}
-                columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
+        <>
+            <Box
+                sx={{ width: "90vw", height: "44vh", paddingLeft: "2rem", paddingRight: "2rem", paddingBottom: "1rem" }}>
+                <Datagrid
+                    rows={rows}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                />
+            </Box>
+            <Box sx={{ width: "90vw", paddingLeft: "2rem", paddingRight: "2rem", paddingBottom: "2rem" }}>
+                <Grid container flexDirection='row-reverse'>
+                    <Grid item>
+                        <Button variant="contained" size="medium" onClick={()=>setOpenDialog(true)}>{"ADD"}</Button>
+                    </Grid>
+                </Grid>
+            </Box>
+            <Dialog
+                open={openDialog}
+                handleClose={() => setOpenDialog(false)}
+                title={"Alerts Installed"}
+                content={<></>}
             />
-        </Box>
+        </>
     )
 }
 
