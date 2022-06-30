@@ -5,8 +5,9 @@ import SensorChart from './SensorChart';
 import LinearProgress from '../../../components/feedback/progress/linearProgress/LinearProgress';
 
 const Sensor = (props) => {
-    const { sensor } = props;
+    const { sensor, deviceRecId, sensorRecId } = props;
     const [openDialog, setOpenDialog] = useState(false);
+
     return (<>
         <Grid container
             direction="row"
@@ -22,10 +23,12 @@ const Sensor = (props) => {
             </Grid>
         </Grid>
         <Dialog
+            height={500}
+            width={1200}
             open={openDialog}
             handleClose={() => setOpenDialog(false)}
             title="Sensor Information"
-            content={<SensorChart />} />
+            content={<SensorChart deviceRecId={deviceRecId} sensorRecId={sensorRecId} />} />
     </>
     )
 }

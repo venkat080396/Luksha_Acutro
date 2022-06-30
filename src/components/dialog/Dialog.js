@@ -4,12 +4,14 @@ import { DialogTitle, DialogContent } from '@mui/material';
 import bgImage from "../../assets/images/Background.png"
 
 const Dialog = (props) => {
-    const { open, handleClose, title, content, top, left } = props
+    const { open, handleClose, title, content, top, left, height, width } = props
 
     return (
         <MuiDialog
             open={open}
             onClose={handleClose}
+            fullwidth={true}
+            maxWidth="1200px"
             PaperProps={{
                 style: {
                     position: "fixed",
@@ -19,7 +21,9 @@ const Dialog = (props) => {
                     fontWeight: "bold",
                     backgroundImage: `url(${bgImage})`,
                     top: top,
-                    left: left
+                    left: left,
+                    height: height,
+                    width: width
                 },
             }}>
             <DialogTitle>{title}</DialogTitle>

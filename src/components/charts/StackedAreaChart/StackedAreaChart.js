@@ -1,8 +1,8 @@
 import React from 'react';
-import { XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart, Area, CartesianGrid } from 'recharts';
+import { XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 
 const StackedAreaChart = (props) => {
-    const { data, xAxisKey, areaKey1, areaKey2, aspect } = props
+    const { data, xAxisValues, areaKey1, areaKey2, aspect, width, height } = props
     return (
         <ResponsiveContainer aspect={aspect}>
             {/* <LineChart
@@ -22,7 +22,7 @@ const StackedAreaChart = (props) => {
                 <Line type="monotone" dataKey={areaKey1} stroke="#FF0000" />
                 <Line type="monotone" dataKey={areaKey2} stroke="#4e91fd" />
             </LineChart> */}
-            <AreaChart width={500} height={300} data={data}
+            <AreaChart width={width} height={height} data={data}
                 margin={{
                     top: 5,
                     right: 30,
@@ -38,7 +38,7 @@ const StackedAreaChart = (props) => {
                         <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                     </linearGradient>
                 </defs>
-                <XAxis dataKey={xAxisKey} />
+                <XAxis />
                 <YAxis />
                 {/* <CartesianGrid strokeDasharray="3 3" /> */}
                 <Tooltip />
