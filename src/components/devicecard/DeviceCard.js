@@ -12,7 +12,7 @@ const DeviceCard = (props) => {
     return (
         <Grid item sm={12} md={12} lg={12} xl={12}>
             <Card
-                sx={{ margin: 1, padding: 1, position: "relative",marginRight:2,marginLeft:2 }}
+                sx={{ margin: 1, padding: 1, position: "relative", marginRight: 2, marginLeft: 2 }}
                 content={
                     <>
                         <div
@@ -30,10 +30,10 @@ const DeviceCard = (props) => {
                             <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                 <Grid container>
                                     <Grid item sm={12} md={12} lg={12} xl={12}>
-                                        <IconLabel label="Site 1234" />
+                                        <IconLabel label="Site 1" />
                                     </Grid>
                                     <Grid item sm={12} md={12} lg={12} xl={12}>
-                                        <IconLabel label="Device 1234" />
+                                        <IconLabel label={props.name} />
                                     </Grid>
                                 </Grid>
                             </Grid>

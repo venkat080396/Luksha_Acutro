@@ -85,7 +85,7 @@ const ComfortChart = (props) => {
 
     useEffect(() => {
         dispatch(fetchAsyncDeviceReadingsForFilter(readingsFilter));
-    }, []);
+    }, [deviceRecId, sensorRecId, fromDate, toDate]);
 
     return (<>
         {/* <Grid container

@@ -43,27 +43,34 @@ const Home = () => {
                     )}
                 </Grid>
             </Grid>
-            {dashboardSettings && dashboardSettings.some(settings => settings.name === "HVAC Efficiency") && (
-                <Grid item xs={12}>
-                    <Card
-                        headerContent={<Label sx={{ marginLeft: 4 }} label="HVAC Device List" />}
-                        sx={{ width: "55vw", height: "50vh" }}
-                        content={<HVACDeviceList chartSx={{ width: "15vw", height: "37vh" }} />} />
-                </Grid>
-            )}
-            <Grid item xs={12} sm={6} md={5} lg={5}>
-                <Card
-                    headerContent={
-                        <Grid container>
-                            <Grid xs={12} sm={12} md={12} lg={12}>
-                                <Label style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }} sx={{ marginLeft: 4 }} label="Active Alerts" />
-                            </Grid>
-                            <Grid xs={12} sm={12} md={12} lg={12}>
-                                <Label style={{ fontSize: 12, fontWeight: '400', color: 'rgba(255, 255, 255, 0.74)' }} sx={{ marginLeft: 4 }} label="An Overview of the alerts currently active" />
-                            </Grid>
+            <Grid item xs={12}>
+                <Grid container
+                    direction="row"
+                    spacing={3}>
+                    {dashboardSettings && dashboardSettings.some(settings => settings.name === "HVAC Efficiency") && (
+                        <Grid item>
+                            <Card
+                                headerContent={<Label sx={{ marginLeft: 4 }} label="HVAC Device List" />}
+                                sx={{ width: "55vw", height: "50vh" }}
+                                content={<HVACDeviceList chartSx={{ width: "15vw", height: "37vh" }} />} />
                         </Grid>
-                    }
-                    content={<ActiveAlerts />} />
+                    )}
+                    <Grid item>
+                        <Card
+                            sx={{ width: "35vw", height: "50vh" }}
+                            headerContent={
+                                <Grid container>
+                                    <Grid xs={12} sm={12} md={12} lg={12}>
+                                        <Label style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }} sx={{ marginLeft: 4 }} label="Active Alerts" />
+                                    </Grid>
+                                    <Grid xs={12} sm={12} md={12} lg={12}>
+                                        <Label style={{ fontSize: 12, fontWeight: '400', color: 'rgba(255, 255, 255, 0.74)' }} sx={{ marginLeft: 4 }} label="An Overview of the alerts currently active" />
+                                    </Grid>
+                                </Grid>
+                            }
+                            content={<ActiveAlerts />} />
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
     )
