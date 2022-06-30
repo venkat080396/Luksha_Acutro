@@ -10,7 +10,8 @@ import { fetchAsyncAllDeviceTypes, getAllDeviceTypes, saveAsyncDevice } from "..
 const CreateDevice = (props) => {
 
     const { handleClose, handleCreate, x, y, device } = props
-    const [selectedDeviceTypeId, setSelectedDeviceTypeId] = useState('')
+    const [selectedDeviceTypeId, setSelectedDeviceTypeId] = useState('');
+    const [selectedDeviceType, setSelectedDeviceType] = useState('');
     const [deviceName, setDeviceName] = useState('')
 
     const dispatch = useDispatch();
@@ -50,7 +51,10 @@ const CreateDevice = (props) => {
                     width: "15em",
                     height: 30,
                     color: "black"
-                }} value={selectedDeviceTypeId} onSelectChange={(value) => setSelectedDeviceTypeId(value.RecId)} items={deviceTypes} />
+                }} value={selectedDeviceType} onSelectChange={(value) => {
+                    setSelectedDeviceTypeId(value.RecId);
+                    setSelectedDeviceType(value);
+                }} items={deviceTypes} />
             </Grid>
             <Grid item xs={4}>
                 Device Name

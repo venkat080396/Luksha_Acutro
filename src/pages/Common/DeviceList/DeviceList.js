@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, styled } from '@mui/material';
+import { styled } from '@mui/material';
 import DeviceCard from './DeviceCard';
 
 const StyledGrid = styled("Grid")({
