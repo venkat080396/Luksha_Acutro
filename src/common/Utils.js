@@ -51,3 +51,9 @@ export const getColorBasedOnStatus = (status) => {
 
     }
 }
+
+export const getRandomValuesWithinRange = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min);
+}
