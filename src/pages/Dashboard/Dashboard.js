@@ -17,6 +17,7 @@ import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
 import FloorView from "../BuildingData/FloorView/Container";
 import BuildingData from "../BuildingData/BuildingData";
 import DistributionList from "../Alerts/Distribution List/DistributionList";
+import DataList from "../Alerts/DataList/DataList";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -94,6 +95,8 @@ const Dashboard = (props) => {
                 return <BuildingData />
             case "Distribution List":
                 return <DistributionList />
+            case "DataList":
+                return <DataList />
             default:
                 return <></>
         }
