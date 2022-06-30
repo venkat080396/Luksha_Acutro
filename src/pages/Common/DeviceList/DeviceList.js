@@ -1,15 +1,13 @@
 import React from 'react'
-import Card from '../../../components/layout/Card/Card'
-import { Grid, styled, Box } from '@mui/material';
-import Device from '../DeviceList/Device'
-import HVACChart from '../../Reports/HVACEfficiency/HVACChart/HVACChart';
+import { styled } from '@mui/material';
+import DeviceCard from './DeviceCard';
 
 const StyledGrid = styled("Grid")({
     overflowY: 'auto',
     overflowX: "hidden",
     width: '88vw',
     float: 'left',
-    height: '45vh',
+    height: '65vh',
     position: 'relative',
     scrollBehavior: "smooth",
     '&::-webkit-scrollbar': {
@@ -27,7 +25,7 @@ const StyledGrid = styled("Grid")({
 });
 
 const DeviceList = (props) => {
-    const { devices, deviceSx } = props;
+    const { devices, deviceSx, isActiveDevice } = props;
 
     return (
         <>
@@ -37,13 +35,8 @@ const DeviceList = (props) => {
                     justifyContent="center"
                     alignItems="center">
                     {devices.map((device) => (
-                        <Grid item sx={{ marginTop: "1em" }}>
-                            <Card key={device} sx={{ marginLeft: 5, borderRadius: "0.5em", ...deviceSx }} content={<Device device={device} />} />
-                        </Grid>
+                        <DeviceCard device={device} deviceSx={deviceSx} isActiveDevice={isActiveDevice} />
                     ))}
-                    <Box mt={4}>
-                        <HVACChart />
-                    </Box>
                 </StyledGrid>
             )}
         </>

@@ -7,7 +7,7 @@ const ActiveDevices = () => {
     const devices = useSelector(getAllDevices);
 
     return (
-        <DeviceList sx={{ width: "20vw" }} devices={devices} />
+        <DeviceList isActiveDevice="true" deviceSx={{ width: "85vw" }} devices={devices} />
     )
 }
 
