@@ -113,7 +113,7 @@ const rows = [
         RecId: 1,
         Name: "Grassmere",
         description: "Microsoft Team",
-        type: "Assert",
+        type: "Asset",
         event: "Message Received",
         lasttrigger: "06/29/2022 6:41 PM",
     },
@@ -121,7 +121,7 @@ const rows = [
         RecId: 2,
         Name: "Grassmere",
         description: "Microsoft Team",
-        type: "Assert",
+        type: "Asset",
         event: "Message Received",
         lasttrigger: "06/29/2022 6:41 PM",
     },
@@ -170,7 +170,7 @@ export default function Automations() {
                             <Dialog
                                 open={openDialog}
                                 handleClose={() => setOpenDialog(false)}
-                                title={"What Type of Automation would you like to create?"}
+                                title={"What type of Automation would you like to create?"}
                                 content={
                                     <>
                                         <Box width={600}>
@@ -185,12 +185,12 @@ export default function Automations() {
                                                                 }}
                                                                 variant="h6"
                                                             >
-                                                                Assert
+                                                                Asset
                                                             </Typography>
                                                         }
                                                         subheader={
                                                             <Typography sx={{ color: "white" }} variant="body2">
-                                                                Create Automation that allow you to report to events that apply to assert
+                                                                Create Automation that allow you to report to events that apply to asset
                                                             </Typography>
                                                         }
                                                         action={

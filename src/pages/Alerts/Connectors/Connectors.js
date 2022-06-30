@@ -181,8 +181,8 @@ export default function Connectors() {
                                     <>
                                         <Box maxWidth={400}>
                                             <Grid container spacing={2}>
-                                                {[{ title: 'Azur Event Hub', subtitle: '  Use this Connect to send messages' },
-                                                { title: 'Azur Service Bus', subtitle: '  Use this Connect to send messages' },
+                                                {[{ title: 'Azure Event Hub', subtitle: '  Use this Connect to send messages' },
+                                                { title: 'Azure Service Bus', subtitle: '  Use this Connect to send messages' },
                                                 { title: 'Email List', subtitle: '  Use this Connect to send messages' },
                                                 { title: 'Microsoft Team', subtitle: '  Use this Connect to send messages' },
                                                 { title: 'Service Now', subtitle: '  Use this Connect to send messages' },

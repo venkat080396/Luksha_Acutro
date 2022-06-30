@@ -44,7 +44,7 @@ const ImageCard = ({ data }) => {
                         <Colum img={Locate} des={data?.SiteName}></Colum>
                         <Colum icon={<BuildingsIcon height="2.5em" width="2.5em" />} des={data?.Name}></Colum>
                         <Colum img={Building_Location} des={data?.Name}></Colum>
-                        <Colum img={Arrow} des={`${data?.SquareMeters} sp ft`}></Colum>
+                        <Colum img={Arrow} des={`${data?.SquareMeters} sq ft`}></Colum>
                     </Row>
                 )}
             </CardBody>
