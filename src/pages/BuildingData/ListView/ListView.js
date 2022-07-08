@@ -7,6 +7,7 @@ import DeviceList from './DeviceList/DeviceList'
 import Label from '../../../components/forms/Label/Label'
 import { getSelectedFloor, getSelectedBuilding } from '../../../features/Home/homeSlice';
 import { fetchAsyncAllDeviceTypes, fetchAsyncDevicesWithStatus } from "../../../features/BuildingData/buildingDataSlice";
+import { LISTVIEW } from '../constants'
 
 const ListView = () => {
     const dispatch = useDispatch();
@@ -19,7 +20,14 @@ const ListView = () => {
         setAssetListLabel(deviceType ? ` / ${deviceType.Name}` : null)
         setDeviceListLabel(deviceType ? ` / ${deviceType.Name}` : null)
         dispatch(fetchAsyncAllDeviceTypes(deviceType ? deviceType.RecId : null))
-        const requestDetails = { siteRecId: 1, buildingRecId: selectedBuilding?.RecId, floorRecId: selectedFloor?.RecId, deviceTypeRecId: deviceType ? deviceType.RecId : null }
+
+        const requestDetails = {
+            siteRecId: 1,
+            buildingRecId: selectedBuilding?.RecId,
+            floorRecId: selectedFloor?.RecId,
+            deviceTypeRecId: deviceType ? deviceType.RecId : null
+        }
+
         dispatch(fetchAsyncDevicesWithStatus(requestDetails))
     }
 
@@ -36,13 +44,15 @@ const ListView = () => {
                             {label}
                         </Grid>
                         <Grid item sx={{ fontSize: 12 }}>
-                            {label === "Asset List" ? assetListLabel : deviceListLabel}
+                            {label === LISTVIEW.ASSET_LIST.HEADER ? assetListLabel : deviceListLabel}
                         </Grid>
                     </Grid>
                 </Grid>
-                {label === "Asset List" && (
-                    <Grid item sx={{ textDecoration: "underline", fontSize: 9, cursor: "pointer" }} onClick={() => onDeviceTypeClick(null)}>
-                        {"< Back to Main List"}
+                {label === LISTVIEW.ASSET_LIST.HEADER && (
+                    <Grid item
+                        sx={{ textDecoration: "underline", fontSize: 9, cursor: "pointer" }}
+                        onClick={() => onDeviceTypeClick(null)}>
+                        {LISTVIEW.ASSET_LIST.BACK_TO_MAIN_LIST}
                     </Grid>)
                 }
             </Grid>)
@@ -55,13 +65,13 @@ const ListView = () => {
             sx={{ marginTop: "2em" }}>
             <Grid item>
                 <Card
-                    headerContent={<GetHeader label="Asset List" />}
+                    headerContent={<GetHeader label={LISTVIEW.ASSET_LIST.HEADER} />}
                     sx={{ width: "17vw", height: "76vh", marginTop: "-2em" }}
                     content={<AssetList handleClick={onDeviceTypeClick} />} />
             </Grid>
             <Grid item>
                 <Card
-                    headerContent={<GetHeader label="Device List" />}
+                    headerContent={<GetHeader label={LISTVIEW.DEVICE_LIST.HEADER} />}
                     sx={{ width: "65vw", height: "76vh", marginTop: "-2em" }}
                     content={<DeviceList />} />
             </Grid>

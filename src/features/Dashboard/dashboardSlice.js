@@ -1,46 +1,51 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { LEFT_DRAWER_ITEMS } from '../../pages/Dashboard/constants'
+import { COMFORT, HVAC_EFFICIENCY, UTILITIES } from '../../pages/Reports/constants'
 
 const getLeftDrawerItems = () => {
     var json = {
         list: [
             {
                 id: 1,
-                name: "Home"
+                name: LEFT_DRAWER_ITEMS.HOME
             },
             {
                 id: 2,
-                name: "Alerts",
-                items: [{ id: 12, name: "Distribution List" }, { id: 13, name: "Connectors" }, { id: 14, name: "Automations" }]
+                name: LEFT_DRAWER_ITEMS.ALERTS,
+                items: [
+                    { id: 12, name: LEFT_DRAWER_ITEMS.DISTRIBUTION_LIST },
+                    { id: 13, name: LEFT_DRAWER_ITEMS.CONNECTORS },
+                    { id: 14, name: LEFT_DRAWER_ITEMS.AUTOMATIONS }]
             },
             {
                 id: 3,
-                name: "Building Data",
+                name: LEFT_DRAWER_ITEMS.BUILDING_DATA,
                 items: [
                     {
                         id: 11,
-                        name: "Floor View"
+                        name: LEFT_DRAWER_ITEMS.FLOOR_VIEW
                     }
                 ]
             },
             {
                 id: 4,
-                name: "Reports",
+                name: LEFT_DRAWER_ITEMS.REPORTS,
                 items: [
                     {
                         id: 7,
-                        name: "Utilities/Consumption"
+                        name: LEFT_DRAWER_ITEMS.UTILITIES
                     },
                     {
                         id: 8,
-                        name: "HVAC Efficiency"
+                        name: LEFT_DRAWER_ITEMS.HVAC_EFFICIENCY
                     },
                     {
                         id: 9,
-                        name: "Comfort"
+                        name: LEFT_DRAWER_ITEMS.COMFORT
                     },
                     {
                         id: 10,
-                        name: "Exports"
+                        name: LEFT_DRAWER_ITEMS.EXPORTS
                     }
                 ]
             }
@@ -59,7 +64,10 @@ const getLeftDrawerItems = () => {
 
 const initialState = {
     leftDrawerItems: null,
-    dashboardSettings: [{ id: 1, name: "Energy Reports" }, { id: 2, name: "Comfort" }, { id: 3, name: "HVAC Efficiency" }]
+    dashboardSettings: [
+        { id: 1, name: UTILITIES.ENERGY_REPORTS.HEADER },
+        { id: 2, name: COMFORT.VALUE },
+        { id: 3, name: HVAC_EFFICIENCY.VALUE }]
 };
 
 export const fetchAsyncLeftDrawerItems = createAsyncThunk(

@@ -7,7 +7,9 @@ const DeviceList = () => {
     const devices = useSelector(getAllDevicesWithStatus);
 
     return (
-        <CommonDeviceList deviceSx={{ width: "58vw" }} devices={devices} />
+        <CommonDeviceList
+            deviceSx={{ width: "58vw" }}
+            devices={devices} />
     )
 }
 

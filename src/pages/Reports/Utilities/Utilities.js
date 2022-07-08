@@ -7,6 +7,7 @@ import Card from '../../../components/layout/Card/Card'
 import Label from "../../../components/forms/Label/Label"
 import { fetchAsyncDevices, fetchAsyncEnergyConsumptionSummary } from '../../../features/Utilities/utilitiesSlice'
 import { getSelectedBuilding, getSelectedFloor, getFromDate, getToDate } from '../../../features/Home/homeSlice'
+import { UTILITIES } from '../constants'
 
 const Utilities = () => {
     const dispatch = useDispatch();
@@ -30,14 +31,14 @@ const Utilities = () => {
             <Grid item>
                 <Card
                     headerContent={<Label sx={{ marginLeft: 4 }}
-                        label="Energy Reports" />}
+                        label={UTILITIES.ENERGY_REPORTS.HEADER} />}
                     sx={{ width: "90vw", height: "70vh" }}
                     content={<EnergyReports sx={{ width: "27vw", height: "55vh" }} estimationSx={{ marginTop: 3 }} />} />
             </Grid>
             <Grid item>
                 <Card
                     headerContent={<Label sx={{ marginLeft: 4 }}
-                        label="Active Devices" />}
+                        label={UTILITIES.ACTIVE_DEVICES.HEADER} />}
                     sx={{ width: "90vw", height: "50vh" }}
                     content={<ActiveDevices />} />
             </Grid>

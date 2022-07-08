@@ -35,7 +35,10 @@ const DeviceList = (props) => {
                     justifyContent="center"
                     alignItems="center">
                     {devices.map((device) => (
-                        <DeviceCard device={device} deviceSx={deviceSx} isActiveDevice={isActiveDevice} />
+                        <DeviceCard
+                            device={device}
+                            deviceSx={deviceSx}
+                            isActiveDevice={isActiveDevice} />
                     ))}
                 </StyledGrid>
             )}

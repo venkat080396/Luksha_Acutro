@@ -5,7 +5,7 @@ import Date from "../../../../components/forms/Date/Date"
 import Button from "../../../../components/forms/Button/Button"
 import { exportData } from "../../../../features/Exports/exportsSlice"
 import { getSelectedBuilding, getSelectedFloor } from '../../../../features/Home/homeSlice'
-
+import { EXPORTS } from '../../constants.js'
 
 const MajorPlantSummary = () => {
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const MajorPlantSummary = () => {
             sx={{ marginLeft: 4, marginTop: 5 }}
         >
             <Grid item>
-                Generate a summary report of Major Plant Devices for the selected period:
+                {EXPORTS.MAJOR_PLANT_SUMMARY.DESCRIPTION}
             </Grid>
             <Grid item>
                 <Grid container
@@ -38,7 +38,7 @@ const MajorPlantSummary = () => {
                         <Date value={toDate} onDateChange={value => setToDate(value)} />
                     </Grid>
                     <Grid item>
-                        <Button value="Generate" onClick={onGenerate} />
+                        <Button value={EXPORTS.BUTTONS.GENERATE} onClick={onGenerate} />
                     </Grid>
                 </Grid>
             </Grid>

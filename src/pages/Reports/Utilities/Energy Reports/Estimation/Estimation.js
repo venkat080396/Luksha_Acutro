@@ -1,6 +1,7 @@
 import { Grid, styled } from '@mui/material'
 import React from 'react'
 import CurrencyPoundIcon from '@mui/icons-material/CurrencyPound';
+import { UTILITIES, COMMON } from '../../../constants'
 
 const GridItemHeader = styled('Grid')({
     color: '#999999',
@@ -47,19 +48,19 @@ const Estimation = (props) => {
                             direction="column"
                             alignItems="center">
                             <GridItemHeader item>
-                                Weekdays
+                                {UTILITIES.ENERGY_REPORTS.ESTIMATION.WEEKDAYS}
                             </GridItemHeader>
                             <RedGridItemContent item>
                                 <Grid container
                                     direction="row"
                                     alignItems="flex-start">
-                                    <Grid item>{title && title === "Estimated Cost" && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
+                                    <Grid item>{title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_COST && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
                                     <Grid item>{weekdaysContent}</Grid>
                                 </Grid>
                             </RedGridItemContent>
-                            {title && title === "Estimated Usage" && (
+                            {title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_USAGE && (
                                 <RedGridItemSubContent item>
-                                    {type && type === "Water" ? "Ltrs" : "KWh"}
+                                    {type && type === UTILITIES.ENERGY_REPORTS.WATER ? COMMON.UNITS.LITRES : COMMON.UNITS.KILOWATT_HOUR}
                                 </RedGridItemSubContent>)
                             }
                         </Grid>
@@ -69,19 +70,19 @@ const Estimation = (props) => {
                             direction="column"
                             alignItems="center">
                             <GridItemHeader item>
-                                Weekend
+                                {UTILITIES.ENERGY_REPORTS.ESTIMATION.WEEKEND}
                             </GridItemHeader>
                             <GreenGridItemContent item>
                                 <Grid container
                                     direction="row"
                                     alignItems="flex-start">
-                                    <Grid item>{title && title === "Estimated Cost" && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
+                                    <Grid item>{title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_COST && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
                                     <Grid item>{weekendContent}</Grid>
                                 </Grid>
                             </GreenGridItemContent>
-                            {title && title === "Estimated Usage" && (
+                            {title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_USAGE && (
                                 <GreenGridItemSubContent item>
-                                    {type && type === "Water" ? "Ltrs" : "KWh"}
+                                    {type && type === UTILITIES.ENERGY_REPORTS.WATER ? COMMON.UNITS.LITRES : COMMON.UNITS.KILOWATT_HOUR}
                                 </GreenGridItemSubContent>)
                             }
                         </Grid>

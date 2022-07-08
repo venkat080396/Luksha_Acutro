@@ -16,6 +16,7 @@ import IconLabel from "../../../components/forms/IconLabel/IconLabel"
 import Dialog from "../../../components/dialog/Dialog";
 import Settings from '../Settings/Settings';
 import { Box } from '@mui/material';
+import { RIGHT_DRAWER_ITEMS } from '../constants'
 
 const theme = createTheme({
     palette: {
@@ -49,7 +50,7 @@ const DrawerRight = (props) => {
     }
 
     const onDateChange = (value, label) => {
-        if (label === "From") {
+        if (label === RIGHT_DRAWER_ITEMS.FROM_DATE) {
             dispatch(setFromDate(value))
         }
         else {
@@ -85,15 +86,34 @@ const DrawerRight = (props) => {
                 open={openRight}
             >
                 <Box marginTop={10}></Box>
-                <IconLabel sx={{ marginLeft: 3 }} icon={<FilterIcon height="2.5em" width="2.5em" />} label="FILTER" />
-                <SelectBox value={selectedBuilding} onSelectChange={onBuildingChange} label="Building" icon={<BuildingsIcon height="2.5em" width="2.5em" />} items={buildings} />
-                <SelectBox value={selectedFloor} onSelectChange={onFloorChange} label="Floor" icon={<FloorIcon height="2.5em" width="2.5em" />} items={floors} />
-                <DateBox value={{ "fromDate": fromDate, "toDate": toDate }} onDateChange={(value, label) => onDateChange(value, label)} />
-                <IconLabel sx={{ marginLeft: 3, marginTop: 4, cursor: "pointer" }} icon={<SettingsIcon height="2.5em" width="2.5em" />} label="Dashboard Settings" onClick={HandleSettingsClick} />
+                <IconLabel
+                    sx={{ marginLeft: 3 }}
+                    icon={<FilterIcon height="2.5em" width="2.5em" />}
+                    label={RIGHT_DRAWER_ITEMS.FILTER} />
+                <SelectBox
+                    value={selectedBuilding}
+                    onSelectChange={onBuildingChange}
+                    label={RIGHT_DRAWER_ITEMS.BUILDING}
+                    icon={<BuildingsIcon height="2.5em" width="2.5em" />}
+                    items={buildings} />
+                <SelectBox
+                    value={selectedFloor}
+                    onSelectChange={onFloorChange}
+                    label={RIGHT_DRAWER_ITEMS.FLOOR}
+                    icon={<FloorIcon height="2.5em" width="2.5em" />}
+                    items={floors} />
+                <DateBox
+                    value={{ "fromDate": fromDate, "toDate": toDate }}
+                    onDateChange={(value, label) => onDateChange(value, label)} />
+                <IconLabel
+                    sx={{ marginLeft: 3, marginTop: 4, cursor: "pointer" }}
+                    icon={<SettingsIcon height="2.5em" width="2.5em" />}
+                    label={RIGHT_DRAWER_ITEMS.DASHBOARD_SETTINGS}
+                    onClick={HandleSettingsClick} />
                 <Dialog
                     open={openSettings}
                     handleClose={() => setOpenSettings(false)}
-                    title={"Dashboard Settings"}
+                    title={RIGHT_DRAWER_ITEMS.DASHBOARD_SETTINGS}
                     content={<Settings
                         handleClose={() => setOpenSettings(false)}
                         handleSubmit={handleSettingsSubmit}

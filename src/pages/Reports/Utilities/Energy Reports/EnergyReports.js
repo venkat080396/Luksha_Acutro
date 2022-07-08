@@ -8,17 +8,18 @@ import { ReactComponent as ElectricityIcon } from "../../../../assets/icons/Elec
 import { ReactComponent as WaterIcon } from "../../../../assets/icons/Water.svg"
 import { ReactComponent as GasIcon } from "../../../../assets/icons/Gas.svg"
 import { getEnergyConsumptionSummary } from '../../../../features/Utilities/utilitiesSlice'
+import { UTILITIES } from '../../constants'
 
 const EnergyReports = (props) => {
     const { sx, estimationSx } = props;
-    const electricityIconLabel = <IconLabel icon={<ElectricityIcon height="2.5em" width="2.5em" />} label="Electricity" />
-    const waterIconLabel = <IconLabel icon={<WaterIcon height="2.5em" width="2.5em" />} label="Water" />
-    const gasIconLabel = <IconLabel icon={<GasIcon height="2.5em" width="2.5em" />} label="Gas" />
+    const electricityIconLabel = <IconLabel icon={<ElectricityIcon height="2.5em" width="2.5em" />} label={UTILITIES.ENERGY_REPORTS.ELECTRICITY} />
+    const waterIconLabel = <IconLabel icon={<WaterIcon height="2.5em" width="2.5em" />} label={UTILITIES.ENERGY_REPORTS.WATER} />
+    const gasIconLabel = <IconLabel icon={<GasIcon height="2.5em" width="2.5em" />} label={UTILITIES.ENERGY_REPORTS.GAS} />
     const energyConsumptionSummary = useSelector(getEnergyConsumptionSummary);
 
-    const electricityData = energyConsumptionSummary.filter((data) => data.EnergyType === "Electricity")
-    const waterData = energyConsumptionSummary.filter((data) => data.EnergyType === "Water")
-    const gasData = energyConsumptionSummary.filter((data) => data.EnergyType === "Gas")
+    const electricityData = energyConsumptionSummary.filter((data) => data.EnergyType === UTILITIES.ENERGY_REPORTS.ELECTRICITY)
+    const waterData = energyConsumptionSummary.filter((data) => data.EnergyType === UTILITIES.ENERGY_REPORTS.WATER)
+    const gasData = energyConsumptionSummary.filter((data) => data.EnergyType === UTILITIES.ENERGY_REPORTS.GAS)
 
     return (
         <Grid container direction="row" justifyContent="center" alignItems="center" spacing={4}>
@@ -26,21 +27,21 @@ const EnergyReports = (props) => {
                 <Card
                     headerContent={electricityIconLabel}
                     sx={sx}
-                    content={<EstimationContainer sx={estimationSx} type="Electricity"
+                    content={<EstimationContainer sx={estimationSx} type={UTILITIES.ENERGY_REPORTS.ELECTRICITY}
                         data={electricityData} />} />
             </Grid>
             <Grid item>
                 <Card
                     headerContent={waterIconLabel}
                     sx={sx}
-                    content={<EstimationContainer sx={estimationSx} type="Water" />}
+                    content={<EstimationContainer sx={estimationSx} type={UTILITIES.ENERGY_REPORTS.WATER} />}
                     data={waterData} />
             </Grid>
             <Grid item>
                 <Card
                     headerContent={gasIconLabel}
                     sx={sx}
-                    content={<EstimationContainer sx={estimationSx} type="Gas" />}
+                    content={<EstimationContainer sx={estimationSx} type={UTILITIES.ENERGY_REPORTS.GAS} />}
                     data={gasData} />
             </Grid>
         </Grid>
