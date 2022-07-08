@@ -3,6 +3,7 @@ import React from 'react'
 import UserCard from '../UserCard/UserCard'
 import { useNavigate } from "react-router-dom";
 import { logout } from '../../../../features/Login/loginSlice'
+import { APPBAR } from '../../constants'
 
 const UserCardDialog = (props) => {
     const navigate = useNavigate();
@@ -16,7 +17,7 @@ const UserCardDialog = (props) => {
         <Stack spacing={5}>
             <UserCard {...props} />
             <Button variant="contained" color="error" onClick={handleLogout}>
-                Logout
+                {APPBAR.BUTTONS.LOGOUT}
             </Button>
         </Stack>
     )

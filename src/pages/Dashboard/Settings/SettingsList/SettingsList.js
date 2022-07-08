@@ -4,6 +4,8 @@ import { styled } from '@mui/system';
 import { setDashboardSettings, getDashboardSettings } from "../../../../features/Dashboard/dashboardSlice";
 import { useDispatch, useSelector } from "react-redux";
 import CheckboxLabelList from '../../../../components/forms/Checkbox/CheckboxLabelList/CheckboxLabelList';
+import { COMFORT, HVAC_EFFICIENCY, UTILITIES } from '../../../Reports/constants'
+import { SETTINGS } from '../../constants'
 
 const SettingsList = () => {
     const dispatch = useDispatch();
@@ -14,10 +16,13 @@ const SettingsList = () => {
         border: "0.05em solid rgba(255,255,255,0.3)",
         background: "rgba(255,255,255,0.1)",
         color: "white",
-        fontWeight: "bold"
+        marginTop: "0.5em"
     });
 
-    const reports = [{ id: 1, name: "Energy Reports" }, { id: 2, name: "Comfort" }, { id: 3, name: "HVAC Efficiency" }];
+    const reports = [
+        { id: 1, name: UTILITIES.ENERGY_REPORTS.HEADER },
+        { id: 2, name: COMFORT.VALUE },
+        { id: 3, name: HVAC_EFFICIENCY.VALUE }];
 
     const UpdateDashboardSettings = (value) => {
         dispatch(setDashboardSettings(value))
@@ -26,21 +31,17 @@ const SettingsList = () => {
     return (
         <StyledGrid container
             direction="column"
-            alignItems="center"
-            spacing={3} sx={{ paddingTop: "1em" }}>
+            spacing={2}
+            sx={{ width: "12em", marginLeft: "1px" }}>
             <Grid item>
                 <Grid container
-                    direction="column"
                     alignItems="center">
-                    <Grid item xs={8} sx={{ fontSize: 12 }}>
-                        Choose which tiles you see
-                    </Grid>
-                    <Grid item xs={6} sx={{ fontSize: 12 }}>
-                        on your dashboard.
+                    <Grid item sx={{ fontSize: 12 }}>
+                        {SETTINGS.DESCRIPTION}
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item sx={{ marginLeft: "2em" }}>
+            <Grid item>
                 {<CheckboxLabelList
                     checked={dashboardSettings}
                     setChecked={UpdateDashboardSettings}

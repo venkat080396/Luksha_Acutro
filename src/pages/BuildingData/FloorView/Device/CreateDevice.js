@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { styled } from '@mui/system';
 import { getSelectedFloor } from '../../../../features/Home/homeSlice';
 import { fetchAsyncAllDeviceTypes, getAllDeviceTypes, saveAsyncDevice } from "../../../../features/BuildingData/buildingDataSlice";
+import { FLOORVIEW } from '../../constants'
 
 const CreateDevice = (props) => {
 
@@ -27,7 +28,14 @@ const CreateDevice = (props) => {
     }, [])
 
     const onCreateOrUpdate = async () => {
-        const deviceRecord = { DeviceRecId: (device ? device.RecId : null), FloorRecId: selectedFloor.RecId, DeviceTypeRecId: selectedDeviceTypeId, Name: deviceName, FloorX: x, FloorY: y }
+        const deviceRecord = {
+            DeviceRecId: (device ? device.RecId : null),
+            FloorRecId: selectedFloor.RecId,
+            DeviceTypeRecId: selectedDeviceTypeId,
+            Name: deviceName,
+            FloorX: x,
+            FloorY: y
+        }
         await dispatch(saveAsyncDevice(deviceRecord))
         handleCreate()
         handleClose()
@@ -44,7 +52,7 @@ const CreateDevice = (props) => {
             alignItems="center"
             container>
             <Grid item xs={4}>
-                Device Types
+                {FLOORVIEW.DEVICE_TYPES}
             </Grid>
             <Grid item xs={8}>
                 <Select sx={{
@@ -57,10 +65,16 @@ const CreateDevice = (props) => {
                 }} items={deviceTypes} />
             </Grid>
             <Grid item xs={4}>
-                Device Name
+                {FLOORVIEW.DEVICE_NAME}
             </Grid>
             <Grid item xs={8}>
-                <TextField autoFocus value={deviceName} onChange={(event) => setDeviceName(event.target.value)} name="Device Name" sx={{ width: "15em", color: "black", backgroundColor: "white" }} size="small" />
+                <TextField
+                    autoFocus
+                    value={deviceName}
+                    onChange={(event) => setDeviceName(event.target.value)}
+                    name="Device Name"
+                    sx={{ width: "15em", color: "black", backgroundColor: "white" }}
+                    size="small" />
             </Grid>
             <Grid item xs={11}>
                 <Grid container
@@ -68,10 +82,16 @@ const CreateDevice = (props) => {
                     spacing={3}
                     sx={{ marginLeft: "0.1em" }}>
                     <Grid item>
-                        <Button variant="contained" color="info" onClick={onCreateOrUpdate}>{device ? "Update" : "Create"}</Button>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            onClick={onCreateOrUpdate}>{device ? FLOORVIEW.BUTTONS.UPDATE : FLOORVIEW.BUTTONS.CREATE}</Button>
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" color="error" onClick={handleClose}>Cancel</Button>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            onClick={handleClose}>{FLOORVIEW.BUTTONS.CANCEL}</Button>
                     </Grid>
                 </Grid>
             </Grid>

@@ -12,6 +12,7 @@ import { DEVICE } from '../../../common/Constants';
 import { getPosition, mergeArray } from "../../../common/Utils";
 import Device from "./Device/Device";
 import Save from "../../../components/forms/Button/Save/Save";
+import { FLOORVIEW } from '../constants'
 
 class FloorView extends React.Component {
 
@@ -52,7 +53,12 @@ class FloorView extends React.Component {
     }
 
     getAllDevices() {
-        const requestDetails = { siteRecId: 1, buildingRecId: this.props.selectedBuilding.RecId, floorRecId: this.props.selectedFloor.RecId, deviceTypeRecId: null }
+        const requestDetails = {
+            siteRecId: 1,
+            buildingRecId: this.props.selectedBuilding.RecId,
+            floorRecId: this.props.selectedFloor.RecId,
+            deviceTypeRecId: null
+        }
         this.props.getDevices(requestDetails);
     }
 
@@ -133,7 +139,7 @@ class FloorView extends React.Component {
                     <Dialog
                         open={this.state.openDialog}
                         handleClose={this.onDialogClose}
-                        title={this.state.selectedDevice ? "Update Device" : "Create Device"}
+                        title={this.state.selectedDevice ? FLOORVIEW.UPDATE_DEVICE : FLOORVIEW.CREATE_DEVICE}
                         content={<CreateDevice
                             device={this.state.selectedDevice}
                             handleClose={this.onDialogClose}

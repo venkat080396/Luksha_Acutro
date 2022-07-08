@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Grid } from "@mui/material";
-import Card from '../../../components/layout/Card/Card'
 import SettingsList from './SettingsList/SettingsList';
+import { SETTINGS } from '../constants'
 
 const Settings = (props) => {
     const { handleClose, handleSubmit } = props;
@@ -9,20 +9,20 @@ const Settings = (props) => {
     return (
         <Grid container
             direction="column"
-            alignItems="center">
+            alignItems="center"
+            justifyContent="center">
             <Grid item>
-                <Card
-                    content={<SettingsList />} />
+                <SettingsList />
             </Grid>
             <Grid item>
                 <Grid container
                     spacing={2}
                     sx={{ marginTop: "0.5em" }}>
                     <Grid item>
-                        <Button variant="contained" color="error" onClick={handleClose}>Cancel</Button>
+                        <Button variant="contained" color="error" onClick={handleClose}>{SETTINGS.BUTTONS.CANCEL}</Button>
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" color="info" onClick={handleSubmit}>Submit</Button>
+                        <Button variant="contained" color="info" onClick={handleSubmit}>{SETTINGS.BUTTONS.SUBMIT}</Button>
                     </Grid>
                 </Grid>
             </Grid>

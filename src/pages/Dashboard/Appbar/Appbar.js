@@ -11,13 +11,14 @@ import PersonIcon from "@mui/icons-material/Person";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useSelector, useDispatch } from "react-redux";
-import { getSelectedBuilding, getSelectedFloor } from '../../../features/Home/homeSlice';
+import { getSelectedBuilding, getSelectedFloor, getFromDate, getToDate } from '../../../features/Home/homeSlice';
 import { getUserAttributes, setUserAttributes } from "../../../features/Login/loginSlice"
 import Pool from "../../../UserPool"
 import UserCard from "./UserCard/UserCard";
 import UserCardDialog from "./UserCardDialog/UserCardDialog";
 import Dialog from "../../../components/dialog/Dialog";
 import bgImage from "../../../assets/images/Background.png";
+import { APPBAR } from '../constants'
 
 const drawerWidth = 300;
 
@@ -53,6 +54,8 @@ export default function AppBarComponent({
     const [openUserCard, setOpenUserCard] = useState(false);
     const selectedBuilding = useSelector(getSelectedBuilding);
     const selectedFloor = useSelector(getSelectedFloor);
+    const selectedFromDate = useSelector(getFromDate);
+    const selectedToDate = useSelector(getToDate);
     const userAttributes = useSelector(getUserAttributes);
 
     const fetchUserAttributes = async () => {
@@ -96,11 +99,13 @@ export default function AppBarComponent({
                     </IconButton>
                     <Typography variant="body1" noWrap component="div" sx={{ width: "150em" }}>
                         <Typography variant="h6" fontWeight={"700"} display={"inline"}>
-                            Your Dashboard &nbsp;
+                            {APPBAR.YOUR_DASHBOARD} &nbsp;
                         </Typography>
                         {selectedBuilding && selectedBuilding.Name ? `/ ${selectedBuilding.Name} ` : ""}
                         {selectedFloor && selectedFloor.Name ? `/ ${selectedFloor.Name} /` : ""}
-                        {selectedBuilding && selectedBuilding.Name && selectedFloor && selectedFloor.Name ? "19/07/21 - 21/07/21" : ""}
+                        {selectedBuilding && selectedBuilding.Name
+                            && selectedFloor && selectedFloor.Name
+                            && selectedFromDate && selectedToDate ? `${selectedFromDate} - ${selectedToDate}` : ""}
                     </Typography>
                     {!openRight && (
                         <Grid container

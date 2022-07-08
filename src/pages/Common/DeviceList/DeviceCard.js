@@ -10,7 +10,12 @@ const DeviceCard = (props) => {
     return (
         <>
             <Grid item sx={{ marginTop: "1em" }}>
-                <Card key={device} sx={{ marginLeft: 5, borderRadius: "0.5em", ...deviceSx }} content={<Device isActiveDevice={isActiveDevice} onDeviceClick={() => setShowSensor(!showSensor)} device={device} />} />
+                <Card
+                    key={device}
+                    sx={{ marginLeft: 5, borderRadius: "0.5em", ...deviceSx }}
+                    content={<Device isActiveDevice={isActiveDevice}
+                        onDeviceClick={() => setShowSensor(!showSensor)}
+                        device={device} />} />
             </Grid>
             {(showSensor & !isActiveDevice) ? (
                 <Grid item>

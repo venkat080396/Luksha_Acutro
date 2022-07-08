@@ -10,8 +10,8 @@ import HVACDeviceList from '../Reports/HVACEfficiency/HVACDeviceList/HVACDeviceL
 import ComfortLevels from '../Reports/Comfort/ComfortLevels/ComfortLevels'
 import Header from '../Reports/Comfort/ComfortLevels/Header'
 import { getDashboardSettings } from "../../features/Dashboard/dashboardSlice";
-
 import ActiveAlerts from '../Reports/Utilities/Active Alerts/ActiveAlerts';
+import { UTILITIES, COMFORT, HVAC_EFFICIENCY } from "../Reports/constants"
 
 const Home = () => {
     const building = useSelector(getSelectedBuilding);
@@ -26,19 +26,27 @@ const Home = () => {
                 <Grid container
                     direction="row"
                     spacing={3}>
-                    {dashboardSettings && dashboardSettings.some(settings => settings.name === "Energy Reports") && (
+                    {dashboardSettings && dashboardSettings.some(settings => settings.name === UTILITIES.ENERGY_REPORTS.HEADER) && (
                         <Grid item>
                             <Card
-                                headerContent={<Label sx={{ marginLeft: 4 }} label="Energy Reports" />}
+                                headerContent={<Label sx={{ marginLeft: 4 }} label={UTILITIES.ENERGY_REPORTS.HEADER} />}
                                 sx={{ width: "55vw", height: "50vh" }}
-                                content={<EnergyReports sx={{ width: "15vw", height: "40vh" }} estimationSx={{ marginLeft: "-6.5em" }} />} />
+                                content={<EnergyReports
+                                    sx={{ width: "15vw", height: "40vh" }}
+                                    estimationSx={{ marginLeft: "-6.5em" }} />} />
                         </Grid>
                     )}
-                    {dashboardSettings && dashboardSettings.some(settings => settings.name === "Comfort") && (
+                    {dashboardSettings && dashboardSettings.some(settings => settings.name === COMFORT.VALUE) && (
                         <Grid item>
                             <Card headerContent={<Header spacing={20} />}
                                 sx={{ width: "35vw", height: "50vh" }}
-                                content={<ComfortLevels chartSx={{ width: "30vw", height: "39vh" }} sliderSx={{ width: "30vw", height: "10vh" }} chartWidth={550} chartHeight={500} isSliderVisible={false} aspetRatio="2.1" />} />
+                                content={<ComfortLevels
+                                    chartSx={{ width: "30vw", height: "39vh" }}
+                                    sliderSx={{ width: "30vw", height: "10vh" }}
+                                    chartWidth={550}
+                                    chartHeight={500}
+                                    isSliderVisible={false}
+                                    aspetRatio="2.1" />} />
                         </Grid>
                     )}
                 </Grid>
@@ -47,10 +55,10 @@ const Home = () => {
                 <Grid container
                     direction="row"
                     spacing={3}>
-                    {dashboardSettings && dashboardSettings.some(settings => settings.name === "HVAC Efficiency") && (
+                    {dashboardSettings && dashboardSettings.some(settings => settings.name === HVAC_EFFICIENCY.VALUE) && (
                         <Grid item>
                             <Card
-                                headerContent={<Label sx={{ marginLeft: 4 }} label="HVAC Device List" />}
+                                headerContent={<Label sx={{ marginLeft: 4 }} label={HVAC_EFFICIENCY.HEADER} />}
                                 sx={{ width: "55vw", height: "50vh" }}
                                 content={<HVACDeviceList chartSx={{ width: "15vw", height: "37vh" }} />} />
                         </Grid>
@@ -61,10 +69,16 @@ const Home = () => {
                             headerContent={
                                 <Grid container>
                                     <Grid xs={12} sm={12} md={12} lg={12}>
-                                        <Label style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }} sx={{ marginLeft: 4 }} label="Active Alerts" />
+                                        <Label
+                                            style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }}
+                                            sx={{ marginLeft: 4 }}
+                                            label="Active Alerts" />
                                     </Grid>
                                     <Grid xs={12} sm={12} md={12} lg={12}>
-                                        <Label style={{ fontSize: 12, fontWeight: '400', color: 'rgba(255, 255, 255, 0.74)' }} sx={{ marginLeft: 4 }} label="An Overview of the alerts currently active" />
+                                        <Label
+                                            style={{ fontSize: 12, fontWeight: '400', color: 'rgba(255, 255, 255, 0.74)' }}
+                                            sx={{ marginLeft: 4 }}
+                                            label="An Overview of the alerts currently active" />
                                     </Grid>
                                 </Grid>
                             }

@@ -19,6 +19,7 @@ import BuildingData from "../BuildingData/BuildingData";
 import DistributionList from "../Alerts/Distribution List/DistributionList";
 import Connectors from "../Alerts/Connectors/Connectors";
 import Automations from "../Alerts/Automations/Automations";
+import { LEFT_DRAWER_ITEMS } from './constants'
 
 const DrawerHeader = styled("div")(({ theme }) => ({
     display: "flex",
@@ -78,27 +79,27 @@ const Dashboard = (props) => {
     const populateActivePage = () => {
 
         switch (activePage) {
-            case "Home":
+            case LEFT_DRAWER_ITEMS.HOME:
                 return <Home />
-            case "Alerts":
+            case LEFT_DRAWER_ITEMS.ALERTS:
                 return <Alerts />
-            case "Floor View":
+            case LEFT_DRAWER_ITEMS.FLOOR_VIEW:
                 return <FloorView />
-            case "Utilities/Consumption":
+            case LEFT_DRAWER_ITEMS.UTILITIES:
                 return <Utilities />
-            case "HVAC Efficiency":
+            case LEFT_DRAWER_ITEMS.HVAC_EFFICIENCY:
                 return <HVACEfficiency />
-            case "Comfort":
+            case LEFT_DRAWER_ITEMS.COMFORT:
                 return <Comfort />
-            case "Exports":
+            case LEFT_DRAWER_ITEMS.EXPORTS:
                 return <Exports />
-            case "Building Data":
+            case LEFT_DRAWER_ITEMS.BUILDING_DATA:
                 return <BuildingData />
-            case "Distribution List":
+            case LEFT_DRAWER_ITEMS.DISTRIBUTION_LIST:
                 return <DistributionList />
-            case "Connectors":
+            case LEFT_DRAWER_ITEMS.CONNECTORS:
                 return <Connectors />
-            case "Automations":
+            case LEFT_DRAWER_ITEMS.AUTOMATIONS:
                 return <Automations />
             default:
                 return <></>

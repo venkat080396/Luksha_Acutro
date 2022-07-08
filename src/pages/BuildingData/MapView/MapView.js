@@ -3,6 +3,7 @@ import { Grid, Button } from '@mui/material'
 import Map from '../../../components/map/Map'
 import { useSelector } from "react-redux";
 import { getAllBuildings } from '../../../features/Home/homeSlice';
+import { MAPVIEW } from '../constants'
 
 const MapView = () => {
     const [selectedBuildingOnMap, setSelectedBuildingOnMap] = useState(null);
@@ -26,11 +27,14 @@ const MapView = () => {
                 sx={{ marginLeft: "2em" }}>
                 <Grid item>
                     <Button variant="contained" onClick={onShowLocationsClick}>
-                        Show Locations
+                        {MAPVIEW.SHOW_LOCATIONS}
                     </Button>
                 </Grid>
                 <Grid item sx={{ height: "50vh", width: "85vw" }}>
-                    <Map buildingLocations={buildingLocations} selectedBuildingOnMap={selectedBuildingOnMap} onClick={handleClick} />
+                    <Map
+                        buildingLocations={buildingLocations}
+                        selectedBuildingOnMap={selectedBuildingOnMap}
+                        onClick={handleClick} />
                 </Grid>
             </Grid>
         </>

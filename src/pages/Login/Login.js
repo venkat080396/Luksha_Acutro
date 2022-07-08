@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { isAuthenticated, authenticate } from "../../features/Login/loginSlice"
 import logo from "../../assets/icons/Logo.png"
 import Label from "../../components/forms/Label/Label"
+import { LOGIN } from './constants'
 
 const Login = () => {
     const [userName, setUserName] = useState("");
@@ -48,18 +49,29 @@ const Login = () => {
                         <img height="60" width="60" src={logo} alt="Logo" />
                     </Grid>
                     <Grid item>
-                        <Label label="Acutro" sx={{ fontWeight: "Bold", fontSize: 30 }} />
+                        <Label label={LOGIN.COMPANY_NAME} sx={{ fontWeight: "Bold", fontSize: 30 }} />
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item>
-                <Textfield name="EMAIL" value={userName} iconStart={<PersonOutlineSharpIcon />} onChange={(event) => setUserName(event.target.value)} />
+                <Textfield
+                    name={LOGIN.EMAIL}
+                    value={userName}
+                    iconStart={<PersonOutlineSharpIcon />}
+                    onChange={(event) => setUserName(event.target.value)} />
             </Grid>
             <Grid item>
-                <Textfield name="PASSWORD" type="password" value={password} iconStart={<LockOutlinedIcon />} onChange={(event) => setPassword(event.target.value)} />
+                <Textfield
+                    name={LOGIN.PASSWORD}
+                    type="password"
+                    value={password}
+                    iconStart={<LockOutlinedIcon />}
+                    onChange={(event) => setPassword(event.target.value)} />
             </Grid>
             <Grid item>
-                <Button value="LOGIN" onClick={() => handleLogin()} />
+                <Button
+                    value={LOGIN.BUTTONS.LOGIN}
+                    onClick={() => handleLogin()} />
             </Grid>
         </Grid>
     )
