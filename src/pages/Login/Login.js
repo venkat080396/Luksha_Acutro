@@ -15,14 +15,12 @@ import { LOGIN } from './constants'
 const Login = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    const [authenticated, setAuthenticated] = useState(false);
     const navigate = useNavigate();
-    //const dispatch = useDispatch();
 
     const handleLogin = () => {
         authenticate(userName, password)
             .then(response => {
-                setAuthenticated(isAuthenticated());
+
             })
             .catch(error => {
                 //const errorMsg = error.message
@@ -31,7 +29,7 @@ const Login = () => {
     }
 
     useEffect(() => {
-        if (authenticated) {
+        if (isAuthenticated()) {
             navigate("/dashboard");
         }
     })
@@ -77,4 +75,4 @@ const Login = () => {
     )
 };
 
-export default Login
+export default Login;
