@@ -36,7 +36,7 @@ const SessionTimeout = (props) => {
         sessionStorage.removeItem('lastTimeStamp');
         logout();
         SetIsLoggedOut(true);
-        navigate("/");
+        navigate("/login");
         enqueueSnackbar("Your session has expired. Please login again.", { variant: 'error' })
         // warningInactiveInterval.current = setInterval(() => {
         //     const maxTime = 2;
