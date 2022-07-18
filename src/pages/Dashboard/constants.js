@@ -37,3 +37,7 @@ export const RIGHT_DRAWER_ITEMS = {
     FROM_DATE: "From",
     TO_DATE: "To"
 }
+
+export const NOTIFICATIONS = {
+    SWIPE_TO_DELETE: "< swipe to delete"
+}

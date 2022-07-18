@@ -20,11 +20,9 @@ const Login = () => {
     const handleLogin = () => {
         authenticate(userName, password)
             .then(response => {
-
+                navigate("/dashboard");
             })
             .catch(error => {
-                //const errorMsg = error.message
-                //dispatch(loginFailure(errorMsg));
             })
     }
 

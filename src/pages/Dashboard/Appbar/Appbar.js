@@ -19,6 +19,7 @@ import UserCardDialog from "./UserCardDialog/UserCardDialog";
 import Dialog from "../../../components/dialog/Dialog";
 import bgImage from "../../../assets/images/Background.png";
 import { APPBAR } from '../constants'
+import { Notifications } from "../Notifications/Notifications";
 
 const drawerWidth = 300;
 
@@ -42,6 +43,20 @@ const AppBar = styled(MuiAppBar, {
     }),
 }));
 
+const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+        top: 10,
+        left: 4,
+        width: theme.spacing(1),
+        height: theme.spacing(2.3),
+        fontWeight: 400,
+        fontSize: "10px",
+        lineHeight: "14px",
+        color: "#FFFFFF",
+        padding: "0"
+    },
+}));
+
 export default function AppBarComponent({
     open,
     openRight,
@@ -52,6 +67,7 @@ export default function AppBarComponent({
 }) {
     const dispatch = useDispatch();
     const [openUserCard, setOpenUserCard] = useState(false);
+    const [openNotifications, setOpenNotifications] = useState(false);
     const selectedBuilding = useSelector(getSelectedBuilding);
     const selectedFloor = useSelector(getSelectedFloor);
     const selectedFromDate = useSelector(getFromDate);
@@ -72,6 +88,7 @@ export default function AppBarComponent({
     useEffect(() => {
         fetchUserAttributes();
     }, [])
+
 
     return (
         <AppBar
@@ -123,14 +140,15 @@ export default function AppBarComponent({
                             </Grid>
                             <Grid item>
                                 <IconButton edge="start">
-                                    <PersonIcon sx={{ color: "white" }} />
+                                    <PersonIcon sx={{ color: "#F4F4F4", height: "35px", width: "30px" }} />
                                 </IconButton>
                             </Grid>
                             <Grid item>
-                                <IconButton edge="start">
-                                    <Badge badgeContent={4} color="primary">
-                                        <NotificationsNoneIcon sx={{ color: "white" }} />
-                                    </Badge>
+                                <IconButton edge="start" onClick={() => setOpenNotifications(true)}>
+                                    <StyledBadge badgeContent={5}
+                                        color="secondary">
+                                        <NotificationsNoneIcon sx={{ color: "#F4F4F4", height: "35px", width: "30px" }} />
+                                    </StyledBadge>
                                 </IconButton>
                             </Grid>
                             <Grid item>
@@ -140,7 +158,7 @@ export default function AppBarComponent({
                                     onClick={rightOpenClose}
                                     edge="start"
                                 >
-                                    <FilterAltIcon />
+                                    <FilterAltIcon sx={{ color: "#F4F4F4", height: "35px", width: "30px" }} />
                                 </IconButton>
                             </Grid>
                         </Grid>
@@ -153,6 +171,15 @@ export default function AppBarComponent({
                 handleClose={() => setOpenUserCard(false)}
                 top={30}
                 left={1130}
+            />
+            <Dialog
+                open={openNotifications}
+                content={<Notifications />}
+                handleClose={() => setOpenNotifications(false)}
+                top={30}
+                left={1200}
+                height="297px"
+                width="274px"
             />
         </AppBar>
     );
