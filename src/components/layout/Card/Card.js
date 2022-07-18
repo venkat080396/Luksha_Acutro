@@ -7,16 +7,9 @@ import TooltipIcon from '../../tooltipIcon/TooltipIcon';
 const Card = (props) => {
     const { sx, content, headerContent, informationContnet } = props
 
-    const StyledCard = styled(MuiCard)({
-        borderRadius: "10px",
-        border: "0.05em solid rgba(255,255,255,0.3)",
-        background: "rgba(255,255,255,0.05)",
-        color: "white"
-    });
-
     return (
 
-        <StyledCard sx={sx} container
+        <MuiCard sx={sx} container
             direction="row"
             justifyContent="center"
             alignItems="center"
@@ -41,7 +34,7 @@ const Card = (props) => {
             <Grid item>
                 {content}
             </Grid>
-        </StyledCard>
+        </MuiCard>
     )
 }
 

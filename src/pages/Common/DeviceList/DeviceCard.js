@@ -8,7 +8,7 @@ const DeviceCard = (props) => {
     const { device, deviceSx, isActiveDevice } = props;
     const [showSensor, setShowSensor] = useState(false);
     return (
-        <>
+        <Grid container direction="column">
             <Grid item sx={{ marginTop: "1em" }}>
                 <Card
                     key={device}
@@ -22,7 +22,7 @@ const DeviceCard = (props) => {
                     <Sensors device={device} />
                 </Grid>
             ) : null}
-        </>
+        </Grid>
     )
 }
 

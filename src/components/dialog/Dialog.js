@@ -15,18 +15,13 @@ const Dialog = (props) => {
             PaperProps={{
                 style: {
                     position: "fixed",
-                    borderRadius: "1em",
-                    border: "0.05em solid rgba(255,255,255,0.3)",
-                    color: "white",
-                    fontWeight: "bold",
-                    backgroundImage: `url(${bgImage})`,
                     top: top,
                     left: left,
                     height: height,
                     width: width
                 },
             }}>
-            <DialogTitle>{title}</DialogTitle>
+            {title && (<DialogTitle>{title}</DialogTitle>)}
             <DialogContent>
                 {content}
             </DialogContent>
