@@ -8,7 +8,6 @@ import IconButton from "@mui/material/IconButton";
 import { Grid, Badge } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import PersonIcon from "@mui/icons-material/Person";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useSelector, useDispatch } from "react-redux";
 import { getSelectedBuilding, getSelectedFloor, getFromDate, getToDate } from '../../../features/Home/homeSlice';
@@ -20,6 +19,7 @@ import Dialog from "../../../components/dialog/Dialog";
 import bgImage from "../../../assets/images/Background.png";
 import { APPBAR } from '../constants'
 import { Notifications } from "../Notifications/Notifications";
+import { ReactComponent as NotificationBellIcon } from "../../../assets/icons/Notification Bell1.svg"
 
 const drawerWidth = 300;
 
@@ -45,15 +45,15 @@ const AppBar = styled(MuiAppBar, {
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
-        top: 10,
-        left: 4,
-        width: theme.spacing(1),
-        height: theme.spacing(2.3),
+        top: theme.spacing(1.75),
+        left: theme.spacing(1.5),
+        width: theme.spacing(1.75),
+        height: theme.spacing(1.75),
         fontWeight: 400,
-        fontSize: "10px",
-        lineHeight: "14px",
-        color: "#FFFFFF",
-        padding: "0"
+        fontSize: theme.spacing(1.25),
+        lineHeight: theme.spacing(1.75),
+        color: theme.palette.text.primary,
+        padding: theme.spacing(0)
     },
 }));
 
@@ -147,7 +147,7 @@ export default function AppBarComponent({
                                 <IconButton edge="start" onClick={() => setOpenNotifications(true)}>
                                     <StyledBadge badgeContent={5}
                                         color="secondary">
-                                        <NotificationsNoneIcon sx={{ color: "#F4F4F4", height: "35px", width: "30px" }} />
+                                        <NotificationBellIcon height="40px" width="40px" />
                                     </StyledBadge>
                                 </IconButton>
                             </Grid>

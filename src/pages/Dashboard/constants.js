@@ -39,5 +39,13 @@ export const RIGHT_DRAWER_ITEMS = {
 }
 
 export const NOTIFICATIONS = {
-    SWIPE_TO_DELETE: "< swipe to delete"
+    SWIPE_TO_DELETE: "< swipe to delete",
+    CLEAR_ALL: "clear all",
+    TAP_TO_CONFIRM_DELETE: "Tap to Confirm delete",
+    CLEAR_NOTIFICATIONS_MESSAGE: "You're about to clear all your notifications!",
+    ARE_YOU_SURE: "Are you Sure?",
+    YES: "Yes",
+    NO: "No",
+    ALL_CAUGHT_UP: "All caught up!",
+    NO_NEW_NOTIFICATIONS: "No new notifications"
 }

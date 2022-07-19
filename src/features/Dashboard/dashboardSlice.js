@@ -67,7 +67,12 @@ const initialState = {
     dashboardSettings: [
         { id: 1, name: UTILITIES.ENERGY_REPORTS.HEADER },
         { id: 2, name: COMFORT.VALUE },
-        { id: 3, name: HVAC_EFFICIENCY.VALUE }]
+        { id: 3, name: HVAC_EFFICIENCY.VALUE }],
+    notifications: [{ recId: 1, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
+    { recId: 2, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
+    { recId: 3, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
+    { recId: 4, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
+    { recId: 5, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" }]
 };
 
 export const fetchAsyncLeftDrawerItems = createAsyncThunk(
@@ -94,36 +99,28 @@ export const saveAsyncDashboardSettings = createAsyncThunk(
     }
 );
 
-
-
 const dashboardSlice = createSlice({
     name: 'dashboard',
     initialState,
     reducers: {
         setDashboardSettings(state, action) {
             state.dashboardSettings = action.payload
+        },
+        setNotifications(state, action) {
+            state.notifications = action.payload
         }
     },
     extraReducers: {
-        [fetchAsyncLeftDrawerItems.pending]: () => {
-        },
         [fetchAsyncLeftDrawerItems.fulfilled]: (state, { payload }) => {
             return { ...state, leftDrawerItems: payload };
-        },
-        [fetchAsyncLeftDrawerItems.rejected]: () => {
-        },
-        [saveAsyncDashboardSettings.pending]: () => {
-        },
-        [saveAsyncDashboardSettings.fulfilled]: (state, { payload }) => {
-        },
-        [saveAsyncDashboardSettings.rejected]: () => {
         }
     }
 })
 
 export const getAllLeftDrawerItems = (state) => state.dashboard?.leftDrawerItems;
 export const getDashboardSettings = (state) => state.dashboard?.dashboardSettings;
+export const getNotifications = (state) => state.dashboard?.notifications;
 
-export const { setDashboardSettings } = dashboardSlice.actions
+export const { setDashboardSettings, setNotifications } = dashboardSlice.actions
 
 export default dashboardSlice.reducer
