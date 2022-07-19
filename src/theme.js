@@ -16,15 +16,19 @@ const theme = createTheme({
         fontFamily: 'Nunito, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,sans-serif',
         body1: {
             fontWeight: 400,
-            fontSize: "12px"
+            fontSize: "14px"
         },
         body2: {
             fontWeight: 300,
-            fontSize: "8px"
+            fontSize: "12px"
         },
         body3: {
+            fontWeight: 300,
+            fontSize: "10px"
+        },
+        body4: {
             fontWeight: 200,
-            fontSize: "14px"
+            fontSize: "8px"
         },
         header2: {
             fontWeight: 700
@@ -114,9 +118,9 @@ const theme = createTheme({
         },
         MuiBadge: {
             styleOverrides: {
-                root: {
-                    width: "30px",
-                    height: "30px"
+                badge: {
+                    minWidth: "10px",
+                    borderRadius: "50%"
                 }
             }
         }
