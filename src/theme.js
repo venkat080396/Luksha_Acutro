@@ -31,7 +31,8 @@ const theme = createTheme({
             fontSize: "8px"
         },
         header2: {
-            fontWeight: 700
+            fontWeight: 700,
+            fontSize: "24px"
         },
         header3: {
             fontWeight: 600,
@@ -64,8 +65,8 @@ const theme = createTheme({
                 root: {
                     width: '467px',
                     height: '64px',
-                    background: 'linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)',
-                    border: '1px solid rgba(255, 255, 255, 0.33)',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '0.05em solid rgba(255,255,255,0.3)',
                     boxShadow: '6px 6px 6px rgba(0, 0, 0, 0.15)',
                     borderRadius: '15px'
                 },
@@ -88,8 +89,8 @@ const theme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: {
-                    background: 'linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)',
-                    border: '1px solid rgba(255, 255, 255, 0.33)',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '0.05em solid rgba(255,255,255,0.3)',
                     borderRadius: '15px'
                 }
             }
@@ -97,8 +98,8 @@ const theme = createTheme({
         MuiDialog: {
             styleOverrides: {
                 paper: {
-                    background: 'linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)',
-                    border: '1px solid rgba(255, 255, 255, 0.33)',
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '0.05em solid rgba(255,255,255,0.3)',
                     borderRadius: '15px'
                 }
             }
@@ -121,6 +122,45 @@ const theme = createTheme({
                 badge: {
                     minWidth: "10px",
                     borderRadius: "50%"
+                }
+            }
+        },
+        MuiDataGrid: {
+            styleOverrides: {
+                root: {
+                    border: "none"
+                },
+                filterForm: {
+                    color: "black"
+                },
+                cell: {
+                    borderBottom: "1px solid rgba(244,244,244,0.3)",
+                    fontWeight: 300,
+                    fontSize: "12px"
+                },
+                columnHeaders: {
+                    borderBottom: "1px solid rgba(244,244,244,0.3)"
+                },
+                footerContainer: {
+                    borderTop: "none"
+                },
+                columnHeader: {
+                    fontWeight: 400,
+                    fontSize: "14px"
+                }
+            }
+        },
+        MuiSvgIcon: {
+            styleOverrides: {
+                root: {
+                    color: "rgba(244,244,244)"
+                },
+            }
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    color: "black"
                 }
             }
         }

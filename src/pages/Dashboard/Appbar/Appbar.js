@@ -7,7 +7,6 @@ import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import { Grid, Badge } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import PersonIcon from "@mui/icons-material/Person";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import { useSelector, useDispatch } from "react-redux";
 import { getSelectedBuilding, getSelectedFloor, getFromDate, getToDate } from '../../../features/Home/homeSlice';
@@ -20,6 +19,7 @@ import bgImage from "../../../assets/images/Background.png";
 import { APPBAR } from '../constants'
 import { Notifications } from "../Notifications/Notifications";
 import { ReactComponent as NotificationBellIcon } from "../../../assets/icons/Notification Bell1.svg"
+import { ReactComponent as UserSettingsIcon } from "../../../assets/icons/User Settings.svg"
 
 const drawerWidth = 300;
 
@@ -114,8 +114,8 @@ export default function AppBarComponent({
                     >
                         <MenuIcon sx={{ color: "white" }} />
                     </IconButton>
-                    <Typography variant="body1" noWrap component="div" sx={{ width: "150em" }}>
-                        <Typography variant="h6" fontWeight={"700"} display={"inline"}>
+                    <Typography variant="header3" noWrap component="div" sx={{ width: "150em" }}>
+                        <Typography variant="header2" display={"inline"}>
                             {APPBAR.YOUR_DASHBOARD} &nbsp;
                         </Typography>
                         {selectedBuilding && selectedBuilding.Name ? `/ ${selectedBuilding.Name} ` : ""}
@@ -140,7 +140,7 @@ export default function AppBarComponent({
                             </Grid>
                             <Grid item>
                                 <IconButton edge="start">
-                                    <PersonIcon sx={{ color: "#F4F4F4", height: "35px", width: "30px" }} />
+                                    <UserSettingsIcon height="40px" width="40px" />
                                 </IconButton>
                             </Grid>
                             <Grid item>

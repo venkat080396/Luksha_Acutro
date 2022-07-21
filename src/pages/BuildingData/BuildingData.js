@@ -8,7 +8,7 @@ import Header from './Header/Header';
 import { fetchAsyncAllDeviceTypes } from "../../features/BuildingData/buildingDataSlice";
 
 const BuildingData = () => {
-    const [isMapView, setIsMapView] = useState(true);
+    const [isMapView, setIsMapView] = useState(false);
     const dispatch = useDispatch();
 
     useEffect(() => {

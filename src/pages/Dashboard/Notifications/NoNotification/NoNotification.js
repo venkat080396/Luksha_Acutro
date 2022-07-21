@@ -12,7 +12,7 @@ const NoNotification = () => {
             justifyContent="center"
             direction="column"
             sx={{
-                background: "linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)",
+                background: "linear-gradient(to left bottom, #767f82, #596a75, #425569, #323f5b, #2a294b)",
                 paddingTop: theme.spacing(7)
             }}>
             <Grid item>
@@ -23,7 +23,7 @@ const NoNotification = () => {
             <Grid item sx={{ marginTop: theme.spacing(-1.25), height: theme.spacing(21.25) }}>
                 <NotificationBellIcon height={theme.spacing(22)} width={theme.spacing(20.5)} />
             </Grid>
-            <Grid item>
+            <Grid item sx={{ height: theme.spacing(6.5) }}>
                 <Typography variant="body1">
                     {NOTIFICATIONS.NO_NEW_NOTIFICATIONS}
                 </Typography>

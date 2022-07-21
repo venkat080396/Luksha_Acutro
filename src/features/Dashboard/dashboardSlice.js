@@ -13,9 +13,8 @@ const getLeftDrawerItems = () => {
                 id: 2,
                 name: LEFT_DRAWER_ITEMS.ALERTS,
                 items: [
-                    { id: 12, name: LEFT_DRAWER_ITEMS.DISTRIBUTION_LIST },
-                    { id: 13, name: LEFT_DRAWER_ITEMS.CONNECTORS },
-                    { id: 14, name: LEFT_DRAWER_ITEMS.AUTOMATIONS }]
+                    { id: 12, name: LEFT_DRAWER_ITEMS.CONNECTORS },
+                    { id: 13, name: LEFT_DRAWER_ITEMS.AUTOMATIONS }]
             },
             {
                 id: 3,

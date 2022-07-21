@@ -22,7 +22,10 @@ export const Notifications = () => {
         <Grid container
             direction="column"
             alignItems="center"
-            justifyContent="center">
+            justifyContent="center"
+            sx={{
+                background: "linear-gradient(to top, #767f82, #596a75, #425569, #323f5b, #2a294b)"
+            }}>
             {
                 !clearAll && notifications && (
                     <>
