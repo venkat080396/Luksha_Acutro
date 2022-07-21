@@ -69,9 +69,6 @@ const theme = createTheme({
                     border: '0.05em solid rgba(255,255,255,0.3)',
                     boxShadow: '6px 6px 6px rgba(0, 0, 0, 0.15)',
                     borderRadius: '15px'
-                },
-                placeholder: {
-                    color: 'red'
                 }
             },
         },

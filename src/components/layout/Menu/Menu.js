@@ -2,13 +2,14 @@ import { Menu as MuiMenu, MenuItem, IconButton } from '@mui/material'
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import React, { useState } from 'react'
 
-const Menu = ({ items }) => {
+const Menu = ({ items, onClick }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
-    const handleClose = () => {
+    const handleClose = (name) => {
+        onClick(name);
         setAnchorEl(null);
     };
 
@@ -31,7 +32,7 @@ const Menu = ({ items }) => {
                 }}
             >
                 {items && items.map(item => (
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem onClick={() => handleClose(item.name)}>
                         {item.name}
                     </MenuItem>
                 ))}

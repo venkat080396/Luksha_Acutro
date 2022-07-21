@@ -4,8 +4,9 @@ import Textfield from "../../components/forms/TextField/TextField";
 import Button from "../../components/forms/Button/Button";
 import PersonOutlineSharpIcon from '@mui/icons-material/PersonOutlineSharp';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { Grid } from "@mui/material";
+import { Grid, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { styled } from '@mui/system';
 //import { useDispatch } from "react-redux";
 import { isAuthenticated, authenticate } from "../../features/Login/loginSlice"
 import logo from "../../assets/icons/Logo.png"
@@ -15,6 +16,7 @@ import { LOGIN } from './constants'
 const Login = () => {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
+    const theme = useTheme();
     const navigate = useNavigate();
 
     const handleLogin = () => {
@@ -54,7 +56,13 @@ const Login = () => {
                     name={LOGIN.EMAIL}
                     value={userName}
                     iconStart={<PersonOutlineSharpIcon />}
-                    onChange={(event) => setUserName(event.target.value)} />
+                    onChange={(event) => setUserName(event.target.value)}
+                    sx={{
+                        width: theme.spacing(58.375),
+                        height: theme.spacing(8.125),
+                        borderRadius: theme.spacing(1.875)
+                    }}
+                />
             </Grid>
             <Grid item>
                 <Textfield
@@ -62,7 +70,13 @@ const Login = () => {
                     type="password"
                     value={password}
                     iconStart={<LockOutlinedIcon />}
-                    onChange={(event) => setPassword(event.target.value)} />
+                    onChange={(event) => setPassword(event.target.value)}
+                    sx={{
+                        width: theme.spacing(58.375),
+                        height: theme.spacing(8.125),
+                        borderRadius: theme.spacing(1.875)
+                    }}
+                />
             </Grid>
             <Grid item>
                 <Button
