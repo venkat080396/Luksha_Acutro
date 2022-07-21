@@ -10,14 +10,16 @@ const UserCard = (props) => {
             onClick={onClick}
             sx={{ ...sx }}>
             <Grid item>
-                <Avatar sx={{ bgcolor: "white", color: "red" }}>R</Avatar>
+                <Avatar sx={{ bgcolor: "white", color: "red", height: "45px", width: "45px" }}>R</Avatar>
             </Grid>
             <Grid item>
                 <Stack>
-                    <Typography variant="body1" fontWeight={700}>
+                    <Typography variant="header3" fontWeight={700}>
                         {userAttributes?.filter(attr => attr.Name === "custom:companyName")[0].Value}
                     </Typography>
-                    <Typography sx={{ fontSize: 10, color: "#c9c9c9" }}>{APPBAR.ADMINISTRATOR}</Typography>
+                    <Typography variant="body1">
+                        {APPBAR.ADMINISTRATOR}
+                    </Typography>
                 </Stack>
             </Grid>
         </Grid>

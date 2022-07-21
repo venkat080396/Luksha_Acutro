@@ -7,7 +7,6 @@ import Appbar from "./Appbar/Appbar";
 import DrawerLeftComponent from "./DrawerLeft/DrawerLeft";
 import DrawerRightComponent from "./DrawerRight/DrawerRight";
 import Home from "../Home/Home";
-import Alerts from "../Alerts/Container";
 import Utilities from "../Reports/Utilities/Utilities";
 import HVACEfficiency from "../Reports/HVACEfficiency/HVACEfficiency";
 import Comfort from "../Reports/Comfort/Comfort";
@@ -16,8 +15,7 @@ import { fetchAsyncLeftDrawerItems } from "../../features/Dashboard/dashboardSli
 import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
 import FloorView from "../BuildingData/FloorView/Container";
 import BuildingData from "../BuildingData/BuildingData";
-import DistributionList from "../Alerts/Distribution List/DistributionList";
-import Connectors from "../Alerts/Connectors/Connectors";
+import Connectors from "../Alerts/Connectors/index";
 import Automations from "../Alerts/Automations/Automations";
 import { LEFT_DRAWER_ITEMS } from './constants'
 
@@ -82,7 +80,7 @@ const Dashboard = (props) => {
             case LEFT_DRAWER_ITEMS.HOME:
                 return <Home />
             case LEFT_DRAWER_ITEMS.ALERTS:
-                return <Alerts />
+                return <Automations />
             case LEFT_DRAWER_ITEMS.FLOOR_VIEW:
                 return <FloorView />
             case LEFT_DRAWER_ITEMS.UTILITIES:
@@ -95,8 +93,6 @@ const Dashboard = (props) => {
                 return <Exports />
             case LEFT_DRAWER_ITEMS.BUILDING_DATA:
                 return <BuildingData />
-            case LEFT_DRAWER_ITEMS.DISTRIBUTION_LIST:
-                return <DistributionList />
             case LEFT_DRAWER_ITEMS.CONNECTORS:
                 return <Connectors />
             case LEFT_DRAWER_ITEMS.AUTOMATIONS:

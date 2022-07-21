@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import theme from './theme';
 import Login from './pages/Login/Login';
-import Alerts from './pages/Alerts/Container';
+import Alerts from './pages/Alerts/Automations/Automations';
 import BuildingData from './pages/BuildingData/BuildingData';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Utilities from './pages/Reports/Utilities/Utilities'

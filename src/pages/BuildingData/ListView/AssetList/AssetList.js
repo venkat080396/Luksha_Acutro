@@ -12,7 +12,7 @@ const AssetList = (props) => {
 
     return (
         <ImageList cols={2} sx={{ height: "70vh", marginTop: "0.2em" }}>
-            {allDeviceTypes.map((deviceType) => (
+            {allDeviceTypes && allDeviceTypes.map((deviceType) => (
                 <ImageListItem key={deviceType.RecId} sx={{ margin: "0.2em", alignItems: "center" }}>
                     <Card
                         sx={{
