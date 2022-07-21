@@ -1,9 +1,8 @@
 import React from "react";
-import MuiTextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
+import { TextField as MuiTextField, InputAdornment } from '@mui/material';
 import "./TextField.Styles.css";
 
-const TextField = ({ iconStart, iconEnd, ...props }) => {
+const TextField = ({ iconStart, iconEnd, sx, ...props }) => {
     return (
         <MuiTextField
             placeholder={props.name}

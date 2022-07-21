@@ -1,23 +1,14 @@
-import { Button, Grid, Typography } from '@mui/material'
-import React from 'react'
+import { Button, Grid, Typography, useTheme } from '@mui/material'
+import React, { useState } from 'react'
 import { styled } from '@mui/system';
 import Datagrid from "../../../components/datagrid/Datagrid";
 import { CONNECTORS } from "../constants";
 import Menu from '../../../components/layout/Menu/Menu';
-
-const rows = [
-    { RecId: 1, Name: "Grassmere1", type: "Microsoft Team" },
-    { RecId: 2, Name: "Secound2", type: "SMS List" },
-    { RecId: 3, Name: "Grassmere3", type: "Microsoft Team" },
-    { RecId: 4, Name: "Secound4", type: "SMS List" },
-    { RecId: 5, Name: "Grassmere5", type: "Microsoft Team" },
-    { RecId: 6, Name: "Secound6", type: "SMS List" },
-];
-
-const menuItems = [
-    { recId: 1, name: "Edit" },
-    { recId: 2, name: "Delete" }
-]
+import Dialog from "../../../components/dialog/Dialog";
+import TypesList from './TypesList/TypesList';
+import Create from './Create/Create';
+import SmsIcon from '@mui/icons-material/Sms';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
 
 // const MenuComponent = () => {
 //     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -42,29 +33,6 @@ const menuItems = [
 
 //     return (
 //         <>
-//             <Box>
-//                 <IconButton onClick={handleClick}>
-//                     <MoreVertIcon style={{ color: "#fff" }} />
-//                 </IconButton>
-//             </Box>
-//             <Menu
-//                 id="demo-positioned-menu"
-//                 aria-labelledby="demo-positioned-button"
-//                 anchorEl={anchorEl}
-//                 open={open}
-//                 onClose={handleClose}
-//                 anchorOrigin={{
-//                     vertical: "top",
-//                     horizontal: "left",
-//                 }}
-//                 transformOrigin={{
-//                     vertical: "top",
-//                     horizontal: "left",
-//                 }}
-//             >
-//                 <MenuItem onClick={handleEdit}>Edit</MenuItem>
-//                 <MenuItem onClick={handleClose}>Delete</MenuItem>
-//             </Menu>
 //             <Dialog
 //                 open={openDialog}
 //                 handleClose={() => setOpenDialog(false)}
@@ -98,34 +66,7 @@ const menuItems = [
 //     );
 // };
 
-const columns = [
-    {
-        field: "Name",
-        headerName: "Name",
-        width: "600",
-        renderCell: (cellValues) => {
-            return (
-                <Grid container>
-                    <Grid item>{cellValues.value}</Grid>
-                </Grid>
-            );
-        },
-    },
-    {
-        field: "type",
-        headerName: "Type",
-        width: "600"
-    },
-    {
-        field: "Update",
-        headerName: "",
-        sortable: false,
-        width: 100,
-        renderCell: (_) => {
-            return <Menu items={menuItems} />
-        }
-    },
-];
+
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
     background: "linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)",
@@ -133,37 +74,127 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
     padding: theme.spacing(2)
 }));
 
-const index = () => {
+const Index = () => {
+    const theme = useTheme();
+    const [openNewConnector, setOpenNewConnector] = useState(false);
+    const [openCreateConnector, setOpenCreateConnector] = useState(false);
+    const [item, setItem] = useState(null);
+    const [type, setType] = useState(null);
+
+    const handleSelect = (type) => {
+        setType(type.title);
+        setOpenNewConnector(false);
+        setOpenCreateConnector(true);
+    }
+
+    const rows = [
+        { RecId: 1, name: "Test Email list", type: "Email list" },
+        { RecId: 2, name: "Demo SMS list", type: "SMS list" },
+        { RecId: 3, name: "Test Group SMS list", type: "SMS list" },
+        { RecId: 4, name: "Demo Email list", type: "Email list" },
+        { RecId: 5, name: "Test Email list", type: "Email list" },
+        { RecId: 6, name: "Test SMS list", type: "SMS list" },
+    ];
+
+    const menuItems = [
+        { recId: 1, name: "Edit" },
+        { recId: 2, name: "Delete" }
+    ]
+
+    const columns = [
+        {
+            field: "name",
+            headerName: "Name",
+            width: "600",
+            renderCell: (cellValues) => {
+                const icon = cellValues.row.type === CONNECTORS.EMAIL_LIST
+                    ? <MailOutlineIcon sx={{ height: "30px", width: "30px" }} />
+                    : <SmsIcon sx={{ height: "30px", width: "30px" }} />;
+                return (
+                    <Grid container
+                        alignItems="center"
+                        spacing={1}>
+                        <Grid item>{icon}</Grid>
+                        <Grid item>{cellValues.value}</Grid>
+                    </Grid>
+                );
+            },
+        },
+        {
+            field: "type",
+            headerName: "Type",
+            width: "600"
+        },
+        {
+            field: "Update",
+            headerName: "",
+            sortable: false,
+            width: 100,
+            renderCell: (cellValues) => {
+                return <Menu onClick={(type) => handleMenuClick(type, cellValues.row)} items={menuItems} />
+            }
+        },
+    ];
+
+    const handleMenuClick = (type, item) => {
+        if (type === "Edit") {
+            setType(item.type);
+            setItem(item);
+            setOpenCreateConnector(true)
+        }
+    }
+
+    const handleNewConnector = () => {
+        setOpenNewConnector(true);
+        setItem(null);
+    }
+
     return (
-        <StyledGrid container
-            alignItems="center"
-            justifyItems="center">
-            <Grid item container
+        <>
+            <StyledGrid container
                 alignItems="center"
-                justifyContent="space-between">
-                <Grid item>
-                    <Typography variant="header2">
-                        {CONNECTORS.HEADER}
-                    </Typography>
-                </Grid>
-                <Grid item>
-                    <Button variant="contained">
-                        <Typography variant="header3">
-                            {CONNECTORS.NEW_CONNECTOR}
+                justifyItems="center">
+                <Grid item container
+                    alignItems="center"
+                    justifyContent="space-between">
+                    <Grid item>
+                        <Typography variant="header2">
+                            {CONNECTORS.HEADER}
                         </Typography>
-                    </Button>
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained" onClick={handleNewConnector}>
+                            <Typography variant="header3">
+                                {CONNECTORS.NEW_CONNECTOR}
+                            </Typography>
+                        </Button>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid item sx={{ width: "100%", height: "370px" }}>
-                <Datagrid
-                    rows={rows}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                />
-            </Grid>
-        </StyledGrid>
+                <Grid item sx={{ width: "100%", height: theme.spacing(46.25) }}>
+                    <Datagrid
+                        rows={rows}
+                        columns={columns}
+                        pageSize={5}
+                        rowsPerPageOptions={[5]}
+                    />
+                </Grid>
+            </StyledGrid>
+            <Dialog
+                open={openNewConnector}
+                content={<TypesList onSelect={handleSelect} onCancel={() => setOpenNewConnector(false)} />}
+                handleClose={() => setOpenNewConnector(false)}
+                height={theme.spacing(62.5)}
+                width={theme.spacing(75)}
+            />
+            <Dialog
+                open={openCreateConnector}
+                content={<Create item={item} type={type} onCancel={() => setOpenCreateConnector(false)} />}
+                handleClose={() => setOpenCreateConnector(false)}
+                height={theme.spacing(41)}
+                width={theme.spacing(65)}
+            />
+        </>
     )
 }
 
-export default index
+export default Index;

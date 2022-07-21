@@ -15,7 +15,7 @@ import { fetchAsyncLeftDrawerItems } from "../../features/Dashboard/dashboardSli
 import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
 import FloorView from "../BuildingData/FloorView/Container";
 import BuildingData from "../BuildingData/BuildingData";
-import Connectors from "../Alerts/Connectors/index";
+import Connectors from "../Alerts/Connectors/Index";
 import Automations from "../Alerts/Automations/Automations";
 import { LEFT_DRAWER_ITEMS } from './constants'
 

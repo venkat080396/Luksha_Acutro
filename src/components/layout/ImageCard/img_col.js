@@ -1,5 +1,6 @@
 import { Col } from "reactstrap";
 import * as React from "react";
+import { Typography } from "@mui/material";
 const Colum = (props) => {
     return (
         <Col
@@ -43,7 +44,9 @@ const Colum = (props) => {
                     flex: 1,
                 }}
             >
-                {props.des}
+                <Typography variant="header3">
+                    {props.des}
+                </Typography>
             </div>
         </Col>
     );
