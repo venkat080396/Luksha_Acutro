@@ -18,7 +18,9 @@ const Sensors = (props) => {
         <>
             {sensors ? sensors.map((sensor) => (
                 <Grid item sx={{ marginTop: "1em" }}>
-                    <Card key={sensor} sx={{ marginLeft: 11, height: "2.7em", width: "55vw", borderRadius: "0.5em" }} content={<Sensor deviceRecId={device?.RecId} sensorRecId={sensor.RecId} sensor={sensor} />} />
+                    <Card key={sensor}
+                        sx={{ marginLeft: 5, height: "2.7em", width: "48.3vw", borderRadius: "0.5em", cursor: "pointer" }}
+                        content={<Sensor deviceRecId={device?.RecId} sensorRecId={sensor.RecId} sensor={sensor} />} />
                 </Grid>
             )) : null
             }

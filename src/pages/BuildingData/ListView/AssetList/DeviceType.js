@@ -1,8 +1,7 @@
 import React from 'react'
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import LightbulbImage from "../../../../assets/icons/Lightbulb.png"
 import { getImageURL } from "../../../../common/Utils";
-import Label from '../../../../components/forms/Label/Label';
 
 const DeviceType = (props) => {
     const { deviceType, handleClick } = props
@@ -18,8 +17,8 @@ const DeviceType = (props) => {
                     src={((typeof deviceType.StyleIcon != "undefined") ? getImageURL(deviceType.StyleIcon) : LightbulbImage)}
                     alt="Device"
                     style={{
-                        height: "3em",
-                        width: "3em",
+                        height: "5em",
+                        width: "5em",
                         marginTop: "1em"
                     }}
                     onError={({ currentTarget }) => {
@@ -29,7 +28,9 @@ const DeviceType = (props) => {
                 />
             </Grid>
             <Grid item>
-                <Label sx={{ fontSize: "0.6em" }} label={deviceType.Name} />
+                <Typography variant="body1" color="#F4F4F4">
+                    {deviceType.Name}
+                </Typography>
             </Grid>
         </Grid>
     )

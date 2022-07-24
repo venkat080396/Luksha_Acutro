@@ -8,7 +8,7 @@ const DeviceList = () => {
 
     return (
         <CommonDeviceList
-            deviceSx={{ width: "58vw" }}
+            deviceSx={{ width: "50vw" }}
             devices={devices} />
     )
 }
