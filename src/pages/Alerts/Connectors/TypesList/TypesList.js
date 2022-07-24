@@ -7,8 +7,8 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { CONNECTORS } from '../../constants';
 
 const types = [
-    { icon: <MailOutlineIcon sx={{ height: "40px", width: "40px" }} />, title: CONNECTORS.EMAIL_LIST, description: CONNECTORS.EMAIL_LIST_DESCRIPTION },
-    { icon: <SmsIcon sx={{ height: "40px", width: "40px" }} />, title: CONNECTORS.SMS_LIST, description: CONNECTORS.SMS_LIST_DESCRIPTION }
+    { icon: <MailOutlineIcon sx={{ height: "40px", width: "40px" }} />, title: CONNECTORS.EMAIL, description: CONNECTORS.EMAIL_LIST_DESCRIPTION },
+    { icon: <SmsIcon sx={{ height: "40px", width: "40px" }} />, title: CONNECTORS.SMS, description: CONNECTORS.SMS_LIST_DESCRIPTION }
 ]
 
 const StyledGrid = styled(Grid)(({ theme }) => ({

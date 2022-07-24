@@ -1,6 +1,37 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { baseURL, api } from "../../common/apis/api";
 
+export const saveConnector = createAsyncThunk(
+    'Alerts/saveConnector',
+    async (connector) => {
+        const connectorDetails = {
+            operation: "SaveAlertConnector",
+            payload: {
+                nAlertConnectorRecId: connector.connectorRecId || "-1",
+                sConnectorName: connector.connectorName,
+                sConnectorType: connector.type,
+                sRecipients: connector.recipients,
+                bIsDelete: connector.isDelete || "0"
+            }
+        }
+        const response = await api.post(baseURL, connectorDetails);
+        return response.data;
+    }
+);
+
+export const fetchConnectors = createAsyncThunk(
+    'Alerts/fetchConnectors',
+    async () => {
+        const connectorDetails = {
+            operation: "GetAlertConnectors",
+            payload: {
+            }
+        }
+        const response = await api.post(baseURL, connectorDetails);
+        return response.data;
+    }
+);
+
 
 export const fetchAsyncSites = createAsyncThunk(
     'Alerts/fetchAsyncSites',
@@ -92,6 +123,7 @@ export const saveDistribution = createAsyncThunk(
 );
 
 const initialState = {
+    connectors: null,
     distributionList: [],
     buildings: [{}],
     floors: [{}],
@@ -121,46 +153,23 @@ const AlertsSlice = createSlice({
         },
     },
     extraReducers: {
-        [saveDistribution.pending]: () => {
-        },
-        [saveDistribution.fulfilled]: (state, { payload }) => {
-        },
-        [saveDistribution.rejected]: () => {
-        },
-        [fetchAsyncDistributionList.pending]: () => {
+        [fetchConnectors.fulfilled]: (state, { payload }) => {
+            return { ...state, connectors: payload };
         },
         [fetchAsyncDistributionList.fulfilled]: (state, { payload }) => {
             return { ...state, distributionList: payload };
         },
-        [fetchAsyncDistributionList.rejected]: () => {
-        },
-        [fetchAsyncBuildings.pending]: () => {
-        },
         [fetchAsyncBuildings.fulfilled]: (state, { payload }) => {
             return { ...state, buildings: payload };
-        },
-        [fetchAsyncBuildings.rejected]: () => {
-        },
-        [fetchAsyncFloors.pending]: () => {
         },
         [fetchAsyncFloors.fulfilled]: (state, { payload }) => {
             return { ...state, floors: payload };
         },
-        [fetchAsyncFloors.rejected]: () => {
-        },
-        [fetchAsyncSites.pending]: () => {
-        },
         [fetchAsyncSites.fulfilled]: (state, { payload }) => {
             return { ...state, Site: payload };
         },
-        [fetchAsyncSites.rejected]: () => {
-        },
-        [fetchAsyncDevices.pending]: () => {
-        },
         [fetchAsyncDevices.fulfilled]: (state, { payload }) => {
             return { ...state, devices: payload };
-        },
-        [fetchAsyncDevices.rejected]: () => {
         }
     }
 })
@@ -174,6 +183,7 @@ export const getSelectedBuilding = (state) => state.Alerts?.selectedBuilding;
 export const getSelectedFloor = (state) => state.Alerts?.selectedFloor;
 export const getSelectedSites = (state) => state.Alerts?.selectSite;
 export const getSelectedDevice = (state) => state.Alerts?.selectDevice;
+export const getConnectors = (state) => state.Alerts?.connectors;
 
 export const { setSelectedBuilding, setSelectedFloor, setSelectedSite, setSelectedDevice } = AlertsSlice.actions
 

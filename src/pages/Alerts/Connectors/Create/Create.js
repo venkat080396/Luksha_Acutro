@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { styled } from '@mui/system';
 import { Grid, Typography, useTheme, TextField, Button } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import { CONNECTORS } from '../../constants';
+
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
     background: "linear-gradient(-30.77deg, #767f82, #596a75, #425569, #323f5b, #2a294b)",
@@ -9,8 +11,25 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
     padding: theme.spacing(2.5)
 }));
 
-const Create = ({ onCancel, type, item }) => {
+const Create = ({ onCancel, onSave, type, item }) => {
     const theme = useTheme();
+    const [name, setName] = useState("");
+    const [recipients, setRecipients] = useState("");
+    const { enqueueSnackbar } = useSnackbar();
+
+    useEffect(() => {
+        setName(item?.Name);
+        setRecipients(item?.Recipients);
+    }, [item?.Name, item?.Recipients])
+
+    const handleSave = () => {
+        onSave(item?.RecId, type, name, recipients);
+        onCancel();
+        enqueueSnackbar(item?.RecId ?
+            (type === CONNECTORS.EMAIL ? CONNECTORS.EMAIL_LIST_UPDATED : CONNECTORS.SMS_LIST_UPDATED) :
+            (type === CONNECTORS.EMAIL ? CONNECTORS.EMAIL_LIST_CREATED : CONNECTORS.SMS_LIST_CREATED),
+            { variant: 'success' })
+    }
 
     return (
         <StyledGrid container
@@ -37,12 +56,13 @@ const Create = ({ onCancel, type, item }) => {
                 </Grid>
                 <Grid item>
                     <TextField
-                        value={item?.name}
+                        value={name}
                         sx={{
                             width: theme.spacing(60),
                             height: theme.spacing(5),
                             borderRadius: theme.spacing(1),
                         }}
+                        onChange={(e) => setName(e.target.value)}
                     />
                 </Grid>
             </Grid>
@@ -52,12 +72,12 @@ const Create = ({ onCancel, type, item }) => {
                     <Typography variant="body1">
                         {CONNECTORS.RECIPIENTS} *
                     </Typography>
-                    {type && type === CONNECTORS.EMAIL_LIST && (
+                    {type && type === CONNECTORS.EMAIL && (
                         <Typography>
                             {CONNECTORS.EMAIL_MESSAGE}
                         </Typography>
                     )}
-                    {type && type === CONNECTORS.SMS_LIST && (
+                    {type && type === CONNECTORS.SMS && (
                         <Typography>
                             {CONNECTORS.SMS_MESSAGE}
                         </Typography>
@@ -65,12 +85,13 @@ const Create = ({ onCancel, type, item }) => {
                 </Grid>
                 <Grid item>
                     <TextField multiline
-                        value={item?.recipients}
+                        value={recipients}
                         sx={{
                             width: theme.spacing(60),
                             height: theme.spacing(8.7),
                             borderRadius: theme.spacing(1)
                         }}
+                        onChange={(e) => setRecipients(e.target.value)}
                     />
                 </Grid>
             </Grid>
@@ -79,7 +100,7 @@ const Create = ({ onCancel, type, item }) => {
                 justifyContent="flex-end"
                 spacing={2}>
                 <Grid item>
-                    <Button variant="contained">
+                    <Button variant="contained" onClick={handleSave}>
                         <Typography variant="body2">
                             {CONNECTORS.SAVE}
                         </Typography>

@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from 'notistack';
 import theme from './theme';
 import Login from './pages/Login/Login';
-import Alerts from './pages/Alerts/Automations/Automations';
+import Alerts from './pages/Alerts/Connectors/Index';
 import BuildingData from './pages/BuildingData/BuildingData';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Utilities from './pages/Reports/Utilities/Utilities'
@@ -29,12 +29,12 @@ function App() {
           <Route index path="/" element={<ProtectedAuth><Dashboard /></ProtectedAuth>} />
           <Route path="login" element={<Login />} />
           <Route path="dashboard" element={<ProtectedAuth><Dashboard /></ProtectedAuth>} />
-          <Route path="alerts" element={<Alerts />} />
-          <Route path="buildingData" element={<BuildingData />} />
-          <Route path="utilities" element={<Utilities />} />
-          <Route path="HVACEfficiency" element={<HVACEfficiency />} />
-          <Route path="comfort" element={<Comfort />} />
-          <Route path="exports" element={<Exports />} />
+          <Route path="alerts" element={<ProtectedAuth><Alerts /></ProtectedAuth>} />
+          <Route path="buildingData" element={<ProtectedAuth><BuildingData /></ProtectedAuth>} />
+          <Route path="utilities" element={<ProtectedAuth><Utilities /></ProtectedAuth>} />
+          <Route path="HVACEfficiency" element={<ProtectedAuth><HVACEfficiency /></ProtectedAuth>} />
+          <Route path="comfort" element={<ProtectedAuth><Comfort /></ProtectedAuth>} />
+          <Route path="exports" element={<ProtectedAuth><Exports /></ProtectedAuth>} />
         </Routes>
         <SessionTimeout sessionTimeoutDuration={SESSION_TIMEOUT} />
       </SnackbarProvider>
