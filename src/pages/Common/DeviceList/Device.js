@@ -24,8 +24,10 @@ const Device = (props) => {
             <Grid container
                 direction="row"
                 justifyContent="center"
-                alignItems="center">
-                <Grid item xs={10} sx={{ paddingLeft: 3 }} onClick={handleClick}>
+                alignItems="center"
+                sx={{ cursor: "pointer" }}
+                onClick={handleClick}>
+                <Grid item xs={10} sx={{ paddingLeft: 3 }}>
                     {device.Name}
                 </Grid>
                 <Grid item xs={2}>

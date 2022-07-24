@@ -36,21 +36,21 @@ const ListView = () => {
         return (
             <Grid container
                 direction="column"
-                sx={{ marginLeft: "1.5em", marginTop: "0.5em" }}>
+                sx={{ marginLeft: "2.2em", marginTop: "-0.5em" }}>
                 <Grid item>
                     <Grid container
                         alignItems="center" spacing={1}>
-                        <Grid item sx={{ fontSize: 18 }}>
+                        <Grid item sx={{ fontSize: 24 }}>
                             {label}
                         </Grid>
-                        <Grid item sx={{ fontSize: 12 }}>
+                        <Grid item sx={{ fontSize: 18 }}>
                             {label === LISTVIEW.ASSET_LIST.HEADER ? assetListLabel : deviceListLabel}
                         </Grid>
                     </Grid>
                 </Grid>
                 {label === LISTVIEW.ASSET_LIST.HEADER && (
                     <Grid item
-                        sx={{ textDecoration: "underline", fontSize: 9, cursor: "pointer" }}
+                        sx={{ textDecoration: "underline", fontSize: 14, cursor: "pointer" }}
                         onClick={() => onDeviceTypeClick(null)}>
                         {LISTVIEW.ASSET_LIST.BACK_TO_MAIN_LIST}
                     </Grid>)
@@ -66,13 +66,13 @@ const ListView = () => {
             <Grid item>
                 <Card
                     headerContent={<GetHeader label={LISTVIEW.ASSET_LIST.HEADER} />}
-                    sx={{ width: "17vw", height: "76vh", marginTop: "-2em" }}
+                    sx={{ width: "25vw", height: "76vh", marginTop: "-2em" }}
                     content={<AssetList handleClick={onDeviceTypeClick} />} />
             </Grid>
             <Grid item>
                 <Card
                     headerContent={<GetHeader label={LISTVIEW.DEVICE_LIST.HEADER} />}
-                    sx={{ width: "65vw", height: "76vh", marginTop: "-2em" }}
+                    sx={{ width: "60vw", height: "76vh", marginTop: "-2em" }}
                     content={<DeviceList />} />
             </Grid>
         </Grid>

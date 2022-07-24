@@ -12,7 +12,7 @@ const DeviceCard = (props) => {
             <Grid item sx={{ marginTop: "1em" }}>
                 <Card
                     key={device}
-                    sx={{ marginLeft: 5, borderRadius: "0.5em", ...deviceSx }}
+                    sx={{ marginLeft: 2, borderRadius: "0.5em", ...deviceSx }}
                     content={<Device isActiveDevice={isActiveDevice}
                         onDeviceClick={() => setShowSensor(!showSensor)}
                         device={device} />} />
