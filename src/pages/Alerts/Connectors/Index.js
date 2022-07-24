@@ -1,5 +1,5 @@
 import { Button, Grid, Typography, useTheme } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { styled } from '@mui/system';
 import Datagrid from "../../../components/datagrid/Datagrid";
 import { CONNECTORS } from "../constants";
@@ -9,64 +9,9 @@ import TypesList from './TypesList/TypesList';
 import Create from './Create/Create';
 import SmsIcon from '@mui/icons-material/Sms';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-
-// const MenuComponent = () => {
-//     const [anchorEl, setAnchorEl] = React.useState(null);
-//     const [openDialog, setOpenDialog] = React.useState(false);
-//     const open = Boolean(anchorEl);
-
-//     const handleClick = (event) => {
-//         setAnchorEl(event.currentTarget);
-//     };
-//     const handleClose = () => {
-//         setOpenDialog(false);
-//         setAnchorEl(null);
-//     };
-//     const handleEdit = (event) => {
-//         setOpenDialog(true);
-//         setAnchorEl(event.currentTarget);
-//     };
-//     const handleDelete = (event) => {
-//         setOpenDialog(true);
-//         setAnchorEl(event.currentTarget);
-//     };
-
-//     return (
-//         <>
-//             <Dialog
-//                 open={openDialog}
-//                 handleClose={() => setOpenDialog(false)}
-//                 title={"Update Connector"}
-//                 content={
-//                     <>
-//                         <Box width={600}>
-//                             <Grid container spacing={2}>
-//                                 <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-//                                     <TextField name="Name" fullWidth />
-//                                 </Grid>
-//                                 <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-//                                     <TextField name="Web Address" fullWidth />
-//                                 </Grid>
-//                                 <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-//                                     <Grid container alignItems='center' flexDirection='row-reverse' spacing={2}>
-//                                         <Grid item>
-//                                             <Button variant='contained' onClick={() => setOpenDialog(false)}>Save</Button>
-//                                         </Grid>
-//                                         <Grid item>
-//                                             <Button variant="contained" color="error" onClick={() => setOpenDialog(false)}>Cancel</Button>
-//                                         </Grid>
-//                                     </Grid>
-//                                 </Grid>
-//                             </Grid>
-//                         </Box>
-//                     </>
-//                 }
-//             />
-//         </>
-//     );
-// };
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from 'notistack';
+import { saveConnector, fetchConnectors, getConnectors } from "../../../features/Alerts/AlertsSlice";
 
 const StyledGrid = styled(Grid)(({ theme }) => ({
     background: "linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)",
@@ -76,25 +21,19 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 
 const Index = () => {
     const theme = useTheme();
+    const dispatch = useDispatch();
+    const connectors = useSelector(getConnectors);
     const [openNewConnector, setOpenNewConnector] = useState(false);
     const [openCreateConnector, setOpenCreateConnector] = useState(false);
     const [item, setItem] = useState(null);
     const [type, setType] = useState(null);
+    const { enqueueSnackbar } = useSnackbar();
 
     const handleSelect = (type) => {
         setType(type.title);
         setOpenNewConnector(false);
         setOpenCreateConnector(true);
     }
-
-    const rows = [
-        { RecId: 1, name: "Test Email list", type: "Email list" },
-        { RecId: 2, name: "Demo SMS list", type: "SMS list" },
-        { RecId: 3, name: "Test Group SMS list", type: "SMS list" },
-        { RecId: 4, name: "Demo Email list", type: "Email list" },
-        { RecId: 5, name: "Test Email list", type: "Email list" },
-        { RecId: 6, name: "Test SMS list", type: "SMS list" },
-    ];
 
     const menuItems = [
         { recId: 1, name: "Edit" },
@@ -103,11 +42,11 @@ const Index = () => {
 
     const columns = [
         {
-            field: "name",
+            field: "Name",
             headerName: "Name",
             width: "600",
             renderCell: (cellValues) => {
-                const icon = cellValues.row.type === CONNECTORS.EMAIL_LIST
+                const icon = cellValues.row.ConnectorType === CONNECTORS.EMAIL
                     ? <MailOutlineIcon sx={{ height: "30px", width: "30px" }} />
                     : <SmsIcon sx={{ height: "30px", width: "30px" }} />;
                 return (
@@ -121,7 +60,7 @@ const Index = () => {
             },
         },
         {
-            field: "type",
+            field: "ConnectorType",
             headerName: "Type",
             width: "600"
         },
@@ -138,9 +77,14 @@ const Index = () => {
 
     const handleMenuClick = (type, item) => {
         if (type === "Edit") {
-            setType(item.type);
+            setType(item.ConnectorType);
             setItem(item);
-            setOpenCreateConnector(true)
+            setOpenCreateConnector(true);
+        }
+        else {
+            dispatch(saveConnector({ connectorRecId: item.RecId, isDelete: "1" }));
+            dispatch(fetchConnectors());
+            enqueueSnackbar(CONNECTORS.LIST_DELETED, { variant: 'success' })
         }
     }
 
@@ -148,6 +92,15 @@ const Index = () => {
         setOpenNewConnector(true);
         setItem(null);
     }
+
+    const handleSaveConnector = (connectorRecId, type, name, recipients) => {
+        dispatch(saveConnector({ connectorRecId: connectorRecId, type: type, connectorName: name, recipients: recipients }));
+        dispatch(fetchConnectors());
+    }
+
+    useEffect(() => {
+        dispatch(fetchConnectors());
+    }, [dispatch])
 
     return (
         <>
@@ -170,14 +123,16 @@ const Index = () => {
                         </Button>
                     </Grid>
                 </Grid>
-                <Grid item sx={{ width: "100%", height: theme.spacing(46.25) }}>
-                    <Datagrid
-                        rows={rows}
-                        columns={columns}
-                        pageSize={5}
-                        rowsPerPageOptions={[5]}
-                    />
-                </Grid>
+                {connectors && (
+                    <Grid item sx={{ width: "100%", height: theme.spacing(46.25) }}>
+                        <Datagrid
+                            rows={connectors}
+                            columns={columns}
+                            pageSize={5}
+                            rowsPerPageOptions={[5]}
+                        />
+                    </Grid>
+                )}
             </StyledGrid>
             <Dialog
                 open={openNewConnector}
@@ -188,7 +143,7 @@ const Index = () => {
             />
             <Dialog
                 open={openCreateConnector}
-                content={<Create item={item} type={type} onCancel={() => setOpenCreateConnector(false)} />}
+                content={<Create item={item} type={type} onSave={handleSaveConnector} onCancel={() => setOpenCreateConnector(false)} />}
                 handleClose={() => setOpenCreateConnector(false)}
                 height={theme.spacing(41)}
                 width={theme.spacing(65)}

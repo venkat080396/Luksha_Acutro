@@ -38,6 +38,10 @@ const theme = createTheme({
             fontWeight: 600,
             fontSize: "18px"
         },
+        header4: {
+            fontWeight: 300,
+            fontSize: "16px"
+        },
     },
     components: {
         MuiGrid: {

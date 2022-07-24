@@ -19,7 +19,7 @@ const Datagrid = (props) => {
             columns={columns}
             pageSize={pageSize}
             rowsPerPageOptions={rowsPerPageOptions}
-            getRowId={(row) => row.RecId}
+            getRowId={(row) => row?.RecId}
             disableSelectionOnClick
             disableColumnFilter
             disableColumnSelector
