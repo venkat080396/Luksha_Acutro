@@ -57,3 +57,8 @@ export const getRandomValuesWithinRange = (min, max) => {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
 }
+
+export const convertObjectToCSV = (object) => {
+    const arr = Object.values(object);
+    return arr.join(',');
+}

@@ -138,11 +138,11 @@ export default function AppBarComponent({
                                     onClick={() => setOpenUserCard(true)}
                                 />
                             </Grid>
-                            <Grid item>
+                            {/* <Grid item>
                                 <IconButton edge="start">
                                     <UserSettingsIcon height="40px" width="40px" />
                                 </IconButton>
-                            </Grid>
+                            </Grid> */}
                             <Grid item>
                                 <IconButton edge="start" onClick={() => setOpenNotifications(true)}>
                                     <StyledBadge badgeContent={5}
@@ -169,15 +169,15 @@ export default function AppBarComponent({
                 open={openUserCard}
                 content={<UserCardDialog userAttributes={userAttributes} />}
                 handleClose={() => setOpenUserCard(false)}
-                top={30}
-                left={1130}
+                top="4%"
+                left="81%"
             />
             <Dialog
                 open={openNotifications}
                 content={<Notifications />}
                 handleClose={() => setOpenNotifications(false)}
-                top={30}
-                left={1200}
+                top="4%"
+                left="80%"
                 height="297px"
                 width="274px"
             />

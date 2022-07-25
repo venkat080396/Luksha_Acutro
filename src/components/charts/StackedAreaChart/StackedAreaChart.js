@@ -47,8 +47,8 @@ const StackedAreaChart = (props) => {
                                 <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
                             </linearGradient>
                         </defs>
-                        <XAxis tickFormatter={dateFormatter} dataKey="RecordedOn" angle={10} textAnchor="start" />
-                        <YAxis />
+                        <XAxis tickFormatter={dateFormatter} dataKey="RecordedOn" angle={10} textAnchor="start" stroke="#FFFFFF" />
+                        <YAxis stroke="#FFFFFF" />
                         {/* <CartesianGrid strokeDasharray="3 3" /> */}
                         <Tooltip />
                         <Area type="monotone" dataKey={areaKey1} stroke="#A71D31" fillOpacity={1} fill="url(#colorUv)" />

@@ -15,13 +15,13 @@ const Header = (props) => {
             alignItems="center" spacing={5} sx={{ marginLeft: "-25px" }}>
             <Grid item onClick={() => handleClick(true)}>
                 <IconLabel
-                    icon={<MapViewIcon height="3em" width="3em" />}
-                    label={<Typography variant="header3">{MAPVIEW.VALUE}</Typography>} />
+                    icon={<MapViewIcon height="3em" width="3em" sx={{ cursor: "pointer" }} />}
+                    label={<Typography variant="header3" sx={{ cursor: "pointer" }}>{MAPVIEW.VALUE}</Typography>} />
             </Grid>
             <Grid item onClick={() => handleClick(false)}>
                 <IconLabel
-                    icon={<ListViewIcon height="3em" width="3em" />}
-                    label={<Typography variant="header3">{LISTVIEW.VALUE}</Typography>} />
+                    icon={<ListViewIcon height="3em" width="3em" sx={{ cursor: "pointer" }} />}
+                    label={<Typography variant="header3" sx={{ cursor: "pointer" }}>{LISTVIEW.VALUE}</Typography>} />
             </Grid>
         </Grid>
     )

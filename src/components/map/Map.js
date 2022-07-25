@@ -43,7 +43,7 @@ const Map = (props) => {
         <ReactMapGL
             initialViewState={viewport}
             reuseMaps
-            style={{ width: 1300, height: 450, borderRadius: "1em" }}
+            style={{ width: 1540, height: 620, borderRadius: "1em" }}
             mapStyle="mapbox://styles/mapbox/streets-v9"
             mapboxAccessToken={MAPBOX_TOKEN}
         >

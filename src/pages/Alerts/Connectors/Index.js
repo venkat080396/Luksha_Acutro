@@ -13,13 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useSnackbar } from 'notistack';
 import { saveConnector, fetchConnectors, getConnectors } from "../../../features/Alerts/AlertsSlice";
 
-const StyledGrid = styled(Grid)(({ theme }) => ({
-    background: "linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)",
-    borderRadius: theme.spacing(1.875),
-    padding: theme.spacing(2)
-}));
-
-const Index = () => {
+const Index = ({ isSelect = false, selectedRows, onSelectChange }) => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const connectors = useSelector(getConnectors);
@@ -28,6 +22,15 @@ const Index = () => {
     const [item, setItem] = useState(null);
     const [type, setType] = useState(null);
     const { enqueueSnackbar } = useSnackbar();
+
+    const StyledGrid = isSelect ? (styled(Grid)(({ theme }) => ({
+        padding: theme.spacing(2)
+    }))) : (styled(Grid)(({ theme }) => ({
+        background: "rgba(255,255,255,0.05)",
+        borderRadius: theme.spacing(1.875),
+        border: '0.05em solid rgba(255,255,255,0.3)',
+        padding: theme.spacing(2)
+    })));
 
     const handleSelect = (type) => {
         setType(type.title);
@@ -44,7 +47,7 @@ const Index = () => {
         {
             field: "Name",
             headerName: "Name",
-            width: "600",
+            width: isSelect ? "300" : "700",
             renderCell: (cellValues) => {
                 const icon = cellValues.row.ConnectorType === CONNECTORS.EMAIL
                     ? <MailOutlineIcon sx={{ height: "30px", width: "30px" }} />
@@ -62,18 +65,23 @@ const Index = () => {
         {
             field: "ConnectorType",
             headerName: "Type",
-            width: "600"
+            width: isSelect ? "300" : "700"
         },
-        {
-            field: "Update",
-            headerName: "",
-            sortable: false,
-            width: 100,
-            renderCell: (cellValues) => {
-                return <Menu onClick={(type) => handleMenuClick(type, cellValues.row)} items={menuItems} />
-            }
-        },
+        !isSelect && (
+            {
+                field: "Update",
+                headerName: "",
+                sortable: false,
+                width: 100,
+                renderCell: (cellValues) => {
+                    return <Menu onClick={(type) => handleMenuClick(type, cellValues.row)} items={menuItems} />
+                }
+            })
     ];
+
+    const handleSelectionChange = (rows) => {
+        onSelectChange(rows)
+    }
 
     const handleMenuClick = (type, item) => {
         if (type === "Edit") {
@@ -107,22 +115,24 @@ const Index = () => {
             <StyledGrid container
                 alignItems="center"
                 justifyItems="center">
-                <Grid item container
-                    alignItems="center"
-                    justifyContent="space-between">
-                    <Grid item>
-                        <Typography variant="header2">
-                            {CONNECTORS.HEADER}
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <Button variant="contained" onClick={handleNewConnector}>
-                            <Typography variant="header3">
-                                {CONNECTORS.NEW_CONNECTOR}
+                {!isSelect && (
+                    <Grid item container
+                        alignItems="center"
+                        justifyContent="space-between">
+                        <Grid item>
+                            <Typography variant="header2">
+                                {CONNECTORS.HEADER}
                             </Typography>
-                        </Button>
+                        </Grid>
+                        <Grid item>
+                            <Button variant="contained" onClick={handleNewConnector}>
+                                <Typography variant="header3">
+                                    {CONNECTORS.NEW_CONNECTOR}
+                                </Typography>
+                            </Button>
+                        </Grid>
                     </Grid>
-                </Grid>
+                )}
                 {connectors && (
                     <Grid item sx={{ width: "100%", height: theme.spacing(46.25) }}>
                         <Datagrid
@@ -130,6 +140,9 @@ const Index = () => {
                             columns={columns}
                             pageSize={5}
                             rowsPerPageOptions={[5]}
+                            isCheckboxGrid={isSelect}
+                            selectionModel={selectedRows}
+                            onSelectionChange={handleSelectionChange}
                         />
                     </Grid>
                 )}

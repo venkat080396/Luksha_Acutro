@@ -15,6 +15,7 @@ import { fetchAsyncLeftDrawerItems } from "../../features/Dashboard/dashboardSli
 import { fetchAsyncBuildings } from '../../features/Home/homeSlice';
 import FloorView from "../BuildingData/FloorView/Container";
 import BuildingData from "../BuildingData/BuildingData";
+import Alerts from "../Alerts/Container";
 import Connectors from "../Alerts/Connectors/Index";
 import Automations from "../Alerts/Automations/Automations";
 import { LEFT_DRAWER_ITEMS } from './constants'
@@ -80,7 +81,7 @@ const Dashboard = (props) => {
             case LEFT_DRAWER_ITEMS.HOME:
                 return <Home />
             case LEFT_DRAWER_ITEMS.ALERTS:
-                return <Automations />
+                return <Alerts />
             case LEFT_DRAWER_ITEMS.FLOOR_VIEW:
                 return <FloorView />
             case LEFT_DRAWER_ITEMS.UTILITIES:

@@ -5,6 +5,8 @@ import { ReactComponent as TemperatureIcon } from "../../../assets/icons/Tempera
 import Dialog from '../../../components/dialog/Dialog'
 import DeviceInformation from "./DeviceInformation"
 import { getRandomValuesWithinRange } from "../../../common/Utils"
+import LightbulbImage from "../../../assets/icons/Lightbulb.png"
+import { getImageURL } from "../../../common/Utils";
 
 const Device = (props) => {
     const { device, isActiveDevice, onDeviceClick } = props;
@@ -27,28 +29,38 @@ const Device = (props) => {
                 alignItems="center"
                 sx={{ cursor: "pointer" }}
                 onClick={handleClick}>
-                <Grid item xs={10} sx={{ paddingLeft: 3 }}>
+                <Grid item xs sx={{ width: "2em" }}>
+                    <img
+                        src={((typeof device.StyleIcon != "undefined") ? getImageURL(device.StyleIcon) : LightbulbImage)}
+                        alt="Device"
+                        style={{
+                            height: "3em",
+                            width: "3em"
+                        }}
+                        onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src = LightbulbImage;
+                        }}
+                    />
+                </Grid>
+                <Grid item xs={9}>
                     {device.Name}
                 </Grid>
-                <Grid item xs={2}>
-                    <Grid container
-                        justifyContent="flex-end"
-                        alignItems="center"
-                        spacing={2}>
-                        <Grid item>
-                            <Grid container sx={{ color: "#4ae54a" }}>
-                                <Grid item sx={{ marginTop: 1 }}>
+                <Grid item container xs={2}
+                    justifyContent="center"
+                    alignItems="center"
+                    spacing={2}>
+                    <Grid item container sx={{ color: "#4ae54a" }}>
+                        {/* <Grid item sx={{ marginTop: 1 }}>
                                     <TemperatureIcon height="2em" width="2em" />
-                                </Grid>
-                                <Grid item sx={{ marginTop: 1.5, marginLeft: -0.5 }}>
-                                    <div> {getRandomValuesWithinRange(18, 21)} &deg;C</div>
-                                </Grid>
-                            </Grid>
-                        </Grid>
-                        <Grid item sx={{ marginRight: "1em" }}>
-                            <SettingsIcon height="2em" width="2em" />
+                                </Grid> */}
+                        <Grid item sx={{ paddingLeft: 10 }}>
+                            <div> {getRandomValuesWithinRange(18, 21)} &deg;C</div>
                         </Grid>
                     </Grid>
+                    {/* <Grid item sx={{ marginRight: "1em" }}>
+                            <SettingsIcon height="2em" width="2em" />
+                        </Grid> */}
                 </Grid>
             </Grid>
             <Dialog

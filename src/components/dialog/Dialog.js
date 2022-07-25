@@ -1,7 +1,12 @@
 import React from 'react';
 import MuiDialog from '@mui/material/Dialog';
+import { styled } from '@mui/system';
 import { DialogTitle, DialogContent } from '@mui/material';
-import bgImage from "../../assets/images/Background.png"
+
+const StyledDialog = styled(MuiDialog)(({ theme }) => ({
+    background: "linear-gradient(-30.77deg, #767f82, #596a75, #425569, #323f5b, #2a294b)",
+    borderRadius: theme.spacing(1.875)
+}));
 
 const Dialog = (props) => {
     const { open, handleClose, title, content, top, left, height, width } = props
@@ -18,7 +23,8 @@ const Dialog = (props) => {
                     top: top,
                     left: left,
                     height: height,
-                    width: width
+                    width: width,
+                    background: "linear-gradient(-30.77deg, #767f82, #596a75, #425569, #323f5b, #2a294b)"
                 },
             }}>
             {title && (<DialogTitle>{title}</DialogTitle>)}

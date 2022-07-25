@@ -32,6 +32,44 @@ export const fetchConnectors = createAsyncThunk(
     }
 );
 
+export const saveAutomation = createAsyncThunk(
+    'Alerts/saveAutomation',
+    async (automation) => {
+        const automationDetails = {
+            operation: "SaveAlertAutomationConfig",
+            payload: {
+                nAlertAutomationRecId: automation.automationRecId || "-1",
+                sAutomationName: automation.automationName,
+                sDescription: automation.description,
+                nAssetOrDeviceRecId: automation.assetOrDeviceId,
+                nMetricOrDeviceSensorRecId: automation.metricOrDeviceSensorRecId,
+                sConditionOperator: automation.conditionOperator,
+                nThresholdValue: automation.thresholdValue,
+                nAlertConnectorRecId: automation.connectorRecId,
+                sAlertConnectorRecIds: automation.connectorRecIds,
+                sAlertMessage: automation.alertMessage,
+                sActionMessage: automation.actionMessage,
+                nViolationCount: automation.violationCount || "0",
+                bIsDelete: automation.isDelete || "0"
+            }
+        }
+        const response = await api.post(baseURL, automationDetails);
+        return response.data;
+    }
+);
+
+export const fetchAutomations = createAsyncThunk(
+    'Alerts/fetchAutomations',
+    async () => {
+        const automationDetails = {
+            operation: "GetAlertAutomationConfigs",
+            payload: {
+            }
+        }
+        const response = await api.post(baseURL, automationDetails);
+        return response.data;
+    }
+);
 
 export const fetchAsyncSites = createAsyncThunk(
     'Alerts/fetchAsyncSites',
@@ -124,6 +162,8 @@ export const saveDistribution = createAsyncThunk(
 
 const initialState = {
     connectors: null,
+    automations: null,
+    selectedConnectors: null,
     distributionList: [],
     buildings: [{}],
     floors: [{}],
@@ -151,10 +191,16 @@ const AlertsSlice = createSlice({
         setSelectedDevice(state, action) {
             state.selectDevice = action.payload
         },
+        setSelectedConnectors(state, action) {
+            state.selectedConnectors = action.payload
+        }
     },
     extraReducers: {
         [fetchConnectors.fulfilled]: (state, { payload }) => {
             return { ...state, connectors: payload };
+        },
+        [fetchAutomations.fulfilled]: (state, { payload }) => {
+            return { ...state, automations: payload };
         },
         [fetchAsyncDistributionList.fulfilled]: (state, { payload }) => {
             return { ...state, distributionList: payload };
@@ -184,7 +230,9 @@ export const getSelectedFloor = (state) => state.Alerts?.selectedFloor;
 export const getSelectedSites = (state) => state.Alerts?.selectSite;
 export const getSelectedDevice = (state) => state.Alerts?.selectDevice;
 export const getConnectors = (state) => state.Alerts?.connectors;
+export const getAutomations = (state) => state.Alerts?.automations;
+export const getSelectedConnectors = (state) => state.Alerts?.selectedConnectors;
 
-export const { setSelectedBuilding, setSelectedFloor, setSelectedSite, setSelectedDevice } = AlertsSlice.actions
+export const { setSelectedBuilding, setSelectedFloor, setSelectedSite, setSelectedDevice, setSelectedConnectors } = AlertsSlice.actions
 
 export default AlertsSlice.reducer
