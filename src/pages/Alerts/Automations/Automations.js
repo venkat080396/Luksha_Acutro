@@ -82,7 +82,7 @@ export default function Automations() {
                 automationRecId: String(item?.RecId), automationName: item?.Name, description: item?.Description,
                 assetOrDeviceId: String(item?.AssetOrDeviceRecId), metricOrDeviceSensorRecId: String(item?.MetricOrDeviceSensorRecId),
                 conditionOperator: item?.ConditionOperator, thresholdValue: item.ThresholdValue,
-                connectorRecId: String(item?.connectorRecId), connectorRecIds: item?.AlertConnectorRecIds,
+                connectorRecId: String(item?.AlertConnectorRecId), connectorRecIds: item?.AlertConnectorRecIds,
                 alertMessage: " ", actionMessage: " ", isDelete: "1"
             };
 
