@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Label from "../../../components/forms/Label/Label";
 import Card from "../../../components/layout/Card/Card";
 import Datagrid from "../../../components/datagrid/Datagrid";
 import Dialog from "../../../components/dialog/Dialog";
 import TextField from "../../../components/forms/TextField/TextField";
-
+import SelectBox from "../../../components/forms/SelectBox/SelectBox";
+import { useDispatch, useSelector } from "react-redux";
+import { useSnackbar } from 'notistack';
+import {
+    fetchAsyncAllDeviceTypes, getAllDeviceTypes, fetchAsyncDevicesWithStatus,
+    getAllDevicesWithStatus, fetchAsyncDeviceSensorsForDeviceId, getDeviceSensors,
+    getSelectedAssetType, getSelectedDevice, getSelectedSensor, setSelectedAssetType, setSelectedDevice, setSelectedSensor
+} from "../../../features/BuildingData/buildingDataSlice";
+import { saveAutomation, fetchAutomations, getAutomations } from "../../../features/Alerts/AlertsSlice";
+import { getSelectedBuilding, getSelectedFloor } from '../../../features/Home/homeSlice';
 import {
     Grid,
     Box,
@@ -13,249 +22,216 @@ import {
     IconButton,
     CardHeader,
     Typography,
+    Switch,
+    FormGroup,
+    FormControlLabel,
 } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Select from "../../../components/forms/Select/Select";
-
-const MenuComponent = () => {
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    const handleEdit = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    return (
-        <>
-            <Box>
-                <IconButton onClick={handleClick}>
-                    <MoreVertIcon style={{ color: "#fff" }} />
-                </IconButton>
-            </Box>
-            <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                }}
-                transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                }}
-            >
-                <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                <MenuItem onClick={handleClose}>Delete</MenuItem>
-            </Menu>
-        </>
-    );
-};
-
-const columns = [
-    {
-        field: "Name",
-        headerName: "Name",
-        width: 300,
-        renderCell: (cellValues) => {
-            return (
-                <Grid container>
-                    <Grid item>{cellValues.value}</Grid>
-                </Grid>
-            );
-        },
-    },
-    {
-        field: "description",
-        headerName: "Description",
-        width: 300,
-    },
-    {
-        field: "type",
-        headerName: "Type",
-        width: 100,
-    },
-    {
-        field: "event",
-        headerName: "Event",
-        width: 200,
-    },
-    {
-        field: "lasttrigger",
-        headerName: "Last Trigger",
-        width: 290,
-        renderCell: (item) => {
-            return <>{item.value}</>;
-        },
-    },
-    {
-        field: "",
-        headerName: "Last Trigger",
-        renderHeader: (_) => {
-            return <>
-                <Box>
-                    &nbsp;
-                </Box>
-            </>
-        },
-        width: 56,
-        renderCell: (_) => {
-            return <MenuComponent />;
-        },
-        sortable: false,
-    },
-];
-
-const rows = [
-    {
-        RecId: 1,
-        Name: "Grassmere",
-        description: "Microsoft Team",
-        type: "Asset",
-        event: "Message Received",
-        lasttrigger: "06/29/2022 6:41 PM",
-    },
-    {
-        RecId: 2,
-        Name: "Grassmere",
-        description: "Microsoft Team",
-        type: "Asset",
-        event: "Message Received",
-        lasttrigger: "06/29/2022 6:41 PM",
-    },
-];
+import SelectConnectors from "./Select Connectors/SelectConnectors";
+import { convertObjectToCSV } from "../../../common/Utils";
+import Menu from '../../../components/layout/Menu/Menu';
 
 export default function Automations() {
-    const [openDialog, setOpenDialog] = React.useState(false);
     const [openDialogForm, setOpenDialogForm] = React.useState(false);
+    const [openConnector, setOpenConnector] = useState(false);
+    const [selctedConnectorRecIds, setselctedConnectorRecIds] = useState([]);
+    const [automationName, setAutomationName] = useState(null);
+    const [description, setDescription] = useState(null);
+    const [selectedOperator, setSelectedOperator] = useState(null);
+    const [thresholdValue, setThresholdValue] = useState(0);
+    const [message, setMessage] = useState(null);
+    const [checked, setChecked] = useState(false);
+    const dispatch = useDispatch();
+    const deviceTypes = useSelector(getAllDeviceTypes);
+    const selectedBuilding = useSelector(getSelectedBuilding);
+    const selectedFloor = useSelector(getSelectedFloor);
+    const devices = useSelector(getAllDevicesWithStatus);
+    const sensors = useSelector(getDeviceSensors);
+    const selectedAssetType = useSelector(getSelectedAssetType);
+    const selectedDevice = useSelector(getSelectedDevice);
+    const selectedSensor = useSelector(getSelectedSensor);
+    const automations = useSelector(getAutomations);
+    const [item, setItem] = useState(null);
+    const { enqueueSnackbar } = useSnackbar();
+
+    useEffect(() => {
+        dispatch(fetchAutomations())
+        dispatch(fetchAsyncAllDeviceTypes(null))
+    }, [dispatch])
+
+    useEffect(() => {
+        setselctedConnectorRecIds(item?.AlertConnectorRecIds)
+        setAutomationName(item?.Name)
+        setDescription(item?.Description)
+        setSelectedOperator(operators?.find(operator => operator.Value === item?.ConditionOperator))
+        setThresholdValue(item?.ThresholdValue)
+        setMessage(item?.AlertMessage)
+        setChecked(item?.AlertMessage !== "" || item?.AlertMessage !== null)
+        setSelectedDevice(devices?.find(device => device.RecId === item?.AssetOrDeviceRecId))
+        setSelectedSensor(sensors?.find(sensor => sensor.RecId === item?.MetricOrDeviceSensorRecId))
+    }, [item])
+
+    const handleMenuClick = (type, item) => {
+        if (type === "Edit") {
+            setItem(item);
+            setOpenDialogForm(true);
+        }
+        else {
+            const automation = {
+                automationRecId: String(item?.RecId), automationName: item?.Name, description: item?.Description,
+                assetOrDeviceId: String(item?.AssetOrDeviceRecId), metricOrDeviceSensorRecId: String(item?.MetricOrDeviceSensorRecId),
+                conditionOperator: item?.ConditionOperator, thresholdValue: item.ThresholdValue,
+                connectorRecId: String(item?.connectorRecId), connectorRecIds: item?.AlertConnectorRecIds,
+                alertMessage: " ", actionMessage: " ", isDelete: "1"
+            };
+
+            dispatch(saveAutomation(automation));
+            enqueueSnackbar("Automation has been deleted successfully", { variant: 'success' })
+        }
+    }
+
+    const operators = [
+        { RecId: 1, Value: ">", Name: "Greater Than" },
+        { RecId: 2, Value: ">=", Name: "Greater Than or Equal to" },
+        { RecId: 3, Value: "<", Name: "Less Than" },
+        { RecId: 4, Value: "<=", Name: "Less than or Equal to" },
+        { RecId: 5, Value: "=", Name: "Equal to" }
+    ]
+
+    const menuItems = [
+        { recId: 1, name: "Edit" },
+        { recId: 2, name: "Delete" }
+    ]
+
+    const columns = [
+        {
+            field: "Name",
+            headerName: "Name",
+            width: 400,
+            renderCell: (cellValues) => {
+                return (
+                    <Grid container>
+                        <Grid item>{cellValues.value}</Grid>
+                    </Grid>
+                );
+            },
+        },
+        {
+            field: "Description",
+            headerName: "Description",
+            width: 530,
+        },
+        {
+            field: "type",
+            headerName: "Type",
+            width: 200,
+            renderCell: (cellValues) => {
+                return (
+                    <Grid container>
+                        <Grid item>Asset</Grid>
+                    </Grid>
+                );
+            },
+        },
+        {
+            field: "LastTriggered",
+            headerName: "Last Triggered",
+            width: 450,
+            renderCell: (item) => {
+                return <>{item.value}</>;
+            },
+        },
+        {
+            field: "",
+            headerName: "",
+            renderHeader: (_) => {
+                return <>
+                    <Box>
+                        &nbsp;
+                    </Box>
+                </>
+            },
+            width: 56,
+            renderCell: (cellValues) => {
+                return <Menu
+                    onClick={(type) => handleMenuClick(type, cellValues.row)}
+                    items={menuItems} />
+            },
+            sortable: false,
+        },
+    ];
+
+    const handleCreate = () => {
+        const rowscsv = convertObjectToCSV(selctedConnectorRecIds);
+        const automation = {
+            automationRecId: item?.RecId, automationName: automationName, description: description,
+            assetOrDeviceId: selectedDevice?.RecId, metricOrDeviceSensorRecId: selectedSensor?.RecId,
+            conditionOperator: selectedOperator?.Value, thresholdValue: thresholdValue,
+            connectorRecId: selctedConnectorRecIds[0], connectorRecIds: rowscsv, alertMessage: checked ? message : ""
+        };
+
+        dispatch(saveAutomation(automation));
+        setOpenDialogForm(false);
+        dispatch(fetchAutomations())
+        enqueueSnackbar(item ? "Automation has been updated successfully"
+            : "Automation has been created successfully", { variant: 'success' })
+    }
+
+    const onDeviceChange = (device) => {
+        dispatch(setSelectedDevice(device))
+        dispatch(fetchAsyncDeviceSensorsForDeviceId(device?.RecId));
+    }
+
+    const onSensorChange = (sensor) => {
+        dispatch(setSelectedSensor(sensor))
+    }
+
+    const handleChange = (event) => {
+        setChecked(event.target.checked);
+    }
+
+    const onAssetTypeChange = (assetType) => {
+        dispatch(setSelectedAssetType(assetType))
+        const requestDetails = { siteRecId: 1, buildingRecId: selectedBuilding?.RecId, floorRecId: selectedFloor?.RecId, deviceTypeRecId: assetType?.RecId }
+        dispatch(fetchAsyncDevicesWithStatus(requestDetails))
+    }
+
     return (
         <Grid container direction="column">
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Card
                     headerContent={
-                        <Label
-                            sx={{ marginBottom: 2 }}
-                            style={{ fontWeight: "bold", fontSize: 32, color: "white" }}
-                            label="Automations"
-                        />
+                        <Grid container
+                            alignItems="center"
+                            justifyContent="space-between">
+                            <Grid item>
+                                <Typography variant="header2">
+                                    Automations
+                                </Typography>
+                            </Grid>
+                            <Grid item>
+                                <Button variant="contained" onClick={() => setOpenDialogForm(true)}>
+                                    <Typography variant="header3">
+                                        New Automations
+                                    </Typography>
+                                </Button>
+                            </Grid>
+                        </Grid>
                     }
                     sx={{ paddingX: 4, paddingY: 2 }}
                     content={
                         <>
                             <Box
-                                sx={{ width: "78vw", height: "44vh", paddingBottom: "1rem" }}
+                                sx={{ width: "100%", height: "44vh", paddingBottom: "1rem" }}
                             >
                                 <Datagrid
-                                    rows={rows}
+                                    rows={automations}
                                     columns={columns}
                                     pageSize={5}
                                     rowsPerPageOptions={[5]}
                                 />
                             </Box>
-                            <Box sx={{ width: "78vw", paddingBottom: "2rem" }}>
-                                <Grid container flexDirection="row-reverse">
-                                    <Grid item>
-                                        <Button
-                                            variant="contained"
-                                            size="medium"
-                                            onClick={() => setOpenDialog(true)}
-                                        >
-                                            {"New Automation"}
-                                        </Button>
-                                    </Grid>
-                                </Grid>
-                            </Box>
-                            <Dialog
-                                open={openDialog}
-                                handleClose={() => setOpenDialog(false)}
-                                title={"What type of Automation would you like to create?"}
-                                content={
-                                    <>
-                                        <Box width={600}>
-                                            <Grid container spacing={2}>
-                                                <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-                                                    <CardHeader
-                                                        title={
-                                                            <Typography
-                                                                sx={{
-                                                                    color: "white",
-                                                                    fontWeight: "900",
-                                                                }}
-                                                                variant="h6"
-                                                            >
-                                                                Asset
-                                                            </Typography>
-                                                        }
-                                                        subheader={
-                                                            <Typography sx={{ color: "white" }} variant="body2">
-                                                                Create Automation that allow you to report to events that apply to asset
-                                                            </Typography>
-                                                        }
-                                                        action={
-                                                            <Box pt={2}>
-                                                                <Button
-                                                                    variant="contained"
-                                                                    onClick={() => {
-                                                                        setOpenDialog(false);
-                                                                        setOpenDialogForm(true);
-                                                                    }}
-                                                                >
-                                                                    Select
-                                                                </Button>
-                                                            </Box>
-                                                        }
-                                                    />
-                                                    <CardHeader
-                                                        title={
-                                                            <Typography
-                                                                sx={{
-                                                                    color: "white",
-                                                                    fontWeight: "900",
-                                                                }}
-                                                                variant="h6"
-                                                            >
-                                                                Dates
-                                                            </Typography>
-                                                        }
-                                                        subheader={
-                                                            <Typography
-                                                                sx={{ color: "white" }}
-                                                                variant="body2"
-                                                            >
-                                                                Create recurring automation based on scheduled
-                                                                dates
-                                                            </Typography>
-                                                        }
-                                                        action={
-                                                            < Box pt={2}>
-                                                                <Button
-                                                                    variant="contained"
-                                                                    onClick={() => {
-                                                                        setOpenDialog(false);
-                                                                        setOpenDialogForm(true);
-                                                                    }}
-                                                                >
-                                                                    Select
-                                                                </Button>
-                                                            </Box>
-                                                        }
-                                                    />
-                                                </Grid>
-                                            </Grid>
-                                        </Box>
-                                    </>
-                                }
-                            />
                             <Dialog
                                 open={openDialogForm}
                                 handleClose={() => setOpenDialogForm(false)}
@@ -290,7 +266,10 @@ export default function Automations() {
                                                                         xl={12}
                                                                     >
                                                                         <Typography sx={{ marginBottom: 1 }}>Name</Typography>
-                                                                        <TextField name="Enter Name" size="small" fullWidth />
+                                                                        <TextField
+                                                                            value={automationName}
+                                                                            onChange={(e) => setAutomationName(e.target.value)}
+                                                                            name="Enter Name" size="small" fullWidth />
                                                                     </Grid>
                                                                     <Grid
                                                                         item
@@ -301,54 +280,10 @@ export default function Automations() {
                                                                         xl={12}
                                                                     >
                                                                         <Typography sx={{ marginBottom: 1 }}>Description</Typography>
-                                                                        <TextField name="Enter Description" size="small" fullWidth />
-                                                                    </Grid>
-                                                                </Grid>
-                                                            </Box>
-                                                        }
-                                                    />
-                                                </Grid>
-                                                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                                                    <Card
-                                                        headerContent={
-                                                            <CardHeader
-                                                                title="Event"
-                                                                subheader={
-                                                                    <Typography sx={{ color: "white" }}>
-                                                                        {
-                                                                            "select the event that you want to trigger this automation"
-                                                                        }
-                                                                    </Typography>
-                                                                }
-                                                            />
-                                                        }
-                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
-                                                        content={
-                                                            <Box>
-                                                                <Grid container spacing={2}>
-                                                                    <Grid
-                                                                        item
-                                                                        sx={12}
-                                                                        sm={12}
-                                                                        md={12}
-                                                                        lg={12}
-                                                                        xl={12}
-                                                                    >
-                                                                        <Select
-                                                                            placeholder="Select Building"
-                                                                            props={{
-                                                                                size: "small",
-                                                                                placeholder: "Select Building",
-                                                                            }}
-                                                                            items={[
-                                                                                {
-                                                                                    RecId: 1,
-                                                                                    Name: "Metric Threshold",
-                                                                                    sub: "select the event that you want to trigger this automation",
-                                                                                },
-                                                                            ]}
-                                                                            fullWidth={true}
-                                                                        />
+                                                                        <TextField
+                                                                            value={description}
+                                                                            onChange={(e) => setDescription(e.target.value)}
+                                                                            name="Enter Description" size="small" fullWidth />
                                                                     </Grid>
                                                                 </Grid>
                                                             </Box>
@@ -373,46 +308,128 @@ export default function Automations() {
                                                         content={
                                                             <Box>
                                                                 <Grid container spacing={2}>
-                                                                    <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-                                                                        <Typography sx={{ marginBottom: 1 }}>Assert Type</Typography>
-                                                                        <TextField name="Asset Type *" size="small" fullWidth />
+                                                                    <Grid item sx={{ marginLeft: -5 }} sm={12} md={12} lg={12} xl={12}>
+                                                                        <SelectBox
+                                                                            value={selectedAssetType}
+                                                                            onSelectChange={onAssetTypeChange}
+                                                                            label="Asset Type"
+                                                                            items={deviceTypes} />
+                                                                    </Grid>
+                                                                    <Grid item sx={{ marginLeft: -5 }} sm={12} md={12} lg={12} xl={12}>
+                                                                        <SelectBox
+                                                                            value={selectedDevice}
+                                                                            onSelectChange={onDeviceChange}
+                                                                            label="Device"
+                                                                            items={devices} />
+                                                                    </Grid>
+                                                                    <Grid item sx={{ marginLeft: -5 }} sm={12} md={12} lg={12} xl={12}>
+                                                                        <SelectBox
+                                                                            value={selectedSensor}
+                                                                            onSelectChange={onSensorChange}
+                                                                            label="Sensor"
+                                                                            items={sensors} />
                                                                     </Grid>
                                                                     <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Operator</Typography>
                                                                         <Select
-                                                                            placeholder="Select Building"
+                                                                            value={selectedOperator}
+                                                                            onSelectChange={(operator) => setSelectedOperator(operator)}
+                                                                            placeholder="Select Operator"
                                                                             props={{
                                                                                 size: "small",
-                                                                                placeholder: "Select Building",
+                                                                                placeholder: "Select Operator",
                                                                             }}
-                                                                            items={[
-                                                                                { RecId: 1, Name: "Greater Than" },
-                                                                                { RecId: 2, Name: "Less Than" },
-                                                                                { RecId: 3, Name: "Less or Equal" },
-                                                                            ]}
+                                                                            items={operators}
                                                                             fullWidth={true}
                                                                         />
                                                                     </Grid>
                                                                     <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Value</Typography>
-                                                                        <TextField name="Value" type="number" size="small" fullWidth />
+                                                                        <TextField
+                                                                            value={thresholdValue}
+                                                                            onChange={(e) => setThresholdValue(e.target.value)}
+                                                                            name="Value" type="number" size="small" fullWidth />
                                                                     </Grid>
-                                                                    <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
+                                                                    {/* <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Violations Count</Typography>
                                                                         <TextField name="Violations Count *" type="number" size="small" fullWidth />
+                                                                    </Grid> */}
+                                                                </Grid>
+                                                            </Box>
+                                                        }
+                                                    />
+                                                </Grid>
+                                                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                                                    <Card
+                                                        headerContent={
+                                                            <CardHeader
+                                                                title="Configure actions"
+                                                                subheader={
+                                                                    <Typography sx={{ color: "white" }}>
+                                                                        {
+                                                                            "Select the actions you want to perform when the trigger is activated"
+                                                                        }
+                                                                    </Typography>
+                                                                }
+                                                            />
+                                                        }
+                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
+                                                        content={
+                                                            <Box>
+                                                                <Grid container spacing={2}>
+                                                                    <Grid item>
+                                                                        <FormGroup>
+                                                                            <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} label="Override template" />
+                                                                            {checked && (<Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
+                                                                                <Typography sx={{ marginBottom: 1 }}>Message *</Typography>
+                                                                                <TextField name="Message"
+                                                                                    value={message}
+                                                                                    onChange={(e) => setMessage(e.target.value)}
+                                                                                    size="small" fullWidth />
+                                                                            </Grid>)}
+                                                                        </FormGroup>
+                                                                    </Grid>
+                                                                    <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
+                                                                        <Button variant="contained" onClick={() => setOpenConnector(true)}>
+                                                                            <Typography>
+                                                                                Add Action
+                                                                            </Typography>
+                                                                        </Button>
+                                                                    </Grid>
+                                                                    <Grid item>
+                                                                        <Dialog
+                                                                            open={openConnector}
+                                                                            content={<SelectConnectors
+                                                                                selctedConnectorRecIds={selctedConnectorRecIds}
+                                                                                onSelectChange={(rows) => setselctedConnectorRecIds(rows)}
+                                                                                handleClose={() => setOpenConnector(false)} />}
+                                                                            handleClose={() => setOpenConnector(false)}
+                                                                        />
                                                                     </Grid>
                                                                 </Grid>
                                                             </Box>
                                                         }
                                                     />
                                                 </Grid>
-                                                <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
+                                                <Grid item sx={{ margin: "0px 40px 40px 40px", }} sm={12} md={12} lg={12} xl={12}>
                                                     <Grid container alignItems='center' flexDirection='row-reverse' spacing={2}>
                                                         <Grid item>
-                                                            <Button variant='contained' onClick={() => setOpenDialogForm(false)}>Create Automation</Button>
+                                                            <Button variant='contained'
+                                                                onClick={handleCreate}>
+                                                                <Typography>
+                                                                    {item !== null ?
+                                                                        "Update Automation" : "Create Automation"
+                                                                    }
+                                                                </Typography>
+                                                            </Button>
                                                         </Grid>
                                                         <Grid item>
-                                                            <Button variant="contained" color="error" onClick={() => setOpenDialogForm(false)}>Cancel</Button>
+                                                            <Button variant="contained" color="secondary"
+                                                                onClick={() => setOpenDialogForm(false)}>
+                                                                <Typography>
+                                                                    Cancel
+                                                                </Typography>
+                                                            </Button>
                                                         </Grid>
                                                     </Grid>
                                                 </Grid>

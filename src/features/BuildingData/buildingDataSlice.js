@@ -89,7 +89,10 @@ const initialState = {
     deviceSensors: null,
     deviceReadings: null,
     devicesToBeSaved: [],
-    selectedBuildingOnMap: null
+    selectedBuildingOnMap: null,
+    selectedAssetType: null,
+    selectedDevice: null,
+    selectedSensor: null
 };
 
 const buildingDataSlice = createSlice({
@@ -101,6 +104,15 @@ const buildingDataSlice = createSlice({
         },
         setSelectedBuildingOnMap(state, action) {
             state.selectedBuildingOnMap = action.payload
+        },
+        setSelectedAssetType(state, action) {
+            state.selectedAssetType = action.payload
+        },
+        setSelectedDevice(state, action) {
+            state.selectedDevice = action.payload
+        },
+        setSelectedSensor(state, action) {
+            state.selectedSensor = action.payload
         }
     },
     extraReducers: {
@@ -147,7 +159,10 @@ export const getAllDevicesToBeSaved = (state) => state.buildingData?.devicesToBe
 export const getSelectedBuildingOnMap = (state) => state.buildingData?.selectedBuildingOnMap
 export const getDeviceSensors = (state) => state.buildingData?.deviceSensors
 export const getDeviceReadings = (state) => state.buildingData?.deviceReadings
+export const getSelectedAssetType = (state) => state.buildingData?.selectedAssetType
+export const getSelectedDevice = (state) => state.buildingData?.selectedDevice
+export const getSelectedSensor = (state) => state.buildingData?.selectedSensor
 
-export const { updateDeviceToBeSaved, setSelectedBuildingOnMap } = buildingDataSlice.actions
+export const { updateDeviceToBeSaved, setSelectedBuildingOnMap, setSelectedAssetType, setSelectedDevice, setSelectedSensor } = buildingDataSlice.actions
 
 export default buildingDataSlice.reducer

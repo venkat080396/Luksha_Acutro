@@ -27,7 +27,7 @@ const Sensor = (props) => {
             width={1200}
             open={openDialog}
             handleClose={() => setOpenDialog(false)}
-            title="Sensor Information"
+            title={`Sensor Information - ${sensor.Name}`}
             content={<SensorChart deviceRecId={deviceRecId} sensorRecId={sensorRecId} />} />
     </>
     )

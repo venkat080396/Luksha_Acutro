@@ -83,8 +83,16 @@ const theme = createTheme({
             input: {
                 fontWeight: '300',
                 fontSize: '16px',
-                lineHeight: '22px',
-                color: '#FFFFFF'
+                lineHeight: '22px'
+            }
+        },
+        MuiInputBase: {
+            styleOverrides: {
+                input: {
+                    "&:-webkit-autofill": {
+                        //WebkitBoxShadow: "0 0 0 1000px rgba(255,255,255,0.05) inset !important"
+                    }
+                }
             }
         },
         MuiCard: {
@@ -137,7 +145,7 @@ const theme = createTheme({
                 cell: {
                     borderBottom: "1px solid rgba(244,244,244,0.3)",
                     fontWeight: 300,
-                    fontSize: "12px"
+                    fontSize: "14px"
                 },
                 columnHeaders: {
                     borderBottom: "1px solid rgba(244,244,244,0.3)"
@@ -147,7 +155,7 @@ const theme = createTheme({
                 },
                 columnHeader: {
                     fontWeight: 400,
-                    fontSize: "14px"
+                    fontSize: "18px"
                 }
             }
         },

@@ -15,7 +15,7 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
     background: "linear-gradient(-30.77deg, #767f82, #596a75, #425569, #323f5b, #2a294b)",
     borderRadius: theme.spacing(1.875),
     padding: theme.spacing(2.5),
-    width: theme.spacing(74.8)
+    width: theme.spacing(74.5)
 }));
 
 const TypesList = ({ onCancel, onSelect }) => {
@@ -28,7 +28,7 @@ const TypesList = ({ onCancel, onSelect }) => {
                     {CONNECTORS.CREATE_CONNECTOR}
                 </Typography>
             </Grid>
-            <Grid item sx={{ height: theme.spacing(49.2) }}>
+            <Grid item sx={{ height: theme.spacing(47.2) }}>
                 {types && types.map(type => (
                     <Type {...type} onSelect={() => onSelect(type)} />
                 ))}

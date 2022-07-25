@@ -1,43 +1,30 @@
 import React, { useState } from 'react'
-import { Grid, Button } from '@mui/material'
+import { Grid } from '@mui/material'
 import Map from '../../../components/map/Map'
 import { useSelector } from "react-redux";
 import { getAllBuildings } from '../../../features/Home/homeSlice';
-import { MAPVIEW } from '../constants'
 
 const MapView = () => {
     const [selectedBuildingOnMap, setSelectedBuildingOnMap] = useState(null);
-    const [buildingLocations, setBuildingLocations] = useState(null);
     const buildings = useSelector(getAllBuildings);
 
     const handleClick = (selectedBuilding) => {
-        setSelectedBuildingOnMap(selectedBuilding)
-    }
-
-    const onShowLocationsClick = () => {
-        setBuildingLocations(buildings)
+        setSelectedBuildingOnMap(selectedBuilding);
     }
 
     return (
-        <>
-            <Grid container
-                direction="column"
-                alignItems="flex-start"
-                spacing={2}
-                sx={{ marginLeft: "2em" }}>
-                <Grid item>
-                    <Button variant="contained" onClick={onShowLocationsClick}>
-                        {MAPVIEW.SHOW_LOCATIONS}
-                    </Button>
-                </Grid>
-                <Grid item sx={{ height: "50vh", width: "85vw" }}>
-                    <Map
-                        buildingLocations={buildingLocations}
-                        selectedBuildingOnMap={selectedBuildingOnMap}
-                        onClick={handleClick} />
-                </Grid>
+        <Grid container
+            direction="column"
+            alignItems="flex-start"
+            spacing={2}
+            sx={{ marginLeft: "2em" }}>
+            <Grid item>
+                <Map
+                    buildingLocations={buildings}
+                    selectedBuildingOnMap={selectedBuildingOnMap}
+                    onClick={handleClick} />
             </Grid>
-        </>
+        </Grid>
     )
 }
 

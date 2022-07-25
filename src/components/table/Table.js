@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/system';
+import { Typography } from '@mui/material';
 
 const StyledContainer = styled(TableContainer)({
     border: "0.05em solid rgba(255,255,255,0.5)",
@@ -28,7 +29,11 @@ const Table = (props) => {
                 <TableHead>
                     <TableRow>
                         {columns && columns.map((column) => (
-                            <TableCell sx={{ width: `${column.width}px` }} key={column.field}>{column.headerName}</TableCell>
+                            <TableCell sx={{ width: `${column.width}px` }} key={column.field}>
+                                <Typography variant="header3">
+                                    {column.headerName}
+                                </Typography>
+                            </TableCell>
                         ))}
                     </TableRow>
                 </TableHead>
@@ -40,7 +45,11 @@ const Table = (props) => {
                         >
                             {
                                 columns && columns.map((column) => (
-                                    <TableCell key="column.field" sx={{ whiteSpace: "pre-wrap", verticalAlign: "top" }}>{row[column.field]}</TableCell>
+                                    <TableCell key="column.field" sx={{ whiteSpace: "pre-wrap", verticalAlign: "top" }}>
+                                        <Typography variant="body1">
+                                            {row[column.field]}
+                                        </Typography>
+                                    </TableCell>
                                 ))
                             }
                         </TableRow>
