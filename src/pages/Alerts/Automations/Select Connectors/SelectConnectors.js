@@ -3,7 +3,7 @@ import React from 'react'
 import Connectors from "../../Connectors/Index";
 
 const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange }) => {
-
+    console.log("connector screen", selctedConnectorRecIds);
     const handleOkClick = () => {
         handleClose();
     }

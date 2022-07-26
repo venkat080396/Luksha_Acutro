@@ -132,13 +132,13 @@ const InstalledAlerts = () => {
                     rowsPerPageOptions={[5]}
                 />
             </Box>
-            <Box sx={{ width: "90vw", paddingLeft: "2rem", paddingRight: "2rem", paddingBottom: "2rem" }}>
+            {/* <Box sx={{ width: "90vw", paddingLeft: "2rem", paddingRight: "2rem", paddingBottom: "2rem" }}>
                 <Grid container flexDirection='row-reverse'>
                     <Grid item>
                         <Button variant="contained" size="medium" onClick={() => setOpenDialog(true)}>{"ADD"}</Button>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box> */}
             <Dialog
                 open={openDialog}
                 handleClose={() => setOpenDialog(false)}

@@ -85,15 +85,21 @@ const Index = ({ isSelect = false, selectedRows, onSelectChange }) => {
     }
 
     const handleMenuClick = (type, item) => {
-        if (type === "Edit") {
-            setType(item.ConnectorType);
-            setItem(item);
-            setOpenCreateConnector(true);
-        }
-        else {
-            dispatch(saveConnector({ connectorRecId: item.RecId, isDelete: "1" }));
-            dispatch(fetchConnectors());
-            enqueueSnackbar(CONNECTORS.LIST_DELETED, { variant: 'success' })
+        switch (type) {
+            case "Edit":
+                setType(item.ConnectorType);
+                setItem(item);
+                setOpenCreateConnector(true);
+                break;
+
+            case "Delete":
+                dispatch(saveConnector({ connectorRecId: item.RecId, isDelete: "1" }));
+                dispatch(fetchConnectors());
+                enqueueSnackbar(CONNECTORS.LIST_DELETED, { variant: 'success' })
+                break;
+
+            default:
+                break;
         }
     }
 
