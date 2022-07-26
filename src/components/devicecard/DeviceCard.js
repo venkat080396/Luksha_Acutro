@@ -5,7 +5,7 @@ import Card from "../layout/Card/Card";
 import IconLabel from "../forms/IconLabel/IconLabel";
 
 const DeviceCard = (props) => {
-    const bgcolor = props.state === 1 ? "#00ff034f" : "#ff000063";
+    const bgcolor = props.state === 1 ? "#00ff034f" : (props.state === 2 ? "#ff000063" : (props.state === 3 ? "#FFA500" : "#808080"));
     const color = props.state === 1 ? "#a3e5c4" : "#ffc7c7";
     const levelColor = props.level === 1 ? "#a3e5c4" : props.level === 2 ? "#fffec8" : "#ffc7c7";
 
@@ -30,7 +30,7 @@ const DeviceCard = (props) => {
                             <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                 <Grid container>
                                     <Grid item sm={12} md={12} lg={12} xl={12}>
-                                        <IconLabel label="Acutro Demo" />
+                                        <IconLabel label={props.building} />
                                     </Grid>
                                     <Grid item sm={12} md={12} lg={12} xl={12}>
                                         <IconLabel label={props.name} />
@@ -55,7 +55,11 @@ const DeviceCard = (props) => {
                                 </Grid>
                             </Grid>
                             <Grid item sx={3} sm={3} md={3} lg={3} xl={3}>
-                                <IconLabel style={{ color: color, fontSize: 16 }} label={props.state !== 1 ? "OPEN" : "RESOLVED"} />
+                                <IconLabel style={{ color: color, fontSize: 16 }} label={
+                                    props.state === 1 ? "RESOLVED" :
+                                        (props.state === 2 ? "OPEN" :
+                                            (props.state === 3 ? "NON-RESOLVED" : "ESCALATE"))} />
+
                             </Grid>
                         </Grid>
                     </>
