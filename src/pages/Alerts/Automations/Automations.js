@@ -57,7 +57,6 @@ export default function Automations() {
     const connectors = useSelector(getConnectors);
     const [item, setItem] = useState(null);
     const { enqueueSnackbar } = useSnackbar();
-    console.log("data", item)
 
     useEffect(() => {
         dispatch(fetchConnectors())
@@ -69,9 +68,7 @@ export default function Automations() {
         if (item !== null) {
             setSelectedConnectorRecIds(item?.AlertConnectorRecIds)
             const connectorRecIds = CSVToArray(item?.AlertConnectorRecIds)
-            console.log("before ids", item?.AlertConnectorRecIds)
-            console.log("ids", connectorRecIds)
-            //setselectedConnectors(connectors.filter(connector => connectorRecIds.includes(String(connector.RecId))))
+            setselectedConnectors(connectors.filter(connector => connectorRecIds.includes(String(connector.RecId))))
             setAutomationName(item?.Name)
             setDescription(item?.Description)
             setSelectedOperator(operators?.find(operator => operator.Value === item?.ConditionOperator))
@@ -183,8 +180,6 @@ export default function Automations() {
 
     const handleSelectChange = (rows) => {
         setselectedConnectors(rows)
-        console.log(rows)
-        console.log(rows.map(row => { return String(row.RecId) }))
         setSelectedConnectorRecIds(rows.map(row => { return String(row.RecId) }))
     }
 
@@ -269,7 +264,7 @@ export default function Automations() {
                     }
                     sx={{ paddingX: 4, paddingY: 2 }}
                     content={
-                        <>
+                        <>{automations && (
                             <Box
                                 sx={{ width: "100%", height: "44vh", paddingBottom: "1rem" }}
                             >
@@ -280,10 +275,13 @@ export default function Automations() {
                                     rowsPerPageOptions={[5]}
                                 />
                             </Box>
+                        )}
                             <Dialog
                                 open={openDialogForm}
                                 handleClose={() => setOpenDialogForm(false)}
-                                title={"Customise your Alert rules"}
+                                title={<Typography variant="header2">
+                                    Customise your Alert rules
+                                </Typography>}
                                 content={
                                     <>
                                         <Box width={1200}>
@@ -291,17 +289,11 @@ export default function Automations() {
                                                 <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                                                     <Card
                                                         headerContent={
-                                                            <Label
-                                                                sx={{ marginBottom: 2 }}
-                                                                style={{
-                                                                    fontWeight: "bold",
-                                                                    fontSize: 16,
-                                                                    color: "white",
-                                                                }}
-                                                                label="Enter a name for your alert rule"
-                                                            />
+                                                            <Typography variant="header3">
+                                                                Enter a name for your alert rule
+                                                            </Typography>
                                                         }
-                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
+                                                        sx={{ paddingLeft: 4, paddingBottom: 4, margin: "0px 30px 30px 30px" }}
                                                         content={
                                                             <Box>
                                                                 <Grid container spacing={2}>
@@ -315,6 +307,7 @@ export default function Automations() {
                                                                     >
                                                                         <Typography sx={{ marginBottom: 1 }}>Name</Typography>
                                                                         <TextField
+                                                                            sx={{ width: "460px", height: "50px" }}
                                                                             value={automationName}
                                                                             onChange={(e) => setAutomationName(e.target.value)}
                                                                             name="Enter Name" size="small" fullWidth />
@@ -329,6 +322,7 @@ export default function Automations() {
                                                                     >
                                                                         <Typography sx={{ marginBottom: 1 }}>Description</Typography>
                                                                         <TextField
+                                                                            sx={{ width: "460px", height: "50px" }}
                                                                             value={description}
                                                                             onChange={(e) => setDescription(e.target.value)}
                                                                             name="Enter Description" size="small" fullWidth />
@@ -342,9 +336,12 @@ export default function Automations() {
                                                     <Card
                                                         headerContent={
                                                             <CardHeader
-                                                                title="Configure conditions"
+                                                                sx={{ padding: 0 }}
+                                                                title={<Typography variant="header3">
+                                                                    Configure conditions
+                                                                </Typography>}
                                                                 subheader={
-                                                                    <Typography sx={{ color: "white" }}>
+                                                                    <Typography variant="body1">
                                                                         {
                                                                             "select the conditions that the event must meet for the alert rule to run"
                                                                         }
@@ -352,34 +349,59 @@ export default function Automations() {
                                                                 }
                                                             />
                                                         }
-                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
+                                                        sx={{ paddingLeft: 4, paddingBottom: 4, margin: "0px 30px 30px 30px" }}
                                                         content={
                                                             <Box>
                                                                 <Grid container spacing={2}>
-                                                                    <Grid item sx={{ marginLeft: -5 }} sm={12} md={12} lg={12} xl={12}>
-                                                                        <SelectBox
+                                                                    <Grid item sm={12} md={12} lg={12} xl={12}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Asset Type</Typography>
+                                                                        <Select
+                                                                            sx={{ width: "460px" }}
                                                                             value={selectedAssetType}
                                                                             onSelectChange={onAssetTypeChange}
-                                                                            label="Asset Type"
-                                                                            items={deviceTypes} />
+                                                                            placeholder="Select Asset Type"
+                                                                            props={{
+                                                                                size: "small",
+                                                                                placeholder: "Select Asset Type",
+                                                                            }}
+                                                                            items={deviceTypes}
+                                                                            fullWidth={true}
+                                                                        />
                                                                     </Grid>
-                                                                    <Grid item sx={{ marginLeft: -5 }} sm={12} md={12} lg={12} xl={12}>
-                                                                        <SelectBox
+                                                                    <Grid item sm={12} md={12} lg={12} xl={12}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Device</Typography>
+                                                                        <Select
+                                                                            sx={{ width: "460px" }}
                                                                             value={selectedDevice}
                                                                             onSelectChange={onDeviceChange}
-                                                                            label="Device"
-                                                                            items={devices} />
+                                                                            placeholder="Select Device"
+                                                                            props={{
+                                                                                size: "small",
+                                                                                placeholder: "Select Device",
+                                                                            }}
+                                                                            items={devices}
+                                                                            fullWidth={true}
+                                                                        />
                                                                     </Grid>
-                                                                    <Grid item sx={{ marginLeft: -5 }} sm={12} md={12} lg={12} xl={12}>
-                                                                        <SelectBox
+                                                                    <Grid item sm={12} md={12} lg={12} xl={12}>
+                                                                        <Typography sx={{ marginBottom: 1 }}>Sensor</Typography>
+                                                                        <Select
+                                                                            sx={{ width: "460px" }}
                                                                             value={selectedSensor}
                                                                             onSelectChange={onSensorChange}
-                                                                            label="Sensor"
-                                                                            items={sensors} />
+                                                                            placeholder="Select Sensor"
+                                                                            props={{
+                                                                                size: "small",
+                                                                                placeholder: "Select Sensor",
+                                                                            }}
+                                                                            items={sensors}
+                                                                            fullWidth={true}
+                                                                        />
                                                                     </Grid>
                                                                     <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Operator</Typography>
                                                                         <Select
+                                                                            sx={{ width: "460px" }}
                                                                             value={selectedOperator}
                                                                             onSelectChange={(operator) => setSelectedOperator(operator)}
                                                                             placeholder="Select Operator"
@@ -394,6 +416,7 @@ export default function Automations() {
                                                                     <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Value</Typography>
                                                                         <TextField
+                                                                            sx={{ width: "150px", height: "50px" }}
                                                                             value={thresholdValue}
                                                                             onChange={(e) => setThresholdValue(e.target.value)}
                                                                             name="Value" type="number" size="small" fullWidth />
@@ -411,9 +434,12 @@ export default function Automations() {
                                                     <Card
                                                         headerContent={
                                                             <CardHeader
-                                                                title="Configure actions"
+                                                                sx={{ padding: 0 }}
+                                                                title={<Typography variant="header3">
+                                                                    Configure actions
+                                                                </Typography>}
                                                                 subheader={
-                                                                    <Typography sx={{ color: "white" }}>
+                                                                    <Typography variant="body1">
                                                                         {
                                                                             "Select the actions you want to perform when the trigger is activated"
                                                                         }
@@ -421,7 +447,7 @@ export default function Automations() {
                                                                 }
                                                             />
                                                         }
-                                                        sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
+                                                        sx={{ paddingLeft: 4, paddingBottom: 2, margin: "0px 30px 30px 30px" }}
                                                         content={
                                                             <Box>
                                                                 <Grid container spacing={2}>
@@ -429,7 +455,8 @@ export default function Automations() {
                                                                         direction="row"
                                                                         alignItems="center"
                                                                         justifyContent="flex-end"
-                                                                        spacing={2}>
+                                                                        spacing={2}
+                                                                        sx={{ marginTop: "10px" }}>
                                                                         {selectedConnectors && selectedConnectors.map((connector) => (
                                                                             <>
                                                                                 <Grid item container
@@ -481,7 +508,7 @@ export default function Automations() {
                                                         }
                                                     />
                                                 </Grid>
-                                                <Grid item sx={{ margin: "0px 40px 40px 40px", }} sm={12} md={12} lg={12} xl={12}>
+                                                <Grid item sx={{ margin: "0px 30px 30px 30px", }} sm={12} md={12} lg={12} xl={12}>
                                                     <Grid container alignItems='center' flexDirection='row-reverse' spacing={2}>
                                                         <Grid item>
                                                             <Button variant='contained'

@@ -2,7 +2,7 @@ import React from "react";
 import { TextField as MuiTextField, InputAdornment } from '@mui/material';
 import "./TextField.Styles.css";
 
-const TextField = ({ iconStart, iconEnd, sx, ...props }) => {
+const TextField = ({ iconStart, iconEnd, ...props }) => {
     return (
         <MuiTextField
             placeholder={props.name}

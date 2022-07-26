@@ -111,12 +111,11 @@ const columns = [
 ];
 
 const rows = [
-    { RecId: 1, building: "Grassmere House", floor: 'Floor 1', deviceType: 'AC Units', device: 'device 1', sensor: 'Sensor 1', createdDate: "8 March 2022", alertDate: "14 May 2022", currentStatus: 'Non-Resolved' },
-    { RecId: 2, building: "Grassmere House", floor: 'Floor 2', deviceType: 'AC Units', device: 'device 2', sensor: 'Sensor 2', createdDate: "1 Jan 2022", alertDate: "19 Feb 2022", currentStatus: 'Non-Resolved' },
-    { RecId: 3, building: "Grassmere House", floor: 'Floor 3', deviceType: 'AC Units', device: 'device 3', sensor: 'Sensor 3', createdDate: "17 Jan 2022", alertDate: "1 March 2022", currentStatus: 'Open' },
-    { RecId: 4, building: "Haveswater House", floor: 'Floor 5', deviceType: 'FCU', device: 'device 4', sensor: 'Sensor 4', createdDate: "8 March 2022", alertDate: "17 April 2022", currentStatus: 'Escalate' },
-    { RecId: 5, building: "Haveswater House", floor: 'Floor 6', deviceType: 'FCU', device: 'device 5', sensor: 'Sensor 5', createdDate: "8 March 2022", alertDate: "1 May 2022", currentStatus: 'Resolved' },
-    { RecId: 6, building: "Haveswater House", floor: 'Floor 7', deviceType: 'FCU', device: 'device 6', sensor: 'Sensor 6', createdDate: "8 March 2022", alertDate: "20 May 2022", currentStatus: 'Escalate' }
+    { RecId: 1, building: "Grassmere House", floor: 'Floor 1', deviceType: 'AC Units', device: 'Air Handling Unit 1', sensor: 'Sensor 1', createdDate: "8 March 2022", alertDate: "14 May 2022", currentStatus: 'Non-Resolved' },
+    { RecId: 2, building: "Grassmere House", floor: 'Floor 2', deviceType: 'AC Units', device: 'Swimming Pool Heating', sensor: 'Sensor 2', createdDate: "1 Jan 2022", alertDate: "19 Feb 2022", currentStatus: 'Non-Resolved' },
+    { RecId: 3, building: "Grassmere House", floor: 'Floor 3', deviceType: 'AC Units', device: 'Hot Water System 1', sensor: 'Sensor 3', createdDate: "17 Jan 2022", alertDate: "1 March 2022", currentStatus: 'Open' },
+    { RecId: 4, building: "Haveswater House", floor: 'Floor 5', deviceType: 'FCU', device: 'Swimming Pool Filtration', sensor: 'Sensor 4', createdDate: "8 March 2022", alertDate: "17 April 2022", currentStatus: 'Escalate' },
+    { RecId: 5, building: "Haveswater House", floor: 'Floor 6', deviceType: 'FCU', device: 'Swimming Pool Filtration', sensor: 'Sensor 5', createdDate: "8 March 2022", alertDate: "1 May 2022", currentStatus: 'Resolved' }
 ];
 
 const InstalledAlerts = () => {
