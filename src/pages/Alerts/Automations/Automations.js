@@ -32,10 +32,12 @@ import SelectConnectors from "./Select Connectors/SelectConnectors";
 import { convertObjectToCSV } from "../../../common/Utils";
 import Menu from '../../../components/layout/Menu/Menu';
 
+
 export default function Automations() {
     const [openDialogForm, setOpenDialogForm] = React.useState(false);
     const [openConnector, setOpenConnector] = useState(false);
     const [selctedConnectorRecIds, setselctedConnectorRecIds] = useState([]);
+    const [selectedConnectors, setselectedConnectors] = useState([]);
     const [automationName, setAutomationName] = useState(null);
     const [description, setDescription] = useState(null);
     const [selectedOperator, setSelectedOperator] = useState(null);
@@ -68,8 +70,8 @@ export default function Automations() {
         setThresholdValue(item?.ThresholdValue)
         setMessage(item?.AlertMessage)
         setChecked(item?.AlertMessage !== "" || item?.AlertMessage !== null)
-        setSelectedDevice(devices?.find(device => device.RecId === item?.AssetOrDeviceRecId))
-        setSelectedSensor(sensors?.find(sensor => sensor.RecId === item?.MetricOrDeviceSensorRecId))
+        dispatch(setSelectedDevice(devices?.find(device => device.RecId === item?.AssetOrDeviceRecId)))
+        dispatch(setSelectedSensor(sensors?.find(sensor => sensor.RecId === item?.MetricOrDeviceSensorRecId)))
     }, [item])
 
     const handleMenuClick = (type, item) => {
@@ -82,11 +84,12 @@ export default function Automations() {
                 automationRecId: String(item?.RecId), automationName: item?.Name, description: item?.Description,
                 assetOrDeviceId: String(item?.AssetOrDeviceRecId), metricOrDeviceSensorRecId: String(item?.MetricOrDeviceSensorRecId),
                 conditionOperator: item?.ConditionOperator, thresholdValue: item.ThresholdValue,
-                connectorRecId: String(item?.AlertConnectorRecId), connectorRecIds: item?.AlertConnectorRecIds,
+                connectorRecId: String(1), connectorRecIds: item?.AlertConnectorRecIds,
                 alertMessage: " ", actionMessage: " ", isDelete: "1"
             };
 
             dispatch(saveAutomation(automation));
+            dispatch(fetchAutomations());
             enqueueSnackbar("Automation has been deleted successfully", { variant: 'success' })
         }
     }
@@ -162,6 +165,11 @@ export default function Automations() {
         },
     ];
 
+    const handleSelectChange = (rows) => {
+        setselectedConnectors(rows)
+        setselctedConnectorRecIds(rows.map(row => row.RecId))
+    }
+
     const handleCreate = () => {
         const rowscsv = convertObjectToCSV(selctedConnectorRecIds);
         const automation = {
@@ -172,14 +180,15 @@ export default function Automations() {
         };
 
         dispatch(saveAutomation(automation));
+        dispatch(fetchAutomations());
         setOpenDialogForm(false);
-        dispatch(fetchAutomations())
         enqueueSnackbar(item ? "Automation has been updated successfully"
             : "Automation has been created successfully", { variant: 'success' })
     }
 
     const onDeviceChange = (device) => {
         dispatch(setSelectedDevice(device))
+        dispatch(setSelectedSensor(null))
         dispatch(fetchAsyncDeviceSensorsForDeviceId(device?.RecId));
     }
 
@@ -193,8 +202,29 @@ export default function Automations() {
 
     const onAssetTypeChange = (assetType) => {
         dispatch(setSelectedAssetType(assetType))
+        dispatch(setSelectedDevice(null))
+        dispatch(setSelectedSensor(null))
         const requestDetails = { siteRecId: 1, buildingRecId: selectedBuilding?.RecId, floorRecId: selectedFloor?.RecId, deviceTypeRecId: assetType?.RecId }
         dispatch(fetchAsyncDevicesWithStatus(requestDetails))
+    }
+
+    const clearItems = () => {
+        setselctedConnectorRecIds([])
+        setAutomationName(null)
+        setDescription(null)
+        setSelectedOperator(null)
+        setThresholdValue(null)
+        setMessage(null)
+        setChecked(false)
+        setselectedConnectors(null)
+        dispatch(setSelectedAssetType(null))
+        dispatch(setSelectedDevice(null))
+        dispatch(setSelectedSensor(null))
+    }
+
+    const handleNewAutomation = () => {
+        setOpenDialogForm(true);
+        clearItems();
     }
 
     return (
@@ -211,7 +241,7 @@ export default function Automations() {
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" onClick={() => setOpenDialogForm(true)}>
+                                <Button variant="contained" onClick={handleNewAutomation}>
                                     <Typography variant="header3">
                                         New Automations
                                     </Typography>
@@ -377,6 +407,28 @@ export default function Automations() {
                                                         content={
                                                             <Box>
                                                                 <Grid container spacing={2}>
+                                                                    <Grid item container
+                                                                        direction="row"
+                                                                        alignItems="center"
+                                                                        justifyContent="flex-end"
+                                                                        spacing={2}>
+                                                                        {selectedConnectors && selectedConnectors.map((connector) => (
+                                                                            <>
+                                                                                <Grid item container
+                                                                                    direction="column">
+                                                                                    <Grid item>
+                                                                                        {connector.ConnectorType}
+                                                                                    </Grid>
+                                                                                    <Grid item>
+                                                                                        {connector.Name}
+                                                                                    </Grid>
+                                                                                </Grid>
+                                                                                {/* <Grid item sx={{ marginTop: "-50px" }}>
+                                                                                    Delete icon
+                                                                                </Grid> */}
+                                                                            </>
+                                                                        ))}
+                                                                    </Grid>
                                                                     <Grid item>
                                                                         <FormGroup>
                                                                             <FormControlLabel control={<Switch checked={checked} onChange={handleChange} />} label="Override template" />
@@ -401,7 +453,7 @@ export default function Automations() {
                                                                             open={openConnector}
                                                                             content={<SelectConnectors
                                                                                 selctedConnectorRecIds={selctedConnectorRecIds}
-                                                                                onSelectChange={(rows) => setselctedConnectorRecIds(rows)}
+                                                                                onSelectChange={handleSelectChange}
                                                                                 handleClose={() => setOpenConnector(false)} />}
                                                                             handleClose={() => setOpenConnector(false)}
                                                                         />
