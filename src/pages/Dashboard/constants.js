@@ -9,7 +9,7 @@ export const LEFT_DRAWER_ITEMS = {
     BUILDING_DATA: "Building Data",
     DISTRIBUTION_LIST: "Distribution List",
     CONNECTORS: "Connectors",
-    AUTOMATIONS: "Automations",
+    AUTOMATIONS: "Alert Rules",
     REPORTS: "Reports"
 }
 

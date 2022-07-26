@@ -13,7 +13,7 @@ import {
     getAllDevicesWithStatus, fetchAsyncDeviceSensorsForDeviceId, getDeviceSensors,
     getSelectedAssetType, getSelectedDevice, getSelectedSensor, setSelectedAssetType, setSelectedDevice, setSelectedSensor
 } from "../../../features/BuildingData/buildingDataSlice";
-import { saveAutomation, fetchAutomations, getAutomations } from "../../../features/Alerts/AlertsSlice";
+import { saveAutomation, fetchAutomations, getAutomations, fetchConnectors, getConnectors } from "../../../features/Alerts/AlertsSlice";
 import { getSelectedBuilding, getSelectedFloor } from '../../../features/Home/homeSlice';
 import {
     Grid,
@@ -29,14 +29,14 @@ import {
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Select from "../../../components/forms/Select/Select";
 import SelectConnectors from "./Select Connectors/SelectConnectors";
-import { convertObjectToCSV } from "../../../common/Utils";
+import { objectToCSV, CSVToArray } from "../../../common/Utils";
 import Menu from '../../../components/layout/Menu/Menu';
 
 
 export default function Automations() {
     const [openDialogForm, setOpenDialogForm] = React.useState(false);
     const [openConnector, setOpenConnector] = useState(false);
-    const [selctedConnectorRecIds, setselctedConnectorRecIds] = useState([]);
+    const [selectedConnectorRecIds, setSelectedConnectorRecIds] = useState([]);
     const [selectedConnectors, setselectedConnectors] = useState([]);
     const [automationName, setAutomationName] = useState(null);
     const [description, setDescription] = useState(null);
@@ -54,43 +54,59 @@ export default function Automations() {
     const selectedDevice = useSelector(getSelectedDevice);
     const selectedSensor = useSelector(getSelectedSensor);
     const automations = useSelector(getAutomations);
+    const connectors = useSelector(getConnectors);
     const [item, setItem] = useState(null);
     const { enqueueSnackbar } = useSnackbar();
+    console.log("data", item)
 
     useEffect(() => {
+        dispatch(fetchConnectors())
         dispatch(fetchAutomations())
         dispatch(fetchAsyncAllDeviceTypes(null))
     }, [dispatch])
 
     useEffect(() => {
-        setselctedConnectorRecIds(item?.AlertConnectorRecIds)
-        setAutomationName(item?.Name)
-        setDescription(item?.Description)
-        setSelectedOperator(operators?.find(operator => operator.Value === item?.ConditionOperator))
-        setThresholdValue(item?.ThresholdValue)
-        setMessage(item?.AlertMessage)
-        setChecked(item?.AlertMessage !== "" || item?.AlertMessage !== null)
-        dispatch(setSelectedDevice(devices?.find(device => device.RecId === item?.AssetOrDeviceRecId)))
-        dispatch(setSelectedSensor(sensors?.find(sensor => sensor.RecId === item?.MetricOrDeviceSensorRecId)))
+        if (item !== null) {
+            setSelectedConnectorRecIds(item?.AlertConnectorRecIds)
+            const connectorRecIds = CSVToArray(item?.AlertConnectorRecIds)
+            console.log("before ids", item?.AlertConnectorRecIds)
+            console.log("ids", connectorRecIds)
+            //setselectedConnectors(connectors.filter(connector => connectorRecIds.includes(String(connector.RecId))))
+            setAutomationName(item?.Name)
+            setDescription(item?.Description)
+            setSelectedOperator(operators?.find(operator => operator.Value === item?.ConditionOperator))
+            setThresholdValue(item?.ThresholdValue)
+            setMessage(item?.AlertMessage)
+            setChecked(item?.AlertMessage !== "" || item?.AlertMessage !== null)
+            dispatch(setSelectedDevice(devices?.find(device => device.RecId === item?.AssetOrDeviceRecId)))
+            dispatch(setSelectedSensor(sensors?.find(sensor => sensor.RecId === item?.MetricOrDeviceSensorRecId)))
+        }
     }, [item])
 
     const handleMenuClick = (type, item) => {
-        if (type === "Edit") {
-            setItem(item);
-            setOpenDialogForm(true);
-        }
-        else {
-            const automation = {
-                automationRecId: String(item?.RecId), automationName: item?.Name, description: item?.Description,
-                assetOrDeviceId: String(item?.AssetOrDeviceRecId), metricOrDeviceSensorRecId: String(item?.MetricOrDeviceSensorRecId),
-                conditionOperator: item?.ConditionOperator, thresholdValue: item.ThresholdValue,
-                connectorRecId: String(1), connectorRecIds: item?.AlertConnectorRecIds,
-                alertMessage: " ", actionMessage: " ", isDelete: "1"
-            };
 
-            dispatch(saveAutomation(automation));
-            dispatch(fetchAutomations());
-            enqueueSnackbar("Automation has been deleted successfully", { variant: 'success' })
+        switch (type) {
+            case "Edit":
+                setItem(item);
+                setOpenDialogForm(true);
+                break;
+
+            case "Delete":
+                const automation = {
+                    automationRecId: String(item?.RecId), automationName: item?.Name, description: item?.Description,
+                    assetOrDeviceId: String(item?.AssetOrDeviceRecId), metricOrDeviceSensorRecId: String(item?.MetricOrDeviceSensorRecId),
+                    conditionOperator: item?.ConditionOperator, thresholdValue: item.ThresholdValue,
+                    connectorRecId: String(1), connectorRecIds: item?.AlertConnectorRecIds,
+                    alertMessage: " ", actionMessage: " ", isDelete: "1"
+                };
+
+                dispatch(saveAutomation(automation));
+                dispatch(fetchAutomations());
+                enqueueSnackbar("Alert rule has been deleted successfully", { variant: 'success' })
+                break;
+
+            default:
+                break;
         }
     }
 
@@ -167,23 +183,25 @@ export default function Automations() {
 
     const handleSelectChange = (rows) => {
         setselectedConnectors(rows)
-        setselctedConnectorRecIds(rows.map(row => row.RecId))
+        console.log(rows)
+        console.log(rows.map(row => { return String(row.RecId) }))
+        setSelectedConnectorRecIds(rows.map(row => { return String(row.RecId) }))
     }
 
     const handleCreate = () => {
-        const rowscsv = convertObjectToCSV(selctedConnectorRecIds);
+        const rowscsv = objectToCSV(selectedConnectorRecIds);
         const automation = {
             automationRecId: item?.RecId, automationName: automationName, description: description,
             assetOrDeviceId: selectedDevice?.RecId, metricOrDeviceSensorRecId: selectedSensor?.RecId,
             conditionOperator: selectedOperator?.Value, thresholdValue: thresholdValue,
-            connectorRecId: selctedConnectorRecIds[0], connectorRecIds: rowscsv, alertMessage: checked ? message : ""
+            connectorRecId: selectedConnectorRecIds[0], connectorRecIds: rowscsv, alertMessage: checked ? message : ""
         };
 
         dispatch(saveAutomation(automation));
         dispatch(fetchAutomations());
         setOpenDialogForm(false);
-        enqueueSnackbar(item ? "Automation has been updated successfully"
-            : "Automation has been created successfully", { variant: 'success' })
+        enqueueSnackbar(item ? "Alert rule has been updated successfully"
+            : "Alert rule has been created successfully", { variant: 'success' })
     }
 
     const onDeviceChange = (device) => {
@@ -209,7 +227,7 @@ export default function Automations() {
     }
 
     const clearItems = () => {
-        setselctedConnectorRecIds([])
+        setSelectedConnectorRecIds([])
         setAutomationName(null)
         setDescription(null)
         setSelectedOperator(null)
@@ -237,13 +255,13 @@ export default function Automations() {
                             justifyContent="space-between">
                             <Grid item>
                                 <Typography variant="header2">
-                                    Automations
+                                    Alert Rules
                                 </Typography>
                             </Grid>
                             <Grid item>
                                 <Button variant="contained" onClick={handleNewAutomation}>
                                     <Typography variant="header3">
-                                        New Automations
+                                        New Alert Rule
                                     </Typography>
                                 </Button>
                             </Grid>
@@ -265,7 +283,7 @@ export default function Automations() {
                             <Dialog
                                 open={openDialogForm}
                                 handleClose={() => setOpenDialogForm(false)}
-                                title={"Customise your Automations"}
+                                title={"Customise your Alert rules"}
                                 content={
                                     <>
                                         <Box width={1200}>
@@ -280,7 +298,7 @@ export default function Automations() {
                                                                     fontSize: 16,
                                                                     color: "white",
                                                                 }}
-                                                                label="Enter a name for your automation"
+                                                                label="Enter a name for your alert rule"
                                                             />
                                                         }
                                                         sx={{ paddingX: 4, paddingY: 2, margin: 4 }}
@@ -328,7 +346,7 @@ export default function Automations() {
                                                                 subheader={
                                                                     <Typography sx={{ color: "white" }}>
                                                                         {
-                                                                            "select the conditions that the event must meet for the automation to run"
+                                                                            "select the conditions that the event must meet for the alert rule to run"
                                                                         }
                                                                     </Typography>
                                                                 }
@@ -452,7 +470,7 @@ export default function Automations() {
                                                                         <Dialog
                                                                             open={openConnector}
                                                                             content={<SelectConnectors
-                                                                                selctedConnectorRecIds={selctedConnectorRecIds}
+                                                                                selctedConnectorRecIds={selectedConnectorRecIds}
                                                                                 onSelectChange={handleSelectChange}
                                                                                 handleClose={() => setOpenConnector(false)} />}
                                                                             handleClose={() => setOpenConnector(false)}
@@ -470,7 +488,7 @@ export default function Automations() {
                                                                 onClick={handleCreate}>
                                                                 <Typography>
                                                                     {item !== null ?
-                                                                        "Update Automation" : "Create Automation"
+                                                                        "Update Alert rule" : "Create Alert rule"
                                                                     }
                                                                 </Typography>
                                                             </Button>
