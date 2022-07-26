@@ -79,7 +79,8 @@ const Index = ({ isSelect = false, selectedRows, onSelectChange }) => {
             })
     ];
 
-    const handleSelectionChange = (rows) => {
+    const handleSelectionChange = (rowIds) => {
+        const rows = connectors.filter(row => rowIds.includes(row.RecId))
         onSelectChange(rows)
     }
 

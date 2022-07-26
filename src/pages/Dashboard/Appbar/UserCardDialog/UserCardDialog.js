@@ -14,7 +14,7 @@ const UserCardDialog = (props) => {
     }
 
     return (
-        <Stack spacing={5}>
+        <Stack spacing={5} sx={{ padding: "20px" }}>
             <UserCard {...props} />
             <Button variant="contained" color="error" onClick={handleLogout}>
                 {APPBAR.BUTTONS.LOGOUT}
