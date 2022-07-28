@@ -73,7 +73,7 @@ const Dashboard = (props) => {
     useEffect(() => {
         dispatch(fetchAsyncLeftDrawerItems());
         dispatch(fetchAsyncBuildings());
-    });
+    }, []);
 
     const populateActivePage = () => {
 

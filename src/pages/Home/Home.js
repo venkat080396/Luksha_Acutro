@@ -43,10 +43,8 @@ const Home = () => {
                                 content={<ComfortLevels
                                     chartSx={{ width: "30vw", height: "39vh" }}
                                     sliderSx={{ width: "30vw", height: "10vh" }}
-                                    chartWidth={550}
-                                    chartHeight={500}
                                     isSliderVisible={false}
-                                    aspetRatio="2.1" />} />
+                                    aspectRatio="2.2" />} />
                         </Grid>
                     )}
                 </Grid>

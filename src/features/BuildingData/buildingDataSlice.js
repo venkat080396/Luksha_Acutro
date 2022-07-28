@@ -49,6 +49,22 @@ export const fetchAsyncDeviceReadingsForFilter = createAsyncThunk(
     }
 );
 
+export const fetchAsyncComfortLevelChartDataForDevice = createAsyncThunk(
+    'buildingData/fetchAsyncComfortLevelChartDataForDevice',
+    async (filter) => {
+        const inputDetails = {
+            operation: "GetComfortLevelChartDataForDevice",
+            payload: {
+                "dtFromDate": filter.FromDate,
+                "dtToDate": filter.ToDate,
+                "DeviceTypeRecId": filter.DeviceTypeRecId
+            }
+        }
+        const response = await api.post(baseURL, inputDetails);
+        return response.data;
+    }
+);
+
 export const fetchAsyncAllDeviceTypes = createAsyncThunk(
     'buildingData/fetchAsyncAllDeviceTypes',
     async (deviceTypeRecId) => {
@@ -92,7 +108,8 @@ const initialState = {
     selectedBuildingOnMap: null,
     selectedAssetType: null,
     selectedDevice: null,
-    selectedSensor: null
+    selectedSensor: null,
+    comfortChartData: null
 };
 
 const buildingDataSlice = createSlice({
@@ -116,39 +133,20 @@ const buildingDataSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchAsyncDevicesWithStatus.pending]: () => {
-        },
         [fetchAsyncDevicesWithStatus.fulfilled]: (state, { payload }) => {
             return { ...state, devices: payload };
         },
-        [fetchAsyncDevicesWithStatus.rejected]: () => {
-        },
-        [fetchAsyncDeviceSensorsForDeviceId.pending]: () => {
+        [fetchAsyncComfortLevelChartDataForDevice.fulfilled]: (state, { payload }) => {
+            return { ...state, comfortChartData: payload };
         },
         [fetchAsyncDeviceSensorsForDeviceId.fulfilled]: (state, { payload }) => {
             return { ...state, deviceSensors: payload };
         },
-        [fetchAsyncDeviceSensorsForDeviceId.rejected]: () => {
-        },
-        [fetchAsyncDeviceReadingsForFilter.pending]: () => {
-        },
         [fetchAsyncDeviceReadingsForFilter.fulfilled]: (state, { payload }) => {
             return { ...state, deviceReadings: payload };
         },
-        [fetchAsyncDeviceReadingsForFilter.rejected]: () => {
-        },
-        [fetchAsyncAllDeviceTypes.pending]: () => {
-        },
         [fetchAsyncAllDeviceTypes.fulfilled]: (state, { payload }) => {
             return { ...state, allDeviceTypes: payload.length !== 0 ? payload : state.allDeviceTypes };
-        },
-        [fetchAsyncAllDeviceTypes.rejected]: () => {
-        },
-        [saveAsyncDevice.pending]: () => {
-        },
-        [saveAsyncDevice.fulfilled]: (state, { payload }) => {
-        },
-        [saveAsyncDevice.rejected]: () => {
         }
     }
 })
@@ -162,6 +160,7 @@ export const getDeviceReadings = (state) => state.buildingData?.deviceReadings
 export const getSelectedAssetType = (state) => state.buildingData?.selectedAssetType
 export const getSelectedDevice = (state) => state.buildingData?.selectedDevice
 export const getSelectedSensor = (state) => state.buildingData?.selectedSensor
+export const getComfortChartData = (state) => state.buildingData?.comfortChartData
 
 export const { updateDeviceToBeSaved, setSelectedBuildingOnMap, setSelectedAssetType, setSelectedDevice, setSelectedSensor } = buildingDataSlice.actions
 

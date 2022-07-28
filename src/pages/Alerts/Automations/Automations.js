@@ -413,13 +413,20 @@ export default function Automations() {
                                                                             fullWidth={true}
                                                                         />
                                                                     </Grid>
-                                                                    <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
-                                                                        <Typography sx={{ marginBottom: 1 }}>Value</Typography>
-                                                                        <TextField
-                                                                            sx={{ width: "150px", height: "50px" }}
-                                                                            value={thresholdValue}
-                                                                            onChange={(e) => setThresholdValue(e.target.value)}
-                                                                            name="Value" type="number" size="small" fullWidth />
+                                                                    <Grid item sx={6} sm={6} md={6} lg={6} xl={6} container
+                                                                        alignItems="center"
+                                                                        spacing={5}>
+                                                                        <Grid item>
+                                                                            <Typography sx={{ marginBottom: 1 }}>Value</Typography>
+                                                                            <TextField
+                                                                                sx={{ width: "150px", height: "50px" }}
+                                                                                value={thresholdValue}
+                                                                                onChange={(e) => setThresholdValue(e.target.value)}
+                                                                                name="Value" type="number" size="small" fullWidth />
+                                                                        </Grid>
+                                                                        <Grid item>
+                                                                            <FormControlLabel control={<Switch />} label="Allow AI adjustment" />
+                                                                        </Grid>
                                                                     </Grid>
                                                                     {/* <Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                                                         <Typography sx={{ marginBottom: 1 }}>Violations Count</Typography>

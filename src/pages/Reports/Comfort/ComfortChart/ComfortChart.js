@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 //import { Grid } from '@mui/material'
+import _ from "lodash";
 import { useDispatch, useSelector } from "react-redux";
+import LineChart from '../../../../components/charts/Line Chart/LineChart';
 import StackedAreaChart from '../../../../components/charts/StackedAreaChart/StackedAreaChart';
 //import { ReactComponent as TooColdIcon } from "../../../../assets/icons/Too Cold.svg"
 //import { ReactComponent as TooHotIcon } from "../../../../assets/icons/Too Hot.svg"
 //import Select from "../../../../components/forms/Select/Select"
-import { fetchAsyncDeviceReadingsForFilter, getDeviceReadings } from "../../../../features/BuildingData/buildingDataSlice"
+import { fetchAsyncComfortLevelChartDataForDevice, getComfortChartData } from "../../../../features/BuildingData/buildingDataSlice"
 import { getFromDate, getToDate } from '../../../../features/Home/homeSlice';
 
 //const items = [...Array(50).keys()].map(i => ({ RecId: i + 1, Name: i + 1 }))
@@ -13,15 +15,24 @@ import { getFromDate, getToDate } from '../../../../features/Home/homeSlice';
 const ComfortChart = (props) => {
     //const [tooHot, setTooHot] = useState({})
     //const [tooCold, setTooCold] = useState({})
-    const { deviceRecId, sensorRecId, xAxisValues, aspetRatio } = props;
+    const { deviceRecId, sensorRecId, xAxisValues, aspectRatio } = props;
     const dispatch = useDispatch();
-    const readings = useSelector(getDeviceReadings);
+    const comfortChartData = useSelector(getComfortChartData);
+    const groupedComfortChartData = _.groupBy(comfortChartData, data => data.DeviceSensorRecId)
+    let comfortChartDataArr = []
+    Object.entries(groupedComfortChartData).map(entry => {
+        let key = entry[0];
+        let value = entry[1];
+        let obj = { "DeviceSensorRecId": key, "data": value }
+        comfortChartDataArr.push(obj)
+    })
+
     const fromDate = useSelector(getFromDate);
     const toDate = useSelector(getToDate);
-    const readingsFilter = { FromDate: fromDate, ToDate: toDate, DeviceRecId: deviceRecId, DeviceSensorRecId: sensorRecId };
 
     useEffect(() => {
-        dispatch(fetchAsyncDeviceReadingsForFilter(readingsFilter));
+        const readingsFilter = { FromDate: fromDate, ToDate: toDate, DeviceTypeRecId: "2" };
+        dispatch(fetchAsyncComfortLevelChartDataForDevice(readingsFilter));
     }, []);
 
     return (<>
@@ -81,12 +92,16 @@ const ComfortChart = (props) => {
             </Grid>
         </Grid> */}
         <div
-            style={{ marginTop: "1em" }}>
-            <StackedAreaChart
+            style={{ marginTop: "5em" }}>
+            <LineChart
+                data={comfortChartDataArr}
+                aspect={aspectRatio}
+            />
+            {/* <StackedAreaChart
                 xAxisValues={xAxisValues}
                 areaKey1="Value"
                 aspect={aspetRatio}
-                data={readings} />
+                data={readings} /> */}
         </div>
     </>
     )
