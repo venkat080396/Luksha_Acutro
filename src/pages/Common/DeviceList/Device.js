@@ -55,7 +55,7 @@ const Device = (props) => {
                                     <TemperatureIcon height="2em" width="2em" />
                                 </Grid> */}
                         <Grid item sx={{ paddingLeft: 10 }}>
-                            <div> {getRandomValuesWithinRange(18, 21)} &deg;C</div>
+                            <div> {getRandomValuesWithinRange(18, 24)} &deg;C</div>
                         </Grid>
                     </Grid>
                     {/* <Grid item sx={{ marginRight: "1em" }}>

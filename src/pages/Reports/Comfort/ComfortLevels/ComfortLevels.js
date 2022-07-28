@@ -5,7 +5,7 @@ import ComfortChart from '../ComfortChart/ComfortChart'
 import Slider from '../../../../components/layout/Slider/Slider'
 
 const ComfortLevels = (props) => {
-    const { chartSx, sliderSx, chartWidth, chartHeight, isSliderVisible, aspetRatio } = props
+    const { chartSx, sliderSx, chartWidth, chartHeight, isSliderVisible, aspectRatio } = props
     return (
         <Grid container
             direction="column"
@@ -13,7 +13,7 @@ const ComfortLevels = (props) => {
             alignItems="center"
             spacing={4}>
             <Grid item>
-                <Card sx={chartSx} content={<ComfortChart deviceRecId="2" sensorRecId="9" width={chartWidth} height={chartHeight} aspetRatio={aspetRatio} />} />
+                <Card sx={chartSx} content={<ComfortChart aspectRatio={aspectRatio} />} />
             </Grid>
             {isSliderVisible && (
                 <Grid item>
