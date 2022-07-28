@@ -15,7 +15,7 @@ export const LEFT_DRAWER_ITEMS = {
 
 export const APPBAR = {
     YOUR_DASHBOARD: "CLC Dashboard",
-    ADMINISTRATOR: "CSC Admin",
+    ADMINISTRATOR: "CLC Admin",
     BUTTONS: {
         LOGOUT: "Logout"
     }

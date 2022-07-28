@@ -77,7 +77,7 @@ const LineChart = ({ data, aspect }) => {
                         {/* <Legend /> */}
                         {data.map((d) => (
                             <Line type="monotone" dataKey="Value" data={d.data} key={d.DeviceSensorRecId}
-                                stroke="red" dot={false} />
+                                stroke="#E97878" dot={false} />
                         ))}
                     </ReLineChart>
                 </ResponsiveContainer>
