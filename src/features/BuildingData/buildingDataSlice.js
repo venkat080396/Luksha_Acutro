@@ -49,6 +49,25 @@ export const fetchAsyncDeviceReadingsForFilter = createAsyncThunk(
     }
 );
 
+export const fetchAsyncDeviceTypeforFloorId = createAsyncThunk(
+    'buildingData/fetchAsyncDeviceTypeforFloorId',
+    async (requestDetails) => {
+        const inputDetails = {
+            operation: "GetDeviceTypeForFloorId",
+            payload: {
+                // "SiteRecId": requestDetails.siteRecId,
+                // "BuildingRecId": requestDetails.buildingRecId,
+                // "FloorRecId": requestDetails.floorRecId,
+                "SiteRecId": 1,
+                "BuildingRecId": 1,
+                "FloorRecId": 1,
+            }
+        }
+        const response = await api.post(baseURL, inputDetails);
+        return response.data;
+    }
+);
+
 export const fetchAsyncComfortLevelChartDataForDevice = createAsyncThunk(
     'buildingData/fetchAsyncComfortLevelChartDataForDevice',
     async (filter) => {
@@ -109,7 +128,8 @@ const initialState = {
     selectedAssetType: null,
     selectedDevice: null,
     selectedSensor: null,
-    comfortChartData: null
+    comfortChartData: null,
+    floorDeviceTypes: []
 };
 
 const buildingDataSlice = createSlice({
@@ -133,6 +153,12 @@ const buildingDataSlice = createSlice({
         }
     },
     extraReducers: {
+        [fetchAsyncDeviceTypeforFloorId.fulfilled]: (state, { payload }) => {
+            return { ...state, floorDeviceTypes: payload };
+        },
+        [fetchAsyncDeviceTypeforFloorId.rejected]: (state, action) => {
+            state.status = 'Failed'
+        },
         [fetchAsyncDevicesWithStatus.fulfilled]: (state, { payload }) => {
             return { ...state, devices: payload };
         },
@@ -161,6 +187,7 @@ export const getSelectedAssetType = (state) => state.buildingData?.selectedAsset
 export const getSelectedDevice = (state) => state.buildingData?.selectedDevice
 export const getSelectedSensor = (state) => state.buildingData?.selectedSensor
 export const getComfortChartData = (state) => state.buildingData?.comfortChartData
+export const getDeviceTypeForFloorId = (state) => state.buildingData?.floorDeviceTypes
 
 export const { updateDeviceToBeSaved, setSelectedBuildingOnMap, setSelectedAssetType, setSelectedDevice, setSelectedSensor } = buildingDataSlice.actions
 

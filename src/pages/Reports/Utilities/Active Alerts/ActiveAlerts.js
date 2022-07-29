@@ -15,11 +15,11 @@ const ActiveAlerts = () => {
     return (
         <>
             <StyledGrid container>
-                <DeviceCard building="Grassmere House" name="Air Handling Unit 1" state={3} level={3} />
-                <DeviceCard building="Grassmere House" name="Swimming Pool Heating" state={3} level={2} />
-                <DeviceCard building="Grassmere House" name="Hot Water System 1" state={2} level={3} />
-                <DeviceCard building="Haveswater House" name="Swimming Pool Filtration" state={4} level={3} />
-                <DeviceCard building="Haveswater House" name="Swimming Pool Filtration" state={1} level={2} />
+                <DeviceCard building="Bunwell House" name="Air Handling Unit 1" state={3} level={3} />
+                <DeviceCard building="Bunwell House" name="Swimming Pool Heating" state={3} level={2} />
+                <DeviceCard building="Bunwell House" name="Hot Water System 1" state={2} level={3} />
+                <DeviceCard building="Elizabeth House" name="Swimming Pool Filtration" state={4} level={3} />
+                <DeviceCard building="Elizabeth House" name="Swimming Pool Filtration" state={1} level={2} />
             </StyledGrid>
         </>
     );

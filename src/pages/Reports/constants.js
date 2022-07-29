@@ -7,6 +7,15 @@ export const COMFORT = {
     }
 }
 
+export const DEVICESTATS = {
+    VALUE: "Device Stats",
+    DEVICETYPE: {
+        HEADER: "Device Type",
+        SUB_HEADER: "(by floor)",
+        SUB: ""
+    }
+}
+
 export const HVAC_EFFICIENCY = {
     VALUE: "HVAC Efficiency",
     HEADER: "HVAC Device List",
