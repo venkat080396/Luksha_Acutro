@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { LEFT_DRAWER_ITEMS } from '../../pages/Dashboard/constants'
-import { COMFORT, HVAC_EFFICIENCY, UTILITIES } from '../../pages/Reports/constants'
+import { COMFORT, HVAC_EFFICIENCY, UTILITIES, DEVICESTATS } from '../../pages/Reports/constants'
 
 const getLeftDrawerItems = () => {
     var json = {
@@ -66,7 +66,9 @@ const initialState = {
     dashboardSettings: [
         { id: 1, name: UTILITIES.ENERGY_REPORTS.HEADER },
         { id: 2, name: COMFORT.VALUE },
-        { id: 3, name: HVAC_EFFICIENCY.VALUE }],
+        { id: 3, name: HVAC_EFFICIENCY.VALUE },
+        { id: 4, name: DEVICESTATS.VALUE }
+    ],
     notifications: [{ recId: 1, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
     { recId: 2, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
     { recId: 3, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },

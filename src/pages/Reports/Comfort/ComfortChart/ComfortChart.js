@@ -33,7 +33,7 @@ const ComfortChart = (props) => {
     useEffect(() => {
         const readingsFilter = { FromDate: fromDate, ToDate: toDate, DeviceTypeRecId: "2" };
         dispatch(fetchAsyncComfortLevelChartDataForDevice(readingsFilter));
-    }, []);
+    }, [fromDate, toDate]);
 
     return (<>
         {/* <Grid container
@@ -92,7 +92,7 @@ const ComfortChart = (props) => {
             </Grid>
         </Grid> */}
         <div
-            style={{ marginTop: "5em" }}>
+            style={{ marginTop: "2%" }}>
             <LineChart
                 data={comfortChartDataArr}
                 aspect={aspectRatio}

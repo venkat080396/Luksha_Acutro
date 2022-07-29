@@ -26,7 +26,7 @@ const Comfort = () => {
                             chartWidth={900}
                             chartHeight={700}
                             isSliderVisible={false}
-                            aspectRatio="3" />} />
+                            aspectRatio="2.7" />} />
                 </Grid>
                 <Grid item>
                     <Card
