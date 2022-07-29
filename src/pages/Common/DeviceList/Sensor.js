@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid } from '@mui/material';
 import Dialog from '../../../components/dialog/Dialog';
-import SensorChart from './SensorChart';
+import SensorChartCard from './SensorChartCard';
 import LinearProgress from '../../../components/feedback/progress/linearProgress/LinearProgress';
 
 const Sensor = (props) => {
@@ -28,7 +28,7 @@ const Sensor = (props) => {
             open={openDialog}
             handleClose={() => setOpenDialog(false)}
             title={`Sensor Information - ${sensor.Name}`}
-            content={<SensorChart deviceRecId={deviceRecId} sensorRecId={sensorRecId} />} />
+            content={<SensorChartCard deviceRecId={deviceRecId} sensorRecId={sensorRecId} />} />
     </>
     )
 }
