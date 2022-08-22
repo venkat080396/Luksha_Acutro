@@ -1,5 +1,6 @@
 import React, { Grid } from 'react'
 import StackedAreaChart from '../../../../components/charts/StackedAreaChart/StackedAreaChart';
+import { HVAC_EFFICIENCY } from '../../constants.js'
 
 const data = [
     {
@@ -68,11 +69,11 @@ const HVACChart = () => {
     return (<>
         <div>
             <StackedAreaChart
-                xAxisKey="time"
-                yAxisKey="temperature"
-                areaKey1="Heating"
-                areaKey2="Cooling"
-                aspect="1.5"
+                xAxisKey={HVAC_EFFICIENCY.TIME}
+                yAxisKey={HVAC_EFFICIENCY.TEMPERATURE}
+                areaKey1={HVAC_EFFICIENCY.HEATING}
+                areaKey2={HVAC_EFFICIENCY.COOLING}
+                aspect={HVAC_EFFICIENCY.ASPECT_RATIO}
                 data={data} />
         </div>
         <div style={{
@@ -81,7 +82,7 @@ const HVACChart = () => {
             color: '#999999',
             fontSize: 13
         }}>
-            <u>See all devices</u>
+            <u>{HVAC_EFFICIENCY.SEE_ALL_DEVICES}</u>
         </div>
     </>
     )

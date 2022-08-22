@@ -9,10 +9,11 @@ import moment from 'moment';
 import { isAuthenticated, logout } from "../features/Login/loginSlice"
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from 'notistack';
+import { SESSION_TIMEOUT } from "./Constants";
 
 const SessionTimeout = (props) => {
     const { sessionTimeoutDuration } = props;
-    const [events, setEvents] = useState(['click', 'load', 'scroll']);
+    const [events, setEvents] = useState([SESSION_TIMEOUT.CLICK, SESSION_TIMEOUT.LOAD, SESSION_TIMEOUT.SCROLL]);
     const [second, setSecond] = useState(0);
     const [isLoggedOut, SetIsLoggedOut] = useState(false);
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const SessionTimeout = (props) => {
     // start inactive check
     let timeChecker = () => {
         startTimerInterval.current = setTimeout(() => {
-            let storedTimeStamp = sessionStorage.getItem('lastTimeStamp');
+            let storedTimeStamp = sessionStorage.getItem(SESSION_TIMEOUT.LAST_TIMESTAMP);
             warningInactive(storedTimeStamp);
         }, (sessionTimeoutDuration * 60 * 1000));
     };
@@ -33,11 +34,11 @@ const SessionTimeout = (props) => {
     // warning timer
     let warningInactive = (timeString) => {
         clearTimeout(startTimerInterval.current);
-        sessionStorage.removeItem('lastTimeStamp');
+        sessionStorage.removeItem(SESSION_TIMEOUT.LAST_TIMESTAMP);
         logout();
         SetIsLoggedOut(true);
         navigate("/login");
-        enqueueSnackbar("Your session has expired. Please login again.", { variant: 'error' })
+        enqueueSnackbar(SESSION_TIMEOUT.SESSION_EXPIRED_MESSAGE, { variant: 'error' })
         // warningInactiveInterval.current = setInterval(() => {
         //     const maxTime = 2;
         //     const popTime = 1;
@@ -69,11 +70,11 @@ const SessionTimeout = (props) => {
 
         if (isAuthenticated()) {
             timeStamp = moment();
-            sessionStorage.setItem('lastTimeStamp', timeStamp);
+            sessionStorage.setItem(SESSION_TIMEOUT.LAST_TIMESTAMP, timeStamp);
             timeChecker();
         } else {
             //clearInterval(warningInactiveInterval.current);
-            sessionStorage.removeItem('lastTimeStamp');
+            sessionStorage.removeItem(SESSION_TIMEOUT.LAST_TIMESTAMP);
         }
         //setOpen(false);
     }, [isAuthenticated()]);

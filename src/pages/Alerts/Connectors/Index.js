@@ -2,7 +2,7 @@ import { Button, Grid, Typography, useTheme } from '@mui/material'
 import React, { useState, useEffect } from 'react'
 import { styled } from '@mui/system';
 import Datagrid from "../../../components/datagrid/Datagrid";
-import { CONNECTORS } from "../constants";
+import { CONNECTORS, ALERT_RULES } from "../constants";
 import Menu from '../../../components/layout/Menu/Menu';
 import Dialog from "../../../components/dialog/Dialog";
 import TypesList from './TypesList/TypesList';
@@ -39,14 +39,14 @@ const Index = ({ isSelect = false, selectedRows, onSelectChange }) => {
     }
 
     const menuItems = [
-        { recId: 1, name: "Edit" },
-        { recId: 2, name: "Delete" }
+        { recId: 1, name: ALERT_RULES.EDIT },
+        { recId: 2, name: ALERT_RULES.DELETE }
     ]
 
     const columns = [
         {
             field: "Name",
-            headerName: "Name",
+            headerName: CONNECTORS.FIELDS.NAME,
             width: isSelect ? "300" : "700",
             renderCell: (cellValues) => {
                 const icon = cellValues.row.ConnectorType === CONNECTORS.EMAIL
@@ -64,7 +64,7 @@ const Index = ({ isSelect = false, selectedRows, onSelectChange }) => {
         },
         {
             field: "ConnectorType",
-            headerName: "Type",
+            headerName: CONNECTORS.FIELDS.TYPE,
             width: isSelect ? "300" : "700"
         },
         !isSelect && (
@@ -86,13 +86,13 @@ const Index = ({ isSelect = false, selectedRows, onSelectChange }) => {
 
     const handleMenuClick = (type, item) => {
         switch (type) {
-            case "Edit":
+            case ALERT_RULES.EDIT:
                 setType(item.ConnectorType);
                 setItem(item);
                 setOpenCreateConnector(true);
                 break;
 
-            case "Delete":
+            case ALERT_RULES.DELETE:
                 dispatch(saveConnector({ connectorRecId: item.RecId, isDelete: "1" }));
                 dispatch(fetchConnectors());
                 enqueueSnackbar(CONNECTORS.LIST_DELETED, { variant: 'success' })

@@ -82,13 +82,13 @@ const Home = () => {
                                         <Label
                                             style={{ fontSize: 20, fontWeight: 'bold', color: '#fff' }}
                                             sx={{ marginLeft: 4 }}
-                                            label="Active Alerts" />
+                                            label={UTILITIES.ACTIVE_ALERTS.HEADER} />
                                     </Grid>
                                     <Grid xs={12} sm={12} md={12} lg={12}>
                                         <Label
                                             style={{ fontSize: 12, fontWeight: '400', color: 'rgba(255, 255, 255, 0.74)' }}
                                             sx={{ marginLeft: 4 }}
-                                            label="An Overview of the alerts currently active" />
+                                            label={UTILITIES.ACTIVE_ALERTS.DESCRIPTION} />
                                     </Grid>
                                 </Grid>
                             }

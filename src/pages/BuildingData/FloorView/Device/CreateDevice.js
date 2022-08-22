@@ -72,7 +72,7 @@ const CreateDevice = (props) => {
                     autoFocus
                     value={deviceName}
                     onChange={(event) => setDeviceName(event.target.value)}
-                    name="Device Name"
+                    name={FLOORVIEW.DEVICE_NAME}
                     sx={{ width: "15em", color: "black", backgroundColor: "white" }}
                     size="small" />
             </Grid>

@@ -119,10 +119,10 @@ export default function AppBarComponent({
                             {APPBAR.YOUR_DASHBOARD} &nbsp;
                         </Typography>
                         {selectedBuilding && selectedBuilding.Name ? `/ ${selectedBuilding.Name} ` : ""}
-                        {selectedFloor && selectedFloor.Name ? `/ ${selectedFloor.Name} /` : ""}
+                        {selectedFloor && selectedFloor.Name ? `/ ${selectedFloor.Name} ` : ""}
                         {selectedBuilding && selectedBuilding.Name
                             && selectedFloor && selectedFloor.Name
-                            && selectedFromDate && selectedToDate ? `${selectedFromDate} - ${selectedToDate}` : ""}
+                            && selectedFromDate && selectedToDate ? `/ ${selectedFromDate} - ${selectedToDate}` : ""}
                     </Typography>
                     {!openRight && (
                         <Grid container
