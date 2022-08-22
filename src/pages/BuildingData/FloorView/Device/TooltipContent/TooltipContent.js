@@ -1,5 +1,6 @@
 import React from 'react'
 import { Grid } from '@mui/material';
+import { FLOORVIEW } from "../../../constants";
 
 const TooltipContent = (props) => {
     const { name } = props
@@ -10,10 +11,10 @@ const TooltipContent = (props) => {
                 {name}
             </Grid>
             <Grid item sx={{ fontSize: "1em", color: "#7be382" }}>
-                Operational
+                {FLOORVIEW.OPERATIONAL}
             </Grid>
             <Grid item sx={{ fontSize: "1em", color: "rgba(255,255,255,0.5)" }}>
-                Active time: 12hrs
+                {FLOORVIEW.ACTIVE_TIME} 12hrs
             </Grid>
         </Grid>)
 }

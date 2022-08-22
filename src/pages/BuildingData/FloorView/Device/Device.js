@@ -67,7 +67,12 @@ const Device = (props) => {
     };
 
     return (
-        <Tooltip key={device.RecId} open={open} onClose={handleClose} onOpen={handleOpen} title={<TooltipContent recId={device.RecId} name={device.Name} />}>
+        <Tooltip
+            key={device.RecId}
+            open={open}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            title={<TooltipContent recId={device.RecId} name={device.Name} />}>
             <img
                 data-id={device.RecId}
                 key={device.RecId}

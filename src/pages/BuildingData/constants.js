@@ -14,5 +14,8 @@ export const FLOORVIEW = {
     UPDATE_DEVICE: "Update Device",
     DEVICE_TYPES: "Device Types",
     DEVICE_NAME: "Device Name",
+    DETAILS: "Floor View Details",
+    OPERATIONAL: "Operational",
+    ACTIVE_TIME: "Active time:",
     BUTTONS: { CREATE: "Create", UPDATE: "Update", CANCEL: "Cancel" }
 }

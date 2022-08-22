@@ -21,7 +21,13 @@ export const HVAC_EFFICIENCY = {
     HEADER: "HVAC Device List",
     UNDER_ACHIEVING_DEVICES: "Under-achieving Devices",
     OVER_WORKING_DEVICES: "Over Working Devices",
-    UNDER_WORKING_DEVICES: "Under Working Devices"
+    UNDER_WORKING_DEVICES: "Under Working Devices",
+    SEE_ALL_DEVICES: "See all devices",
+    TIME: "time",
+    TEMPERATURE: "temperature",
+    HEATING: "Heating",
+    COOLING: "Cooling",
+    ASPECT_RATIO: "1.5"
 }
 
 export const UTILITIES = {
@@ -37,7 +43,11 @@ export const UTILITIES = {
             WEEKEND: "Weekend",
         }
     },
-    ACTIVE_DEVICES: { HEADER: "Active Devices" }
+    ACTIVE_DEVICES: { HEADER: "Active Devices" },
+    ACTIVE_ALERTS: {
+        HEADER: "Active Alerts",
+        DESCRIPTION: "An Overview of the alerts currently active"
+    }
 }
 
 export const EXPORTS = {

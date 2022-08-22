@@ -91,18 +91,20 @@ const ComfortChart = (props) => {
                 </Grid>
             </Grid>
         </Grid> */}
-        <div
-            style={{ marginTop: "2%" }}>
-            <LineChart
-                data={comfortChartDataArr}
-                aspect={aspectRatio}
-            />
-            {/* <StackedAreaChart
+        {comfortChartDataArr && comfortChartDataArr.length !== 0 && (
+            <div
+                style={{ marginTop: "2%" }}>
+                <LineChart
+                    data={comfortChartDataArr}
+                    aspect={aspectRatio}
+                />
+                {/* <StackedAreaChart
                 xAxisValues={xAxisValues}
                 areaKey1="Value"
                 aspect={aspetRatio}
                 data={readings} /> */}
-        </div>
+            </div>
+        )}
     </>
     )
 }

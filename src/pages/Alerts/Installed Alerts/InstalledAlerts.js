@@ -1,14 +1,11 @@
 import React from 'react'
-import { Grid, Box, Button, IconButton } from '@mui/material'
+import { Grid, Box, Button, IconButton, Menu, MenuItem } from '@mui/material'
 import Datagrid from '../../../components/datagrid/Datagrid';
 import { getColorBasedOnStatus } from '../../../common/Utils';
 import LinearProgress from '../../../components/feedback/progress/linearProgress/LinearProgress';
 import Dialog from '../../../components/dialog/Dialog';
-
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import { INSTALLATION_ALERTS, ALERT_RULES } from "../constants";
 
 const MenuComponent = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -53,13 +50,13 @@ const MenuComponent = () => {
                     horizontal: 'left',
                 }}
             >
-                <MenuItem onClick={handleEdit}>Edit</MenuItem>
-                <MenuItem onClick={handleDelete}>Delete</MenuItem>
+                <MenuItem onClick={handleEdit}>{ALERT_RULES.EDIT}</MenuItem>
+                <MenuItem onClick={handleDelete}>{ALERT_RULES.DELETE}</MenuItem>
             </Menu>
             <Dialog
                 open={openDialog}
                 handleClose={() => setOpenDialog(false)}
-                title={"Alerts Installed"}
+                title={INSTALLATION_ALERTS.ALERTS_INSTALLED}
                 content={<></>}
             />
         </>
@@ -68,7 +65,7 @@ const MenuComponent = () => {
 
 const columns = [
     {
-        field: 'building', headerName: 'Building', width: 150,
+        field: 'building', headerName: INSTALLATION_ALERTS.FIELDS.BUILDING, width: 150,
         renderCell: (cellValues) => {
             return (<Grid container>
                 <Grid item>
@@ -77,14 +74,14 @@ const columns = [
             </Grid>)
         }
     },
-    { field: 'floor', headerName: 'Floor', width: 130 },
-    { field: 'deviceType', headerName: 'Device Type', width: 128 },
-    { field: 'device', headerName: 'Device', width: 108 },
-    { field: 'sensor', headerName: 'Sensor', width: 128 },
-    { field: 'createdDate', headerName: 'Date Created', sortable: false, width: 120 },
-    { field: 'alertDate', headerName: 'Alert last triggered', sortable: false, width: 184 },
+    { field: 'floor', headerName: INSTALLATION_ALERTS.FIELDS.FLOOR, width: 130 },
+    { field: 'deviceType', headerName: INSTALLATION_ALERTS.FIELDS.DEVICE_TYPE, width: 128 },
+    { field: 'device', headerName: INSTALLATION_ALERTS.FIELDS.DEVICE, width: 108 },
+    { field: 'sensor', headerName: INSTALLATION_ALERTS.FIELDS.SENSOR, width: 128 },
+    { field: 'createdDate', headerName: INSTALLATION_ALERTS.FIELDS.DATE_CREATED, sortable: false, width: 120 },
+    { field: 'alertDate', headerName: INSTALLATION_ALERTS.FIELDS.ALERT_LAST_TRIGGERED, sortable: false, width: 184 },
     {
-        field: 'currentStatus', headerName: 'Current Status', sortable: false, width: 148,
+        field: 'currentStatus', headerName: INSTALLATION_ALERTS.FIELDS.CURRENT_STATUS, sortable: false, width: 148,
         renderCell: (cellValues) => {
             const value = cellValues.value;
             const bgcolor = getColorBasedOnStatus(value);
@@ -94,7 +91,7 @@ const columns = [
         }
     },
     {
-        field: 'triggersHistory', headerName: 'Triggers history (Last 6 months)', sortable: false, width: 300,
+        field: 'triggersHistory', headerName: INSTALLATION_ALERTS.FIELDS.TRIGGERS_HISTORY, sortable: false, width: 300,
         renderCell: (cellValues) => {
             const value = cellValues.row.currentStatus === "Resolved" ? 100 : 50;
             return (<Box sx={{ width: "15em" }}>
@@ -141,7 +138,7 @@ const InstalledAlerts = () => {
             <Dialog
                 open={openDialog}
                 handleClose={() => setOpenDialog(false)}
-                title={"Alerts Installed"}
+                title={INSTALLATION_ALERTS.ALERTS_INSTALLED}
                 content={<></>}
             />
         </>

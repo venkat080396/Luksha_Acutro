@@ -77,20 +77,17 @@ const Container = () => {
         <Grid direction="column" container justifyContent="center" alignItems="center" spacing={3}>
             <Grid item>
                 <Card
-                    //informationContnet="List of all alerts installed across this site"
                     headerContent={<Typography variant="header2" sx={{ marginLeft: 4 }} >Installed Alerts</Typography>}
                     content={<InstalledAlerts />} />
             </Grid>
             <Grid item>
                 <Card
-                    //informationContnet="Escalation hierarchy for the entire user base across this site"
                     headerContent={<Header />}
                     sx={{ width: "90vw" }}
                     content={<EscalationSettings />} />
             </Grid>
             <Grid item>
                 <Card
-                    //informationContnet="Escalation Help Guide"
                     sx={{ width: "90vw" }}
                     content={<LevelInformation />} />
             </Grid>

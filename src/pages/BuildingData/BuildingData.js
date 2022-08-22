@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid } from '@mui/material'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Card from '../../components/layout/Card/Card'
 import MapView from "./MapView/MapView"
 import ListView from './ListView/ListView';

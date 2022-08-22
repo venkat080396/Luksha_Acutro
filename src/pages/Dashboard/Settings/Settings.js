@@ -19,10 +19,20 @@ const Settings = (props) => {
                     spacing={2}
                     sx={{ marginTop: "0.5em" }}>
                     <Grid item>
-                        <Button variant="contained" color="error" onClick={handleClose}>{SETTINGS.BUTTONS.CANCEL}</Button>
+                        <Button
+                            variant="contained"
+                            color="error"
+                            onClick={handleClose}>
+                            {SETTINGS.BUTTONS.CANCEL}
+                        </Button>
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" color="info" onClick={handleSubmit}>{SETTINGS.BUTTONS.SUBMIT}</Button>
+                        <Button
+                            variant="contained"
+                            color="info"
+                            onClick={handleSubmit}>
+                            {SETTINGS.BUTTONS.SUBMIT}
+                        </Button>
                     </Grid>
                 </Grid>
             </Grid>

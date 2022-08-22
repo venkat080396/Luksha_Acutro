@@ -12,7 +12,8 @@ const StyledDataGrid = styled(DataGrid)({
 });
 
 const Datagrid = (props) => {
-    const { rows, columns, pageSize, rowsPerPageOptions, isCheckboxGrid = false, selectionModel, onSelectionChange } = props;
+    const { rows, columns, pageSize, rowsPerPageOptions, isCheckboxGrid = false,
+        selectionModel, onSelectionChange } = props;
 
     return (
         <>

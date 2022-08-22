@@ -1,6 +1,7 @@
 import { Button, Grid, Typography } from '@mui/material'
 import React from 'react'
 import Connectors from "../../Connectors/Index";
+import { CONNECTORS } from "../../constants";
 
 const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange }) => {
 
@@ -15,11 +16,14 @@ const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange 
             sx={{ height: "580px", width: "800px" }}>
             <Grid item sx={{ margin: "20px" }}>
                 <Typography variant="header2">
-                    Select a Connector
+                    {CONNECTORS.SELECT_CONNECTOR}
                 </Typography>
             </Grid>
             <Grid item>
-                <Connectors selectedRows={selctedConnectorRecIds} onSelectChange={(rows) => onSelectChange(rows)} isSelect={true} />
+                <Connectors
+                    selectedRows={selctedConnectorRecIds}
+                    onSelectChange={(rows) => onSelectChange(rows)}
+                    isSelect={true} />
             </Grid>
             <Grid item container
                 spacing={2}
@@ -29,7 +33,7 @@ const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange 
                     <Button variant="contained"
                         onClick={handleOkClick}>
                         <Typography>
-                            OK
+                            {CONNECTORS.OK}
                         </Typography>
                     </Button>
                 </Grid>
@@ -37,7 +41,7 @@ const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange 
                     <Button variant="contained" color="secondary"
                         onClick={handleClose}>
                         <Typography>
-                            Cancel
+                            {CONNECTORS.CANCEL}
                         </Typography>
                     </Button>
                 </Grid>

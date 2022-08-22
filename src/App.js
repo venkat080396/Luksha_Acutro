@@ -36,7 +36,7 @@ function App() {
           <Route path="comfort" element={<ProtectedAuth><Comfort /></ProtectedAuth>} />
           <Route path="exports" element={<ProtectedAuth><Exports /></ProtectedAuth>} />
         </Routes>
-        <SessionTimeout sessionTimeoutDuration={SESSION_TIMEOUT} />
+        <SessionTimeout sessionTimeoutDuration={SESSION_TIMEOUT.TIMEOUT_VALUE} />
       </SnackbarProvider>
     </ThemeProvider>
   );

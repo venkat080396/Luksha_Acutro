@@ -33,7 +33,8 @@ const Utilities = () => {
                     headerContent={<Label sx={{ marginLeft: 4 }}
                         label={UTILITIES.ENERGY_REPORTS.HEADER} />}
                     sx={{ width: "90vw", height: "70vh" }}
-                    content={<EnergyReports sx={{ width: "27vw", height: "55vh" }} estimationSx={{ marginTop: 3 }} />} />
+                    content={<EnergyReports sx={{ width: "27vw", height: "55vh" }}
+                        estimationSx={{ marginTop: 3 }} />} />
             </Grid>
             <Grid item>
                 <Card

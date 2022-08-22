@@ -17,7 +17,7 @@ import FloorView from "../BuildingData/FloorView/Container";
 import BuildingData from "../BuildingData/BuildingData";
 import Alerts from "../Alerts/Container";
 import Connectors from "../Alerts/Connectors/Index";
-import Automations from "../Alerts/Automations/Automations";
+import Automations from "../Alerts/Automations/Container";
 import { LEFT_DRAWER_ITEMS } from './constants'
 
 const DrawerHeader = styled("div")(({ theme }) => ({
