@@ -1,4 +1,5 @@
-import { IMAGE_URL } from "./Constants"
+import { isAuthenticated } from "../pages/Login/slice";
+import { Navigate } from "react-router-dom";
 
 export const convertToFloat = (value) => {
     return value ? parseFloat(value) : 0;
@@ -11,7 +12,7 @@ export const downloadDataFromURL = (url) => {
 }
 
 export const getImageURL = (filename) => {
-    return `${IMAGE_URL}${filename}`;
+    return `${process.env.NODE_ENV.REACT_APP_IMAGE_URL}${filename}`;
 }
 
 export const getPosition = (container, clientX, clientY, offsetX, offsetY) => {
@@ -65,4 +66,8 @@ export const objectToCSV = (object) => {
 
 export const CSVToArray = (data, delimiter = ',') => {
     return data.split(delimiter);
+}
+
+export const ProtectedAuth = ({ children }) => {
+    return isAuthenticated() ? children : <Navigate to="/login" replace />;
 }
