@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import MuiCard from '@mui/material/Card';
 import { styled } from '@mui/system';
-import TooltipIcon from '../../tooltipIcon/TooltipIcon';
+import { TooltipIcon } from '../../DataDisplay/TooltipIcon';
 
 const Card = (props) => {
     const { sx, content, headerContent, informationContnet } = props
