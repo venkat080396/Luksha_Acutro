@@ -17,10 +17,10 @@ const DeviceTypePie = () => {
     // ];
 
     return (<>
-        <div style={{ marginTop: "-20px", marginLeft: "10px" }}>
+        <div style={{ marginTop: '-20px', marginLeft: '10px' }}>
             <PieChartComponent
                 data={data}
-                piekey="DeviceCount"
+                piekey='DeviceCount'
             />
         </div>
     </>

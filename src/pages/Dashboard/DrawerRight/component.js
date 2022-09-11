@@ -1,34 +1,20 @@
 import React, { useState } from 'react'
-import Drawer from "@mui/material/Drawer";
-import SelectBox from "../../../components/Inputs/SelectBox/SelectBox"
+import { Drawer, Box } from '@mui/material';
+import SelectBox from '../../../components/Inputs/SelectBox/SelectBox'
 import {
     getAllBuildings, getAllFloors, fetchAsyncFloors, setSelectedBuilding, setSelectedFloor
     , getSelectedBuilding, getSelectedFloor, setFromDate, setToDate, getFromDate, getToDate
 } from '../../Home/slice';
-import { useSelector, useDispatch } from "react-redux";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { ReactComponent as BuildingsIcon } from "../../../assets/icons/Buildings.svg"
-import { ReactComponent as FloorIcon } from "../../../assets/icons/Floor.svg"
-import { ReactComponent as FilterIcon } from "../../../assets/icons/Filter.svg"
-import { ReactComponent as SettingsIcon } from "../../../assets/icons/Settings.svg"
+import { useSelector, useDispatch } from 'react-redux';
+import { ReactComponent as BuildingsIcon } from '../../../assets/icons/Buildings.svg'
+import { ReactComponent as FloorIcon } from '../../../assets/icons/Floor.svg'
+import { ReactComponent as FilterIcon } from '../../../assets/icons/Filter.svg'
+import { ReactComponent as SettingsIcon } from '../../../assets/icons/Settings.svg'
 import DateBox from '../../../components/Inputs/DateBox/DateBox';
-import IconLabel from "../../../components/Inputs/IconLabel/IconLabel"
-import { Dialog } from "../../../components/Feedback/Dialog";
+import IconLabel from '../../../components/Inputs/IconLabel/IconLabel'
+import { Dialog } from '../../../components/Feedback/Dialog';
 import { Settings } from '../Settings';
-import { Box } from '@mui/material';
 import { RIGHT_DRAWER_ITEMS } from '../constants'
-
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#fff",
-            contrastText: "#fff",
-        },
-        text: {
-            primary: "#fff",
-        },
-    },
-});
 
 const DrawerRight = (props) => {
     const { closeDrawer, openRight } = props
@@ -43,7 +29,7 @@ const DrawerRight = (props) => {
 
     const onBuildingChange = (building) => {
         dispatch(setSelectedBuilding(building))
-        dispatch(setSelectedFloor(""))
+        dispatch(setSelectedFloor(''))
         if (building) {
             dispatch(fetchAsyncFloors(building.RecId))
         }
@@ -71,43 +57,41 @@ const DrawerRight = (props) => {
     }
 
     return (
-
-        <ThemeProvider theme={theme}>
             <Drawer
                 PaperProps={{
                     sx: {
-                        background: "linear-gradient(135deg, #1F1A3B, #344D5E)",
-                        color: "white",
+                        background: 'linear-gradient(135deg, #1F1A3B, #344D5E)',
+                        color: 'white',
                         zIndex: 100000
                     },
                 }}
-                anchor="right"
+                anchor='right'
                 onClose={closeDrawer}
                 open={openRight}
             >
                 <Box marginTop={10}></Box>
                 <IconLabel
                     sx={{ marginLeft: 3 }}
-                    icon={<FilterIcon height="2.5em" width="2.5em" />}
+                    icon={<FilterIcon height='2.5em' width='2.5em' />}
                     label={RIGHT_DRAWER_ITEMS.FILTER} />
                 <SelectBox
                     value={selectedBuilding}
                     onSelectChange={onBuildingChange}
                     label={RIGHT_DRAWER_ITEMS.BUILDING}
-                    icon={<BuildingsIcon height="2.5em" width="2.5em" />}
+                    icon={<BuildingsIcon height='2.5em' width='2.5em' />}
                     items={buildings} />
                 <SelectBox
                     value={selectedFloor}
                     onSelectChange={onFloorChange}
                     label={RIGHT_DRAWER_ITEMS.FLOOR}
-                    icon={<FloorIcon height="2.5em" width="2.5em" />}
+                    icon={<FloorIcon height='2.5em' width='2.5em' />}
                     items={floors} />
                 <DateBox
-                    value={{ "fromDate": fromDate, "toDate": toDate }}
+                    value={{ 'fromDate': fromDate, 'toDate': toDate }}
                     onDateChange={(value, label) => onDateChange(value, label)} />
                 <IconLabel
-                    sx={{ marginLeft: 3, marginTop: 4, cursor: "pointer" }}
-                    icon={<SettingsIcon height="2.5em" width="2.5em" />}
+                    sx={{ marginLeft: 3, marginTop: 4, cursor: 'pointer' }}
+                    icon={<SettingsIcon height='2.5em' width='2.5em' />}
                     label={RIGHT_DRAWER_ITEMS.DASHBOARD_SETTINGS}
                     onClick={HandleSettingsClick} />
                 <Dialog
@@ -120,7 +104,6 @@ const DrawerRight = (props) => {
                     />}
                 />
             </Drawer>
-        </ThemeProvider>
     )
 }
 

@@ -1,16 +1,16 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { baseURL, api } from "../../common/apis/api";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { baseURL, api } from '../../common/apis/api';
 
 export const fetchAsyncDevicesWithStatus = createAsyncThunk(
     'buildingData/fetchAsyncDevicesWithStatus',
     async (requestDetails) => {
         const inputDetails = {
-            operation: "GetAllDevicesWithStatus",
+            operation: 'GetAllDevicesWithStatus',
             payload: {
-                "SiteRecId": requestDetails.siteRecId,
-                "BuildingRecId": requestDetails.buildingRecId,
-                "FloorRecId": requestDetails.floorRecId,
-                "DeviceTypeRecId": requestDetails.deviceTypeRecId,
+                'SiteRecId': requestDetails.siteRecId,
+                'BuildingRecId': requestDetails.buildingRecId,
+                'FloorRecId': requestDetails.floorRecId,
+                'DeviceTypeRecId': requestDetails.deviceTypeRecId,
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -22,9 +22,9 @@ export const fetchAsyncDeviceSensorsForDeviceId = createAsyncThunk(
     'buildingData/fetchAsyncDeviceSensorsForDeviceId',
     async (deviceRecId) => {
         const inputDetails = {
-            operation: "GetDeviceSensorsForDeviceId",
+            operation: 'GetDeviceSensorsForDeviceId',
             payload: {
-                "DeviceRecId": deviceRecId,
+                'DeviceRecId': deviceRecId,
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -36,12 +36,12 @@ export const fetchAsyncDeviceReadingsForFilter = createAsyncThunk(
     'buildingData/fetchAsyncDeviceReadingsForFilter',
     async (filter) => {
         const inputDetails = {
-            operation: "GetDeviceReadingsForFilter",
+            operation: 'GetDeviceReadingsForFilter',
             payload: {
-                "dtFromDate": filter.FromDate,
-                "dtToDate": filter.ToDate,
-                "DeviceRecId": filter.DeviceRecId,
-                "DeviceSensorRecId": filter.DeviceSensorRecId,
+                'dtFromDate': filter.FromDate,
+                'dtToDate': filter.ToDate,
+                'DeviceRecId': filter.DeviceRecId,
+                'DeviceSensorRecId': filter.DeviceSensorRecId,
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -53,14 +53,14 @@ export const fetchAsyncDeviceTypeforFloorId = createAsyncThunk(
     'buildingData/fetchAsyncDeviceTypeforFloorId',
     async (requestDetails) => {
         const inputDetails = {
-            operation: "GetDeviceTypeForFloorId",
+            operation: 'GetDeviceTypeForFloorId',
             payload: {
-                // "SiteRecId": requestDetails.siteRecId,
-                // "BuildingRecId": requestDetails.buildingRecId,
-                // "FloorRecId": requestDetails.floorRecId,
-                "SiteRecId": 1,
-                "BuildingRecId": 1,
-                "FloorRecId": 1,
+                // 'SiteRecId': requestDetails.siteRecId,
+                // 'BuildingRecId': requestDetails.buildingRecId,
+                // 'FloorRecId': requestDetails.floorRecId,
+                'SiteRecId': 1,
+                'BuildingRecId': 1,
+                'FloorRecId': 1,
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -72,11 +72,11 @@ export const fetchAsyncComfortLevelChartDataForDevice = createAsyncThunk(
     'buildingData/fetchAsyncComfortLevelChartDataForDevice',
     async (filter) => {
         const inputDetails = {
-            operation: "GetComfortLevelChartDataForDevice",
+            operation: 'GetComfortLevelChartDataForDevice',
             payload: {
-                "dtFromDate": filter.FromDate,
-                "dtToDate": filter.ToDate,
-                "DeviceTypeRecId": filter.DeviceTypeRecId
+                'dtFromDate': filter.FromDate,
+                'dtToDate': filter.ToDate,
+                'DeviceTypeRecId': filter.DeviceTypeRecId
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -88,9 +88,9 @@ export const fetchAsyncAllDeviceTypes = createAsyncThunk(
     'buildingData/fetchAsyncAllDeviceTypes',
     async (deviceTypeRecId) => {
         const inputDetails = {
-            operation: "GetAllDeviceTypes",
+            operation: 'GetAllDeviceTypes',
             payload: {
-                "ParentDeviceTypeRecId": deviceTypeRecId
+                'ParentDeviceTypeRecId': deviceTypeRecId
             }
         }
         const response = await api.post(baseURL, inputDetails);
@@ -102,15 +102,15 @@ export const saveAsyncDevice = createAsyncThunk(
     'buildingData/saveAsyncDevice',
     async (device) => {
         const inputDetails = {
-            operation: "SaveDevice",
+            operation: 'SaveDevice',
             payload: {
-                "DeviceRecId": device.RecId,
-                "FloorRecId": device.FloorRecId,
-                "DeviceTypeRecId": device.DeviceTypeRecId,
-                "DeviceUniqueId": device.Name,
-                "DeviceName": device.Name,
-                "FloorX": Math.round(device.FloorX),
-                "FloorY": Math.round(device.FloorY)
+                'DeviceRecId': device.RecId,
+                'FloorRecId': device.FloorRecId,
+                'DeviceTypeRecId': device.DeviceTypeRecId,
+                'DeviceUniqueId': device.Name,
+                'DeviceName': device.Name,
+                'FloorX': Math.round(device.FloorX),
+                'FloorY': Math.round(device.FloorY)
             }
         }
         const response = await api.post(baseURL, inputDetails);

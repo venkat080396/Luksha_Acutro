@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { PieChart, Pie, Legend, Sector, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 
 const PieChartComponent = (props) => {
@@ -13,7 +13,7 @@ const PieChartComponent = (props) => {
         const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
         return (
-            <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            <text x={x} y={y} fill='white' textAnchor={x > cx ? 'start' : 'end'} dominantBaseline='central'>
                 {`${(percent * 100).toFixed(0)}%`}
             </text>
         );
@@ -22,13 +22,13 @@ const PieChartComponent = (props) => {
     return (
         <>
             {data && (
-                <ResponsiveContainer width={600} height={350} className="text-center">
+                <ResponsiveContainer width={600} height={350} className='text-center'>
                     <PieChart width={600} height={350}>
-                        <Legend layout="horizontal" verticalAlign="bottom" align="top" />
+                        <Legend layout='horizontal' verticalAlign='bottom' align='top' />
                         <Pie
                             data={data}
-                            cx="50%"
-                            //cy="20%"
+                            cx='50%'
+                            //cy='20%'
                             labelLine={false}
                             label={renderCustomizedLabel}
                             outerRadius={120}

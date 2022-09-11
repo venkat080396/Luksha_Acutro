@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid, Typography } from '@mui/material'
 import { EnergyReports } from './EnergyReports'
 import { ActiveDevices } from './ActiveDevices'
@@ -26,14 +26,14 @@ const Utilities = () => {
     }, [dispatch, fromDate, toDate, selectedBuilding, selectedFloor])
 
     return (
-        <Grid direction="column" container justifyContent="center" alignItems="center" spacing={3}>
+        <Grid direction='column' container justifyContent='center' alignItems='center' spacing={3}>
             <Grid item>
                 <Card
                     headerContent={<Typography sx={{ marginLeft: 4 }}>
                         {UTILITIES.ENERGY_REPORTS.HEADER}
                     </Typography>}
-                    sx={{ width: "90vw", height: "70vh" }}
-                    content={<EnergyReports sx={{ width: "27vw", height: "55vh" }}
+                    sx={{ width: '90vw', height: '70vh' }}
+                    content={<EnergyReports sx={{ width: '27vw', height: '55vh' }}
                         estimationSx={{ marginTop: 3 }} />} />
             </Grid>
             <Grid item>
@@ -42,7 +42,7 @@ const Utilities = () => {
                         <Typography sx={{ marginLeft: 4 }}>
                             {UTILITIES.ACTIVE_DEVICES.HEADER}
                         </Typography>}
-                    sx={{ width: "90vw", height: "50vh" }}
+                    sx={{ width: '90vw', height: '50vh' }}
                     content={<ActiveDevices />} />
             </Grid>
         </Grid>

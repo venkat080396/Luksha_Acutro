@@ -81,7 +81,7 @@ const Slider = () => {
     return (
         <Box sx={{ marginTop: 5, marginLeft: 10 }}>
             <MuiSlider
-                sx={{ width: 1150, color: "rgba(255,255,255,0.3)" }}
+                sx={{ width: 1150, color: 'rgba(255,255,255,0.3)' }}
                 defaultValue={0}
                 step={2.94}
                 marks={marks}

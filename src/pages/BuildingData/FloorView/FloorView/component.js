@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 import { Grid } from '@mui/material'
-import _ from "lodash";
+import _ from 'lodash';
 import { connect } from 'react-redux'
-import LightbulbImage from "../../../../assets/icons/Lightbulb.png"
-import FloorImage from "../../../../assets/icons/Floor.png"
-import { Dialog } from "../../../../components/Feedback/Dialog";
-import { CreateDevice } from "../Device/Create";
+import LightbulbImage from '../../../../assets/icons/Lightbulb.png'
+import FloorImage from '../../../../assets/icons/Floor.png'
+import { Dialog } from '../../../../components/Feedback/Dialog';
+import { CreateDevice } from '../Device/Create';
 import { getSelectedFloor, getSelectedBuilding } from '../../../Home/slice';
-import { fetchAsyncDevicesWithStatus, getAllDevicesWithStatus, saveAsyncDevice, getAllDevicesToBeSaved, updateDeviceToBeSaved } from "../../slice";
+import { fetchAsyncDevicesWithStatus, getAllDevicesWithStatus, saveAsyncDevice, getAllDevicesToBeSaved, updateDeviceToBeSaved } from '../../slice';
 import { DEVICE } from '../../../../common/constants';
-import { getPosition, mergeArray } from "../../../../common/utils";
-import { Device } from "../Device";
-import Save from "../../../../components/Inputs/Button/Save/Save";
+import { getPosition, mergeArray } from '../../../../common/utils';
+import { Device } from '../Device';
+import Save from '../../../../components/Inputs/Button/Save/Save';
 import { FLOORVIEW } from '../../constants'
 
 class FloorView extends React.Component {
@@ -71,27 +71,27 @@ class FloorView extends React.Component {
 
     render() {
         return [
-            <Grid container direction="row">
+            <Grid container direction='row'>
                 <Grid item>
                     <div
                         ref={ref => (this.container = ref)}
                         style={{
-                            display: "inline-block",
-                            position: "relative",
-                            overflow: "hidden",
-                            width: "70vw",
-                            height: "70vh",
-                            marginLeft: "3em",
-                            marginTop: "3em"
+                            display: 'inline-block',
+                            position: 'relative',
+                            overflow: 'hidden',
+                            width: '70vw',
+                            height: '70vh',
+                            marginLeft: '3em',
+                            marginTop: '3em'
                         }}
                     >
                         <img
                             ref={ref => (this.img = ref)}
                             src={this.props.floor?.SVGProperties || FloorImage}
-                            alt="Floor plan"
+                            alt='Floor plan'
                             style={{
-                                width: "70vw",
-                                height: "70vh"
+                                width: '70vw',
+                                height: '70vh'
                             }}
                             onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
@@ -103,21 +103,21 @@ class FloorView extends React.Component {
                         <img
                             ref={ref => (this.fooDevice = ref)}
                             style={{
-                                position: "fixed",
-                                top: "0px",
-                                left: "0px",
-                                height: "1.5em",
-                                width: "1.5em",
-                                willChange: "transform",
-                                transform: "translateX(-9000px)",
-                                display: "none"
+                                position: 'fixed',
+                                top: '0px',
+                                left: '0px',
+                                height: '1.5em',
+                                width: '1.5em',
+                                willChange: 'transform',
+                                transform: 'translateX(-9000px)',
+                                display: 'none'
                             }}
                             src={LightbulbImage}
                             onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = LightbulbImage;
                             }}
-                            alt="Device"
+                            alt='Device'
                         />
                         {
                             this.props.alldevices.map(device => (
@@ -131,7 +131,7 @@ class FloorView extends React.Component {
                                 />
                             ))
                         }
-                        <Save onSave={this.saveDevices} top="0.5" left="0.5" />
+                        <Save onSave={this.saveDevices} top='0.5' left='0.5' />
                     </div>
                 </Grid>
                 <Grid item>

@@ -9,13 +9,13 @@ const Save = (props) => {
 
     const handleSave = () => {
         onSave();
-        enqueueSnackbar("Devices updated successfully", { variant: 'success' })
+        enqueueSnackbar('Devices updated successfully', { variant: 'success' })
     }
 
     return (
-        <Fab size="small"
-            sx={{ position: "absolute", top: `${top}em`, left: `${left}em` }}
-            aria-label="save" onClick={handleSave}>
+        <Fab size='small'
+            sx={{ position: 'absolute', top: `${top}em`, left: `${left}em` }}
+            aria-label='save' onClick={handleSave}>
             <SaveIcon />
         </Fab>
     )

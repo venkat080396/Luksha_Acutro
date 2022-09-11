@@ -1,13 +1,13 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { baseURL, api } from "../../common/apis/api";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { baseURL, api } from '../../common/apis/api';
 
 export const fetchAsyncBuildings = createAsyncThunk(
     'home/fetchAsyncBuildings',
     async () => {
         const siteDetails = {
-            operation: "GetBuildingsForSiteId",
+            operation: 'GetBuildingsForSiteId',
             payload: {
-                "SiteRecId": "1"
+                'SiteRecId': '1'
             }
         }
 
@@ -20,10 +20,10 @@ export const fetchAsyncFloors = createAsyncThunk(
     'home/fetchAsyncFloors',
     async (buildingRecId) => {
         const siteDetails = {
-            operation: "GetFloorsForBuildingId",
+            operation: 'GetFloorsForBuildingId',
             payload: {
-                "SiteRecId": "1",
-                "BuildingRecId": buildingRecId
+                'SiteRecId': '1',
+                'BuildingRecId': buildingRecId
             }
         }
 

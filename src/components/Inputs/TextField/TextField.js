@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { TextField as MuiTextField, InputAdornment } from '@mui/material';
 
 const TextField = ({ iconStart, iconEnd, ...props }) => {
@@ -6,13 +6,13 @@ const TextField = ({ iconStart, iconEnd, ...props }) => {
         <MuiTextField
             placeholder={props.name}
             {...props}
-            autoComplete="off"
+            autoComplete='off'
             InputProps={{
                 startAdornment: iconStart ? (
-                    <InputAdornment position="start">{iconStart}</InputAdornment>
+                    <InputAdornment position='start'>{iconStart}</InputAdornment>
                 ) : null,
                 endAdornment: iconEnd ? (
-                    <InputAdornment position="end">{iconEnd}</InputAdornment>
+                    <InputAdornment position='end'>{iconEnd}</InputAdornment>
                 ) : null
             }}
         />

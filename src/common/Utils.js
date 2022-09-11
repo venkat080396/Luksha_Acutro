@@ -1,12 +1,12 @@
-import { isAuthenticated } from "../pages/Login/slice";
-import { Navigate } from "react-router-dom";
+import { isAuthenticated } from '../pages/Login/slice';
+import { Navigate } from 'react-router-dom';
 
 export const convertToFloat = (value) => {
     return value ? parseFloat(value) : 0;
 }
 
 export const downloadDataFromURL = (url) => {
-    const link = document.createElement("a");
+    const link = document.createElement('a');
     link.href = url;
     link.click();
 }
@@ -39,16 +39,16 @@ export const mergeArray = (firstArray, secondArray) => {
 
 export const getColorBasedOnStatus = (status) => {
     switch (status) {
-        case "Non-Resolved":
-            return "orange";
-        case "Open":
-            return "red";
-        case "Resolved":
-            return "green";
-        case "Escalate":
-            return "gray";
+        case 'Non-Resolved':
+            return 'orange';
+        case 'Open':
+            return 'red';
+        case 'Resolved':
+            return 'green';
+        case 'Escalate':
+            return 'gray';
         default:
-            return "gray";
+            return 'gray';
 
     }
 }
@@ -69,5 +69,5 @@ export const CSVToArray = (data, delimiter = ',') => {
 }
 
 export const ProtectedAuth = ({ children }) => {
-    return isAuthenticated() ? children : <Navigate to="/login" replace />;
+    return isAuthenticated() ? children : <Navigate to='/login' replace />;
 }

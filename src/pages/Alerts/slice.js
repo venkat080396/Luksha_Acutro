@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { API } from "../../common/API";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { API } from '../../common/API';
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -7,13 +7,13 @@ export const saveConnector = createAsyncThunk(
     'Alerts/saveConnector',
     async (connector) => {
         const connectorDetails = {
-            operation: "SaveAlertConnector",
+            operation: 'SaveAlertConnector',
             payload: {
-                nAlertConnectorRecId: connector.connectorRecId || "-1",
+                nAlertConnectorRecId: connector.connectorRecId || '-1',
                 sConnectorName: connector.connectorName,
                 sConnectorType: connector.type,
                 sRecipients: connector.recipients,
-                bIsDelete: connector.isDelete || "0"
+                bIsDelete: connector.isDelete || '0'
             }
         }
         const response = await API.post(BASE_URL, connectorDetails);
@@ -25,7 +25,7 @@ export const fetchConnectors = createAsyncThunk(
     'Alerts/fetchConnectors',
     async () => {
         const connectorDetails = {
-            operation: "GetAlertConnectors",
+            operation: 'GetAlertConnectors',
             payload: {
             }
         }
@@ -39,9 +39,9 @@ export const saveAutomation = createAsyncThunk(
     'Alerts/saveAutomation',
     async (automation) => {
         const automationDetails = {
-            operation: "SaveAlertAutomationConfig",
+            operation: 'SaveAlertAutomationConfig',
             payload: {
-                nAlertAutomationRecId: automation.automationRecId || "-1",
+                nAlertAutomationRecId: automation.automationRecId || '-1',
                 sAutomationName: automation.automationName,
                 sDescription: automation.description,
                 nAssetOrDeviceRecId: automation.assetOrDeviceId,
@@ -52,8 +52,8 @@ export const saveAutomation = createAsyncThunk(
                 sAlertConnectorRecIds: automation.connectorRecIds,
                 sAlertMessage: automation.alertMessage,
                 sActionMessage: automation.actionMessage,
-                nViolationCount: automation.violationCount || "0",
-                bIsDelete: automation.isDelete || "0"
+                nViolationCount: automation.violationCount || '0',
+                bIsDelete: automation.isDelete || '0'
             }
         }
         const response = await API.post(BASE_URL, automationDetails);
@@ -65,7 +65,7 @@ export const fetchAutomations = createAsyncThunk(
     'Alerts/fetchAutomations',
     async () => {
         const automationDetails = {
-            operation: "GetAlertAutomationConfigs",
+            operation: 'GetAlertAutomationConfigs',
             payload: {
             }
         }
@@ -77,7 +77,7 @@ export const fetchAutomations = createAsyncThunk(
 export const fetchAsyncSites = createAsyncThunk(
     'Alerts/fetchAsyncSites',
     async () => {
-        return [{ RecId: 1, Name: "Site 1" }];
+        return [{ RecId: 1, Name: 'Site 1' }];
     }
 );
 
@@ -85,9 +85,9 @@ export const fetchAsyncBuildings = createAsyncThunk(
     'Alerts/fetchAsyncBuildings',
     async (SiteId) => {
         const siteDetails = {
-            operation: "GetBuildingsForSiteId",
+            operation: 'GetBuildingsForSiteId',
             payload: {
-                "SiteRecId": SiteId
+                'SiteRecId': SiteId
             }
         }
 
@@ -100,10 +100,10 @@ export const fetchAsyncFloors = createAsyncThunk(
     'Alerts/fetchAsyncFloors',
     async (building) => {
         const siteDetails = {
-            operation: "GetFloorsForBuildingId",
+            operation: 'GetFloorsForBuildingId',
             payload: {
-                "SiteRecId": `${building.SiteRecId}`,
-                "BuildingRecId": `${building.RecId}`
+                'SiteRecId': `${building.SiteRecId}`,
+                'BuildingRecId': `${building.RecId}`
             }
         }
 
@@ -116,11 +116,11 @@ export const fetchAsyncDevices = createAsyncThunk(
     'Alerts/fetchAsyncDevices',
     async (floor) => {
         const input = {
-            operation: "GetDevicesForFloorId",
+            operation: 'GetDevicesForFloorId',
             payload: {
-                "SiteRecId": `${floor.SiteRecId}`,
-                "BuildingRecId": `${floor.BuildingRecId}`,
-                "FloorRecId": `${floor.RecId}`
+                'SiteRecId': `${floor.SiteRecId}`,
+                'BuildingRecId': `${floor.BuildingRecId}`,
+                'FloorRecId': `${floor.RecId}`
             }
         }
         const response = await API.post(BASE_URL, input);
@@ -132,8 +132,8 @@ export const fetchAsyncDistributionList = createAsyncThunk(
     'Alerts/fetchAsyncDistributionList',
     async () => {
         const inputDetails = {
-            "operation": "GetAlertSubscriptionGroups",
-            "payload": {
+            'operation': 'GetAlertSubscriptionGroups',
+            'payload': {
             }
         }
         const response = await API.post(BASE_URL, inputDetails);
@@ -151,11 +151,11 @@ export const saveDistribution = createAsyncThunk(
     'Alerts/saveDistribution',
     async ({ email = null, call = null, name }) => {
         const inputDetails = {
-            "operation": "SaveAlertSubscriptionForGroup",
-            "payload": {
-                "sGroupName": name,
-                "sEmailIDs": email,
-                "sMobileNumbers": call
+            'operation': 'SaveAlertSubscriptionForGroup',
+            'payload': {
+                'sGroupName': name,
+                'sEmailIDs': email,
+                'sMobileNumbers': call
             }
         }
         const response = await API.post(BASE_URL, inputDetails);

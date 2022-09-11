@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import { Table } from "../../../components/DataDisplay/Table"
-import { ESCALATION_SETTINGS, LEVEL_INFORMATION } from "../constants";
+import { Table } from '../../../components/DataDisplay/Table'
+import { ESCALATION_SETTINGS, LEVEL_INFORMATION } from '../constants';
 
 const columns = [
     { field: 'type', headerName: '', width: 200 },
@@ -27,7 +27,7 @@ const rows = [
 const LevelInformation = () => {
     return (
         <Box
-            sx={{ padding: "2rem" }}>
+            sx={{ padding: '2rem' }}>
             <Table
                 rows={rows}
                 columns={columns}

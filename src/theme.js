@@ -1,5 +1,5 @@
-import { createTheme } from "@mui/material";
-import { COLORS } from "./common/constants";
+import { createTheme } from '@mui/material';
+import { COLORS } from './common/constants';
 
 let theme = createTheme({
     palette: {
@@ -22,7 +22,7 @@ let theme = createTheme({
 
 theme = createTheme(theme, {
     typography: {
-        fontFamily: "Nunito, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,sans-serif",
+        fontFamily: 'Nunito, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,sans-serif',
         body1: {
             fontWeight: 400,
             fontSize: theme.spacing(2.25),
@@ -62,17 +62,17 @@ theme = createTheme(theme, {
         MuiGrid: {
             styleOverrides: {
                 root: {
-                    "&::-webkit-scrollbar": {
+                    '&::-webkit-scrollbar': {
                         width: theme.spacing(0.375),
-                        backgroundColor: "#C4C4C4",
+                        backgroundColor: '#C4C4C4',
                         borderRadius: theme.spacing(2.5)
                     },
-                    "&::-webkit-scrollbar-track": {
+                    '&::-webkit-scrollbar-track': {
                         width: theme.spacing(0.375),
-                        background: "rgba(196, 196, 196, 0.1)",
+                        background: 'rgba(196, 196, 196, 0.1)',
                         borderRadius: theme.spacing(2.5)
                     },
-                    "&::-webkit-scrollbar-thumb": {
+                    '&::-webkit-scrollbar-thumb': {
                         backgroundColor: COLORS.WHITE,
                         outline: `${theme.spacing(0.125)} solid ${COLORS.WHITE}`,
                     }
@@ -82,7 +82,7 @@ theme = createTheme(theme, {
         MuiTextField: {
             styleOverrides: {
                 root: {
-                    background: "linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)",
+                    background: 'linear-gradient(130.77deg, rgba(255, 255, 255, 0.16) 2.61%, rgba(255, 255, 255, 0.05) 94.4%)',
                     border: `${theme.spacing(0.125)} solid rgba(255,255,255,0.33)`,
                     boxShadow: `${theme.spacing(0.75)} ${theme.spacing(0.75)} ${theme.spacing(0.75)} rgba(0, 0, 0, 0.15)`,
                     borderRadius: theme.spacing(1.875)
@@ -91,10 +91,10 @@ theme = createTheme(theme, {
         },
         MuiOutlinedInput: {
             styleOverrides: {
-                notchedOutline: { border: "none" }
+                notchedOutline: { border: 'none' }
             },
             input: {
-                fontWeight: "300",
+                fontWeight: '300',
                 fontSize: theme.spacing(2),
                 lineHeight: theme.spacing(2.75)
             }
@@ -102,7 +102,7 @@ theme = createTheme(theme, {
         MuiCard: {
             styleOverrides: {
                 root: {
-                    background: "rgba(255,255,255,0.05)",
+                    background: 'rgba(255,255,255,0.05)',
                     border: `${theme.spacing(0.1)} solid rgba(255,255,255,0.3)`,
                     borderRadius: theme.spacing(1.875)
                 }
@@ -111,7 +111,7 @@ theme = createTheme(theme, {
         MuiDialog: {
             styleOverrides: {
                 paper: {
-                    background: "rgba(255,255,255,0.05)",
+                    background: 'rgba(255,255,255,0.05)',
                     border: `${theme.spacing(0.1)} solid rgba(255,255,255,0.3)`,
                     borderRadius: theme.spacing(1.875)
                 }
@@ -121,19 +121,19 @@ theme = createTheme(theme, {
             styleOverrides: {
                 root: {
                     padding: 0,
-                    overflowX: "hidden",
-                    overflowY: "auto",
-                    "&::-webkit-scrollbar": {
+                    overflowX: 'hidden',
+                    overflowY: 'auto',
+                    '&::-webkit-scrollbar': {
                         width: theme.spacing(0.375),
-                        backgroundColor: "#C4C4C4",
+                        backgroundColor: '#C4C4C4',
                         borderRadius: theme.spacing(2.5)
                     },
-                    "&::-webkit-scrollbar-track": {
+                    '&::-webkit-scrollbar-track': {
                         width: theme.spacing(0.375),
-                        background: "rgba(196, 196, 196, 0.1)",
+                        background: 'rgba(196, 196, 196, 0.1)',
                         borderRadius: theme.spacing(2.5)
                     },
-                    "&::-webkit-scrollbar-thumb": {
+                    '&::-webkit-scrollbar-thumb': {
                         backgroundColor: COLORS.WHITE,
                         outline: `${theme.spacing(0.125)} solid ${COLORS.WHITE}`
                     },
@@ -159,14 +159,14 @@ theme = createTheme(theme, {
             styleOverrides: {
                 badge: {
                     minWidth: theme.spacing(1.25),
-                    borderRadius: "50%"
+                    borderRadius: '50%'
                 }
             }
         },
         MuiDataGrid: {
             styleOverrides: {
                 root: {
-                    border: "none"
+                    border: 'none'
                 },
                 filterForm: {
                     color: COLORS.BLACK
@@ -180,7 +180,7 @@ theme = createTheme(theme, {
                     borderBottom: `${theme.spacing(0.125)} solid rgba(244,244,244,0.3)`
                 },
                 footerContainer: {
-                    borderTop: "none"
+                    borderTop: 'none'
                 },
                 columnHeader: {
                     fontWeight: 400,
@@ -191,7 +191,7 @@ theme = createTheme(theme, {
         MuiSvgIcon: {
             styleOverrides: {
                 root: {
-                    color: "rgba(244,244,244)"
+                    color: 'rgba(244,244,244)'
                 },
             }
         },

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { LEFT_DRAWER_ITEMS } from './constants'
 import { COMFORT, HVAC_EFFICIENCY, UTILITIES, DEVICESTATS } from '../Reports/constants'
 
@@ -50,11 +50,11 @@ const getLeftDrawerItems = () => {
             }
             // {
             //     id: 5,
-            //     name: "Buildings"
+            //     name: 'Buildings'
             // },
             // {
             //     id: 6,
-            //     name: "Setting"
+            //     name: 'Setting'
             // },
         ]
     };
@@ -69,11 +69,11 @@ const initialState = {
         { id: 3, name: HVAC_EFFICIENCY.VALUE },
         { id: 4, name: DEVICESTATS.VALUE }
     ],
-    notifications: [{ recId: 1, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
-    { recId: 2, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
-    { recId: 3, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
-    { recId: 4, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" },
-    { recId: 5, title: "Overheating Warning", description: "Asset 123 is not working", time: "12:00" }]
+    notifications: [{ recId: 1, title: 'Overheating Warning', description: 'Asset 123 is not working', time: '12:00' },
+    { recId: 2, title: 'Overheating Warning', description: 'Asset 123 is not working', time: '12:00' },
+    { recId: 3, title: 'Overheating Warning', description: 'Asset 123 is not working', time: '12:00' },
+    { recId: 4, title: 'Overheating Warning', description: 'Asset 123 is not working', time: '12:00' },
+    { recId: 5, title: 'Overheating Warning', description: 'Asset 123 is not working', time: '12:00' }]
 };
 
 export const fetchAsyncLeftDrawerItems = createAsyncThunk(
@@ -88,10 +88,10 @@ export const saveAsyncDashboardSettings = createAsyncThunk(
     'dashboard/saveAsyncDashboardSettings',
     async (userRecId, settings) => {
         const inputDetails = {
-            operation: "SaveDashboardSettings",
+            operation: 'SaveDashboardSettings',
             payload: {
-                "userRecId": userRecId,
-                "settings": settings,
+                'userRecId': userRecId,
+                'settings': settings,
             }
         }
         return settings;

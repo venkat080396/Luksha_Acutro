@@ -1,6 +1,6 @@
-import React from "react";
-import { Grid, Typography, useTheme } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
+import React from 'react';
+import { Grid, Typography, useTheme } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const Header = ({ leftClose, open }) => {
     const theme = useTheme();
@@ -8,10 +8,10 @@ const Header = ({ leftClose, open }) => {
         <>
             {open ?
                 <Grid container
-                    direction="row"
+                    direction='row'
                     spacing={3.5}
-                    justifyContent="flex-start"
-                    alignItems="center"
+                    justifyContent='flex-start'
+                    alignItems='center'
                     sx={{
                         paddingLeft: theme.spacing(4.25),
                         paddingTop: theme.spacing(2.5),

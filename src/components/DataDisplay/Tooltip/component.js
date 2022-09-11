@@ -12,15 +12,15 @@ const Tooltip = (props) => {
                         '& .MuiTooltip-arrow': {
                             color: 'rgba(255,255,255,0.05)',
                         },
-                        borderRadius: "1.5em",
-                        border: "0.05em solid rgba(255,255,255,0.3)",
-                        background: "rgba(255,255,255,0.2)",
-                        padding: "1em"
+                        borderRadius: '1.5em',
+                        border: '0.05em solid rgba(255,255,255,0.3)',
+                        background: 'rgba(255,255,255,0.2)',
+                        padding: '1em'
                     },
                 },
             }}
             arrow
-            TransitionComponent={Zoom} title={title} placement="top">
+            TransitionComponent={Zoom} title={title} placement='top'>
             {props.children}
         </MuiTooltip>
     )

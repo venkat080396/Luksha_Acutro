@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Grid } from "@mui/material";
+import { Button, Grid } from '@mui/material';
 import { SettingsList } from './SettingsList';
 import { SETTINGS } from '../constants'
 
@@ -8,28 +8,28 @@ const Settings = (props) => {
 
     return (
         <Grid container
-            direction="column"
-            alignItems="center"
-            justifyContent="center">
+            direction='column'
+            alignItems='center'
+            justifyContent='center'>
             <Grid item>
                 <SettingsList />
             </Grid>
             <Grid item>
                 <Grid container
                     spacing={2}
-                    sx={{ marginTop: "0.5em" }}>
+                    sx={{ marginTop: '0.5em' }}>
                     <Grid item>
                         <Button
-                            variant="contained"
-                            color="error"
+                            variant='contained'
+                            color='error'
                             onClick={handleClose}>
                             {SETTINGS.BUTTONS.CANCEL}
                         </Button>
                     </Grid>
                     <Grid item>
                         <Button
-                            variant="contained"
-                            color="info"
+                            variant='contained'
+                            color='info'
                             onClick={handleSubmit}>
                             {SETTINGS.BUTTONS.SUBMIT}
                         </Button>

@@ -1,6 +1,6 @@
 import React from 'react'
 import CheckboxLabel from '../CheckboxLabel/CheckboxLabel';
-import { Grid } from "@mui/material";
+import { Grid } from '@mui/material';
 
 const CheckboxLabelList = (props) => {
     const { items, checked, setChecked } = props;
@@ -17,7 +17,7 @@ const CheckboxLabelList = (props) => {
 
     return (
         <Grid container
-            direction="column">
+            direction='column'>
             {items && items.map((item) => (
                 <Grid item>
                     <CheckboxLabel

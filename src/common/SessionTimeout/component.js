@@ -3,12 +3,12 @@ import React, {
     useEffect,
     useCallback,
     useRef
-} from "react";
-import moment from "moment";
-import { useNavigate } from "react-router-dom";
-import { useSnackbar } from "notistack";
-import { isAuthenticated, logout } from "../../pages/Login/slice";
-import { SESSION_TIMEOUT } from "../constants";
+} from 'react';
+import moment from 'moment';
+import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import { isAuthenticated, logout } from '../../pages/Login/slice';
+import { SESSION_TIMEOUT } from '../constants';
 
 const SessionTimeout = (props) => {
     const { sessionTimeoutDuration } = props;
@@ -35,8 +35,8 @@ const SessionTimeout = (props) => {
         sessionStorage.removeItem(SESSION_TIMEOUT.LAST_TIMESTAMP);
         logout();
         SetIsLoggedOut(true);
-        navigate("/login");
-        enqueueSnackbar(SESSION_TIMEOUT.SESSION_EXPIRED_MESSAGE, { variant: "error" })
+        navigate('/login');
+        enqueueSnackbar(SESSION_TIMEOUT.SESSION_EXPIRED_MESSAGE, { variant: 'error' })
     };
 
     // reset interval timer

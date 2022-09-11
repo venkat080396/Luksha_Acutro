@@ -25,7 +25,7 @@ export default function MultipleSelectBox(props) {
             <FormControl fullWidth>
                 <Select
                     multiple
-                    className="multipleselect"
+                    className='multipleselect'
                     sx={{borderRadius:2}}
                     displayEmpty
                     value={props.currentValue}
@@ -33,7 +33,7 @@ export default function MultipleSelectBox(props) {
                     input={<OutlinedInput />}
                     renderValue={(selected) => {
                         if (selected.length === 0) {
-                            return <em>{props.placeholder ? props.placeholder : "Select Value"}</em>;
+                            return <em>{props.placeholder ? props.placeholder : 'Select Value'}</em>;
                         }
                         return selected.join(', ');
                     }}

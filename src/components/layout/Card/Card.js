@@ -10,17 +10,17 @@ const Card = (props) => {
     return (
 
         <MuiCard sx={sx} container
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
+            direction='row'
+            justifyContent='center'
+            alignItems='center'
             spacing={3}
         >
             <Grid item>
                 <Grid container
-                    direction="row"
-                    alignItems="center">
+                    direction='row'
+                    alignItems='center'>
                     {headerContent && (
-                        <Grid item xs sx={{ marginTop: 2, marginBottom: 2, fontWeight: "bold" }}>
+                        <Grid item xs sx={{ marginTop: 2, marginBottom: 2, fontWeight: 'bold' }}>
                             {headerContent}
                         </Grid>
                     )}

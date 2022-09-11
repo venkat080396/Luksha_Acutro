@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Grid, Box, Toolbar, Typography, IconButton, useTheme } from "@mui/material";
-import { Menu as MenuIcon, FilterAlt as FilterAltIcon } from "@mui/icons-material";
-import { StyledBadge, AppBar } from "./style";
-import { getSelectedBuilding, getSelectedFloor, getFromDate, getToDate } from "../../Home/slice";
-import { getUserAttributes, setUserAttributes } from "../../Login/slice"
-import Pool from "../../../UserPool"
-import { UserCard } from "./UserCard";
-import { UserCardDialog } from "./UserCardDialog";
-import { Dialog } from "../../../components/Feedback/Dialog";
-import { APPBAR } from "../constants"
-import { Notifications } from "../Notifications";
-import { ReactComponent as NotificationBellIcon } from "../../../assets/icons/Notification Bell1.svg"
-import { ReactComponent as UserSettingsIcon } from "../../../assets/icons/User Settings.svg"
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Grid, Box, Toolbar, Typography, IconButton, useTheme } from '@mui/material';
+import { Menu as MenuIcon, FilterAlt as FilterAltIcon } from '@mui/icons-material';
+import { StyledBadge, AppBar } from './style';
+import { getSelectedBuilding, getSelectedFloor, getFromDate, getToDate } from '../../Home/slice';
+import { getUserAttributes, setUserAttributes } from '../../Login/slice'
+import Pool from '../../../UserPool'
+import { UserCard } from './UserCard';
+import { UserCardDialog } from './UserCardDialog';
+import { Dialog } from '../../../components/Feedback/Dialog';
+import { APPBAR } from '../constants'
+import { Notifications } from '../Notifications';
+import { ReactComponent as NotificationBellIcon } from '../../../assets/icons/NotificationBell1.svg'
+import { ReactComponent as UserSettingsIcon } from '../../../assets/icons/UserSettings.svg'
 
 const AppBarComponent = ({
     open,
@@ -50,7 +50,7 @@ const AppBarComponent = ({
 
     return (
         <AppBar
-            position="fixed"
+            position='fixed'
             open={open}
             component={Box}
             elevation={0}
@@ -58,55 +58,55 @@ const AppBarComponent = ({
             <Box>
                 <Toolbar>
                     <IconButton
-                        color="inherit"
+                        color='inherit'
                         onClick={leftOpen}
-                        edge="start"
+                        edge='start'
                         sx={{
                             marginRight: theme.spacing(0.625),
                             paddingRight: theme.spacing(4),
-                            ...(open && { display: "none" })
+                            ...(open && { display: 'none' })
                         }}
                     >
                         <MenuIcon />
                     </IconButton>
                     <Typography noWrap
-                        variant="header3"
-                        sx={{ width: "100vw" }}>
-                        <Typography variant="header2">
+                        variant='header3'
+                        sx={{ width: '100vw' }}>
+                        <Typography variant='header2'>
                             {APPBAR.YOUR_DASHBOARD} &nbsp;
                         </Typography>
-                        {selectedBuilding && selectedBuilding.Name ? `/ ${selectedBuilding.Name} ` : ""}
-                        {selectedFloor && selectedFloor.Name ? `/ ${selectedFloor.Name} ` : ""}
+                        {selectedBuilding && selectedBuilding.Name ? `/ ${selectedBuilding.Name} ` : ''}
+                        {selectedFloor && selectedFloor.Name ? `/ ${selectedFloor.Name} ` : ''}
                         {selectedBuilding && selectedBuilding.Name
                             && selectedFloor && selectedFloor.Name
-                            && selectedFromDate && selectedToDate ? `/ ${selectedFromDate} - ${selectedToDate}` : ""}
+                            && selectedFromDate && selectedToDate ? `/ ${selectedFromDate} - ${selectedToDate}` : ''}
                     </Typography>
                     {!openRight && (
                         <Grid container
-                            justifyContent="flex-end"
+                            justifyContent='flex-end'
                             spacing={2}
-                            alignItems="center"
+                            alignItems='center'
                             sx={{ marginRight: theme.spacing(4) }}
                         >
                             <Grid item>
                                 <UserCard
-                                    sx={{ cursor: "pointer" }}
+                                    sx={{ cursor: 'pointer' }}
                                     userAttributes={userAttributes}
                                     onClick={() => setOpenUserCard(true)}
                                 />
                             </Grid>
                             {/* <Grid item>
-                                <IconButton edge="start">
-                                    <UserSettingsIcon height="40px" width="40px" />
+                                <IconButton edge='start'>
+                                    <UserSettingsIcon height='40px' width='40px' />
                                 </IconButton>
                             </Grid> */}
                             <Grid item>
                                 <IconButton
-                                    edge="start"
+                                    edge='start'
                                     onClick={() => setOpenNotifications(true)}>
                                     <StyledBadge
                                         badgeContent={5}
-                                        color="secondary">
+                                        color='secondary'>
                                         <NotificationBellIcon
                                             height={theme.spacing(5)}
                                             width={theme.spacing(5)} />
@@ -115,9 +115,9 @@ const AppBarComponent = ({
                             </Grid>
                             <Grid item>
                                 <IconButton
-                                    color="inherit"
+                                    color='inherit'
                                     onClick={rightOpenClose}
-                                    edge="start"
+                                    edge='start'
                                 >
                                     <FilterAltIcon sx={{ height: theme.spacing(4.375), width: theme.spacing(3.75) }} />
                                 </IconButton>
@@ -130,15 +130,15 @@ const AppBarComponent = ({
                 open={openUserCard}
                 content={<UserCardDialog userAttributes={userAttributes} />}
                 handleClose={() => setOpenUserCard(false)}
-                top="4%"
-                left="81%"
+                top='4%'
+                left='81%'
             />
             <Dialog
                 open={openNotifications}
                 content={<Notifications />}
                 handleClose={() => setOpenNotifications(false)}
-                top="4%"
-                left="80%"
+                top='4%'
+                left='80%'
                 height={theme.spacing(37.125)}
                 width={theme.spacing(34.25)}
             />

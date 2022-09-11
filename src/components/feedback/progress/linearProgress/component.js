@@ -18,7 +18,7 @@ const LinearProgress = (props) => {
     }));
 
     return (
-        <BorderLinearProgress variant="determinate" value={value} />
+        <BorderLinearProgress variant='determinate' value={value} />
     )
 }
 

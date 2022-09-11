@@ -4,7 +4,7 @@ import { styled } from '@mui/system';
 
 const StyledDataGrid = styled(DataGrid)({
     '& .MuiTablePagination-root': {
-        overflow: "hidden"
+        overflow: 'hidden'
     },
     '& .MuiDataGrid-iconSeparator': {
         display: 'none',

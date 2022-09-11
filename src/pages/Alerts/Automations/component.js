@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
-import Card from "../../../components/Layout/Card/Card";
-import { Datagrid } from "../../../components/DataDisplay/Datagrid";
-import { Dialog } from "../../../components/Feedback/Dialog";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import Card from '../../../components/Layout/Card/Card';
+import { Datagrid } from '../../../components/DataDisplay/Datagrid';
+import { Dialog } from '../../../components/Feedback/Dialog';
+import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import { fetchAutomations, getAutomations, saveAutomation } from "../slice";
-import { Grid, Box, Button, Typography } from "@mui/material";
+import { fetchAutomations, getAutomations, saveAutomation } from '../slice';
+import { Grid, Box, Button, Typography } from '@mui/material';
 import { Menu } from '../../../components/Navigation/Menu';
-import { Create } from "./Create";
-import { ALERT_RULES } from "../constants";
+import { Create } from './Create';
+import { ALERT_RULES } from '../constants';
 
 const Automations = () => {
     const [openDialogForm, setOpenDialogForm] = React.useState(false);
@@ -35,7 +35,7 @@ const Automations = () => {
                     assetOrDeviceId: String(selectedAutomation?.AssetOrDeviceRecId), metricOrDeviceSensorRecId: String(selectedAutomation?.MetricOrDeviceSensorRecId),
                     conditionOperator: selectedAutomation?.ConditionOperator, thresholdValue: selectedAutomation.ThresholdValue,
                     connectorRecId: String(1), connectorRecIds: selectedAutomation?.AlertConnectorRecIds,
-                    alertMessage: " ", actionMessage: " ", isDelete: "1"
+                    alertMessage: ' ', actionMessage: ' ', isDelete: '1'
                 };
 
                 dispatch(saveAutomation(automation));
@@ -55,7 +55,7 @@ const Automations = () => {
 
     const columns = [
         {
-            field: "Name",
+            field: 'Name',
             headerName: ALERT_RULES.FIELDS.NAME,
             width: 400,
             renderCell: (cellValues) => {
@@ -67,12 +67,12 @@ const Automations = () => {
             },
         },
         {
-            field: "Description",
+            field: 'Description',
             headerName: ALERT_RULES.FIELDS.DESCRIPTION,
             width: 530,
         },
         {
-            field: "type",
+            field: 'type',
             headerName: ALERT_RULES.FIELDS.TYPE,
             width: 200,
             renderCell: (cellValues) => {
@@ -84,7 +84,7 @@ const Automations = () => {
             },
         },
         {
-            field: "LastTriggered",
+            field: 'LastTriggered',
             headerName: ALERT_RULES.FIELDS.LAST_TRIGGERED,
             width: 450,
             renderCell: (item) => {
@@ -92,8 +92,8 @@ const Automations = () => {
             },
         },
         {
-            field: "",
-            headerName: "",
+            field: '',
+            headerName: '',
             renderHeader: (_) => {
                 return <>
                     <Box>
@@ -121,21 +121,21 @@ const Automations = () => {
     }
 
     return (
-        <Grid container direction="column">
+        <Grid container direction='column'>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Card
                     headerContent={
                         <Grid container
-                            alignItems="center"
-                            justifyContent="space-between">
+                            alignItems='center'
+                            justifyContent='space-between'>
                             <Grid item>
-                                <Typography variant="header2">
+                                <Typography variant='header2'>
                                     {ALERT_RULES.HEADER}
                                 </Typography>
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" onClick={handleNewAutomation}>
-                                    <Typography variant="header3">
+                                <Button variant='contained' onClick={handleNewAutomation}>
+                                    <Typography variant='header3'>
                                         {ALERT_RULES.NEW_ALERT_RULE}
                                     </Typography>
                                 </Button>
@@ -146,7 +146,7 @@ const Automations = () => {
                     content={
                         <>{automations && (
                             <Box
-                                sx={{ width: "100%", height: "44vh", paddingBottom: "1rem" }}
+                                sx={{ width: '100%', height: '44vh', paddingBottom: '1rem' }}
                             >
                                 <Datagrid
                                     rows={automations}
@@ -159,7 +159,7 @@ const Automations = () => {
                             <Dialog
                                 open={openDialogForm}
                                 handleClose={() => setOpenDialogForm(false)}
-                                title={<Typography variant="header2">
+                                title={<Typography variant='header2'>
                                     {ALERT_RULES.CUSTOMISE_YOUR_ALERT_RULES}
                                 </Typography>}
                                 content={

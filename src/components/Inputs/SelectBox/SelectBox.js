@@ -1,7 +1,7 @@
 import React from 'react'
-import Select from "../Select/Select"
-import { Grid } from "@mui/material";
-import IconLabel from "../IconLabel/IconLabel"
+import Select from '../Select/Select'
+import { Grid } from '@mui/material';
+import IconLabel from '../IconLabel/IconLabel'
 
 const SelectBox = (props) => {
     const { value, label, items, icon, onSelectChange } = props
@@ -12,9 +12,9 @@ const SelectBox = (props) => {
 
     return (
         <Grid container
-            direction="row"
-            justifyContent="center"
-            alignItems="center"
+            direction='row'
+            justifyContent='center'
+            alignItems='center'
             sx={{ marginTop: 2, width: 250 }}
         >
             <Grid item>
@@ -24,7 +24,7 @@ const SelectBox = (props) => {
                 <Select sx={{
                     width: 170,
                     height: 30,
-                    color: "black"
+                    color: 'black'
                 }} value={value} onSelectChange={(val) => handleChange(val)} items={items} />
             </Grid>
         </Grid>

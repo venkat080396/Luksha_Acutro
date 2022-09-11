@@ -2,9 +2,9 @@ import { Box, Button, CardHeader, FormControlLabel, FormGroup, Grid, Switch, Typ
 import React, { useState } from 'react'
 import TextField from '../../../../../components/Inputs/TextField/TextField'
 import Card from '../../../../../components/Layout/Card/Card'
-import { SelectConnectors } from "../../SelectConnectors";
-import { Dialog } from "../../../../../components/Feedback/Dialog";
-import { ALERT_RULES } from "../../../constants";
+import { SelectConnectors } from '../../SelectConnectors';
+import { Dialog } from '../../../../../components/Feedback/Dialog';
+import { ALERT_RULES } from '../../../constants';
 
 const ConfigureActions = (props) => {
     const { selectedConnectors, selectedConnectorRecIds, handleSelectChange,
@@ -17,30 +17,30 @@ const ConfigureActions = (props) => {
                 headerContent={
                     <CardHeader
                         sx={{ padding: 0 }}
-                        title={<Typography variant="header3">
+                        title={<Typography variant='header3'>
                             {ALERT_RULES.CONFIGURE_ACTIONS}
                         </Typography>}
                         subheader={
-                            <Typography variant="body1">
+                            <Typography variant='body1'>
                                 {ALERT_RULES.CONFIGURE_ACTIONS_DESCRIPTION}
                             </Typography>
                         }
                     />
                 }
-                sx={{ paddingLeft: 4, paddingBottom: 2, margin: "0px 30px 30px 30px" }}
+                sx={{ paddingLeft: 4, paddingBottom: 2, margin: '0px 30px 30px 30px' }}
                 content={
                     <Box>
                         <Grid container spacing={2}>
                             <Grid item container
-                                direction="row"
-                                alignItems="center"
-                                justifyContent="flex-end"
+                                direction='row'
+                                alignItems='center'
+                                justifyContent='flex-end'
                                 spacing={2}
-                                sx={{ marginTop: "10px" }}>
+                                sx={{ marginTop: '10px' }}>
                                 {selectedConnectors && selectedConnectors.map((connector) => (
                                     <>
                                         <Grid item container
-                                            direction="column">
+                                            direction='column'>
                                             <Grid item>
                                                 {connector.ConnectorType}
                                             </Grid>
@@ -48,7 +48,7 @@ const ConfigureActions = (props) => {
                                                 {connector.Name}
                                             </Grid>
                                         </Grid>
-                                        {/* <Grid item sx={{ marginTop: "-50px" }}>
+                                        {/* <Grid item sx={{ marginTop: '-50px' }}>
                                 Delete icon
                             </Grid> */}
                                     </>
@@ -61,16 +61,16 @@ const ConfigureActions = (props) => {
                                         label={ALERT_RULES.OVERRIDE_TEMPLATE} />
                                     {checked && (<Grid item sx={6} sm={6} md={6} lg={6} xl={6}>
                                         <Typography sx={{ marginBottom: 1 }}>{ALERT_RULES.MESSAGE} *</Typography>
-                                        <TextField name="Message"
+                                        <TextField name='Message'
                                             value={message}
                                             onChange={handleMessageChange}
-                                            size="small" fullWidth />
+                                            size='small' fullWidth />
                                     </Grid>)}
                                 </FormGroup>
                             </Grid>
 
                             <Grid item sx={12} sm={12} md={12} lg={12} xl={12}>
-                                <Button variant="contained" onClick={() => setOpenConnector(true)}>
+                                <Button variant='contained' onClick={() => setOpenConnector(true)}>
                                     <Typography>
                                         {ALERT_RULES.ADD_ACTION}
                                     </Typography>

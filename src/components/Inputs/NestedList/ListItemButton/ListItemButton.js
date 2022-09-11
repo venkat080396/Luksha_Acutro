@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "../ListItemIcon/ListItemIcon";
-import ListItemText from "../ListItemText/ListItemText";
+import React, { useState } from 'react';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '../ListItemIcon/ListItemIcon';
+import ListItemText from '../ListItemText/ListItemText';
 
 const ListItemButtonComponent = (props) => {
     const { open, text, updateActivePage, listItemOpen, SetListItemOpen } = props;
@@ -16,15 +16,15 @@ const ListItemButtonComponent = (props) => {
         return (
             {
                 minHeight: 48,
-                justifyContent: open ? "initial" : "center",
+                justifyContent: open ? 'initial' : 'center',
                 px: 2.5,
                 mx: 1,
-                "&:hover": {
-                    backgroundColor: "#4991BC",
+                '&:hover': {
+                    backgroundColor: '#4991BC',
                     borderRadius: 2,
                 },
-                "&:active": {
-                    backgroundColor: "#4991BC",
+                '&:active': {
+                    backgroundColor: '#4991BC',
                     borderRadius: 2,
                 }
             }

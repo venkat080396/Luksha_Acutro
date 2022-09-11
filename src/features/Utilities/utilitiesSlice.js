@@ -1,15 +1,15 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { baseURL, api } from "../../common/apis/api";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { baseURL, api } from '../../common/apis/api';
 
 export const fetchAsyncDevices = createAsyncThunk(
     'utilities/fetchAsyncDevices',
     async ([buildingRecId, floorRecId]) => {
         const input = {
-            operation: "GetDevicesForFloorId",
+            operation: 'GetDevicesForFloorId',
             payload: {
-                "SiteRecId": "1",
-                "BuildingRecId": buildingRecId,
-                "FloorRecId": floorRecId
+                'SiteRecId': '1',
+                'BuildingRecId': buildingRecId,
+                'FloorRecId': floorRecId
             }
         }
         const response = await api.post(baseURL, input);
@@ -21,13 +21,13 @@ export const fetchAsyncEnergyConsumptionSummary = createAsyncThunk(
     'utilities/GetEnergyConsumptionSummary',
     async ([fromDate, toDate, siteRecId, buildingRecId, floorRecId]) => {
         const input = {
-            operation: "GetEnergyConsumptionSummary",
+            operation: 'GetEnergyConsumptionSummary',
             payload: {
-                "dtFromDate": fromDate,
-                "dtToDate": toDate,
-                "SiteRecId": siteRecId,
-                "BuildingRecId": buildingRecId,
-                "FloorRecId": floorRecId
+                'dtFromDate': fromDate,
+                'dtToDate': toDate,
+                'SiteRecId': siteRecId,
+                'BuildingRecId': buildingRecId,
+                'FloorRecId': floorRecId
             }
         }
         const response = await api.post(baseURL, input);

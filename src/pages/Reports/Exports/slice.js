@@ -1,5 +1,5 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { API } from "../../../common/API";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { API } from '../../../common/API';
 import { downloadDataFromURL } from '../../../common/utils'
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -8,13 +8,13 @@ export const exportData = createAsyncThunk(
     'exports/exportData',
     async ([fromDate, toDate, SiteRecId, buildingRecId, floorRecId]) => {
         const input = {
-            operation: "ExportResultToS3",
+            operation: 'ExportResultToS3',
             payload: {
-                "dtFromDate": fromDate,
-                "dtToDate": toDate,
-                "SiteRecId": SiteRecId,
-                "BuildingRecId": buildingRecId,
-                "FloorRecId": floorRecId
+                'dtFromDate': fromDate,
+                'dtToDate': toDate,
+                'SiteRecId': SiteRecId,
+                'BuildingRecId': buildingRecId,
+                'FloorRecId': floorRecId
             }
         }
         const response = await API.post(BASE_URL, input);

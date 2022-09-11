@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { Grid } from '@mui/material';
 import Card from '../../../../components/Layout/Card/Card';
-import { fetchAsyncDeviceSensorsForDeviceId, getDeviceSensors } from "../../../BuildingData/slice";
+import { fetchAsyncDeviceSensorsForDeviceId, getDeviceSensors } from '../../../BuildingData/slice';
 import { Dialog } from '../../../../components/Feedback/Dialog';
 import { LinearProgress } from '../../../../components/Feedback/Progress/LinearProgress';
 import { SensorChart } from './SensorsChart';
 
-const xAxisValues = ["07:00", "08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"]
+const xAxisValues = ['07:00', '08:00', '09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00']
 
 const SensorChartCard = (props) => {
     const { deviceRecId, sensorRecId } = props;
@@ -26,16 +26,16 @@ const Sensor = (props) => {
 
     return (<>
         <Grid container
-            direction="row"
-            alignItems="center"
-            justifyContent="flex-end"
-            sx={{ paddingLeft: 3, paddingTop: "0.5em" }}
+            direction='row'
+            alignItems='center'
+            justifyContent='flex-end'
+            sx={{ paddingLeft: 3, paddingTop: '0.5em' }}
             onClick={() => setOpenDialog(true)}>
             <Grid item xs={4}>
                 {sensor.Name}
             </Grid>
-            <Grid xs={8} sx={{ width: "30em", paddingRight: "0.5em" }}>
-                <LinearProgress value={sensor.Name === "Pump 1 Vibration Sensor" ? 99.99 : 100} />
+            <Grid xs={8} sx={{ width: '30em', paddingRight: '0.5em' }}>
+                <LinearProgress value={sensor.Name === 'Pump 1 Vibration Sensor' ? 99.99 : 100} />
             </Grid>
         </Grid>
         <Dialog
@@ -61,9 +61,9 @@ const Sensors = (props) => {
     return (
         <>
             {sensors ? sensors.map((sensor) => (
-                <Grid item sx={{ marginTop: "1em" }}>
+                <Grid item sx={{ marginTop: '1em' }}>
                     <Card key={sensor}
-                        sx={{ marginLeft: 5, height: "2.7em", width: "48.3vw", borderRadius: "0.5em", cursor: "pointer" }}
+                        sx={{ marginLeft: 5, height: '2.7em', width: '48.3vw', borderRadius: '0.5em', cursor: 'pointer' }}
                         content={<Sensor deviceRecId={device?.RecId} sensorRecId={sensor.RecId} sensor={sensor} />} />
                 </Grid>
             )) : null
