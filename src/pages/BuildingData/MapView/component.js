@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid } from '@mui/material'
 import { Map } from '../../../components/Utils/Map'
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 import { getAllBuildings } from '../../Home/slice';
 
 const MapView = () => {
@@ -14,10 +14,10 @@ const MapView = () => {
 
     return (
         <Grid container
-            direction="column"
-            alignItems="flex-start"
+            direction='column'
+            alignItems='flex-start'
             spacing={2}
-            sx={{ marginLeft: "2em" }}>
+            sx={{ marginLeft: '2em' }}>
             <Grid item>
                 <Map
                     buildingLocations={buildings}

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
 import {
     fetchAsyncAllDeviceTypes, getAllDeviceTypes, fetchAsyncDevicesWithStatus,
     getAllDevicesWithStatus, fetchAsyncDeviceSensorsForDeviceId, getDeviceSensors,
     getSelectedAssetType, getSelectedDevice, getSelectedSensor, setSelectedAssetType, setSelectedDevice, setSelectedSensor
-} from "../../../BuildingData/slice";
-import { saveAutomation, fetchConnectors, getConnectors } from "../../slice";
+} from '../../../BuildingData/slice';
+import { saveAutomation, fetchConnectors, getConnectors } from '../../slice';
 import { getSelectedBuilding, getSelectedFloor } from '../../../Home/slice';
 import { Details } from './Details';
 import { ConfigureConditions } from './ConfigureConditions';
 import { ConfigureActions } from './ConfigureActions';
-import { objectToCSV, CSVToArray } from "../../../../common/utils";
-import { ALERT_RULES } from "../../constants";
+import { objectToCSV, CSVToArray } from '../../../../common/utils';
+import { ALERT_RULES } from '../../constants';
 
 const Create = (props) => {
     const { handleClose, selectedAutomation, refreshAutomations } = props;
@@ -53,7 +53,7 @@ const Create = (props) => {
             setSelectedOperator(operators?.find(operator => operator.Value === selectedAutomation?.ConditionOperator))
             setThresholdValue(selectedAutomation?.ThresholdValue)
             setMessage(selectedAutomation?.AlertMessage)
-            setChecked(selectedAutomation?.AlertMessage !== "" || selectedAutomation?.AlertMessage !== null)
+            setChecked(selectedAutomation?.AlertMessage !== '' || selectedAutomation?.AlertMessage !== null)
             dispatch(setSelectedDevice(devices?.find(device => device.RecId === selectedAutomation?.AssetOrDeviceRecId)))
             dispatch(setSelectedSensor(sensors?.find(sensor => sensor.RecId === selectedAutomation?.MetricOrDeviceSensorRecId)))
         }
@@ -114,7 +114,7 @@ const Create = (props) => {
             automationRecId: selectedAutomation?.RecId, automationName: automationName, description: description,
             assetOrDeviceId: selectedDevice?.RecId, metricOrDeviceSensorRecId: selectedSensor?.RecId,
             conditionOperator: selectedOperator?.Value, thresholdValue: thresholdValue,
-            connectorRecId: selectedConnectorRecIds[0], connectorRecIds: rowscsv, alertMessage: checked ? message : ""
+            connectorRecId: selectedConnectorRecIds[0], connectorRecIds: rowscsv, alertMessage: checked ? message : ''
         };
 
         dispatch(saveAutomation(automation));
@@ -159,7 +159,7 @@ const Create = (props) => {
                         message={message}
                         handleMessageChange={(e) => setMessage(e.target.value)}
                     />
-                    <Grid item sx={{ margin: "0px 30px 30px 30px", }} sm={12} md={12} lg={12} xl={12}>
+                    <Grid item sx={{ margin: '0px 30px 30px 30px', }} sm={12} md={12} lg={12} xl={12}>
                         <Grid container alignItems='center' flexDirection='row-reverse' spacing={2}>
                             <Grid item>
                                 <Button variant='contained'
@@ -172,7 +172,7 @@ const Create = (props) => {
                                 </Button>
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" color="secondary"
+                                <Button variant='contained' color='secondary'
                                     onClick={handleClose}>
                                     <Typography>
                                         {ALERT_RULES.CANCEL}

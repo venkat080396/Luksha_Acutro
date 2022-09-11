@@ -7,28 +7,28 @@ const Type = ({ icon, title, description, onSelect }) => {
 
     return (
         <Grid container
-            alignItems="center"
-            justifyContent="center"
+            alignItems='center'
+            justifyContent='center'
             sx={{ marginTop: theme.spacing(2.5) }}>
             <Grid item xs={2} sx={{ paddingTop: theme.spacing(1.25) }}>
                 {icon}
             </Grid>
             <Grid item container xs={8}
-                direction="column">
+                direction='column'>
                 <Grid item>
-                    <Typography variant="body1" fontWeight="bold">
+                    <Typography variant='body1' fontWeight='bold'>
                         {title}
                     </Typography>
                 </Grid>
                 <Grid item>
-                    <Typography variant="body2">
+                    <Typography variant='body2'>
                         {description}
                     </Typography>
                 </Grid>
             </Grid>
             <Grid item xs={2}>
-                <Button variant="contained" onClick={onSelect}>
-                    <Typography variant="body2">
+                <Button variant='contained' onClick={onSelect}>
+                    <Typography variant='body2'>
                         {CONNECTORS.SELECT}
                     </Typography>
                 </Button>

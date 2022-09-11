@@ -1,6 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { CognitoUser, AuthenticationDetails } from "amazon-cognito-identity-js";
-import Pool from "../../UserPool";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { CognitoUser, AuthenticationDetails } from 'amazon-cognito-identity-js';
+import Pool from '../../UserPool';
 
 export const authenticate = async (Username, Password) => {
     return await new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ export const authenticate = async (Username, Password) => {
 }
 
 export const setUserAttributes = createAsyncThunk(
-    "login/setUserAttributes",
+    'login/setUserAttributes',
     async (attributes) => {
         return Promise.resolve(attributes)
     }
@@ -47,12 +47,12 @@ export const isAuthenticated = () => {
 const initialState = {
     currentUser: {},
     loading: false,
-    errorMessage: "",
+    errorMessage: '',
     userAttributes: null
 };
 
 const loginSlice = createSlice({
-    name: "login",
+    name: 'login',
     initialState,
     extraReducers: {
         [setUserAttributes.pending]: () => {

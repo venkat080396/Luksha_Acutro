@@ -1,20 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { styled } from '@mui/system';
 import { Grid, Typography, useTheme, TextField, Button } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { CONNECTORS } from '../../constants';
-
-
-const StyledGrid = styled(Grid)(({ theme }) => ({
-    background: "linear-gradient(-30.77deg, #767f82, #596a75, #425569, #323f5b, #2a294b)",
-    borderRadius: theme.spacing(1.875),
-    padding: theme.spacing(2.5)
-}));
+import { StyledGrid } from './style';
 
 const Create = ({ onCancel, onSave, type, item }) => {
     const theme = useTheme();
-    const [name, setName] = useState("");
-    const [recipients, setRecipients] = useState("");
+    const [name, setName] = useState('');
+    const [recipients, setRecipients] = useState('');
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
@@ -33,24 +26,24 @@ const Create = ({ onCancel, onSave, type, item }) => {
 
     return (
         <StyledGrid container
-            direction="column"
+            direction='column'
             spacing={2}>
             <Grid item>
                 {item && (
-                    <Typography variant="header2">
+                    <Typography variant='header2'>
                         {CONNECTORS.UPDATE_CONNECTOR}
                     </Typography>
                 )}
                 {!item && (
-                    <Typography variant="header2">
+                    <Typography variant='header2'>
                         {CONNECTORS.CREATE_CONNECTOR}
                     </Typography>
                 )}
             </Grid>
             <Grid item container
-                direction="column">
+                direction='column'>
                 <Grid item>
-                    <Typography variant="body1">
+                    <Typography variant='body1'>
                         {CONNECTORS.NAME} *
                     </Typography>
                 </Grid>
@@ -67,9 +60,9 @@ const Create = ({ onCancel, onSave, type, item }) => {
                 </Grid>
             </Grid>
             <Grid item container
-                direction="column">
+                direction='column'>
                 <Grid item>
-                    <Typography variant="body1">
+                    <Typography variant='body1'>
                         {CONNECTORS.RECIPIENTS} *
                     </Typography>
                     {type && type === CONNECTORS.EMAIL && (
@@ -96,19 +89,19 @@ const Create = ({ onCancel, onSave, type, item }) => {
                 </Grid>
             </Grid>
             <Grid item container
-                alignItems="center"
-                justifyContent="flex-end"
+                alignItems='center'
+                justifyContent='flex-end'
                 spacing={2}>
                 <Grid item>
-                    <Button variant="contained" onClick={handleSave}>
-                        <Typography variant="body2">
+                    <Button variant='contained' onClick={handleSave}>
+                        <Typography variant='body2'>
                             {CONNECTORS.SAVE}
                         </Typography>
                     </Button>
                 </Grid>
                 <Grid item>
-                    <Button variant="contained" onClick={onCancel}>
-                        <Typography variant="body2">
+                    <Button variant='contained' onClick={onCancel}>
+                        <Typography variant='body2'>
                             {CONNECTORS.CANCEL}
                         </Typography>
                     </Button>

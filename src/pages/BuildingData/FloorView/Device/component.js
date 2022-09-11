@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { getImageURL, getPosition, mergeArray } from "../../../../common/utils";
-import LightbulbImage from "../../../../assets/icons/Lightbulb.png"
-import { useDispatch, useSelector } from "react-redux";
+import { getImageURL, getPosition, mergeArray } from '../../../../common/utils';
+import LightbulbImage from '../../../../assets/icons/Lightbulb.png'
+import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from '../../../../components/DataDisplay/Tooltip';
 import { TooltipContent } from './TooltipContent';
-import { updateDeviceToBeSaved, getAllDevicesToBeSaved } from "../../slice";
+import { updateDeviceToBeSaved, getAllDevicesToBeSaved } from '../../slice';
 
 const Device = (props) => {
     const { device, dummyDeviceRef, containerRef, devices, onDrag, onClick } = props;
@@ -21,9 +21,9 @@ const Device = (props) => {
         const { top, left } = target.getBoundingClientRect();
         setOffsetX(clientX - left);
         setOffsetY(clientY - top);
-        target.style.opacity = "0";
+        target.style.opacity = '0';
         dummyDeviceRef.src = target.src;
-        dummyDeviceRef.style.display = "block";
+        dummyDeviceRef.style.display = 'block';
     }
 
     const handleDrag = (event) => {
@@ -46,14 +46,14 @@ const Device = (props) => {
         );
 
         const deviceId = event.target.dataset.id;
-        event.target.style.opacity = "1";
+        event.target.style.opacity = '1';
         // ToDo - if device is outside the box, remove it.
         const index = devices.findIndex(device => device.RecId == deviceId);
         if (index < 0) return;
         const device = { ...devices[index], FloorX: x, FloorY: y }
         dispatch(updateDeviceToBeSaved(mergeArray(devicesToBeSaved, [device])))
-        dummyDeviceRef.style.transform = "translateX(-9000px)";
-        dummyDeviceRef.style.display = "none";
+        dummyDeviceRef.style.transform = 'translateX(-9000px)';
+        dummyDeviceRef.style.display = 'none';
         //onDrag()
     }
 
@@ -79,18 +79,18 @@ const Device = (props) => {
                 onDrag={handleDrag}
                 onDragEnd={handleDragEnd}
                 style={{
-                    position: "absolute",
-                    height: "1.5em",
-                    width: "1.5em",
+                    position: 'absolute',
+                    height: '1.5em',
+                    width: '1.5em',
                     left: `${device.FloorX}%`,
                     top: `${device.FloorY}%`
                 }}
-                src={((typeof device.StyleIcon != "undefined") ? getImageURL(device.StyleIcon) : LightbulbImage)}
+                src={((typeof device.StyleIcon != 'undefined') ? getImageURL(device.StyleIcon) : LightbulbImage)}
                 onError={({ currentTarget }) => {
                     currentTarget.onerror = null;
                     currentTarget.src = LightbulbImage;
                 }}
-                alt="Device"
+                alt='Device'
                 onClick={() => onClick(device)}
             />
         </Tooltip>

@@ -10,15 +10,15 @@ const Dialog = (props) => {
             open={open}
             onClose={handleClose}
             fullwidth={true}
-            maxWidth="1200px"
+            maxWidth='1200px'
             PaperProps={{
                 style: {
-                    position: "fixed",
+                    position: 'fixed',
                     top: top,
                     left: left,
                     height: height,
                     width: width,
-                    background: "linear-gradient(-30.77deg, #767f82, #596a75, #425569, #323f5b, #2a294b)"
+                    background: 'linear-gradient(-30.77deg, #767f82, #596a75, #425569, #323f5b, #2a294b)'
                 },
             }}>
             {title && (<DialogTitle>{title}</DialogTitle>)}

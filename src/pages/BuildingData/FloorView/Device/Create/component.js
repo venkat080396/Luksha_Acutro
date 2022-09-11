@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Button } from "@mui/material";
-import Select from "../../../../../components/Inputs/Select/Select"
-import TextField from "../../../../../components/Inputs/TextField/TextField"
-import { useDispatch, useSelector } from "react-redux";
-import { styled } from '@mui/system';
+import { Grid, Button } from '@mui/material';
+import Select from '../../../../../components/Inputs/Select/Select'
+import TextField from '../../../../../components/Inputs/TextField/TextField'
+import { useDispatch, useSelector } from 'react-redux';
 import { getSelectedFloor } from '../../../../Home/slice';
-import { fetchAsyncAllDeviceTypes, getAllDeviceTypes, saveAsyncDevice } from "../../../slice";
+import { fetchAsyncAllDeviceTypes, getAllDeviceTypes, saveAsyncDevice } from '../../../slice';
 import { FLOORVIEW } from '../../../constants'
+import { StyledGrid} from './style';
 
 const CreateDevice = (props) => {
 
@@ -41,24 +41,19 @@ const CreateDevice = (props) => {
         handleClose()
     }
 
-    const StyledGrid = styled(Grid)({
-        width: "30vw",
-        height: "20vh"
-    });
-
     return (
         <StyledGrid
-            justifyContent="center"
-            alignItems="center"
+            justifyContent='center'
+            alignItems='center'
             container>
             <Grid item xs={4}>
                 {FLOORVIEW.DEVICE_TYPES}
             </Grid>
             <Grid item xs={8}>
                 <Select sx={{
-                    width: "15em",
+                    width: '15em',
                     height: 30,
-                    color: "black"
+                    color: 'black'
                 }} value={selectedDeviceType} onSelectChange={(value) => {
                     setSelectedDeviceTypeId(value.RecId);
                     setSelectedDeviceType(value);
@@ -73,24 +68,24 @@ const CreateDevice = (props) => {
                     value={deviceName}
                     onChange={(event) => setDeviceName(event.target.value)}
                     name={FLOORVIEW.DEVICE_NAME}
-                    sx={{ width: "15em", color: "black", backgroundColor: "white" }}
-                    size="small" />
+                    sx={{ width: '15em', color: 'black', backgroundColor: 'white' }}
+                    size='small' />
             </Grid>
             <Grid item xs={11}>
                 <Grid container
-                    justifyContent="center"
+                    justifyContent='center'
                     spacing={3}
-                    sx={{ marginLeft: "0.1em" }}>
+                    sx={{ marginLeft: '0.1em' }}>
                     <Grid item>
                         <Button
-                            variant="contained"
-                            color="info"
+                            variant='contained'
+                            color='info'
                             onClick={onCreateOrUpdate}>{device ? FLOORVIEW.BUTTONS.UPDATE : FLOORVIEW.BUTTONS.CREATE}</Button>
                     </Grid>
                     <Grid item>
                         <Button
-                            variant="contained"
-                            color="error"
+                            variant='contained'
+                            color='error'
                             onClick={handleClose}>{FLOORVIEW.BUTTONS.CANCEL}</Button>
                     </Grid>
                 </Grid>

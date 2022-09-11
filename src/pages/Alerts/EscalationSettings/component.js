@@ -1,8 +1,8 @@
-import React from "react";
-import { Grid, Box, Typography, Button } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import Select from "../../../components/Inputs/Select/Select";
-import { ESCALATION_SETTINGS } from "../constants";
+import React from 'react';
+import { Grid, Box, Typography, Button } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import Select from '../../../components/Inputs/Select/Select';
+import { ESCALATION_SETTINGS } from '../constants';
 
 import {
     fetchAsyncDevices,
@@ -23,7 +23,7 @@ import {
     setSelectedBuilding,
     setSelectedFloor,
     setSelectedDevice
-} from "../slice";
+} from '../slice';
 
 
 const EscalationSettings = () => {
@@ -98,9 +98,9 @@ const EscalationSettings = () => {
 
     return (
         <Box padding={4}>
-            <Grid container spacing={4} alignItems="flex-start">
+            <Grid container spacing={4} alignItems='flex-start'>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <Grid container alignItems="center" spacing={2}>
+                    <Grid container alignItems='center' spacing={2}>
                         <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Typography>
                                 {ESCALATION_SETTINGS.SITE}
@@ -110,7 +110,7 @@ const EscalationSettings = () => {
                             <Select
                                 value={selectedSite}
                                 onSelectChange={(item) => hendleChangeSite(item)}
-                                props={{ size: "small" }}
+                                props={{ size: 'small' }}
                                 items={site}
                                 fullWidth={true}
                             />
@@ -124,7 +124,7 @@ const EscalationSettings = () => {
                             <Select
                                 value={selectedBuilding}
                                 onSelectChange={(item) => hendleChangeBuilding(item)}
-                                props={{ size: "small" }}
+                                props={{ size: 'small' }}
                                 items={buildings}
                                 fullWidth={true}
                             />
@@ -138,7 +138,7 @@ const EscalationSettings = () => {
                             <Select
                                 value={selectedFloor}
                                 onSelectChange={(item) => hendleChangeFloor(item)}
-                                props={{ size: "small" }}
+                                props={{ size: 'small' }}
                                 items={floors}
                                 fullWidth={true}
                             />
@@ -152,7 +152,7 @@ const EscalationSettings = () => {
                             <Select
                                 value={selectedDevice}
                                 onSelectChange={(item) => hendleChangeDevice(item)}
-                                props={{ size: "small" }}
+                                props={{ size: 'small' }}
                                 items={device}
                                 fullWidth={true}
                             />
@@ -160,7 +160,7 @@ const EscalationSettings = () => {
                     </Grid>
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <Grid container alignItems="center" spacing={2}>
+                    <Grid container alignItems='center' spacing={2}>
                         <Grid item xs={6} sm={6} md={2} lg={2} xl={2}>
                             <Typography>
                                 {ESCALATION_SETTINGS.LEVEL1}
@@ -172,7 +172,7 @@ const EscalationSettings = () => {
                                 onSelectChange={(item) =>
                                     hendleChangeValue(item, setLevelFirst)
                                 }
-                                props={{ size: "small" }}
+                                props={{ size: 'small' }}
                                 items={distributionList}
                                 fullWidth={true}
                             />
@@ -188,7 +188,7 @@ const EscalationSettings = () => {
                                 onSelectChange={(item) =>
                                     hendleChangeValue(item, setLevelSecound)
                                 }
-                                props={{ size: "small" }}
+                                props={{ size: 'small' }}
                                 items={distributionList}
                                 fullWidth={true}
                             />
@@ -204,15 +204,15 @@ const EscalationSettings = () => {
                                 onSelectChange={(item) =>
                                     hendleChangeValue(item, setLevelThird)
                                 }
-                                props={{ size: "small" }}
+                                props={{ size: 'small' }}
                                 items={distributionList}
                                 fullWidth={true}
                             />
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <Grid container alignItems="center" flexDirection="row-reverse">
+                            <Grid container alignItems='center' flexDirection='row-reverse'>
                                 <Grid item>
-                                    <Button variant="contained" onClick={handleSave}>
+                                    <Button variant='contained' onClick={handleSave}>
                                         <Typography>
                                             {ESCALATION_SETTINGS.SAVE}
                                         </Typography>

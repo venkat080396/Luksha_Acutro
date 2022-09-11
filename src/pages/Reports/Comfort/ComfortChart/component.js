@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
 //import { Grid } from '@mui/material'
-import _ from "lodash";
-import { useDispatch, useSelector } from "react-redux";
+import _ from 'lodash';
+import { useDispatch, useSelector } from 'react-redux';
 import { LineChart } from '../../../../components/Utils/Charts/LineChart';
 import { StackedAreaChart } from '../../../../components/Utils/Charts/StackedAreaChart';
-//import { ReactComponent as TooColdIcon } from "../../../../assets/icons/Too Cold.svg"
-//import { ReactComponent as TooHotIcon } from "../../../../assets/icons/Too Hot.svg"
-//import Select from "../../../../components/forms/Select/Select"
-import { fetchAsyncComfortLevelChartDataForDevice, getComfortChartData } from "../../../BuildingData/slice"
+//import { ReactComponent as TooColdIcon } from '../../../../assets/icons/Too Cold.svg'
+//import { ReactComponent as TooHotIcon } from '../../../../assets/icons/Too Hot.svg'
+//import Select from '../../../../components/forms/Select/Select'
+import { fetchAsyncComfortLevelChartDataForDevice, getComfortChartData } from '../../../BuildingData/slice'
 import { getFromDate, getToDate } from '../../../Home/slice';
 
 //const items = [...Array(50).keys()].map(i => ({ RecId: i + 1, Name: i + 1 }))
@@ -23,7 +23,7 @@ const ComfortChart = (props) => {
     Object.entries(groupedComfortChartData).map(entry => {
         let key = entry[0];
         let value = entry[1];
-        let obj = { "DeviceSensorRecId": key, "data": value }
+        let obj = { 'DeviceSensorRecId': key, 'data': value }
         comfortChartDataArr.push(obj)
     })
 
@@ -31,61 +31,61 @@ const ComfortChart = (props) => {
     const toDate = useSelector(getToDate);
 
     useEffect(() => {
-        const readingsFilter = { FromDate: fromDate, ToDate: toDate, DeviceTypeRecId: "2" };
+        const readingsFilter = { FromDate: fromDate, ToDate: toDate, DeviceTypeRecId: '2' };
         dispatch(fetchAsyncComfortLevelChartDataForDevice(readingsFilter));
     }, [fromDate, toDate]);
 
     return (<>
         {/* <Grid container
-            direction="row"
-            justifyContent="flex-end"
-            alignItems="center"
-            sx={{ paddingRight: "1.3em" }}>
+            direction='row'
+            justifyContent='flex-end'
+            alignItems='center'
+            sx={{ paddingRight: '1.3em' }}>
             <Grid item>
                 <Grid container
-                    alignItems="center"
+                    alignItems='center'
                     spacing={3}>
                     <Grid item>
-                        <Grid container alignItems="center" justifyContent="center">
-                            <Grid item sx={{ paddingTop: "0.5em" }}>
-                                <TooHotIcon height="1.5em" width="1.5em" />
+                        <Grid container alignItems='center' justifyContent='center'>
+                            <Grid item sx={{ paddingTop: '0.5em' }}>
+                                <TooHotIcon height='1.5em' width='1.5em' />
                             </Grid>
                             <Grid item>
                                 Too Hot
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item sx={{ width: "5em" }}>
+                    <Grid item sx={{ width: '5em' }}>
                         <Select sx={{
                             width: 50,
                             height: 17,
-                            marginTop: "0.2em",
-                            paddingRight: "0.5em"
+                            marginTop: '0.2em',
+                            paddingRight: '0.5em'
                         }} items={items} onSelectChange={value => setTooHot(value)} />
                     </Grid>
                 </Grid>
             </Grid>
             <Grid item>
                 <Grid container
-                    alignItems="center"
+                    alignItems='center'
                     spacing={3}
-                    sx={{ paddingLeft: "5em" }}>
+                    sx={{ paddingLeft: '5em' }}>
                     <Grid item>
-                        <Grid container alignItems="center" justifyContent="center">
-                            <Grid item sx={{ paddingTop: "0.5em" }}>
-                                <TooColdIcon height="1.5em" width="1.5em" />
+                        <Grid container alignItems='center' justifyContent='center'>
+                            <Grid item sx={{ paddingTop: '0.5em' }}>
+                                <TooColdIcon height='1.5em' width='1.5em' />
                             </Grid>
                             <Grid item>
                                 Too Cold
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item sx={{ width: "5em" }}>
+                    <Grid item sx={{ width: '5em' }}>
                         <Select sx={{
                             width: 50,
                             height: 17,
-                            marginTop: "0.2em",
-                            paddingRight: "0.5em"
+                            marginTop: '0.2em',
+                            paddingRight: '0.5em'
                         }} items={items} onSelectChange={value => setTooCold(value)} />
                     </Grid>
                 </Grid>
@@ -93,14 +93,14 @@ const ComfortChart = (props) => {
         </Grid> */}
         {comfortChartDataArr && comfortChartDataArr.length !== 0 && (
             <div
-                style={{ marginTop: "2%" }}>
+                style={{ marginTop: '2%' }}>
                 <LineChart
                     data={comfortChartDataArr}
                     aspect={aspectRatio}
                 />
                 {/* <StackedAreaChart
                 xAxisValues={xAxisValues}
-                areaKey1="Value"
+                areaKey1='Value'
                 aspect={aspetRatio}
                 data={readings} /> */}
             </div>

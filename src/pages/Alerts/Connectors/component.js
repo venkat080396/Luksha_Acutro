@@ -1,17 +1,17 @@
 import { Button, Grid, Typography, useTheme } from '@mui/material'
 import React, { useState, useEffect } from 'react'
-import { styled } from '@mui/system';
-import { Datagrid } from "../../../components/DataDisplay/Datagrid";
-import { CONNECTORS, ALERT_RULES } from "../constants";
+import { Datagrid } from '../../../components/DataDisplay/Datagrid';
+import { CONNECTORS, ALERT_RULES } from '../constants';
 import { Menu } from '../../../components/Navigation/Menu';
-import { Dialog } from "../../../components/Feedback/Dialog";
+import { Dialog } from '../../../components/Feedback/Dialog';
 import { TypesList } from './TypesList';
 import { Create } from './Create';
 import SmsIcon from '@mui/icons-material/Sms';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import { saveConnector, fetchConnectors, getConnectors } from "../slice";
+import { StyledGrid1,StyledGrid2} from './style';
+import { saveConnector, fetchConnectors, getConnectors } from '../slice';
 
 const Connectors = ({ isSelect = false, selectedRows, onSelectChange }) => {
     const theme = useTheme();
@@ -23,14 +23,7 @@ const Connectors = ({ isSelect = false, selectedRows, onSelectChange }) => {
     const [type, setType] = useState(null);
     const { enqueueSnackbar } = useSnackbar();
 
-    const StyledGrid = isSelect ? (styled(Grid)(({ theme }) => ({
-        padding: theme.spacing(2)
-    }))) : (styled(Grid)(({ theme }) => ({
-        background: "rgba(255,255,255,0.05)",
-        borderRadius: theme.spacing(1.875),
-        border: '0.05em solid rgba(255,255,255,0.3)',
-        padding: theme.spacing(2)
-    })));
+    const StyledGrid = isSelect ? StyledGrid1 : StyledGrid2;
 
     const handleSelect = (type) => {
         setType(type.title);
@@ -45,16 +38,16 @@ const Connectors = ({ isSelect = false, selectedRows, onSelectChange }) => {
 
     const columns = [
         {
-            field: "Name",
+            field: 'Name',
             headerName: CONNECTORS.FIELDS.NAME,
-            width: isSelect ? "300" : "700",
+            width: isSelect ? '300' : '700',
             renderCell: (cellValues) => {
                 const icon = cellValues.row.ConnectorType === CONNECTORS.EMAIL
-                    ? <MailOutlineIcon sx={{ height: "30px", width: "30px" }} />
-                    : <SmsIcon sx={{ height: "30px", width: "30px" }} />;
+                    ? <MailOutlineIcon sx={{ height: '30px', width: '30px' }} />
+                    : <SmsIcon sx={{ height: '30px', width: '30px' }} />;
                 return (
                     <Grid container
-                        alignItems="center"
+                        alignItems='center'
                         spacing={1}>
                         <Grid item>{icon}</Grid>
                         <Grid item>{cellValues.value}</Grid>
@@ -63,14 +56,14 @@ const Connectors = ({ isSelect = false, selectedRows, onSelectChange }) => {
             },
         },
         {
-            field: "ConnectorType",
+            field: 'ConnectorType',
             headerName: CONNECTORS.FIELDS.TYPE,
-            width: isSelect ? "300" : "700"
+            width: isSelect ? '300' : '700'
         },
         !isSelect && (
             {
-                field: "Update",
-                headerName: "",
+                field: 'Update',
+                headerName: '',
                 sortable: false,
                 width: 100,
                 renderCell: (cellValues) => {
@@ -93,7 +86,7 @@ const Connectors = ({ isSelect = false, selectedRows, onSelectChange }) => {
                 break;
 
             case ALERT_RULES.DELETE:
-                dispatch(saveConnector({ connectorRecId: item.RecId, isDelete: "1" }));
+                dispatch(saveConnector({ connectorRecId: item.RecId, isDelete: '1' }));
                 dispatch(fetchConnectors());
                 enqueueSnackbar(CONNECTORS.LIST_DELETED, { variant: 'success' })
                 break;
@@ -120,20 +113,20 @@ const Connectors = ({ isSelect = false, selectedRows, onSelectChange }) => {
     return (
         <>
             <StyledGrid container
-                alignItems="center"
-                justifyItems="center">
+                alignItems='center'
+                justifyItems='center'>
                 {!isSelect && (
                     <Grid item container
-                        alignItems="center"
-                        justifyContent="space-between">
+                        alignItems='center'
+                        justifyContent='space-between'>
                         <Grid item>
-                            <Typography variant="header2">
+                            <Typography variant='header2'>
                                 {CONNECTORS.HEADER}
                             </Typography>
                         </Grid>
                         <Grid item>
-                            <Button variant="contained" onClick={handleNewConnector}>
-                                <Typography variant="header3">
+                            <Button variant='contained' onClick={handleNewConnector}>
+                                <Typography variant='header3'>
                                     {CONNECTORS.NEW_CONNECTOR}
                                 </Typography>
                             </Button>
@@ -141,7 +134,7 @@ const Connectors = ({ isSelect = false, selectedRows, onSelectChange }) => {
                     </Grid>
                 )}
                 {connectors && (
-                    <Grid item sx={{ width: "100%", height: theme.spacing(46.25) }}>
+                    <Grid item sx={{ width: '100%', height: theme.spacing(46.25) }}>
                         <Datagrid
                             rows={connectors}
                             columns={columns}

@@ -1,7 +1,7 @@
 import { Button, Grid, Typography } from '@mui/material'
 import React from 'react'
-import { Connectors } from "../../Connectors";
-import { CONNECTORS } from "../../constants";
+import { Connectors } from '../../Connectors';
+import { CONNECTORS } from '../../constants';
 
 const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange }) => {
 
@@ -11,11 +11,11 @@ const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange 
 
     return (
         <Grid container
-            direction="column"
+            direction='column'
             spacing={2}
-            sx={{ height: "580px", width: "800px" }}>
-            <Grid item sx={{ margin: "20px" }}>
-                <Typography variant="header2">
+            sx={{ height: '580px', width: '800px' }}>
+            <Grid item sx={{ margin: '20px' }}>
+                <Typography variant='header2'>
                     {CONNECTORS.SELECT_CONNECTOR}
                 </Typography>
             </Grid>
@@ -27,10 +27,10 @@ const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange 
             </Grid>
             <Grid item container
                 spacing={2}
-                justifyContent="flex-end"
-                sx={{ padding: "10px 30px 10px 0px" }}>
+                justifyContent='flex-end'
+                sx={{ padding: '10px 30px 10px 0px' }}>
                 <Grid item>
-                    <Button variant="contained"
+                    <Button variant='contained'
                         onClick={handleOkClick}>
                         <Typography>
                             {CONNECTORS.OK}
@@ -38,7 +38,7 @@ const SelectConnectors = ({ handleClose, selctedConnectorRecIds, onSelectChange 
                     </Button>
                 </Grid>
                 <Grid item>
-                    <Button variant="contained" color="secondary"
+                    <Button variant='contained' color='secondary'
                         onClick={handleClose}>
                         <Typography>
                             {CONNECTORS.CANCEL}

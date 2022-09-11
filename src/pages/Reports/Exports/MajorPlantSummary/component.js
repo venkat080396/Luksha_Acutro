@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Grid, Button, Typography } from '@mui/material'
-import { useSelector, useDispatch } from "react-redux";
-import Date from "../../../../components/Inputs/Date/Date"
-import { exportData } from "../slice"
+import { useSelector, useDispatch } from 'react-redux';
+import Date from '../../../../components/Inputs/Date/Date'
+import { exportData } from '../slice'
 import { getSelectedBuilding, getSelectedFloor } from '../../../Home/slice'
 import { EXPORTS } from '../../constants.js'
 
@@ -19,8 +19,8 @@ const MajorPlantSummary = () => {
 
     return (
         <Grid container
-            direction="column"
-            alignItems="flex-start"
+            direction='column'
+            alignItems='flex-start'
             sx={{ marginLeft: 4, marginTop: 5 }}
         >
             <Grid item>
@@ -37,7 +37,7 @@ const MajorPlantSummary = () => {
                         <Date value={toDate} onDateChange={value => setToDate(value)} />
                     </Grid>
                     <Grid item>
-                        <Button variant="contained" onClick={onGenerate}>
+                        <Button variant='contained' onClick={onGenerate}>
                             <Typography>
                                 {EXPORTS.BUTTONS.GENERATE}
                             </Typography>

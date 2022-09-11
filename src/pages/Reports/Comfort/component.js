@@ -10,21 +10,21 @@ const Comfort = () => {
     return (
         <>
             <Grid container
-                direction="column"
-                justifyContent="center"
-                alignItems="center"
+                direction='column'
+                justifyContent='center'
+                alignItems='center'
                 spacing={3}>
                 <Grid item>
                     <Card
                         headerContent={<Header spacing={126} />}
-                        sx={{ width: "90vw", height: "88vh" }}
+                        sx={{ width: '90vw', height: '88vh' }}
                         content={<ComfortLevels
-                            chartSx={{ width: "85vw", height: "75vh" }}
-                            sliderSx={{ width: "85vw", height: "20vh" }}
+                            chartSx={{ width: '85vw', height: '75vh' }}
+                            sliderSx={{ width: '85vw', height: '20vh' }}
                             chartWidth={900}
                             chartHeight={700}
                             isSliderVisible={false}
-                            aspectRatio="2.7" />} />
+                            aspectRatio='2.7' />} />
                 </Grid>
                 <Grid item>
                     <Card
@@ -32,7 +32,7 @@ const Comfort = () => {
                             <Typography sx={{ marginLeft: 4 }}>
                                 {COMMON.DEVICE_SUMMARY.HEADER}
                             </Typography>}
-                        sx={{ width: "90vw", height: "50vh" }}
+                        sx={{ width: '90vw', height: '50vh' }}
                         content={<DevicesSummary />} />
                 </Grid>
             </Grid>

@@ -1,61 +1,39 @@
 import React from 'react'
 import CurrencyPoundIcon from '@mui/icons-material/CurrencyPound';
 import { Grid, styled } from '@mui/material'
-import { convertToFloat } from "../../../../../common/utils"
+import { convertToFloat } from '../../../../../common/utils'
 import { UTILITIES, DATA, COMMON } from '../../../constants'
-
-const GridItemHeader = styled('Grid')({
-    color: '#999999',
-    fontSize: 13
-});
-
-const GreenGridItemContent = styled('Grid')({
-    color: '#50ff40'
-});
-
-const RedGridItemContent = styled('Grid')({
-    color: '#ff0000'
-});
-
-const RedGridItemSubContent = styled('Grid')({
-    color: '#9b0000',
-    fontSize: 10
-});
-
-const GreenGridItemSubContent = styled('Grid')({
-    color: '#76BA1B',
-    fontSize: 10
-});
+import { GridItemHeader,GreenGridItemContent,GreenGridItemSubContent,RedGridItemContent,RedGridItemSubContent } from './style';
 
 const Estimation = (props) => {
     const { title, weekdaysContent, weekendContent, type } = props
     return (
         <Grid container
-            direction="column"
-            alignItems="center"
-            justifyContent="center"
+            direction='column'
+            alignItems='center'
+            justifyContent='center'
             spacing={2}>
             <Grid item>
                 {title}
             </Grid>
             <Grid item>
                 <Grid container
-                    direction="row"
-                    alignItems="center"
-                    justifyContent="space-evenly"
-                    sx={{ width: "25vw" }}>
+                    direction='row'
+                    alignItems='center'
+                    justifyContent='space-evenly'
+                    sx={{ width: '25vw' }}>
                     <Grid item>
                         <Grid container
-                            direction="column"
-                            alignItems="center">
+                            direction='column'
+                            alignItems='center'>
                             <GridItemHeader item>
                                 {UTILITIES.ENERGY_REPORTS.ESTIMATION.WEEKDAYS}
                             </GridItemHeader>
                             <RedGridItemContent item>
                                 <Grid container
-                                    direction="row"
-                                    alignItems="flex-start">
-                                    <Grid item>{title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_COST && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
+                                    direction='row'
+                                    alignItems='flex-start'>
+                                    <Grid item>{title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_COST && (<CurrencyPoundIcon fontSize='10px' />)}</Grid>
                                     <Grid item>{weekdaysContent}</Grid>
                                 </Grid>
                             </RedGridItemContent>
@@ -68,16 +46,16 @@ const Estimation = (props) => {
                     </Grid>
                     <Grid item>
                         <Grid container
-                            direction="column"
-                            alignItems="center">
+                            direction='column'
+                            alignItems='center'>
                             <GridItemHeader item>
                                 {UTILITIES.ENERGY_REPORTS.ESTIMATION.WEEKEND}
                             </GridItemHeader>
                             <GreenGridItemContent item>
                                 <Grid container
-                                    direction="row"
-                                    alignItems="flex-start">
-                                    <Grid item>{title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_COST && (<CurrencyPoundIcon fontSize="10px" />)}</Grid>
+                                    direction='row'
+                                    alignItems='flex-start'>
+                                    <Grid item>{title && title === UTILITIES.ENERGY_REPORTS.ESTIMATION.ESTIMATED_COST && (<CurrencyPoundIcon fontSize='10px' />)}</Grid>
                                     <Grid item>{weekendContent}</Grid>
                                 </Grid>
                             </GreenGridItemContent>
@@ -106,9 +84,9 @@ const Container = (props) => {
 
     return (
         <Grid container
-            direction="column"
-            justifyContent="center"
-            alignItems="center"
+            direction='column'
+            justifyContent='center'
+            alignItems='center'
             sx={sx}
             spacing={3}>
             <Grid item>

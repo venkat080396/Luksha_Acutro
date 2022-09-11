@@ -7,12 +7,12 @@ const CheckboxLabel = (props) => {
     const { label, checked, value, onChange } = props
 
     return (
-        <FormControl component="fieldset">
+        <FormControl component='fieldset'>
             <FormControlLabel
-                value="end"
+                value='end'
                 control={<Checkbox item={value} checked={checked} onChange={onChange} />}
                 label={label}
-                labelPlacement="end"
+                labelPlacement='end'
             />
         </FormControl>
     )

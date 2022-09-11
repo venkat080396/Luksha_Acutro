@@ -1,5 +1,5 @@
 import { Menu as MuiMenu, MenuItem, IconButton } from '@mui/material'
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import React, { useState } from 'react'
 
 const Menu = ({ items, onClick }) => {
@@ -16,19 +16,19 @@ const Menu = ({ items, onClick }) => {
     return (
         <>
             <IconButton onClick={handleClick}>
-                <MoreVertIcon style={{ color: "#fff" }} />
+                <MoreVertIcon style={{ color: '#fff' }} />
             </IconButton>
             <MuiMenu
                 open={open}
                 anchorEl={anchorEl}
                 onClose={handleClose}
                 anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
+                    vertical: 'top',
+                    horizontal: 'left',
                 }}
                 transformOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
+                    vertical: 'top',
+                    horizontal: 'left',
                 }}
             >
                 {items && items.map(item => (

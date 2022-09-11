@@ -13,7 +13,7 @@ const Checkbox = (props) => {
             checked={isChecked(item)}
             value={item}
             onChange={(e) => onChange(e, item)}
-            sx={{ color: "white" }} />
+            sx={{ color: 'white' }} />
     )
 }
 

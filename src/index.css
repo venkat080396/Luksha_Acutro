@@ -4,7 +4,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url("./assets/images/Background.png") no-repeat center center fixed;
+  background: url('./assets/images/Background.png') no-repeat center center fixed;
   background-size: cover;
   height: '100vh';
   width: '100vw';
